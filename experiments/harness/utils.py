@@ -23,15 +23,9 @@ def write_file(
             f"File already exists: {file_path}"
         )
 
-    path.parent.mkdir(
-        parents=True,
-        exist_ok=True,
-    )
+    path.parent.mkdir(parents=True, exist_ok=True)
 
-    path.write_text(
-        content,
-        encoding="utf-8",
-    )
+    path.write_text(content, encoding="utf-8")
 
     return f"Wrote file: {file_path}"
 
@@ -44,25 +38,16 @@ def edit_file(
 
     path = Path(file_path)
 
-    content = path.read_text(
-        encoding="utf-8"
-    )
+    content = path.read_text(encoding="utf-8")
 
     if content.count(find) != 1:
         raise ValueError(
             f"Target text not unique in {file_path}"
         )
 
-    updated = content.replace(
-        find,
-        replace,
-        1,
-    )
+    updated = content.replace(find, replace, 1)
 
-    path.write_text(
-        updated,
-        encoding="utf-8",
-    )
+    path.write_text(updated, encoding="utf-8")
 
     return f"Edited file: {file_path}"
 
