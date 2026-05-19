@@ -2,48 +2,10 @@
 
 import time
 from dataclasses import dataclass, field
-from datetime import datetime
-from typing import Any, Callable, Dict, List, Optional, Tuple
+from typing import Any, Callable, Dict, List, Optional
+from uuid import UUID
 
-
-@dataclass
-class BeforeToolCallEvent:
-    """Event emitted immediately before a tool is invoked.
-
-    Attributes:
-        tool_name: Name of the tool about to be called.
-        args:      Positional arguments that will be forwarded to the tool.
-        kwargs:    Keyword arguments that will be forwarded to the tool.
-        timestamp: UTC time at which the event was created.
-    """
-
-    tool_name: str
-    args: Tuple[Any, ...]
-    kwargs: Dict[str, Any]
-    timestamp: datetime = field(default_factory=datetime.utcnow)
-
-
-@dataclass
-class AfterToolCallEvent:
-    """Event emitted immediately after a tool has been invoked.
-
-    Attributes:
-        tool_name:   Name of the tool that was called.
-        args:        Positional arguments that were forwarded to the tool.
-        kwargs:      Keyword arguments that were forwarded to the tool.
-        result:      Return value from the tool (``None`` when *error* is set).
-        error:       Exception raised by the tool, or ``None`` on success.
-        duration_ms: Wall-clock execution time in milliseconds.
-        timestamp:   UTC time at which the event was created.
-    """
-
-    tool_name: str
-    args: Tuple[Any, ...]
-    kwargs: Dict[str, Any]
-    result: Any
-    error: Optional[Exception]
-    duration_ms: float
-    timestamp: datetime = field(default_factory=datetime.utcnow)
+from experiments.harness.hooks import HookAction, HookContext, HookPhase, HookRegistry
 
 
 @dataclass
@@ -76,10 +38,9 @@ class ToolRegistry:
     for LLM function-calling payloads.
     """
 
-    def __init__(self) -> None:
+    def __init__(self, hook_registry: Optional[HookRegistry] = None) -> None:
         self._tools: Dict[str, Tool] = {}
-        self._before_hooks: List[Callable[[BeforeToolCallEvent], None]] = []
-        self._after_hooks: List[Callable[[AfterToolCallEvent], None]] = []
+        self.hook_registry = hook_registry or HookRegistry()
 
     # ------------------------------------------------------------------
     # Registration
@@ -136,40 +97,60 @@ class ToolRegistry:
         """Return the ``Tool`` for *name*, or ``None`` if not found."""
         return self._tools.get(name)
 
-    def execute(self, name: str, *args: Any, **kwargs: Any) -> Any:
+    async def execute(
+        self,
+        name: str,
+        run_id: UUID,
+        step: int,
+        agent_name: str,
+        *args: Any,
+        **kwargs: Any
+    ) -> Any:
         """Look up and invoke a tool by name, firing lifecycle hooks.
 
-        Before the tool runs every registered *before_tool* hook receives a
-        :class:`BeforeToolCallEvent`.  After the tool finishes (or raises)
-        every registered *after_tool* hook receives an
-        :class:`AfterToolCallEvent` that includes the wall-clock duration and
-        any exception.  The exception is then re-raised so callers still see
-        it.
+        Before the tool runs, PRE_TOOL hooks are fired.
+        After the tool finishes (or raises), POST_TOOL hooks are fired.
 
         Args:
-            name:     Registered tool name.
-            *args:    Positional arguments forwarded to the tool.
-            **kwargs: Keyword arguments forwarded to the tool.
+            name:       Registered tool name.
+            run_id:     ID of the current agent run.
+            step:       Current reasoning step index.
+            agent_name: Name of the agent.
+            *args:      Positional arguments forwarded to the tool.
+            **kwargs:   Keyword arguments forwarded to the tool.
 
         Returns:
-            Whatever the tool's callable returns.
+            Whatever the tool's callable returns, or a mocked replacement
+            if a hook returned HookAction.SKIP.
 
         Raises:
-            KeyError: If no tool with that name is registered.
+            KeyError:     If no tool with that name is registered.
+            RuntimeError: If a hook aborts the execution.
         """
         tool = self._tools.get(name)
         if tool is None:
             raise KeyError(f"No tool registered with name: {name!r}")
 
-        before_event = BeforeToolCallEvent(
-            tool_name=name, args=args, kwargs=kwargs
+        pre_ctx = HookContext(
+            run_id=run_id,
+            step=step,
+            agent_name=agent_name,
+            phase=HookPhase.PRE_TOOL,
+            tool_name=name,
+            payload={"args": args, "kwargs": kwargs}
         )
-        for hook in self._before_hooks:
-            hook(before_event)
+        
+        pre_decision = await self.hook_registry.dispatch_and_merge(pre_ctx)
+        
+        if pre_decision.action == HookAction.ABORT:
+            raise RuntimeError(f"Tool execution aborted: {pre_decision.reason}")
+        elif pre_decision.action == HookAction.SKIP:
+            return pre_decision.replacement
 
         result: Any = None
         error: Optional[Exception] = None
         start = time.perf_counter()
+        
         try:
             result = tool(*args, **kwargs)
             return result
@@ -178,16 +159,21 @@ class ToolRegistry:
             raise
         finally:
             duration_ms = (time.perf_counter() - start) * 1_000
-            after_event = AfterToolCallEvent(
+            post_ctx = HookContext(
+                run_id=run_id,
+                step=step,
+                agent_name=agent_name,
+                phase=HookPhase.POST_TOOL,
                 tool_name=name,
-                args=args,
-                kwargs=kwargs,
-                result=result,
-                error=error,
-                duration_ms=duration_ms,
+                payload={
+                    "result": result,
+                    "args": args,
+                    "kwargs": kwargs,
+                    "duration_ms": duration_ms
+                },
+                error=error
             )
-            for hook in self._after_hooks:
-                hook(after_event)
+            await self.hook_registry.dispatch(post_ctx)
 
     # ------------------------------------------------------------------
     # Introspection
@@ -224,32 +210,3 @@ class ToolRegistry:
     def __repr__(self) -> str:
         names = ", ".join(self._tools) or "<empty>"
         return f"ToolRegistry({names})"
-
-    # -------------------------------------------------------------------
-    # Lifecycle
-    # -------------------------------------------------------------------
-
-    def before_tool(
-        self, hook: Callable[[BeforeToolCallEvent], None]
-    ) -> None:
-        """Register *hook* to be called before every tool invocation.
-
-        Args:
-            hook: Callable that receives a :class:`BeforeToolCallEvent`.
-                  It should not raise; exceptions will propagate and abort
-                  the tool call.
-        """
-        self._before_hooks.append(hook)
-
-    def after_tool(
-        self, hook: Callable[[AfterToolCallEvent], None]
-    ) -> None:
-        """Register *hook* to be called after every tool invocation.
-
-        The hook fires regardless of whether the tool raised an exception.
-        Inspect ``event.error`` to distinguish success from failure.
-
-        Args:
-            hook: Callable that receives an :class:`AfterToolCallEvent`.
-        """
-        self._after_hooks.append(hook)
