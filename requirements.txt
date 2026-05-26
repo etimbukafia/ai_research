@@ -1,8 +1,0 @@
-chromadb
-sentence-transformers
-PyPDF2
-tavily
-python-dotenv
-requests
-google-generativeai
-pytest
