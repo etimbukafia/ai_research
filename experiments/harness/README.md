@@ -2,7 +2,6 @@
 
 Short descriptions of the key modules in this package.
 
-- [experiments/harness/__init__.py](experiments/harness/__init__.py): Package init (empty).
 - [experiments/harness/agent.py](experiments/harness/agent.py): Base agent abstractions — `AgentConfig`, `BaseAgent` lifecycle, hook/tool/context/session wiring and an `Agent` wrapper for third‑party frameworks.
 - [experiments/harness/evaluation.py](experiments/harness/evaluation.py): Lightweight evaluation framework — `EvalCase`/`EvalResult`, evaluators, `TraceHook`, and `EvaluationRunner` which runs datasets and emits JSON reports.
 - [experiments/harness/hooks.py](experiments/harness/hooks.py): Flexible hook system — `HookContext`, `HookDecision`, `HookPhase`, `HookRegistry`, built-in hooks (logging, rate-limit, timeout, filter), and decorator helpers.
@@ -13,7 +12,6 @@ Short descriptions of the key modules in this package.
 - [experiments/harness/sub_agents.py](experiments/harness/sub_agents.py): Sub-agent spec and registry — `AgentSpec`, `BaseSubAgent` interface, and `SubAgentRegistry` for registering/discovering sub-agents.
 - [experiments/harness/tools.py](experiments/harness/tools.py): Tool registry and `Tool` dataclass — register/execute tools, fire PRE/POST tool hooks, and produce LLM-ready tool descriptors.
 - [experiments/harness/utils.py](experiments/harness/utils.py): Small helpers — file read/write/edit, `bash` runner, and `grep_file` utility.
-- [experiments/harness/context/__init__.py](experiments/harness/context/__init__.py): Context package init (empty).
 - [experiments/harness/context/manager.py](experiments/harness/context/manager.py): `ContextManager` that holds message history, memory blocks, token accounting, overflow checks, and applies compression strategies.
 - [experiments/harness/context/memory.py](experiments/harness/context/memory.py): `MemoryBlock` and `MemoryType` — structured memory with token limits, compression hooks, metadata and lifecycle helpers.
 - [experiments/harness/context/policy.py](experiments/harness/context/policy.py): `OverflowPolicy` enum — policies for handling token/context overflow (compress, warn, truncate, evict, etc.).
