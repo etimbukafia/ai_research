@@ -1,7 +1,5 @@
 """
-loop_controller.py
-==================
-A reusable, flexible loop controller for agent harnesses.
+Reusable, flexible loop controller for agent harnesses.
 
 Designed to power agents, tool runners, API retry loops, and any
 system that needs controlled iteration with observability and safety.

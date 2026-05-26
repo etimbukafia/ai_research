@@ -1,7 +1,6 @@
 """Compression strategies for context management.
 
-Implements six core compression techniques for AI agent context engineering,
-based on 2025-2026 state-of-the-art research:
+Implements six core compression techniques
 
     1. HierarchicalSummarizationStrategy  – rolling multi-tier summarization
     2. JITRetrievalStrategy               – just-in-time pointer-based retrieval
@@ -87,7 +86,7 @@ def _safe_count(tokenizer: Any, messages: List[Dict[str, Any]]) -> int:
 
 
 # ---------------------------------------------------------------------------
-# 1. Hierarchical Summarization Strategy
+# Hierarchical Summarization Strategy
 # ---------------------------------------------------------------------------
 
 @dataclass
@@ -160,7 +159,7 @@ class HierarchicalSummarizationStrategy(CompressionStrategy):
 
 
 # ---------------------------------------------------------------------------
-# 2. JIT Retrieval Strategy
+# JIT Retrieval Strategy
 # ---------------------------------------------------------------------------
 
 @dataclass
@@ -241,7 +240,7 @@ class JITRetrievalStrategy(CompressionStrategy):
 
 
 # ---------------------------------------------------------------------------
-# 3. Observation Masking Strategy
+# Observation Masking Strategy
 # ---------------------------------------------------------------------------
 
 @dataclass
@@ -310,7 +309,7 @@ class ObservationMaskingStrategy(CompressionStrategy):
 
 
 # ---------------------------------------------------------------------------
-# 4. Token Pruning Strategy  (LLMLingua-style)
+# Token Pruning Strategy  (LLMLingua-style)
 # ---------------------------------------------------------------------------
 
 @dataclass
@@ -321,8 +320,7 @@ class TokenPruningStrategy(CompressionStrategy):
     scored by word rarity (inverse document frequency within the message
     list) and low-scoring ones are pruned or truncated.
 
-    This is a *heuristic* approximation. A production deployment
-    should route through an actual LLMLingua endpoint or equivalent model.
+    This is a *heuristic* approximation. This will be enhanced later to route through an actual LLMLingua endpoint or equivalent model.
 
     Attributes:
         compression_ratio:  Target fraction of content to retain (0.0-1.0).
@@ -405,7 +403,7 @@ class TokenPruningStrategy(CompressionStrategy):
 
 
 # ---------------------------------------------------------------------------
-# 5. Task-Boundary Compression Strategy
+# Task-Boundary Compression Strategy
 # ---------------------------------------------------------------------------
 
 @dataclass
@@ -488,7 +486,7 @@ class TaskBoundaryStrategy(CompressionStrategy):
 
 
 # ---------------------------------------------------------------------------
-# 6. Importance-Scored Retention Strategy  (enhanced)
+# Importance-Scored Retention Strategy  
 # ---------------------------------------------------------------------------
 
 @dataclass

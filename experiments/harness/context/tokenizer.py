@@ -26,7 +26,7 @@ from typing import Any, Dict, List, Optional, Tuple
 
 
 class Tokenizer(ABC):
-    """Abstract base — all tokenizers share this interface."""
+    """Abstract base interface all tokenizers share."""
 
     @abstractmethod
     def count_tokens(self, text: str) -> int: ...
@@ -72,7 +72,7 @@ class Tokenizer(ABC):
 
 
 class SimpleTokenizer(Tokenizer):
-    """Character-ratio estimator — no dependencies required.
+    """Character-ratio estimator.
 
     Args:
         chars_per_token: Tune to match the model family:
@@ -91,7 +91,7 @@ class SimpleTokenizer(Tokenizer):
 
 
 class TiktokenTokenizer(Tokenizer):
-    """Exact BPE token counts via tiktoken (OpenAI models).
+    """Exact BPE token counts via tiktoken.
 
     Encoding selection:
       o200k_base  → gpt-4o, o1, o3, o4-*
@@ -131,9 +131,7 @@ class TiktokenTokenizer(Tokenizer):
 class HuggingFaceTokenizer(Tokenizer):
     """Exact token counts via HuggingFace AutoTokenizer.
 
-    Works for any model on the HuggingFace Hub or a local path:
-      Mistral, Llama, Qwen, DeepSeek, Phi, Gemma, BGE, E5, Nomic,
-      Jina, Voyage (many use HF tokenizers), and more.
+    Works for any model on the HuggingFace Hub or a local path
 
     Args:
         model_name_or_path: HF model ID or local directory,

@@ -1,5 +1,5 @@
 """
-hooks.py — Reusable, flexible hook system for the agent harness.
+Reusable, flexible hook system for the agent harness.
 
 Provides:
   - HookContext   : immutable snapshot of agent state at a hook point
@@ -36,7 +36,6 @@ OutputT = TypeVar("OutputT")
 # Enums
 # ---------------------------------------------------------------------------
 
-
 class HookPhase(str, Enum):
     """Well-known lifecycle phases where hooks may fire."""
 
@@ -65,7 +64,6 @@ class HookAction(str, Enum):
 # ---------------------------------------------------------------------------
 # HookContext
 # ---------------------------------------------------------------------------
-
 
 class HookContext(BaseModel, Generic[InputT]):
     """
@@ -135,7 +133,6 @@ class HookContext(BaseModel, Generic[InputT]):
 # ---------------------------------------------------------------------------
 # HookDecision
 # ---------------------------------------------------------------------------
-
 
 class HookDecision(BaseModel, Generic[OutputT]):
     """
@@ -328,7 +325,6 @@ class FunctionHook(Hook[Any, Any]):
 # HookRegistry
 # ---------------------------------------------------------------------------
 
-
 class HookRegistry:
     """
     Manages hook registration and ordered dispatch.
@@ -436,7 +432,6 @@ class HookRegistry:
 # Built-in hooks
 # ---------------------------------------------------------------------------
 
-
 class LoggingHook(Hook[Any, Any]):
     """Logs every hook context at DEBUG level."""
 
@@ -455,7 +450,6 @@ class LoggingHook(Hook[Any, Any]):
             type(ctx.payload).__name__ if ctx.payload is not None else "None",
         )
         return HookDecision.continue_()
-
 
 class RateLimitHook(Hook[Any, Any]):
     """
@@ -499,7 +493,6 @@ class RateLimitHook(Hook[Any, Any]):
             return HookDecision.retry(delay_s=wait, reason=reason)
         return HookDecision.abort(reason=reason)
 
-
 class TimeoutHook(Hook[Any, Any]):
     """Aborts if a step has been running longer than `max_duration_s`."""
 
@@ -526,7 +519,6 @@ class TimeoutHook(Hook[Any, Any]):
                     reason=f"Run exceeded timeout of {self.max_duration_s}s (elapsed {elapsed:.1f}s)"
                 )
         return HookDecision.continue_()
-
 
 class FilterHook(Hook[Any, Any]):
     """
