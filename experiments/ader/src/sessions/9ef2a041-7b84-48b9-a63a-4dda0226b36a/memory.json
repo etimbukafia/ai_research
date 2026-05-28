@@ -1,0 +1,52 @@
+{
+  "name": "9ef2a041-7b84-48b9-a63a-4dda0226b36a",
+  "memory_type": "working",
+  "content": "",
+  "max_tokens": null,
+  "priority": 0.5,
+  "importance": 0.5,
+  "strategy": null,
+  "compressed": false,
+  "summary_version": 0,
+  "read_only": false,
+  "trusted": true,
+  "description": "",
+  "metadata": {},
+  "depends_on": [],
+  "created_at": "2026-05-28T13:50:11.536341",
+  "updated_at": "2026-05-28T13:50:15.124470",
+  "working": {
+    "mode": "calm",
+    "user_emotional_state": "neutral",
+    "active_goals": [],
+    "open_loops": []
+  },
+  "semantic": {
+    "preferences": [],
+    "triggers": [],
+    "prefers_direct_language": true,
+    "dislikes_open_ended_questions": true,
+    "best_focus_time": "night",
+    "sensitive_to_noise": true
+  },
+  "procedural": {
+    "successful_interventions": [],
+    "routines_that_worked": [],
+    "effective_grouping_strategies": [],
+    "preferred_planning_structures": []
+  },
+  "scratchpad": {
+    "possible_causes": [],
+    "confidence_scores": {},
+    "next_steps": ""
+  },
+  "episodic": [],
+  "affective": {
+    "stress_level": 0.5,
+    "energy_level": 0.5,
+    "cognitive_load": 0.5,
+    "social_energy": 0.5,
+    "emotional_regulation": 0.5,
+    "executive_function": 0.5
+  }
+}
