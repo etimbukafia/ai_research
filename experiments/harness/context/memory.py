@@ -1,26 +1,26 @@
-from dataclasses import dataclass, field
+# Base memory
+
+from pydantic import BaseModel, ConfigDict, Field
+from pydantic import PrivateAttr
 from datetime import datetime
 from enum import Enum
 from typing import Optional, TYPE_CHECKING, Dict, List, Any
 
 
-if TYPE_CHECKING:
-    from .strategies import CompressionStrategy
+from .strategies import CompressionStrategy
 
 # ---------------------------------------------------------------------------
 # Data Structures
 # ---------------------------------------------------------------------------
 
-class MemoryType(str, Enum):
+class MemoryType(str, Enum): 
     WORKING = "working"       # agent’s active short-term memory.
     EPISODIC = "episodic"     # long/medium term memory of past experiences.
     SEMANTIC = "semantic"     # long-term memory of facts, stable truths, and knowledge.
     PROCEDURAL = "procedural" # long-term memory of how to do things.
     SCRATCHPAD = "scratchpad" # temporary reasoning space
 
-
-@dataclass
-class MemoryBlock:
+class MemoryBlock(BaseModel):
     """
     Structured memory block for agent context management.
 
@@ -33,6 +33,10 @@ class MemoryBlock:
     - checkpoint persistence
     - active compression workflows
     """
+
+    model_config = ConfigDict(
+        arbitrary_types_allowed=True,  # allows CompressionStrategy (non-Pydantic type)
+    )
 
     # Core identity
     name: str
@@ -57,16 +61,16 @@ class MemoryBlock:
     description: str = ""
 
     # Retrieval metadata
-    metadata: Dict[str, Any] = field(default_factory=dict)
-    depends_on: List[str] = field(default_factory=list)
+    metadata: Dict[str, Any] = Field(default_factory=dict)
+    depends_on: List[str] = Field(default_factory=list)
 
     # Lifecycle
-    created_at: datetime = field(default_factory=datetime.utcnow)
-    updated_at: datetime = field(default_factory=datetime.utcnow)
+    created_at: datetime = Field(default_factory=datetime.utcnow)
+    updated_at: datetime = Field(default_factory=datetime.utcnow)
 
     # Internal state
-    _token_count: int = field(default=0, repr=False)
-    _dirty: bool = field(default=False, repr=False)
+    _token_count: int  = PrivateAttr(default=0) # Using PrivateAttr so Pydantic doesn't treat these as model fields while still allowing mutation on a model instance.
+    _dirty: bool = PrivateAttr(default=False)
 
     def _ensure_writable(self) -> None:
         """

@@ -94,6 +94,24 @@ class SessionReader(ABC):
     @abstractmethod
     async def list_sessions_async(self) -> list[str]:
         """Async variant of :meth:`list_sessions`."""
+    
+    def _memory_path(self, session_id: str) -> Path:
+        return self.base_path / session_id / "memory.json"
+
+    def load_memory(self, session_id: str) -> Optional[str]:
+        path = self._memory_path(session_id)
+
+        if not path.exists():
+            return None
+
+        return path.read_text(encoding="utf-8")
+
+    def save_memory(self, session_id: str, json_content: str) -> None:
+        path = self._memory_path(session_id)
+
+        path.parent.mkdir(parents=True, exist_ok=True)
+
+        path.write_text(json_content, encoding="utf-8")
 
 
 class SessionWriter(ABC):
@@ -117,6 +135,19 @@ class SessionManager(SessionReader, SessionWriter, ABC):
         if isinstance(event, SessionEvent):
             return event
         return SessionEvent(**event)
+
+    # ------------------------------------------------------------------
+    # Memory persistence (new)
+    # ------------------------------------------------------------------
+    @abstractmethod
+    def load_memory(self, session_id: str) -> Optional[str]:
+        """Return the raw JSON string of the memory state for *session_id*, or ``None`` if not present."""
+        raise NotImplementedError
+
+    @abstractmethod
+    def save_memory(self, session_id: str, json_content: str) -> None:
+        """Persist *json_content* as the memory state for *session_id*."""
+        raise NotImplementedError
 
 
 # ---------------------------------------------------------------------------
@@ -146,14 +177,31 @@ class JSONLSessionManager(SessionManager):
     # Internal helpers
     # ------------------------------------------------------------------
 
-    def _file_path(self, session_id: str) -> Path:
-        return self.base_path / f"{session_id}.jsonl"
-
     def _lock_for(self, session_id: str) -> threading.Lock:
+        """Return a lock object for *session_id*, creating it if necessary."""
         with self._locks_guard:
             if session_id not in self._locks:
                 self._locks[session_id] = threading.Lock()
             return self._locks[session_id]
+
+    def save_memory(self, session_id: str, json_content: str) -> None:
+        """Persist ``json_content`` as the memory state for *session_id*.
+
+        Mirrors ``SessionReader.save_memory`` implementation.
+        """
+        path = self._memory_path(session_id)
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text(json_content, encoding="utf-8")
+
+    def load_memory(self, session_id: str) -> Optional[str]:
+        """Return the raw JSON string of the memory state for *session_id*, or ``None`` if not present.
+
+        This mirrors the implementation provided in ``SessionReader``.
+        """
+        path = self._memory_path(session_id)
+        if not path.exists():
+            return None
+        return path.read_text(encoding="utf-8")
 
     # ------------------------------------------------------------------
     # SessionWriter
@@ -163,7 +211,7 @@ class JSONLSessionManager(SessionManager):
         ev = self._coerce(event)
         lock = self._lock_for(session_id)
         with lock:
-            with self._file_path(session_id).open("a", encoding="utf-8") as f:
+            with self._messages_path(session_id).open("a", encoding="utf-8") as f:
                 f.write(ev.serialise() + "\n")
 
     async def append_async(
@@ -176,7 +224,7 @@ class JSONLSessionManager(SessionManager):
     # ------------------------------------------------------------------
 
     def replay(self, session_id: str) -> Iterator[SessionEvent]:
-        path = self._file_path(session_id)
+        path = self._messages_path(session_id)
         if not path.exists():
             return
         source = str(path)
