@@ -80,6 +80,7 @@ from experiments.ader.src.memory import (
 class UserRow(BaseModel):
     user_id: UUID = Field(default_factory=uuid4)
     name: str
+    last_session_id: Optional[UUID] = None
 
 
 class WorkingMemoryRow(BaseModel):
@@ -96,6 +97,7 @@ class WorkingMemoryRow(BaseModel):
 class EpisodicMemoryRow(BaseModel):
     episode_id: UUID = Field(default_factory=uuid4)
     user_id: UUID
+    last_session_id: Optional[UUID] = None
     event: str
     trigger: str
     response: str
@@ -111,6 +113,7 @@ class SemanticMemoryRow(BaseModel):
     dislikes_open_ended_questions: bool = True
     best_focus_time: List[str] = Field(default_factory=list)  # List of strings e.g. ["morning", "afternoon", "night"]
     sensitive_to_noise: bool = True
+    last_session_id: Optional[UUID] = None
 
 
 class ProceduralMemoryRow(BaseModel):
@@ -119,6 +122,7 @@ class ProceduralMemoryRow(BaseModel):
     routines_that_worked: List[str] = Field(default_factory=list)
     effective_grouping_strategies: List[str] = Field(default_factory=list)
     preferred_planning_structures: List[str] = Field(default_factory=list)
+    last_session_id: Optional[UUID] = None
 
 
 class AffectiveStateRow(BaseModel):
@@ -129,6 +133,7 @@ class AffectiveStateRow(BaseModel):
     user_last_social_energy: float = Field(default=0.5, ge=0.0, le=1.0)
     user_last_emotional_regulation: float = Field(default=0.5, ge=0.0, le=1.0)
     user_last_executive_function: float = Field(default=0.5, ge=0.0, le=1.0)
+    last_session_id: Optional[UUID] = None
 
 
 # ---------------------------------------------------------------------------
@@ -157,22 +162,35 @@ class MockDatabase(BaseModel):
         # Get or build Working Memory Row
         working_row = next((r for r in self.working_memories if r.user_id == user_id), None)
         if not working_row:
-            working_row = WorkingMemoryRow(user_id=user_id)
+                working_row = WorkingMemoryRow(user_id=user_id)
+                # default working last_session to user's last_session if present
+                user_row = next((u for u in self.users if u.user_id == user_id), None)
+                if user_row and user_row.last_session_id:
+                    working_row.last_session_id = user_row.last_session_id
 
         # Get or build Semantic Memory Row
         semantic_row = next((r for r in self.semantic_memories if r.user_id == user_id), None)
         if not semantic_row:
             semantic_row = SemanticMemoryRow(user_id=user_id)
+            user_row = next((u for u in self.users if u.user_id == user_id), None)
+            if user_row and user_row.last_session_id:
+                semantic_row.last_session_id = user_row.last_session_id
 
         # Get or build Procedural Memory Row
         procedural_row = next((r for r in self.procedural_memories if r.user_id == user_id), None)
         if not procedural_row:
             procedural_row = ProceduralMemoryRow(user_id=user_id)
+            user_row = next((u for u in self.users if u.user_id == user_id), None)
+            if user_row and user_row.last_session_id:
+                procedural_row.last_session_id = user_row.last_session_id
 
         # Get or build Affective State Row
         affective_row = next((r for r in self.affective_states if r.user_id == user_id), None)
         if not affective_row:
             affective_row = AffectiveStateRow(user_id=user_id)
+            user_row = next((u for u in self.users if u.user_id == user_id), None)
+            if user_row and user_row.last_session_id:
+                affective_row.last_session_id = user_row.last_session_id
 
         # Retrieve all episodic records for this user
         user_episodes = [r for r in self.episodic_memories if r.user_id == user_id]
@@ -270,6 +288,11 @@ class MockDatabase(BaseModel):
         working_row.open_loops_completed = memory.working.open_loops_completed
         working_row.last_session_id = memory.working.last_session_id
 
+        # Also persist to the canonical user row
+        user_row = next((u for u in self.users if u.user_id == user_id), None)
+        if user_row:
+            user_row.last_session_id = memory.working.last_session_id
+
         # 2. Update Semantic Memory
         semantic_row = next((r for r in self.semantic_memories if r.user_id == user_id), None)
         if not semantic_row:
@@ -281,6 +304,7 @@ class MockDatabase(BaseModel):
         semantic_row.dislikes_open_ended_questions = memory.semantic.dislikes_open_ended_questions
         semantic_row.best_focus_time = [memory.semantic.best_focus_time] if memory.semantic.best_focus_time else ["night"]
         semantic_row.sensitive_to_noise = memory.semantic.sensitive_to_noise
+        semantic_row.last_session_id = memory.working.last_session_id
 
         # 3. Update Affective State
         affective_row = next((r for r in self.affective_states if r.user_id == user_id), None)
@@ -293,6 +317,7 @@ class MockDatabase(BaseModel):
         affective_row.user_last_social_energy = memory.affective.social_energy
         affective_row.user_last_emotional_regulation = memory.affective.emotional_regulation
         affective_row.user_last_executive_function = memory.affective.executive_function
+        affective_row.last_session_id = memory.working.last_session_id
 
         # 4. Update Episodic Memory
         old_episodes = [r for r in self.episodic_memories if r.user_id == user_id]
@@ -302,16 +327,19 @@ class MockDatabase(BaseModel):
         for ep in memory.episodic:
             dt = datetime.combine(ep.timestamp or date.today(), time.min)
             
-            # Attempt to preserve the original episode_id to maintain procedural memory references
+            # Attempt to preserve the original episode_id and session metadata
             matched_id = uuid4()
+            matched_session_id = memory.working.last_session_id
             for old_ep in old_episodes:
                 if old_ep.event == ep.event and old_ep.trigger == ep.trigger:
                     matched_id = old_ep.episode_id
+                    matched_session_id = old_ep.last_session_id
                     break
 
             ep_row = EpisodicMemoryRow(
                 episode_id=matched_id,
                 user_id=user_id,
+                last_session_id=matched_session_id,
                 event=ep.event or "",
                 trigger=ep.trigger or "",
                 response=ep.response or "",
@@ -361,6 +389,7 @@ class MockDatabase(BaseModel):
         procedural_row.routines_that_worked = memory.procedural.routines_that_worked
         procedural_row.effective_grouping_strategies = memory.procedural.effective_grouping_strategies
         procedural_row.preferred_planning_structures = memory.procedural.preferred_planning_structures
+        procedural_row.last_session_id = memory.working.last_session_id
 
 
 # ---------------------------------------------------------------------------
@@ -373,10 +402,14 @@ def create_default_db() -> MockDatabase:
     alex_id = UUID("d3b07384-d113-4956-a5e2-4c5b3648a301")
     taylor_id = UUID("e6c98522-83b6-4bfe-bb4f-b3a1a6b0cfa0")
 
+    # Example session IDs for auditing metadata
+    alex_session_id = UUID("11111111-1111-1111-1111-111111111111")
+    taylor_session_id = UUID("22222222-2222-2222-2222-222222222222")
+
     # 1. Users
     users = [
-        UserRow(user_id=alex_id, name="Alex (Regulated Profile)"),
-        UserRow(user_id=taylor_id, name="Taylor (Overloaded Profile)")
+        UserRow(user_id=alex_id, name="Alex", last_session_id=alex_session_id),
+        UserRow(user_id=taylor_id, name="Taylor", last_session_id=taylor_session_id)
     ]
 
     # 2. Working Memories
@@ -388,7 +421,8 @@ def create_default_db() -> MockDatabase:
             active_goals=["finish science project", "buy groceries"],
             active_goals_completed={"finish science project": False, "buy groceries": True},
             open_loops=["worried about tomorrow's weather change"],
-            open_loops_completed={"worried about tomorrow's weather change": False}
+            open_loops_completed={"worried about tomorrow's weather change": False},
+            last_session_id=alex_session_id
         ),
         WorkingMemoryRow(
             user_id=taylor_id,
@@ -397,7 +431,8 @@ def create_default_db() -> MockDatabase:
             active_goals=["clean desk", "respond to emails"],
             active_goals_completed={"clean desk": False, "respond to emails": False},
             open_loops=["feeling behind on housework", "unread notifications causing anxiety"],
-            open_loops_completed={"feeling behind on housework": False, "unread notifications causing anxiety": False}
+            open_loops_completed={"feeling behind on housework": False, "unread notifications causing anxiety": False},
+            last_session_id=taylor_session_id
         )
     ]
 
@@ -409,6 +444,7 @@ def create_default_db() -> MockDatabase:
         EpisodicMemoryRow(
             episode_id=alex_episode_id,
             user_id=alex_id,
+            last_session_id=alex_session_id,
             event="missed morning group standup meeting",
             trigger="forgot to set the alarm clock",
             response="felt highly anxious, contacted coordinator directly for notes",
@@ -418,6 +454,7 @@ def create_default_db() -> MockDatabase:
         EpisodicMemoryRow(
             episode_id=taylor_episode_id,
             user_id=taylor_id,
+            last_session_id=taylor_session_id,
             event="social overload during team review",
             trigger="multiple team members talking simultaneously over noise",
             response="withdrew completely from speaking, turned video off",
@@ -435,7 +472,8 @@ def create_default_db() -> MockDatabase:
             prefers_direct_language=True,
             dislikes_open_ended_questions=False,
             best_focus_time=["night", "afternoon"],
-            sensitive_to_noise=True
+            sensitive_to_noise=True,
+            last_session_id=alex_session_id
         ),
         SemanticMemoryRow(
             user_id=taylor_id,
@@ -444,7 +482,8 @@ def create_default_db() -> MockDatabase:
             prefers_direct_language=True,
             dislikes_open_ended_questions=True,
             best_focus_time=["morning"],
-            sensitive_to_noise=True
+            sensitive_to_noise=True,
+            last_session_id=taylor_session_id
         )
     ]
 
@@ -457,7 +496,8 @@ def create_default_db() -> MockDatabase:
             },
             routines_that_worked=["night time planning check-ins", "daily tasks grouping"],
             effective_grouping_strategies=["categorize by estimated effort level"],
-            preferred_planning_structures=["hierarchical lists"]
+            preferred_planning_structures=["hierarchical lists"],
+            last_session_id=alex_session_id
         ),
         ProceduralMemoryRow(
             user_id=taylor_id,
@@ -466,7 +506,8 @@ def create_default_db() -> MockDatabase:
             },
             routines_that_worked=["immediate sensory breaks", "morning single-focus block"],
             effective_grouping_strategies=["one high-priority task per day only"],
-            preferred_planning_structures=["single progress bar step visualizer"]
+            preferred_planning_structures=["single progress bar step visualizer"],
+            last_session_id=taylor_session_id
         )
     ]
 
@@ -479,7 +520,8 @@ def create_default_db() -> MockDatabase:
             user_last_cognitive_load=0.35,
             user_last_social_energy=0.8,
             user_last_emotional_regulation=0.9,
-            user_last_executive_function=0.85
+            user_last_executive_function=0.85,
+            last_session_id=alex_session_id
         ),
         AffectiveStateRow(
             user_id=taylor_id,
@@ -488,7 +530,8 @@ def create_default_db() -> MockDatabase:
             user_last_cognitive_load=0.9,
             user_last_social_energy=0.15,
             user_last_emotional_regulation=0.35,
-            user_last_executive_function=0.25
+            user_last_executive_function=0.25,
+            last_session_id=taylor_session_id
         )
     ]
 

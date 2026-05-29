@@ -19,6 +19,7 @@ from experiments.harness.agent import Agent as HarnessAgent, AgentConfig
 from .memory import AderMemory, AderMemoryStateUpdate
 from ..config import app_config
 from .db import MockDatabase
+from .prompt_builder import build_ader_prompt
 
 
 # ---------------------------------------------------------------------------
@@ -95,6 +96,14 @@ class Ader(HarnessAgent):
         self._dirty_users = set()
         self._flush_timers = {}
         self._memory_cache: Dict[str, AderMemory] = {}
+
+        # Fetch user name from DB if available
+        self.user_name = "User"  # default
+        if self.db and self.user_id:
+            user_row = next((u for u in self.db.users if u.user_id == self.user_id), None)
+            if user_row:
+                self.user_name = user_row.name
+                logger.debug(f"Loaded user name: {self.user_name}")
 
         super().__init__(agent=self.ader_agent, config=config, session_manager=session_manager, **kwargs)
         logger.debug("Ader base initialization complete")
@@ -194,8 +203,9 @@ class Ader(HarnessAgent):
         )
 
         context_history = self.context_manager.get_context()
+        system_prompt = build_ader_prompt(mem, self.user_name)
         ader_history: List[ModelMessage] = [
-            ModelRequest(parts=[SystemPromptPart(content=mem.render())])
+            ModelRequest(parts=[SystemPromptPart(content=system_prompt)])
         ]
 
         for msg in context_history:
