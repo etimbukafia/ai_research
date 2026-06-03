@@ -197,15 +197,15 @@ python -m experiments.personal_assistant.app interactive --db-path C:\path\to\pe
 From another directory in `cmd.exe`:
 
 ```bat
-set PYTHONPATH=C:\Users\j\afiavana\research
-python -m experiments.personal_assistant.app interactive --db-path C:\Users\j\afiavana\research\experiments\personal_assistant\personal_assistant.sqlite3
+set PYTHONPATH=C:\path\to\ai_research
+python -m experiments.personal_assistant.app interactive --db-path C:\path\to\personal_assistant.sqlite3
 ```
 
 From another directory in PowerShell:
 
 ```powershell
-$env:PYTHONPATH = "C:\Users\j\afiavana\research"
-python -m experiments.personal_assistant.app interactive --db-path C:\Users\j\afiavana\research\experiments\personal_assistant\personal_assistant.sqlite3
+$env:PYTHONPATH = "C:\path\to\ai_research"
+python -m experiments.personal_assistant.app interactive --db-path C:\path\to\personal_assistant.sqlite3
 ```
 
 ## Important Files
