@@ -5,7 +5,8 @@ src/__pycache__/
 .env
 
 src/evaluation.py
-src/test_db.py
-src/test_agent_prompts.py
-prompts/
-src/test_prompt_builder.py
+src/tests/
+knowledge_base/
+output/
+plans/
+personal_assistant.sqlite3

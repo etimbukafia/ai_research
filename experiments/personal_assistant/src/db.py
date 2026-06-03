@@ -17,6 +17,13 @@ from experiments.personal_assistant.src.memory import (
     PersonalAssistantSemanticMemory,
     PersonalAssistantWorkingMemory,
 )
+from experiments.personal_assistant.src.ddc import DDCCycleLog, DDCReviewItem, DDCReviewStatus
+from experiments.personal_assistant.src.entities import (
+    ContextEntity,
+    EntityReviewItem,
+    EntityReviewStatus,
+)
+from experiments.personal_assistant.src.planning import PlannerContinuation, PlannerContinuationStatus
 
 
 APP_ROOT = Path(__file__).resolve().parents[1]
@@ -111,6 +118,101 @@ CREATE TABLE IF NOT EXISTS memory_snapshots (
     updated_at  TEXT NOT NULL,
     FOREIGN KEY(profile_id) REFERENCES assistant_profile(profile_id)
 );
+
+CREATE TABLE IF NOT EXISTS ddc_review_items (
+    review_id       TEXT PRIMARY KEY,
+    profile_id      TEXT NOT NULL,
+    category        TEXT NOT NULL,
+    risk            TEXT NOT NULL,
+    status          TEXT NOT NULL,
+    source_task     TEXT NOT NULL,
+    missing_context TEXT NOT NULL,
+    proposed_memory TEXT NOT NULL,
+    reason          TEXT NOT NULL,
+    session_id      TEXT,
+    created_at      TEXT NOT NULL,
+    updated_at      TEXT NOT NULL,
+    FOREIGN KEY(profile_id) REFERENCES assistant_profile(profile_id)
+);
+
+CREATE INDEX IF NOT EXISTS idx_ddc_review_items_profile_status
+    ON ddc_review_items(profile_id, status, updated_at);
+
+CREATE TABLE IF NOT EXISTS ddc_cycle_logs (
+    cycle_id        TEXT PRIMARY KEY,
+    review_id       TEXT NOT NULL,
+    profile_id      TEXT NOT NULL,
+    source_task     TEXT NOT NULL,
+    category        TEXT NOT NULL,
+    action          TEXT NOT NULL,
+    promoted_memory TEXT,
+    created_at      TEXT NOT NULL,
+    FOREIGN KEY(profile_id) REFERENCES assistant_profile(profile_id)
+);
+
+CREATE INDEX IF NOT EXISTS idx_ddc_cycle_logs_profile_created
+    ON ddc_cycle_logs(profile_id, created_at);
+
+CREATE TABLE IF NOT EXISTS context_metadata (
+    profile_id  TEXT NOT NULL,
+    key         TEXT NOT NULL,
+    value       TEXT NOT NULL,
+    updated_at  TEXT NOT NULL,
+    PRIMARY KEY(profile_id, key),
+    FOREIGN KEY(profile_id) REFERENCES assistant_profile(profile_id)
+);
+
+CREATE TABLE IF NOT EXISTS planner_continuations (
+    continuation_id         TEXT PRIMARY KEY,
+    profile_id              TEXT NOT NULL,
+    original_user_task      TEXT NOT NULL,
+    planner_output_json     TEXT NOT NULL,
+    blocking_questions_json TEXT NOT NULL,
+    status                  TEXT NOT NULL,
+    session_id              TEXT,
+    created_at              TEXT NOT NULL,
+    updated_at              TEXT NOT NULL,
+    FOREIGN KEY(profile_id) REFERENCES assistant_profile(profile_id)
+);
+
+CREATE INDEX IF NOT EXISTS idx_planner_continuations_profile_status
+    ON planner_continuations(profile_id, status, updated_at);
+
+CREATE TABLE IF NOT EXISTS context_entities (
+    entity_id    TEXT PRIMARY KEY,
+    profile_id   TEXT NOT NULL,
+    name         TEXT NOT NULL,
+    entity_type  TEXT NOT NULL,
+    description  TEXT NOT NULL,
+    aliases_json TEXT NOT NULL,
+    source_task  TEXT NOT NULL,
+    created_at   TEXT NOT NULL,
+    updated_at   TEXT NOT NULL,
+    FOREIGN KEY(profile_id) REFERENCES assistant_profile(profile_id)
+);
+
+CREATE INDEX IF NOT EXISTS idx_context_entities_profile_type
+    ON context_entities(profile_id, entity_type, updated_at);
+
+CREATE TABLE IF NOT EXISTS entity_review_items (
+    review_id    TEXT PRIMARY KEY,
+    profile_id   TEXT NOT NULL,
+    name         TEXT NOT NULL,
+    entity_type  TEXT NOT NULL,
+    description  TEXT NOT NULL,
+    aliases_json TEXT NOT NULL,
+    reason       TEXT NOT NULL,
+    risk         TEXT NOT NULL,
+    status       TEXT NOT NULL,
+    source_task  TEXT NOT NULL,
+    session_id   TEXT,
+    created_at   TEXT NOT NULL,
+    updated_at   TEXT NOT NULL,
+    FOREIGN KEY(profile_id) REFERENCES assistant_profile(profile_id)
+);
+
+CREATE INDEX IF NOT EXISTS idx_entity_review_items_profile_status
+    ON entity_review_items(profile_id, status, updated_at);
 """
 
 
@@ -222,6 +324,373 @@ class PersonalAssistantDatabase:
                 "memory_json = excluded.memory_json, updated_at = excluded.updated_at",
                 (str(profile_id), memory.to_json(), now),
             )
+
+    def insert_ddc_review_items(self, items: list[DDCReviewItem]) -> None:
+        now = _utc_now()
+        with self._tx() as conn:
+            for item in items:
+                conn.execute(
+                    "INSERT INTO ddc_review_items ("
+                    "review_id, profile_id, category, risk, status, source_task, "
+                    "missing_context, proposed_memory, reason, session_id, created_at, updated_at"
+                    ") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+                    (
+                        item.review_id,
+                        str(item.profile_id),
+                        item.category,
+                        item.risk,
+                        item.status,
+                        item.source_task,
+                        item.missing_context,
+                        item.proposed_memory,
+                        item.reason,
+                        str(item.session_id) if item.session_id else None,
+                        item.created_at,
+                        now,
+                    ),
+                )
+
+    def list_ddc_review_items(
+        self,
+        profile_id: UUID,
+        *,
+        status: DDCReviewStatus | None = None,
+        limit: int = 50,
+    ) -> list[DDCReviewItem]:
+        query = "SELECT * FROM ddc_review_items WHERE profile_id = ?"
+        params: list[Any] = [str(profile_id)]
+        if status is not None:
+            query += " AND status = ?"
+            params.append(status)
+        query += " ORDER BY updated_at DESC LIMIT ?"
+        params.append(limit)
+        with self._lock:
+            rows = self._conn.execute(query, params).fetchall()
+        return [_ddc_review_item_from_row(row) for row in rows]
+
+    def get_ddc_review_item(self, profile_id: UUID, review_id: str) -> Optional[DDCReviewItem]:
+        with self._lock:
+            row = self._conn.execute(
+                "SELECT * FROM ddc_review_items WHERE profile_id = ? AND review_id = ?",
+                (str(profile_id), review_id),
+            ).fetchone()
+        return _ddc_review_item_from_row(row) if row else None
+
+    def set_ddc_review_status(
+        self,
+        profile_id: UUID,
+        review_id: str,
+        status: DDCReviewStatus,
+    ) -> DDCReviewItem:
+        now = _utc_now()
+        with self._tx() as conn:
+            conn.execute(
+                "UPDATE ddc_review_items SET status = ?, updated_at = ? "
+                "WHERE profile_id = ? AND review_id = ?",
+                (status, now, str(profile_id), review_id),
+            )
+        item = self.get_ddc_review_item(profile_id, review_id)
+        if item is None:
+            raise ValueError(f"Unknown DDC review item: {review_id}")
+        return item
+
+    def update_ddc_review_memory(
+        self,
+        profile_id: UUID,
+        review_id: str,
+        proposed_memory: str,
+    ) -> DDCReviewItem:
+        now = _utc_now()
+        with self._tx() as conn:
+            conn.execute(
+                "UPDATE ddc_review_items SET proposed_memory = ?, updated_at = ? "
+                "WHERE profile_id = ? AND review_id = ?",
+                (proposed_memory, now, str(profile_id), review_id),
+            )
+        item = self.get_ddc_review_item(profile_id, review_id)
+        if item is None:
+            raise ValueError(f"Unknown DDC review item: {review_id}")
+        return item
+
+    def insert_ddc_cycle_log(self, log: DDCCycleLog) -> None:
+        with self._tx() as conn:
+            conn.execute(
+                "INSERT INTO ddc_cycle_logs ("
+                "cycle_id, review_id, profile_id, source_task, category, action, promoted_memory, created_at"
+                ") VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
+                (
+                    log.cycle_id,
+                    log.review_id,
+                    str(log.profile_id),
+                    log.source_task,
+                    log.category,
+                    log.action,
+                    log.promoted_memory,
+                    log.created_at,
+                ),
+            )
+
+    def list_ddc_cycle_logs(self, profile_id: UUID, *, limit: int = 20) -> list[DDCCycleLog]:
+        with self._lock:
+            rows = self._conn.execute(
+                "SELECT * FROM ddc_cycle_logs WHERE profile_id = ? "
+                "ORDER BY created_at DESC LIMIT ?",
+                (str(profile_id), limit),
+            ).fetchall()
+        return [_ddc_cycle_log_from_row(row) for row in rows]
+
+    def get_context_revision(self, profile_id: UUID) -> int:
+        self.ensure_profile(profile_id)
+        with self._lock:
+            row = self._conn.execute(
+                "SELECT value FROM context_metadata WHERE profile_id = ? AND key = ?",
+                (str(profile_id), "personal_context_revision"),
+            ).fetchone()
+        if row is None:
+            return 0
+        try:
+            return int(row["value"])
+        except ValueError:
+            return 0
+
+    def increment_context_revision(self, profile_id: UUID) -> int:
+        revision = self.get_context_revision(profile_id) + 1
+        now = _utc_now()
+        with self._tx() as conn:
+            conn.execute(
+                "INSERT INTO context_metadata (profile_id, key, value, updated_at) "
+                "VALUES (?, ?, ?, ?) "
+                "ON CONFLICT(profile_id, key) DO UPDATE SET "
+                "value = excluded.value, updated_at = excluded.updated_at",
+                (str(profile_id), "personal_context_revision", str(revision), now),
+            )
+        return revision
+
+    def insert_planner_continuation(self, continuation: PlannerContinuation) -> None:
+        now = _utc_now()
+        with self._tx() as conn:
+            conn.execute(
+                "INSERT INTO planner_continuations ("
+                "continuation_id, profile_id, original_user_task, planner_output_json, "
+                "blocking_questions_json, status, session_id, created_at, updated_at"
+                ") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)",
+                (
+                    continuation.continuation_id,
+                    str(continuation.profile_id),
+                    continuation.original_user_task,
+                    continuation.planner_output_json,
+                    continuation.blocking_questions_json,
+                    continuation.status,
+                    str(continuation.session_id) if continuation.session_id else None,
+                    continuation.created_at,
+                    now,
+                ),
+            )
+
+    def get_planner_continuation(
+        self,
+        profile_id: UUID,
+        continuation_id: str,
+    ) -> Optional[PlannerContinuation]:
+        with self._lock:
+            row = self._conn.execute(
+                "SELECT * FROM planner_continuations WHERE profile_id = ? AND continuation_id = ?",
+                (str(profile_id), continuation_id),
+            ).fetchone()
+        return _planner_continuation_from_row(row) if row else None
+
+    def get_pending_planner_continuation(
+        self,
+        profile_id: UUID,
+    ) -> Optional[PlannerContinuation]:
+        with self._lock:
+            row = self._conn.execute(
+                "SELECT * FROM planner_continuations "
+                "WHERE profile_id = ? AND status = ? "
+                "ORDER BY updated_at DESC LIMIT 1",
+                (str(profile_id), "pending"),
+            ).fetchone()
+        return _planner_continuation_from_row(row) if row else None
+
+    def list_planner_continuations(
+        self,
+        profile_id: UUID,
+        *,
+        status: PlannerContinuationStatus | None = None,
+        limit: int = 20,
+    ) -> list[PlannerContinuation]:
+        query = "SELECT * FROM planner_continuations WHERE profile_id = ?"
+        params: list[Any] = [str(profile_id)]
+        if status is not None:
+            query += " AND status = ?"
+            params.append(status)
+        query += " ORDER BY updated_at DESC LIMIT ?"
+        params.append(limit)
+        with self._lock:
+            rows = self._conn.execute(query, params).fetchall()
+        return [_planner_continuation_from_row(row) for row in rows]
+
+    def set_planner_continuation_status(
+        self,
+        profile_id: UUID,
+        continuation_id: str,
+        status: PlannerContinuationStatus,
+    ) -> PlannerContinuation:
+        now = _utc_now()
+        with self._tx() as conn:
+            conn.execute(
+                "UPDATE planner_continuations SET status = ?, updated_at = ? "
+                "WHERE profile_id = ? AND continuation_id = ?",
+                (status, now, str(profile_id), continuation_id),
+            )
+        continuation = self.get_planner_continuation(profile_id, continuation_id)
+        if continuation is None:
+            raise ValueError(f"Unknown planner continuation: {continuation_id}")
+        return continuation
+
+    def insert_entity_review_items(self, items: list[EntityReviewItem]) -> None:
+        now = _utc_now()
+        with self._tx() as conn:
+            for item in items:
+                conn.execute(
+                    "INSERT INTO entity_review_items ("
+                    "review_id, profile_id, name, entity_type, description, aliases_json, "
+                    "reason, risk, status, source_task, session_id, created_at, updated_at"
+                    ") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+                    (
+                        item.review_id,
+                        str(item.profile_id),
+                        item.name,
+                        item.entity_type,
+                        item.description,
+                        _json_dumps(item.aliases),
+                        item.reason,
+                        item.risk,
+                        item.status,
+                        item.source_task,
+                        str(item.session_id) if item.session_id else None,
+                        item.created_at,
+                        now,
+                    ),
+                )
+
+    def list_entity_review_items(
+        self,
+        profile_id: UUID,
+        *,
+        status: EntityReviewStatus | None = None,
+        limit: int = 50,
+    ) -> list[EntityReviewItem]:
+        query = "SELECT * FROM entity_review_items WHERE profile_id = ?"
+        params: list[Any] = [str(profile_id)]
+        if status is not None:
+            query += " AND status = ?"
+            params.append(status)
+        query += " ORDER BY updated_at DESC LIMIT ?"
+        params.append(limit)
+        with self._lock:
+            rows = self._conn.execute(query, params).fetchall()
+        return [_entity_review_item_from_row(row) for row in rows]
+
+    def get_entity_review_item(self, profile_id: UUID, review_id: str) -> Optional[EntityReviewItem]:
+        with self._lock:
+            row = self._conn.execute(
+                "SELECT * FROM entity_review_items WHERE profile_id = ? AND review_id = ?",
+                (str(profile_id), review_id),
+            ).fetchone()
+        return _entity_review_item_from_row(row) if row else None
+
+    def update_entity_review_item(
+        self,
+        profile_id: UUID,
+        review_id: str,
+        *,
+        name: str,
+        entity_type: str,
+        description: str,
+        aliases: list[str],
+    ) -> EntityReviewItem:
+        now = _utc_now()
+        with self._tx() as conn:
+            conn.execute(
+                "UPDATE entity_review_items "
+                "SET name = ?, entity_type = ?, description = ?, aliases_json = ?, updated_at = ? "
+                "WHERE profile_id = ? AND review_id = ?",
+                (name, entity_type, description, _json_dumps(aliases), now, str(profile_id), review_id),
+            )
+        item = self.get_entity_review_item(profile_id, review_id)
+        if item is None:
+            raise ValueError(f"Unknown entity review item: {review_id}")
+        return item
+
+    def set_entity_review_status(
+        self,
+        profile_id: UUID,
+        review_id: str,
+        status: EntityReviewStatus,
+    ) -> EntityReviewItem:
+        now = _utc_now()
+        with self._tx() as conn:
+            conn.execute(
+                "UPDATE entity_review_items SET status = ?, updated_at = ? "
+                "WHERE profile_id = ? AND review_id = ?",
+                (status, now, str(profile_id), review_id),
+            )
+        item = self.get_entity_review_item(profile_id, review_id)
+        if item is None:
+            raise ValueError(f"Unknown entity review item: {review_id}")
+        return item
+
+    def insert_context_entity(self, entity: ContextEntity) -> ContextEntity:
+        now = _utc_now()
+        with self._tx() as conn:
+            conn.execute(
+                "INSERT INTO context_entities ("
+                "entity_id, profile_id, name, entity_type, description, aliases_json, "
+                "source_task, created_at, updated_at"
+                ") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)",
+                (
+                    entity.entity_id,
+                    str(entity.profile_id),
+                    entity.name,
+                    entity.entity_type,
+                    entity.description,
+                    _json_dumps(entity.aliases),
+                    entity.source_task,
+                    entity.created_at,
+                    now,
+                ),
+            )
+        saved = self.get_context_entity(entity.profile_id, entity.entity_id)
+        if saved is None:
+            raise ValueError(f"Failed to save context entity: {entity.entity_id}")
+        return saved
+
+    def get_context_entity(self, profile_id: UUID, entity_id: str) -> Optional[ContextEntity]:
+        with self._lock:
+            row = self._conn.execute(
+                "SELECT * FROM context_entities WHERE profile_id = ? AND entity_id = ?",
+                (str(profile_id), entity_id),
+            ).fetchone()
+        return _context_entity_from_row(row) if row else None
+
+    def list_context_entities(
+        self,
+        profile_id: UUID,
+        *,
+        entity_type: str | None = None,
+        limit: int = 100,
+    ) -> list[ContextEntity]:
+        query = "SELECT * FROM context_entities WHERE profile_id = ?"
+        params: list[Any] = [str(profile_id)]
+        if entity_type is not None:
+            query += " AND entity_type = ?"
+            params.append(entity_type)
+        query += " ORDER BY updated_at DESC LIMIT ?"
+        params.append(limit)
+        with self._lock:
+            rows = self._conn.execute(query, params).fetchall()
+        return [_context_entity_from_row(row) for row in rows]
 
     def close(self) -> None:
         self._conn.close()
@@ -560,3 +1029,79 @@ def _json_loads(raw: str, default: Any) -> Any:
 
 def _utc_now() -> str:
     return datetime.now(timezone.utc).isoformat()
+
+
+def _ddc_review_item_from_row(row: sqlite3.Row) -> DDCReviewItem:
+    return DDCReviewItem(
+        review_id=row["review_id"],
+        profile_id=UUID(row["profile_id"]),
+        category=row["category"],
+        risk=row["risk"],
+        status=row["status"],
+        source_task=row["source_task"],
+        missing_context=row["missing_context"],
+        proposed_memory=row["proposed_memory"],
+        reason=row["reason"],
+        session_id=UUID(row["session_id"]) if row["session_id"] else None,
+        created_at=row["created_at"],
+        updated_at=row["updated_at"],
+    )
+
+
+def _ddc_cycle_log_from_row(row: sqlite3.Row) -> DDCCycleLog:
+    return DDCCycleLog(
+        cycle_id=row["cycle_id"],
+        review_id=row["review_id"],
+        profile_id=UUID(row["profile_id"]),
+        source_task=row["source_task"],
+        category=row["category"],
+        action=row["action"],
+        promoted_memory=row["promoted_memory"],
+        created_at=row["created_at"],
+    )
+
+
+def _planner_continuation_from_row(row: sqlite3.Row) -> PlannerContinuation:
+    return PlannerContinuation(
+        continuation_id=row["continuation_id"],
+        profile_id=UUID(row["profile_id"]),
+        original_user_task=row["original_user_task"],
+        planner_output_json=row["planner_output_json"],
+        blocking_questions_json=row["blocking_questions_json"],
+        status=row["status"],
+        session_id=UUID(row["session_id"]) if row["session_id"] else None,
+        created_at=row["created_at"],
+        updated_at=row["updated_at"],
+    )
+
+
+def _entity_review_item_from_row(row: sqlite3.Row) -> EntityReviewItem:
+    return EntityReviewItem(
+        review_id=row["review_id"],
+        profile_id=UUID(row["profile_id"]),
+        name=row["name"],
+        entity_type=row["entity_type"],
+        description=row["description"],
+        aliases=_json_loads(row["aliases_json"], []),
+        reason=row["reason"],
+        risk=row["risk"],
+        status=row["status"],
+        source_task=row["source_task"],
+        session_id=UUID(row["session_id"]) if row["session_id"] else None,
+        created_at=row["created_at"],
+        updated_at=row["updated_at"],
+    )
+
+
+def _context_entity_from_row(row: sqlite3.Row) -> ContextEntity:
+    return ContextEntity(
+        entity_id=row["entity_id"],
+        profile_id=UUID(row["profile_id"]),
+        name=row["name"],
+        entity_type=row["entity_type"],
+        description=row["description"],
+        aliases=_json_loads(row["aliases_json"], []),
+        source_task=row["source_task"],
+        created_at=row["created_at"],
+        updated_at=row["updated_at"],
+    )

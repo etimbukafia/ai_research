@@ -1,0 +1,5 @@
+- Tab skips to the next question
+- Shift+Tab goes back to the previous question
+- Enter saves the current answer and moves forward
+- after the last question, Enter submits all answers
+- unanswered blocking questions remain pending

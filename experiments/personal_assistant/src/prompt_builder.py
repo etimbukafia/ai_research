@@ -15,6 +15,7 @@ from experiments.personal_assistant.src.memory import PersonalAssistantMemory
 def build_personal_assistant_prompt(
     memory: PersonalAssistantMemory,
     user_name: str,
+    runtime_context: str = "",
     prompts_dir: Optional[Path] = None,
 ) -> str:
     """
@@ -43,6 +44,7 @@ def build_personal_assistant_prompt(
         "semantic_memory": memory.semantic,
         "procedural_memory": memory.procedural,
         "recent_episodes": memory.recent_episodes(n=3),  # Last 3 episodes
+        "runtime_context": runtime_context,
     }
 
     # Render user context
@@ -76,6 +78,73 @@ def load_prompts(prompt_folder: str = "prompts") -> tuple[str, str]:
     memory_prompt = PromptAssembler(memory_template).build(**memory_synthesizer_prompt_context())
 
     return memory_prompt, personal_assistant_path.read_text(encoding="utf-8")
+
+
+def load_ddc_analyzer_prompt(prompt_folder: str = "prompts") -> str:
+    base_path = Path(__file__).parent / prompt_folder
+    ddc_path = base_path / "ddc_analyzer_agent_prompt.md"
+    if not ddc_path.is_file():
+        raise FileNotFoundError(f"Prompt file not found: {ddc_path}")
+    return ddc_path.read_text(encoding="utf-8")
+
+
+def load_context_synthesizer_prompt(prompt_folder: str = "prompts") -> str:
+    base_path = Path(__file__).parent / prompt_folder
+    prompt_path = base_path / "context_synthesizer_agent_prompt.md"
+    if not prompt_path.is_file():
+        raise FileNotFoundError(f"Prompt file not found: {prompt_path}")
+    return prompt_path.read_text(encoding="utf-8")
+
+
+def load_continuation_ddc_analyzer_prompt(
+    *,
+    memory: str,
+    runtime_context: str,
+    continuation_context: str,
+    prompt_folder: str = "prompts",
+) -> str:
+    base_path = Path(__file__).parent / prompt_folder
+    prompt_path = base_path / "continuation_ddc_analyzer_prompt.md"
+    if not prompt_path.is_file():
+        raise FileNotFoundError(f"Prompt file not found: {prompt_path}")
+    template = prompt_path.read_text(encoding="utf-8")
+    return PromptAssembler(template).build(
+        memory=memory,
+        runtime_context=runtime_context,
+        continuation_context=continuation_context,
+    )
+
+
+def load_planner_prompt(prompt_folder: str = "prompts") -> str:
+    base_path = Path(__file__).parent / prompt_folder
+    planner_path = base_path / "planner_agent_prompt.md"
+    if not planner_path.is_file():
+        raise FileNotFoundError(f"Prompt file not found: {planner_path}")
+    return planner_path.read_text(encoding="utf-8")
+
+
+def load_verifier_prompt(prompt_folder: str = "prompts") -> str:
+    base_path = Path(__file__).parent / prompt_folder
+    verifier_path = base_path / "verifier_agent_prompt.md"
+    if not verifier_path.is_file():
+        raise FileNotFoundError(f"Prompt file not found: {verifier_path}")
+    return verifier_path.read_text(encoding="utf-8")
+
+
+def load_intent_classifier_prompt(prompt_folder: str = "prompts") -> str:
+    base_path = Path(__file__).parent / prompt_folder
+    classifier_path = base_path / "intent_classifier_agent_prompt.md"
+    if not classifier_path.is_file():
+        raise FileNotFoundError(f"Prompt file not found: {classifier_path}")
+    return classifier_path.read_text(encoding="utf-8")
+
+
+def load_entity_synthesizer_prompt(prompt_folder: str = "prompts") -> str:
+    base_path = Path(__file__).parent / prompt_folder
+    entity_path = base_path / "entity_synthesizer_agent_prompt.md"
+    if not entity_path.is_file():
+        raise FileNotFoundError(f"Prompt file not found: {entity_path}")
+    return entity_path.read_text(encoding="utf-8")
 
 
 def memory_synthesizer_prompt_context() -> dict[str, Any]:
