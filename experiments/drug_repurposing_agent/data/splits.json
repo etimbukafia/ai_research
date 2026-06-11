@@ -1,0 +1,66 @@
+{
+  "contract_version": "1.0.0",
+  "dataset_version": "1.0.0",
+  "frozen_at": "2026-06-11T15:34:05.949239+00:00",
+  "hashes": {
+    "gold.jsonl_sha256": "b625132fa31791ce88c8d8354b31f3befbc931b1f38c64602fa5aa6501a48918",
+    "pairs.jsonl_sha256": "51327d98d060a17090c081fad7547067690eb45134c20216e7840661dfe37ea6"
+  },
+  "label_counts_by_split": {
+    "distribution_shift": {
+      "insufficient_evidence": 3,
+      "supported": 2,
+      "unsupported": 3,
+      "weakly_supported": 2
+    },
+    "held_out_evaluation": {
+      "insufficient_evidence": 5,
+      "supported": 5,
+      "unsupported": 5,
+      "weakly_supported": 5
+    },
+    "initial_evaluation": {
+      "insufficient_evidence": 5,
+      "supported": 5,
+      "unsupported": 5,
+      "weakly_supported": 5
+    },
+    "learning_stream": {
+      "insufficient_evidence": 12,
+      "supported": 13,
+      "unsupported": 12,
+      "weakly_supported": 13
+    }
+  },
+  "leakage_policy": {
+    "agent_input": "data/pairs.jsonl only",
+    "distribution_shift_feedback_to_memory": false,
+    "evaluator_only": "data/gold.jsonl",
+    "held_out_feedback_to_memory": false
+  },
+  "pair_id_format": "disease-drug-pair-{number:03d}",
+  "reviewer": "Codex (designated dataset reviewer)",
+  "splits": {
+    "distribution_shift": {
+      "count": 10,
+      "end_id": "disease-drug-pair-100",
+      "start_id": "disease-drug-pair-091"
+    },
+    "held_out_evaluation": {
+      "count": 20,
+      "end_id": "disease-drug-pair-090",
+      "start_id": "disease-drug-pair-071"
+    },
+    "initial_evaluation": {
+      "count": 20,
+      "end_id": "disease-drug-pair-020",
+      "start_id": "disease-drug-pair-001"
+    },
+    "learning_stream": {
+      "count": 50,
+      "end_id": "disease-drug-pair-070",
+      "start_id": "disease-drug-pair-021"
+    }
+  },
+  "status": "frozen"
+}

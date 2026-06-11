@@ -1,0 +1,138 @@
+{
+  "analysis": {
+    "bootstrap_resamples": 10000,
+    "primary_run": "seed 42, temperature 0.0",
+    "primary_unit": "disease-drug pair",
+    "raw_memory_comparison": "Compare raw_memory directly with validated_lessons as a secondary analysis of error propagation; it does not determine primary success.",
+    "uncertainty_method": "paired bootstrap over held-out pairs"
+  },
+  "change_control": {
+    "after_pilot": "Do not change labels, prompts, success thresholds, memory policy, dataset, or evaluator policy after viewing held-out results. Record unavoidable changes as protocol deviations and run them under a new contract version.",
+    "before_pilot": "Changes are allowed but must increment contract_version."
+  },
+  "classification": {
+    "confidence_range": {
+      "maximum": 1.0,
+      "minimum": 0.0
+    },
+    "guide": "docs/labeling_guide.md",
+    "material_claim_citation_required": true,
+    "retrieval_failure_label": "insufficient_evidence"
+  },
+  "contract_status": "locked",
+  "contract_version": "1.0.0",
+  "dataset": {
+    "evidence_snapshot_policy": "Retrieve and cache evidence before comparative runs. All conditions must use identical cached evidence. Record retrieval timestamps and query parameters.",
+    "leakage_policy": "Gold labels, gold rationales, and held-out or distribution-shift evaluator feedback must never be supplied to the assessor, lesson generator, or memory.",
+    "order": "fixed",
+    "splits": {
+      "distribution_shift": {
+        "count": 10,
+        "end_id": 100,
+        "memory_updates_allowed": false,
+        "start_id": 91
+      },
+      "held_out_evaluation": {
+        "count": 20,
+        "end_id": 90,
+        "memory_updates_allowed": false,
+        "start_id": 71
+      },
+      "initial_evaluation": {
+        "count": 20,
+        "end_id": 20,
+        "memory_updates_allowed": false,
+        "start_id": 1
+      },
+      "learning_stream": {
+        "count": 50,
+        "end_id": 70,
+        "memory_updates_allowed": true,
+        "start_id": 21
+      }
+    },
+    "total_pairs": 100
+  },
+  "experiment": {
+    "actual_run_timestamp_policy": "Record an ISO 8601 UTC timestamp in every run artifact.",
+    "framing": "research evidence triage, not medical advice or a treatment recommendation",
+    "name": "self-improving-biomedical-evidence-triage",
+    "planned_primary_run_date": "2026-06-11",
+    "primary_question": "Does evaluator-validated procedural lesson memory improve held-out evidence triage without increasing unsupported claims or error propagation?",
+    "primary_seed": 42,
+    "sequential_processing": true
+  },
+  "failure_and_inconclusive_rules": {
+    "failure": "The experiment fails if validated_lessons increases held-out unsupported-claim rate, causes any held-out error attributable to an incorrect validated memory, or trails no_memory on held-out macro-F1.",
+    "inconclusive": "The result is inconclusive when it is neither a success nor a failure, including a positive held-out macro-F1 change smaller than 0.05 with no safety regression."
+  },
+  "locked_on": "2026-06-11",
+  "memory": {
+    "condition_and_run_isolation_required": true,
+    "disease_specific_efficacy_claims_forbidden": true,
+    "treatment_recommendations_forbidden": true,
+    "update_phase": "learning_stream_only",
+    "validated_lesson_requires_explicit_approval": true,
+    "validated_lessons_are_procedural_only": true
+  },
+  "metrics": {
+    "primary": [
+      "held_out_macro_f1",
+      "held_out_unsupported_claim_rate"
+    ],
+    "secondary": [
+      "per_label_precision_recall_f1",
+      "citation_correctness",
+      "relationship_extraction_accuracy",
+      "correct_abstention_rate",
+      "distribution_shift_macro_f1",
+      "incorrect_memory_propagation_count",
+      "latency",
+      "token_cost"
+    ]
+  },
+  "model": {
+    "assessor_prompt_version": "assessor-v1.0.0",
+    "evaluator_policy_version": "evaluator-v1.0.0",
+    "lesson_generator_prompt_version": "lesson-generator-v1.0.0",
+    "name": "gemini-3.1-flash-lite",
+    "provider": "google",
+    "temperature": 0.0
+  },
+  "runtime": {
+    "condition": "raw_memory",
+    "seed": 42
+  },
+  "scope": {
+    "evidence_sources": [
+      "Open Targets",
+      "PubMed"
+    ],
+    "excluded_sources": [
+      "clinical guideline databases",
+      "general web search",
+      "patents",
+      "preprint-only databases",
+      "proprietary biomedical databases"
+    ],
+    "input_unit": "one rare-disease and candidate-drug pair",
+    "labels": [
+      "supported",
+      "weakly_supported",
+      "unsupported",
+      "insufficient_evidence"
+    ],
+    "memory_conditions": [
+      "no_memory",
+      "raw_memory",
+      "validated_lessons"
+    ]
+  },
+  "success_criterion": {
+    "comparison": "validated_lessons versus no_memory on held_out_evaluation",
+    "decision_rule": "The experiment succeeds only if validated_lessons improves held-out macro-F1 by at least 0.05 absolute, does not increase held-out unsupported-claim rate, and causes zero held-out errors attributable to an incorrect validated memory.",
+    "maximum_absolute_unsupported_claim_rate_increase": 0.0,
+    "maximum_incorrect_memory_propagation_count": 0,
+    "minimum_absolute_macro_f1_improvement": 0.05
+  }
+}

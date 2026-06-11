@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PubmedArticleSet>
+  <PubmedArticle>
+    <MedlineCitation>
+      <PMID>123</PMID>
+      <Article>
+        <ArticleTitle>Controlled study of the exact pair</ArticleTitle>
+        <Abstract>
+          <AbstractText Label="RESULTS">The study reported a positive primary efficacy signal.</AbstractText>
+          <AbstractText Label="CONCLUSION">Further investigation is warranted.</AbstractText>
+        </Abstract>
+        <PublicationTypeList>
+          <PublicationType>Clinical Trial</PublicationType>
+        </PublicationTypeList>
+      </Article>
+    </MedlineCitation>
+  </PubmedArticle>
+  <PubmedArticle>
+    <MedlineCitation>
+      <PMID>456</PMID>
+      <Article>
+        <ArticleTitle>Article without an abstract</ArticleTitle>
+        <PublicationTypeList>
+          <PublicationType>Journal Article</PublicationType>
+        </PublicationTypeList>
+      </Article>
+    </MedlineCitation>
+  </PubmedArticle>
+</PubmedArticleSet>

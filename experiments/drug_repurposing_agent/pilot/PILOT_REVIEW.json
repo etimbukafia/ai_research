@@ -1,0 +1,479 @@
+{
+  "conditions": 3,
+  "dataset_is_outside_frozen_100": true,
+  "label_counts": {
+    "no_memory-seed-42": {
+      "insufficient_evidence": 3,
+      "supported": 3,
+      "unsupported": 3,
+      "weakly_supported": 3
+    },
+    "raw_memory-seed-42": {
+      "insufficient_evidence": 3,
+      "supported": 3,
+      "unsupported": 3,
+      "weakly_supported": 3
+    },
+    "validated_lessons-seed-42": {
+      "insufficient_evidence": 3,
+      "supported": 3,
+      "unsupported": 3,
+      "weakly_supported": 3
+    }
+  },
+  "manual_review": {
+    "all_citation_ids_traceable": true,
+    "raw_memory_records": 12,
+    "unsupported_claim_rows": [],
+    "validated_lesson_records": 2
+  },
+  "manual_reviewer": "Codex (designated pilot reviewer)",
+  "pairs": 12,
+  "pilot_status": "completed",
+  "records": [
+    {
+      "citation_ids_valid": true,
+      "classification_correct": true,
+      "label": "supported",
+      "pair_id": "disease-drug-pair-201",
+      "retrieved_memory_ids": [],
+      "session": "no_memory-seed-42",
+      "unsupported_claims": [],
+      "written_memory_ids": []
+    },
+    {
+      "citation_ids_valid": true,
+      "classification_correct": true,
+      "label": "weakly_supported",
+      "pair_id": "disease-drug-pair-202",
+      "retrieved_memory_ids": [],
+      "session": "no_memory-seed-42",
+      "unsupported_claims": [],
+      "written_memory_ids": []
+    },
+    {
+      "citation_ids_valid": true,
+      "classification_correct": true,
+      "label": "unsupported",
+      "pair_id": "disease-drug-pair-203",
+      "retrieved_memory_ids": [],
+      "session": "no_memory-seed-42",
+      "unsupported_claims": [],
+      "written_memory_ids": []
+    },
+    {
+      "citation_ids_valid": true,
+      "classification_correct": true,
+      "label": "insufficient_evidence",
+      "pair_id": "disease-drug-pair-204",
+      "retrieved_memory_ids": [],
+      "session": "no_memory-seed-42",
+      "unsupported_claims": [],
+      "written_memory_ids": []
+    },
+    {
+      "citation_ids_valid": true,
+      "classification_correct": true,
+      "label": "supported",
+      "pair_id": "disease-drug-pair-205",
+      "retrieved_memory_ids": [],
+      "session": "no_memory-seed-42",
+      "unsupported_claims": [],
+      "written_memory_ids": []
+    },
+    {
+      "citation_ids_valid": true,
+      "classification_correct": true,
+      "label": "weakly_supported",
+      "pair_id": "disease-drug-pair-206",
+      "retrieved_memory_ids": [],
+      "session": "no_memory-seed-42",
+      "unsupported_claims": [],
+      "written_memory_ids": []
+    },
+    {
+      "citation_ids_valid": true,
+      "classification_correct": true,
+      "label": "unsupported",
+      "pair_id": "disease-drug-pair-207",
+      "retrieved_memory_ids": [],
+      "session": "no_memory-seed-42",
+      "unsupported_claims": [],
+      "written_memory_ids": []
+    },
+    {
+      "citation_ids_valid": true,
+      "classification_correct": true,
+      "label": "insufficient_evidence",
+      "pair_id": "disease-drug-pair-208",
+      "retrieved_memory_ids": [],
+      "session": "no_memory-seed-42",
+      "unsupported_claims": [],
+      "written_memory_ids": []
+    },
+    {
+      "citation_ids_valid": true,
+      "classification_correct": true,
+      "label": "supported",
+      "pair_id": "disease-drug-pair-209",
+      "retrieved_memory_ids": [],
+      "session": "no_memory-seed-42",
+      "unsupported_claims": [],
+      "written_memory_ids": []
+    },
+    {
+      "citation_ids_valid": true,
+      "classification_correct": true,
+      "label": "weakly_supported",
+      "pair_id": "disease-drug-pair-210",
+      "retrieved_memory_ids": [],
+      "session": "no_memory-seed-42",
+      "unsupported_claims": [],
+      "written_memory_ids": []
+    },
+    {
+      "citation_ids_valid": true,
+      "classification_correct": true,
+      "label": "unsupported",
+      "pair_id": "disease-drug-pair-211",
+      "retrieved_memory_ids": [],
+      "session": "no_memory-seed-42",
+      "unsupported_claims": [],
+      "written_memory_ids": []
+    },
+    {
+      "citation_ids_valid": true,
+      "classification_correct": true,
+      "label": "insufficient_evidence",
+      "pair_id": "disease-drug-pair-212",
+      "retrieved_memory_ids": [],
+      "session": "no_memory-seed-42",
+      "unsupported_claims": [],
+      "written_memory_ids": []
+    },
+    {
+      "citation_ids_valid": true,
+      "classification_correct": true,
+      "label": "supported",
+      "pair_id": "disease-drug-pair-201",
+      "retrieved_memory_ids": [],
+      "session": "raw_memory-seed-42",
+      "unsupported_claims": [],
+      "written_memory_ids": [
+        "6b44bdf1-dc06-4956-ae8b-59fdcbd8cd81"
+      ]
+    },
+    {
+      "citation_ids_valid": true,
+      "classification_correct": true,
+      "label": "weakly_supported",
+      "pair_id": "disease-drug-pair-202",
+      "retrieved_memory_ids": [
+        "6b44bdf1-dc06-4956-ae8b-59fdcbd8cd81"
+      ],
+      "session": "raw_memory-seed-42",
+      "unsupported_claims": [],
+      "written_memory_ids": [
+        "75dde6c1-075f-4057-9106-87422cd5e272"
+      ]
+    },
+    {
+      "citation_ids_valid": true,
+      "classification_correct": true,
+      "label": "unsupported",
+      "pair_id": "disease-drug-pair-203",
+      "retrieved_memory_ids": [
+        "6b44bdf1-dc06-4956-ae8b-59fdcbd8cd81",
+        "75dde6c1-075f-4057-9106-87422cd5e272"
+      ],
+      "session": "raw_memory-seed-42",
+      "unsupported_claims": [],
+      "written_memory_ids": [
+        "a8392363-c9a9-473c-bed6-fddb9a164926"
+      ]
+    },
+    {
+      "citation_ids_valid": true,
+      "classification_correct": true,
+      "label": "insufficient_evidence",
+      "pair_id": "disease-drug-pair-204",
+      "retrieved_memory_ids": [
+        "6b44bdf1-dc06-4956-ae8b-59fdcbd8cd81",
+        "75dde6c1-075f-4057-9106-87422cd5e272",
+        "a8392363-c9a9-473c-bed6-fddb9a164926"
+      ],
+      "session": "raw_memory-seed-42",
+      "unsupported_claims": [],
+      "written_memory_ids": [
+        "f8f00e5e-1be2-4a92-927d-5068f6eb246a"
+      ]
+    },
+    {
+      "citation_ids_valid": true,
+      "classification_correct": true,
+      "label": "supported",
+      "pair_id": "disease-drug-pair-205",
+      "retrieved_memory_ids": [
+        "6b44bdf1-dc06-4956-ae8b-59fdcbd8cd81",
+        "a8392363-c9a9-473c-bed6-fddb9a164926",
+        "75dde6c1-075f-4057-9106-87422cd5e272",
+        "f8f00e5e-1be2-4a92-927d-5068f6eb246a"
+      ],
+      "session": "raw_memory-seed-42",
+      "unsupported_claims": [],
+      "written_memory_ids": [
+        "9ad8c605-c4cf-47bd-8b88-584d9a59edce"
+      ]
+    },
+    {
+      "citation_ids_valid": true,
+      "classification_correct": true,
+      "label": "weakly_supported",
+      "pair_id": "disease-drug-pair-206",
+      "retrieved_memory_ids": [
+        "75dde6c1-075f-4057-9106-87422cd5e272",
+        "6b44bdf1-dc06-4956-ae8b-59fdcbd8cd81",
+        "a8392363-c9a9-473c-bed6-fddb9a164926",
+        "f8f00e5e-1be2-4a92-927d-5068f6eb246a",
+        "9ad8c605-c4cf-47bd-8b88-584d9a59edce"
+      ],
+      "session": "raw_memory-seed-42",
+      "unsupported_claims": [],
+      "written_memory_ids": [
+        "bbd79393-943f-4307-88ec-1cd65d948273"
+      ]
+    },
+    {
+      "citation_ids_valid": true,
+      "classification_correct": true,
+      "label": "unsupported",
+      "pair_id": "disease-drug-pair-207",
+      "retrieved_memory_ids": [
+        "6b44bdf1-dc06-4956-ae8b-59fdcbd8cd81",
+        "a8392363-c9a9-473c-bed6-fddb9a164926",
+        "9ad8c605-c4cf-47bd-8b88-584d9a59edce",
+        "75dde6c1-075f-4057-9106-87422cd5e272",
+        "bbd79393-943f-4307-88ec-1cd65d948273"
+      ],
+      "session": "raw_memory-seed-42",
+      "unsupported_claims": [],
+      "written_memory_ids": [
+        "32b6ffb5-a1f8-4a63-958f-cd75d93f85d0"
+      ]
+    },
+    {
+      "citation_ids_valid": true,
+      "classification_correct": true,
+      "label": "insufficient_evidence",
+      "pair_id": "disease-drug-pair-208",
+      "retrieved_memory_ids": [
+        "6b44bdf1-dc06-4956-ae8b-59fdcbd8cd81",
+        "75dde6c1-075f-4057-9106-87422cd5e272",
+        "a8392363-c9a9-473c-bed6-fddb9a164926",
+        "f8f00e5e-1be2-4a92-927d-5068f6eb246a",
+        "9ad8c605-c4cf-47bd-8b88-584d9a59edce"
+      ],
+      "session": "raw_memory-seed-42",
+      "unsupported_claims": [],
+      "written_memory_ids": [
+        "ba6cc5aa-4eaf-41d0-8ae6-3e6ab90280f7"
+      ]
+    },
+    {
+      "citation_ids_valid": true,
+      "classification_correct": true,
+      "label": "supported",
+      "pair_id": "disease-drug-pair-209",
+      "retrieved_memory_ids": [
+        "6b44bdf1-dc06-4956-ae8b-59fdcbd8cd81",
+        "a8392363-c9a9-473c-bed6-fddb9a164926",
+        "9ad8c605-c4cf-47bd-8b88-584d9a59edce",
+        "32b6ffb5-a1f8-4a63-958f-cd75d93f85d0",
+        "75dde6c1-075f-4057-9106-87422cd5e272"
+      ],
+      "session": "raw_memory-seed-42",
+      "unsupported_claims": [],
+      "written_memory_ids": [
+        "ab3260d0-6a94-4a19-b229-0783b7e10e4c"
+      ]
+    },
+    {
+      "citation_ids_valid": true,
+      "classification_correct": true,
+      "label": "weakly_supported",
+      "pair_id": "disease-drug-pair-210",
+      "retrieved_memory_ids": [
+        "75dde6c1-075f-4057-9106-87422cd5e272",
+        "bbd79393-943f-4307-88ec-1cd65d948273",
+        "6b44bdf1-dc06-4956-ae8b-59fdcbd8cd81",
+        "a8392363-c9a9-473c-bed6-fddb9a164926",
+        "f8f00e5e-1be2-4a92-927d-5068f6eb246a"
+      ],
+      "session": "raw_memory-seed-42",
+      "unsupported_claims": [],
+      "written_memory_ids": [
+        "08df24bb-e433-4a22-9a8b-fa7ce2780e85"
+      ]
+    },
+    {
+      "citation_ids_valid": true,
+      "classification_correct": true,
+      "label": "unsupported",
+      "pair_id": "disease-drug-pair-211",
+      "retrieved_memory_ids": [
+        "6b44bdf1-dc06-4956-ae8b-59fdcbd8cd81",
+        "a8392363-c9a9-473c-bed6-fddb9a164926",
+        "9ad8c605-c4cf-47bd-8b88-584d9a59edce",
+        "32b6ffb5-a1f8-4a63-958f-cd75d93f85d0",
+        "ab3260d0-6a94-4a19-b229-0783b7e10e4c"
+      ],
+      "session": "raw_memory-seed-42",
+      "unsupported_claims": [],
+      "written_memory_ids": [
+        "9cdeb60a-6fb3-4b0c-b6ad-a0406eb09a41"
+      ]
+    },
+    {
+      "citation_ids_valid": true,
+      "classification_correct": true,
+      "label": "insufficient_evidence",
+      "pair_id": "disease-drug-pair-212",
+      "retrieved_memory_ids": [
+        "6b44bdf1-dc06-4956-ae8b-59fdcbd8cd81",
+        "75dde6c1-075f-4057-9106-87422cd5e272",
+        "a8392363-c9a9-473c-bed6-fddb9a164926",
+        "f8f00e5e-1be2-4a92-927d-5068f6eb246a",
+        "9ad8c605-c4cf-47bd-8b88-584d9a59edce"
+      ],
+      "session": "raw_memory-seed-42",
+      "unsupported_claims": [],
+      "written_memory_ids": [
+        "d9663218-53a8-4d1d-8916-2d5a109a78c7"
+      ]
+    },
+    {
+      "citation_ids_valid": true,
+      "classification_correct": true,
+      "label": "supported",
+      "pair_id": "disease-drug-pair-201",
+      "retrieved_memory_ids": [],
+      "session": "validated_lessons-seed-42",
+      "unsupported_claims": [],
+      "written_memory_ids": []
+    },
+    {
+      "citation_ids_valid": true,
+      "classification_correct": true,
+      "label": "weakly_supported",
+      "pair_id": "disease-drug-pair-202",
+      "retrieved_memory_ids": [],
+      "session": "validated_lessons-seed-42",
+      "unsupported_claims": [],
+      "written_memory_ids": []
+    },
+    {
+      "citation_ids_valid": true,
+      "classification_correct": true,
+      "label": "unsupported",
+      "pair_id": "disease-drug-pair-203",
+      "retrieved_memory_ids": [],
+      "session": "validated_lessons-seed-42",
+      "unsupported_claims": [],
+      "written_memory_ids": []
+    },
+    {
+      "citation_ids_valid": true,
+      "classification_correct": true,
+      "label": "insufficient_evidence",
+      "pair_id": "disease-drug-pair-204",
+      "retrieved_memory_ids": [],
+      "session": "validated_lessons-seed-42",
+      "unsupported_claims": [],
+      "written_memory_ids": []
+    },
+    {
+      "citation_ids_valid": true,
+      "classification_correct": true,
+      "label": "supported",
+      "pair_id": "disease-drug-pair-205",
+      "retrieved_memory_ids": [],
+      "session": "validated_lessons-seed-42",
+      "unsupported_claims": [],
+      "written_memory_ids": []
+    },
+    {
+      "citation_ids_valid": true,
+      "classification_correct": true,
+      "label": "weakly_supported",
+      "pair_id": "disease-drug-pair-206",
+      "retrieved_memory_ids": [],
+      "session": "validated_lessons-seed-42",
+      "unsupported_claims": [],
+      "written_memory_ids": []
+    },
+    {
+      "citation_ids_valid": true,
+      "classification_correct": true,
+      "label": "unsupported",
+      "pair_id": "disease-drug-pair-207",
+      "retrieved_memory_ids": [],
+      "session": "validated_lessons-seed-42",
+      "unsupported_claims": [],
+      "written_memory_ids": []
+    },
+    {
+      "citation_ids_valid": true,
+      "classification_correct": true,
+      "label": "insufficient_evidence",
+      "pair_id": "disease-drug-pair-208",
+      "retrieved_memory_ids": [],
+      "session": "validated_lessons-seed-42",
+      "unsupported_claims": [],
+      "written_memory_ids": [
+        "retrieval-strategy-optimization-001"
+      ]
+    },
+    {
+      "citation_ids_valid": true,
+      "classification_correct": true,
+      "label": "supported",
+      "pair_id": "disease-drug-pair-209",
+      "retrieved_memory_ids": [],
+      "session": "validated_lessons-seed-42",
+      "unsupported_claims": [],
+      "written_memory_ids": []
+    },
+    {
+      "citation_ids_valid": true,
+      "classification_correct": true,
+      "label": "weakly_supported",
+      "pair_id": "disease-drug-pair-210",
+      "retrieved_memory_ids": [],
+      "session": "validated_lessons-seed-42",
+      "unsupported_claims": [],
+      "written_memory_ids": []
+    },
+    {
+      "citation_ids_valid": true,
+      "classification_correct": true,
+      "label": "unsupported",
+      "pair_id": "disease-drug-pair-211",
+      "retrieved_memory_ids": [],
+      "session": "validated_lessons-seed-42",
+      "unsupported_claims": [],
+      "written_memory_ids": []
+    },
+    {
+      "citation_ids_valid": true,
+      "classification_correct": true,
+      "label": "insufficient_evidence",
+      "pair_id": "disease-drug-pair-212",
+      "retrieved_memory_ids": [],
+      "session": "validated_lessons-seed-42",
+      "unsupported_claims": [],
+      "written_memory_ids": [
+        "lesson-gen-retrieval-001"
+      ]
+    }
+  ]
+}

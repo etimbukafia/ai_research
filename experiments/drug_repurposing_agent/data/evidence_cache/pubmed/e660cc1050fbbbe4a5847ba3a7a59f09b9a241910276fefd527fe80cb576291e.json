@@ -1,0 +1,40 @@
+{
+  "cache_hit": false,
+  "method": "GET",
+  "query_parameters": {
+    "db": "pubmed",
+    "retmax": 10,
+    "retmode": "json",
+    "sort": "relevance",
+    "term": "\"cystic fibrosis\" AND \"IVACAFTOR\""
+  },
+  "request_hash": "e660cc1050fbbbe4a5847ba3a7a59f09b9a241910276fefd527fe80cb576291e",
+  "response": {
+    "esearchresult": {
+      "count": "2202",
+      "idlist": [
+        "37278811",
+        "31626570",
+        "39965067",
+        "28846049",
+        "35681464",
+        "40418577",
+        "31409974",
+        "39151434",
+        "35927224",
+        "23457167"
+      ],
+      "querytranslation": "\"cystic fibrosis\"[All Fields] AND \"IVACAFTOR\"[All Fields]",
+      "retmax": "10",
+      "retstart": "0",
+      "translationset": []
+    },
+    "header": {
+      "type": "esearch",
+      "version": "0.3"
+    }
+  },
+  "retrieval_timestamp": "2026-06-11T15:44:00.641499+00:00",
+  "source": "PubMed",
+  "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi"
+}

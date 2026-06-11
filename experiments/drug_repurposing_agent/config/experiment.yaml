@@ -1,0 +1,148 @@
+# Frozen experiment contract. Changes after the pilot must be recorded as protocol
+# deviations and require a new contract_version.
+contract_version: "1.1.0"
+contract_status: "locked"
+locked_on: "2026-06-11"
+
+experiment:
+  name: "self-improving-biomedical-evidence-triage"
+  framing: "research evidence triage, not medical advice or a treatment recommendation"
+  planned_primary_run_date: "2026-06-11"
+  actual_run_timestamp_policy: "Record an ISO 8601 UTC timestamp in every run artifact."
+  primary_question: >-
+    Does evaluator-validated procedural lesson memory improve held-out evidence
+    triage without increasing unsupported claims or error propagation?
+  primary_seed: 42
+  sequential_processing: true
+
+model:
+  provider: "google"
+  name: "gemini-3.1-flash-lite"
+  temperature: 0.0
+  assessor_prompt_version: "assessor-v1.1.0"
+  lesson_generator_prompt_version: "lesson-generator-v1.1.0"
+  evaluator_policy_version: "evaluator-v1.1.0"
+
+scope:
+  input_unit: "one rare-disease and candidate-drug pair"
+  evidence_sources:
+    - "Open Targets"
+    - "PubMed"
+  excluded_sources:
+    - "clinical guideline databases"
+    - "general web search"
+    - "patents"
+    - "preprint-only databases"
+    - "proprietary biomedical databases"
+  labels:
+    - "supported"
+    - "weakly_supported"
+    - "unsupported"
+    - "insufficient_evidence"
+  memory_conditions:
+    - "no_memory"
+    - "raw_memory"
+    - "validated_lessons"
+
+dataset:
+  total_pairs: 100
+  order: "fixed"
+  splits:
+    initial_evaluation:
+      start_id: 1
+      end_id: 20
+      count: 20
+      memory_updates_allowed: false
+    learning_stream:
+      start_id: 21
+      end_id: 70
+      count: 50
+      memory_updates_allowed: true
+    held_out_evaluation:
+      start_id: 71
+      end_id: 90
+      count: 20
+      memory_updates_allowed: false
+    distribution_shift:
+      start_id: 91
+      end_id: 100
+      count: 10
+      memory_updates_allowed: false
+  evidence_snapshot_policy: >-
+    Retrieve and cache evidence before comparative runs. All conditions must use
+    identical cached evidence. Record retrieval timestamps and query parameters.
+  leakage_policy: >-
+    Gold labels, gold rationales, and held-out or distribution-shift evaluator
+    feedback must never be supplied to the assessor, lesson generator, or memory.
+
+classification:
+  guide: "docs/labeling_guide.md"
+  confidence_range:
+    minimum: 0.0
+    maximum: 1.0
+  material_claim_citation_required: true
+  retrieval_failure_label: "insufficient_evidence"
+
+memory:
+  update_phase: "learning_stream_only"
+  validated_lessons_are_procedural_only: true
+  validated_lesson_requires_explicit_approval: true
+  disease_specific_efficacy_claims_forbidden: true
+  treatment_recommendations_forbidden: true
+  condition_and_run_isolation_required: true
+
+metrics:
+  primary:
+    - "held_out_macro_f1"
+    - "held_out_unsupported_claim_rate"
+  secondary:
+    - "per_label_precision_recall_f1"
+    - "citation_correctness"
+    - "relationship_extraction_accuracy"
+    - "correct_abstention_rate"
+    - "distribution_shift_macro_f1"
+    - "incorrect_memory_propagation_count"
+    - "latency"
+    - "token_cost"
+
+success_criterion:
+  comparison: "validated_lessons versus no_memory on held_out_evaluation"
+  minimum_absolute_macro_f1_improvement: 0.05
+  maximum_absolute_unsupported_claim_rate_increase: 0.00
+  maximum_incorrect_memory_propagation_count: 0
+  decision_rule: >-
+    The experiment succeeds only if validated_lessons improves held-out macro-F1
+    by at least 0.05 absolute, does not increase held-out unsupported-claim rate,
+    and causes zero held-out errors attributable to an incorrect validated memory.
+
+failure_and_inconclusive_rules:
+  failure: >-
+    The experiment fails if validated_lessons increases held-out unsupported-claim
+    rate, causes any held-out error attributable to an incorrect validated memory,
+    or trails no_memory on held-out macro-F1.
+  inconclusive: >-
+    The result is inconclusive when it is neither a success nor a failure, including
+    a positive held-out macro-F1 change smaller than 0.05 with no safety regression.
+
+analysis:
+  primary_unit: "disease-drug pair"
+  primary_run: "seed 42, temperature 0.0"
+  uncertainty_method: "paired bootstrap over held-out pairs"
+  bootstrap_resamples: 10000
+  raw_memory_comparison: >-
+    Compare raw_memory directly with validated_lessons as a secondary analysis of
+    error propagation; it does not determine primary success.
+
+change_control:
+  before_pilot: "Changes are allowed but must increment contract_version."
+  after_pilot: >-
+    Do not change labels, prompts, success thresholds, memory policy, dataset, or
+    evaluator policy after viewing held-out results. Record unavoidable changes as
+    protocol deviations and run them under a new contract version.
+
+pilot_freeze:
+  completed_on: "2026-06-11"
+  freeze_git_commit: "PENDING_FREEZE_COMMIT"
+  pilot_report: "pilot/PILOT_REPORT.md"
+  pilot_review: "pilot/PILOT_REVIEW.json"
+  code_prompts_config_guide_and_dataset_frozen: true

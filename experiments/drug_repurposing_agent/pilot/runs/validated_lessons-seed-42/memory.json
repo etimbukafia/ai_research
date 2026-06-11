@@ -1,0 +1,102 @@
+[
+  {
+    "content": "When performing retrieval for evidence assessment, ensure that search queries are sufficiently broad to capture potential synonyms and related terminology. If initial retrieval yields no relevant results, verify that the search parameters account for all known aliases of the entities involved before concluding that evidence is insufficient.",
+    "id": "retrieval-strategy-optimization-001",
+    "metadata": {
+      "applicable_evidence_types": [
+        "retrieval_failure"
+      ],
+      "condition": "validated_lessons",
+      "confidence": 0.85,
+      "kind": "validated_lesson",
+      "lesson": {
+        "applicable_evidence_types": [
+          "retrieval_failure"
+        ],
+        "confidence": 0.85,
+        "failure_type": "retrieval_failure",
+        "lesson": "When performing retrieval for evidence assessment, ensure that search queries are sufficiently broad to capture potential synonyms and related terminology. If initial retrieval yields no relevant results, verify that the search parameters account for all known aliases of the entities involved before concluding that evidence is insufficient.",
+        "lesson_id": "retrieval-strategy-optimization-001",
+        "provenance": {
+          "approval_record_id": "approval:retrieval-strategy-optimization-001",
+          "approved_at": "2026-06-11T23:42:05.970411Z",
+          "approved_by": "Codex (designated experiment reviewer)",
+          "evaluator_feedback_id": "feedback:disease-drug-pair-208"
+        },
+        "scope": "procedural",
+        "source_task": "disease-drug-pair-208",
+        "supersession": {
+          "superseded_by_lesson_ids": [],
+          "supersedes_lesson_ids": []
+        },
+        "validated": true
+      },
+      "memory_id": "retrieval-strategy-optimization-001",
+      "namespace": "drug-repurposing-agent:validated_lessons:validated_lessons-seed-42",
+      "provenance": {
+        "approval_record_id": "approval:retrieval-strategy-optimization-001",
+        "approved_at": "2026-06-11T23:42:05.970411Z",
+        "approved_by": "Codex (designated experiment reviewer)",
+        "evaluator_feedback_id": "feedback:disease-drug-pair-208"
+      },
+      "run_id": "validated_lessons-seed-42",
+      "source_task": "disease-drug-pair-208",
+      "supersession": {
+        "superseded_by_lesson_ids": [],
+        "supersedes_lesson_ids": []
+      },
+      "validated": true
+    },
+    "namespace": "drug-repurposing-agent:validated_lessons:validated_lessons-seed-42"
+  },
+  {
+    "content": "When conducting a retrieval-based assessment, if initial searches for specific entity combinations yield no results, perform a secondary verification step by searching for the entities individually to confirm whether the lack of evidence is due to a true absence of literature or a failure to retrieve existing, less-indexed associations.",
+    "id": "lesson-gen-retrieval-001",
+    "metadata": {
+      "applicable_evidence_types": [
+        "retrieval_failure"
+      ],
+      "condition": "validated_lessons",
+      "confidence": 0.85,
+      "kind": "validated_lesson",
+      "lesson": {
+        "applicable_evidence_types": [
+          "retrieval_failure"
+        ],
+        "confidence": 0.85,
+        "failure_type": "retrieval_failure",
+        "lesson": "When conducting a retrieval-based assessment, if initial searches for specific entity combinations yield no results, perform a secondary verification step by searching for the entities individually to confirm whether the lack of evidence is due to a true absence of literature or a failure to retrieve existing, less-indexed associations.",
+        "lesson_id": "lesson-gen-retrieval-001",
+        "provenance": {
+          "approval_record_id": "approval:lesson-gen-retrieval-001",
+          "approved_at": "2026-06-11T23:42:26.888273Z",
+          "approved_by": "Codex (designated experiment reviewer)",
+          "evaluator_feedback_id": "feedback:disease-drug-pair-212"
+        },
+        "scope": "procedural",
+        "source_task": "disease-drug-pair-212",
+        "supersession": {
+          "superseded_by_lesson_ids": [],
+          "supersedes_lesson_ids": []
+        },
+        "validated": true
+      },
+      "memory_id": "lesson-gen-retrieval-001",
+      "namespace": "drug-repurposing-agent:validated_lessons:validated_lessons-seed-42",
+      "provenance": {
+        "approval_record_id": "approval:lesson-gen-retrieval-001",
+        "approved_at": "2026-06-11T23:42:26.888273Z",
+        "approved_by": "Codex (designated experiment reviewer)",
+        "evaluator_feedback_id": "feedback:disease-drug-pair-212"
+      },
+      "run_id": "validated_lessons-seed-42",
+      "source_task": "disease-drug-pair-212",
+      "supersession": {
+        "superseded_by_lesson_ids": [],
+        "supersedes_lesson_ids": []
+      },
+      "validated": true
+    },
+    "namespace": "drug-repurposing-agent:validated_lessons:validated_lessons-seed-42"
+  }
+]

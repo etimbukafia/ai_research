@@ -1,0 +1,58 @@
+{
+  "data": {
+    "disease": {
+      "id": "MONDO_0009061",
+      "name": "cystic fibrosis",
+      "associatedTargets": {
+        "rows": [
+          {
+            "score": 0.91,
+            "target": {
+              "id": "ENSG00000001626",
+              "approvedSymbol": "CFTR"
+            }
+          }
+        ]
+      },
+      "drugAndClinicalCandidates": {
+        "rows": [
+          {
+            "id": "known-pair-1",
+            "maxClinicalStage": "APPROVAL",
+            "drug": {
+              "id": "CHEMBL2010601",
+              "name": "IVACAFTOR"
+            }
+          },
+          {
+            "id": "other-drug",
+            "maxClinicalStage": "PHASE_2",
+            "drug": {
+              "id": "CHEMBL999",
+              "name": "OTHER DRUG"
+            }
+          }
+        ]
+      }
+    },
+    "drug": {
+      "id": "CHEMBL2010601",
+      "name": "IVACAFTOR",
+      "mechanismsOfAction": {
+        "rows": [
+          {
+            "actionType": "POSITIVE MODULATOR",
+            "mechanismOfAction": "CFTR positive modulator",
+            "targetName": "CFTR",
+            "targets": [
+              {
+                "id": "ENSG00000001626",
+                "approvedSymbol": "CFTR"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  }
+}
