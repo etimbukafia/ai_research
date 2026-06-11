@@ -142,7 +142,7 @@ change_control:
 
 pilot_freeze:
   completed_on: "2026-06-11"
-  freeze_git_commit: "PENDING_FREEZE_COMMIT"
+  freeze_git_commit: "2b673988280043124900d012bf2b2f03b4ece983"
   pilot_report: "pilot/PILOT_REPORT.md"
   pilot_review: "pilot/PILOT_REVIEW.json"
   code_prompts_config_guide_and_dataset_frozen: true

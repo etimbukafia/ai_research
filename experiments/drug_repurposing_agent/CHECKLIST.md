@@ -266,11 +266,12 @@ approval artifacts, session events, frozen inputs, and reporting.
 - [x] Confirm raw and validated memory stores receive different content.
 - [x] Fix only implementation defects or ambiguous labeling rules.
 - [x] Freeze code, prompts, config, labeling guide, and dataset after the pilot.
-- [ ] Record a git commit hash in `config/experiment.yaml`.
+- [x] Record a git commit hash in `config/experiment.yaml`.
 
 **Gate:** No schema, retrieval, scoring, memory-isolation, or resume defects remain.
 **Status:** passed; 36/36 labels, relationships, and citations scored correctly,
-unsupported-claim count was zero, and all 64 tests pass. Freeze commit pending.
+unsupported-claim count was zero, all 64 tests pass, and freeze commit
+`2b673988280043124900d012bf2b2f03b4ece983` is recorded.
 
 ## 11. Run The Full Experiment
 

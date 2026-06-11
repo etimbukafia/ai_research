@@ -41,4 +41,5 @@ leakage policy still validate.
 
 Contract, prompts, evaluator policy, code, labeling guide, and frozen dataset are
 frozen as contract version `1.1.0`. Subsequent changes require a protocol deviation
-and new contract version.
+and new contract version. Freeze commit:
+`2b673988280043124900d012bf2b2f03b4ece983`.
