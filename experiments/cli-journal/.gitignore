@@ -1,0 +1,12 @@
+journal-demo.sqlite3
+journal-log-test-2.sqlite3
+journal-log-test-3.sqlite3
+journal-log-test.sqlite3
+journal.sqlite3
+memory-map-demo.sqlite3
+cli_journal\visualize.py
+.env
+experiments\cli-journal\chroma-test
+experiments\cli-journal\.agents
+experiments\cli-journal\cli_journal\__pycache__
+documentation.md

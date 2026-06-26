@@ -1,0 +1,22 @@
+[project]
+name = "cli-journal"
+version = "0.1.0"
+description = "A CLI journal with Tulving-inspired memory layers."
+requires-python = ">=3.11"
+dependencies = [
+    "chromadb>=0.5.0",
+    "google-genai>=1.0.0",
+    "mem0ai>=0.1.0",
+    "prompt-toolkit>=3.0",
+    "python-dotenv>=1.0.0",
+    "pydantic>=2.0",
+    "pydantic-ai>=1.0.0",
+    "rich>=13.0",
+]
+
+[project.scripts]
+journal = "cli_journal.cli:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
