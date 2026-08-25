@@ -1,0 +1,72 @@
+{
+  "run_id": "replay-9368d62309ac1a46",
+  "experiment": "semantic_retrieval_for_enterprise_agents",
+  "mode": "replay",
+  "model_name": "google:gemini-3.7-flash",
+  "model_suffix": "gemini-3.7-flash",
+  "top_k": 8,
+  "replay_fixture": "deterministic-replay-v1",
+  "prompt_hash": "27cb5e33f1804706e500719e219edaf99e6b5839a7373df97d7e461323959697",
+  "cases_sha256": "c7f4d4d00d9a0492e82d8415078dc546413b0c2dcb09c7be559537c63dc00845",
+  "contract_sha256": "c3d8a873ccdbaa1bdd96b64f3ffca2eb10d7bde8bf5d76173cc1f7900d0ea667",
+  "contract_path": "C:\\Users\\LATITUDE 5420\\AppData\\Local\\Temp\\afiavana_ai_research_agent_push\\experiments\\enterprise_agent_semantic_retrieval\\CONTRACT.md",
+  "retrieval": {
+    "interface": "SemanticRetriever.search_business_context",
+    "implementation": "SQLiteHybridRetriever",
+    "conditions": [
+      "raw_schema",
+      "prose_rag",
+      "semantic_catalog"
+    ],
+    "top_k": 8,
+    "vectors_requested": true,
+    "vector_backend": "sentence-transformers/all-MiniLM-L6-v2",
+    "vector_error": null
+  },
+  "package_versions": {
+    "python": "3.14.6",
+    "pydantic": "2.13.4",
+    "pydantic-ai-slim": "2.33.0",
+    "pydantic-ai": "not-installed",
+    "google-genai": "2.19.0",
+    "sentence-transformers": "5.1.0",
+    "numpy": "2.5.2"
+  },
+  "adapter": {
+    "contract_present": true,
+    "contract_path": "C:\\Users\\LATITUDE 5420\\AppData\\Local\\Temp\\afiavana_ai_research_agent_push\\experiments\\enterprise_agent_semantic_retrieval\\CONTRACT.md",
+    "contract_sha256": "c3d8a873ccdbaa1bdd96b64f3ffca2eb10d7bde8bf5d76173cc1f7900d0ea667",
+    "available_modules": {
+      "enterprise_agent_lab.models": false,
+      "enterprise_agent_lab.retrieval": false,
+      "enterprise_agent_lab.tools": false,
+      "enterprise_agent_lab.agent": false,
+      "enterprise_agent_lab.runner": false,
+      "enterprise_agent_lab.cases": false,
+      "enterprise_agent_lab.cli": false
+    },
+    "missing_modules": [
+      "enterprise_agent_lab.models",
+      "enterprise_agent_lab.retrieval",
+      "enterprise_agent_lab.tools",
+      "enterprise_agent_lab.agent",
+      "enterprise_agent_lab.runner",
+      "enterprise_agent_lab.cases",
+      "enterprise_agent_lab.cli"
+    ],
+    "cases_source": "enterprise_agent_lab.cases.build_cases",
+    "adapter_used": false
+  },
+  "environment": {
+    "python_executable": "C:\\Users\\Etimbuk\\projects\\.projects\\Scripts\\python.exe",
+    "python_version": "3.14.6",
+    "google_api_key_present": false,
+    "gemini_model_override": null
+  },
+  "source_files": {
+    "cases.json": "c7f4d4d00d9a0492e82d8415078dc546413b0c2dcb09c7be559537c63dc00845",
+    "run_experiment.py": "72e28bc321593925440c13e68640b177c61feccc82c07db7272f4e3df715df87",
+    "README.md": "e9afac31b731f2e052be722d43e0d6d97bb9c50a710434ade616bdc619e93878",
+    "requirements.txt": "be7195efbb1d4212be60d04d8a66d1a50c52e64f23aedafeff81418c6abf6ba2"
+  }
+}
