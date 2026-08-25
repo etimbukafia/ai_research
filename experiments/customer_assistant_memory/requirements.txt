@@ -1,0 +1,6 @@
+chromadb==1.0.20
+ladybug==0.19.1
+numpy==2.5.2
+sentence-transformers==5.1.0
+torch==2.13.0
+transformers==4.57.6

@@ -1,0 +1,523 @@
+{
+  "case_id": "case-multi-01",
+  "ticket_text": "The battery for the camera I bought last year has failed. Is it covered by my warranty? Please use my current delivery address.",
+  "gold_answer": "The battery replacement is covered until 2027-04-18. The compatible part is replacement-01. The current address is 4 Cedar Avenue.",
+  "methods": {
+    "flat_recent": {
+      "method": "flat_recent",
+      "case_id": "case-multi-01",
+      "decision": "needs_human_review",
+      "expected_decision": "answer",
+      "answer_accuracy": 0.0,
+      "retrieved_ids": [
+        "resolution-01",
+        "issue-01",
+        "ticket-01",
+        "address-current-01",
+        "preference-current-01",
+        "policy-01",
+        "policy-02",
+        "replacement-01"
+      ],
+      "required_record_ids": [
+        "order-01",
+        "product-01",
+        "warranty-01",
+        "replacement-01",
+        "ticket-01",
+        "issue-01",
+        "policy-01",
+        "address-current-01"
+      ],
+      "retrieved_path": [],
+      "required_path": [
+        "cust-01|PLACED|order-01",
+        "order-01|CONTAINS|product-01",
+        "product-01|COVERED_BY|warranty-01",
+        "product-01|COMPATIBLE_WITH|replacement-01",
+        "cust-01|OPENED|ticket-01",
+        "ticket-01|REPORTS|issue-01",
+        "product-01|GOVERNED_BY|policy-01",
+        "cust-01|HAS_ADDRESS|address-current-01"
+      ],
+      "evidence_recall": 0.625,
+      "path_recall": 0.0,
+      "temporal_accuracy": null,
+      "provenance_precision": 0.0,
+      "unsupported_claim_rate": 0.0,
+      "cited_ids": [
+        "resolution-01"
+      ],
+      "rows": [
+        {
+          "id": "resolution-01",
+          "score": 1.7739612,
+          "observed_at": "2026-03-20",
+          "source_id": "resolution-system"
+        },
+        {
+          "id": "issue-01",
+          "score": 1.7707644,
+          "observed_at": "2026-02-11",
+          "source_id": "ticketing-system"
+        },
+        {
+          "id": "ticket-01",
+          "score": 1.7707644,
+          "observed_at": "2026-02-11",
+          "source_id": "ticketing-system"
+        },
+        {
+          "id": "address-current-01",
+          "score": 1.7675676,
+          "observed_at": "2026-01-05",
+          "source_id": "address-system"
+        },
+        {
+          "id": "preference-current-01",
+          "score": 1.7675676,
+          "observed_at": "2026-01-05",
+          "source_id": "preference-system"
+        },
+        {
+          "id": "policy-01",
+          "score": 1.767222,
+          "observed_at": "2026-01-01",
+          "source_id": "policy-system-2026"
+        },
+        {
+          "id": "policy-02",
+          "score": 1.767222,
+          "observed_at": "2026-01-01",
+          "source_id": "policy-compatibility-2026"
+        },
+        {
+          "id": "replacement-01",
+          "score": 1.767222,
+          "observed_at": "2026-01-01",
+          "source_id": "catalog-system"
+        }
+      ],
+      "skills": [
+        "find_customer",
+        "find_order",
+        "check_warranty",
+        "find_compatible_product",
+        "get_current_address"
+      ],
+      "tool_calls": 5,
+      "runtime_ms": 203.511
+    },
+    "vector_chroma": {
+      "method": "vector_chroma",
+      "case_id": "case-multi-01",
+      "decision": "needs_human_review",
+      "expected_decision": "answer",
+      "answer_accuracy": 0.0,
+      "retrieved_ids": [
+        "ticket-01",
+        "policy-01",
+        "resolution-01",
+        "order-01",
+        "warranty-01",
+        "issue-01",
+        "note-old-warranty-01",
+        "cust-01"
+      ],
+      "required_record_ids": [
+        "order-01",
+        "product-01",
+        "warranty-01",
+        "replacement-01",
+        "ticket-01",
+        "issue-01",
+        "policy-01",
+        "address-current-01"
+      ],
+      "retrieved_path": [],
+      "required_path": [
+        "cust-01|PLACED|order-01",
+        "order-01|CONTAINS|product-01",
+        "product-01|COVERED_BY|warranty-01",
+        "product-01|COMPATIBLE_WITH|replacement-01",
+        "cust-01|OPENED|ticket-01",
+        "ticket-01|REPORTS|issue-01",
+        "product-01|GOVERNED_BY|policy-01",
+        "cust-01|HAS_ADDRESS|address-current-01"
+      ],
+      "evidence_recall": 0.625,
+      "path_recall": 0.0,
+      "temporal_accuracy": null,
+      "provenance_precision": 1.0,
+      "unsupported_claim_rate": 0.0,
+      "cited_ids": [
+        "ticket-01"
+      ],
+      "rows": [
+        {
+          "id": "ticket-01",
+          "score": 0.43661797046661377,
+          "cosine_distance": 0.5633820295333862,
+          "source_id": "ticketing-system"
+        },
+        {
+          "id": "policy-01",
+          "score": 0.4311407804489136,
+          "cosine_distance": 0.5688592195510864,
+          "source_id": "policy-system-2026"
+        },
+        {
+          "id": "resolution-01",
+          "score": 0.37584972381591797,
+          "cosine_distance": 0.624150276184082,
+          "source_id": "resolution-system"
+        },
+        {
+          "id": "order-01",
+          "score": 0.3675597906112671,
+          "cosine_distance": 0.6324402093887329,
+          "source_id": "order-system"
+        },
+        {
+          "id": "warranty-01",
+          "score": 0.35853302478790283,
+          "cosine_distance": 0.6414669752120972,
+          "source_id": "warranty-system"
+        },
+        {
+          "id": "issue-01",
+          "score": 0.3491096496582031,
+          "cosine_distance": 0.6508903503417969,
+          "source_id": "ticketing-system"
+        },
+        {
+          "id": "note-old-warranty-01",
+          "score": 0.32483184337615967,
+          "cosine_distance": 0.6751681566238403,
+          "source_id": "crm-note-01"
+        },
+        {
+          "id": "cust-01",
+          "score": 0.3155710697174072,
+          "cosine_distance": 0.6844289302825928,
+          "source_id": "crm-system"
+        }
+      ],
+      "skills": [
+        "find_customer",
+        "find_order",
+        "check_warranty",
+        "find_compatible_product",
+        "get_current_address"
+      ],
+      "tool_calls": 5,
+      "runtime_ms": 203.53
+    },
+    "graph_ladybug": {
+      "method": "graph_ladybug",
+      "case_id": "case-multi-01",
+      "decision": "answer",
+      "expected_decision": "answer",
+      "answer_accuracy": 1.0,
+      "retrieved_ids": [
+        "address-current-01",
+        "order-01",
+        "ticket-01",
+        "issue-01",
+        "product-01",
+        "policy-01",
+        "warranty-01",
+        "replacement-01"
+      ],
+      "required_record_ids": [
+        "order-01",
+        "product-01",
+        "warranty-01",
+        "replacement-01",
+        "ticket-01",
+        "issue-01",
+        "policy-01",
+        "address-current-01"
+      ],
+      "retrieved_path": [
+        "cust-01|HAS_ADDRESS|address-current-01",
+        "cust-01|OPENED|ticket-01",
+        "cust-01|PLACED|order-01",
+        "order-01|CONTAINS|product-01",
+        "product-01|COMPATIBLE_WITH|replacement-01",
+        "product-01|COVERED_BY|warranty-01",
+        "product-01|GOVERNED_BY|policy-01",
+        "ticket-01|REPORTS|issue-01"
+      ],
+      "required_path": [
+        "cust-01|PLACED|order-01",
+        "order-01|CONTAINS|product-01",
+        "product-01|COVERED_BY|warranty-01",
+        "product-01|COMPATIBLE_WITH|replacement-01",
+        "cust-01|OPENED|ticket-01",
+        "ticket-01|REPORTS|issue-01",
+        "product-01|GOVERNED_BY|policy-01",
+        "cust-01|HAS_ADDRESS|address-current-01"
+      ],
+      "evidence_recall": 1.0,
+      "path_recall": 1.0,
+      "temporal_accuracy": null,
+      "provenance_precision": 1.0,
+      "unsupported_claim_rate": 0.0,
+      "cited_ids": [
+        "order-01",
+        "product-01",
+        "warranty-01",
+        "replacement-01",
+        "ticket-01",
+        "issue-01",
+        "policy-01",
+        "address-current-01"
+      ],
+      "rows": [
+        {
+          "id": "address-current-01",
+          "score": 4.8,
+          "graph_hops": 1,
+          "path": [
+            "cust-01|HAS_ADDRESS|address-current-01"
+          ],
+          "source_id": "address-system"
+        },
+        {
+          "id": "order-01",
+          "score": 4.1499999999999995,
+          "graph_hops": 1,
+          "path": [
+            "cust-01|PLACED|order-01"
+          ],
+          "source_id": "order-system"
+        },
+        {
+          "id": "ticket-01",
+          "score": 4.1,
+          "graph_hops": 1,
+          "path": [
+            "cust-01|OPENED|ticket-01"
+          ],
+          "source_id": "ticketing-system"
+        },
+        {
+          "id": "issue-01",
+          "score": 3.1,
+          "graph_hops": 2,
+          "path": [
+            "cust-01|OPENED|ticket-01",
+            "ticket-01|REPORTS|issue-01"
+          ],
+          "source_id": "ticketing-system"
+        },
+        {
+          "id": "product-01",
+          "score": 3.1,
+          "graph_hops": 2,
+          "path": [
+            "cust-01|PLACED|order-01",
+            "order-01|CONTAINS|product-01"
+          ],
+          "source_id": "catalog-system"
+        },
+        {
+          "id": "policy-01",
+          "score": 2.75,
+          "graph_hops": 3,
+          "path": [
+            "cust-01|PLACED|order-01",
+            "order-01|CONTAINS|product-01",
+            "product-01|GOVERNED_BY|policy-01"
+          ],
+          "source_id": "policy-system-2026"
+        },
+        {
+          "id": "warranty-01",
+          "score": 2.7,
+          "graph_hops": 3,
+          "path": [
+            "cust-01|PLACED|order-01",
+            "order-01|CONTAINS|product-01",
+            "product-01|COVERED_BY|warranty-01"
+          ],
+          "source_id": "warranty-system"
+        },
+        {
+          "id": "replacement-01",
+          "score": 2.05,
+          "graph_hops": 3,
+          "path": [
+            "cust-01|PLACED|order-01",
+            "order-01|CONTAINS|product-01",
+            "product-01|COMPATIBLE_WITH|replacement-01"
+          ],
+          "source_id": "catalog-system"
+        }
+      ],
+      "skills": [
+        "find_customer",
+        "find_order",
+        "check_warranty",
+        "find_compatible_product",
+        "get_current_address"
+      ],
+      "tool_calls": 5,
+      "runtime_ms": 203.548
+    },
+    "hybrid_graph_vector": {
+      "method": "hybrid_graph_vector",
+      "case_id": "case-multi-01",
+      "decision": "answer",
+      "expected_decision": "answer",
+      "answer_accuracy": 1.0,
+      "retrieved_ids": [
+        "order-01",
+        "ticket-01",
+        "address-current-01",
+        "issue-01",
+        "policy-01",
+        "warranty-01",
+        "product-01",
+        "replacement-01"
+      ],
+      "required_record_ids": [
+        "order-01",
+        "product-01",
+        "warranty-01",
+        "replacement-01",
+        "ticket-01",
+        "issue-01",
+        "policy-01",
+        "address-current-01"
+      ],
+      "retrieved_path": [
+        "cust-01|HAS_ADDRESS|address-current-01",
+        "cust-01|OPENED|ticket-01",
+        "cust-01|PLACED|order-01",
+        "order-01|CONTAINS|product-01",
+        "product-01|COMPATIBLE_WITH|replacement-01",
+        "product-01|COVERED_BY|warranty-01",
+        "product-01|GOVERNED_BY|policy-01",
+        "ticket-01|REPORTS|issue-01"
+      ],
+      "required_path": [
+        "cust-01|PLACED|order-01",
+        "order-01|CONTAINS|product-01",
+        "product-01|COVERED_BY|warranty-01",
+        "product-01|COMPATIBLE_WITH|replacement-01",
+        "cust-01|OPENED|ticket-01",
+        "ticket-01|REPORTS|issue-01",
+        "product-01|GOVERNED_BY|policy-01",
+        "cust-01|HAS_ADDRESS|address-current-01"
+      ],
+      "evidence_recall": 1.0,
+      "path_recall": 1.0,
+      "temporal_accuracy": null,
+      "provenance_precision": 1.0,
+      "unsupported_claim_rate": 0.0,
+      "cited_ids": [
+        "order-01",
+        "product-01",
+        "warranty-01",
+        "replacement-01",
+        "ticket-01",
+        "issue-01",
+        "policy-01",
+        "address-current-01"
+      ],
+      "rows": [
+        {
+          "id": "order-01",
+          "score": 5.1499999999999995,
+          "graph_hops": 1,
+          "path": [
+            "cust-01|PLACED|order-01"
+          ],
+          "source_id": "order-system"
+        },
+        {
+          "id": "ticket-01",
+          "score": 5.1,
+          "graph_hops": 1,
+          "path": [
+            "cust-01|OPENED|ticket-01"
+          ],
+          "source_id": "ticketing-system"
+        },
+        {
+          "id": "address-current-01",
+          "score": 4.8,
+          "graph_hops": 1,
+          "path": [
+            "cust-01|HAS_ADDRESS|address-current-01"
+          ],
+          "source_id": "address-system"
+        },
+        {
+          "id": "issue-01",
+          "score": 4.1,
+          "graph_hops": 2,
+          "path": [
+            "cust-01|OPENED|ticket-01",
+            "ticket-01|REPORTS|issue-01"
+          ],
+          "source_id": "ticketing-system"
+        },
+        {
+          "id": "policy-01",
+          "score": 3.75,
+          "graph_hops": 3,
+          "path": [
+            "cust-01|PLACED|order-01",
+            "order-01|CONTAINS|product-01",
+            "product-01|GOVERNED_BY|policy-01"
+          ],
+          "source_id": "policy-system-2026"
+        },
+        {
+          "id": "warranty-01",
+          "score": 3.7,
+          "graph_hops": 3,
+          "path": [
+            "cust-01|PLACED|order-01",
+            "order-01|CONTAINS|product-01",
+            "product-01|COVERED_BY|warranty-01"
+          ],
+          "source_id": "warranty-system"
+        },
+        {
+          "id": "product-01",
+          "score": 3.1,
+          "graph_hops": 2,
+          "path": [
+            "cust-01|PLACED|order-01",
+            "order-01|CONTAINS|product-01"
+          ],
+          "source_id": "catalog-system"
+        },
+        {
+          "id": "replacement-01",
+          "score": 2.05,
+          "graph_hops": 3,
+          "path": [
+            "cust-01|PLACED|order-01",
+            "order-01|CONTAINS|product-01",
+            "product-01|COMPATIBLE_WITH|replacement-01"
+          ],
+          "source_id": "catalog-system"
+        }
+      ],
+      "skills": [
+        "find_customer",
+        "find_order",
+        "check_warranty",
+        "find_compatible_product",
+        "get_current_address"
+      ],
+      "tool_calls": 5,
+      "runtime_ms": 203.56
+    }
+  }
+}

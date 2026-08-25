@@ -1,0 +1,93 @@
+{
+  "documents": [
+    {
+      "id": "doc-01",
+      "title": "Exact keyword search",
+      "text": "Exact keyword search checks whether the query terms occur in each document. An inverted index makes this check fast. Direct term overlap gives a clear baseline, but it misses a relevant document when the document uses a synonym or a different phrase.",
+      "tags": ["lexical", "baseline", "exact-match"]
+    },
+    {
+      "id": "doc-02",
+      "title": "BM25 ranking",
+      "text": "BM25 ranks lexical matches with term frequency, inverse document frequency, and document length normalization. It rewards useful term overlap and reduces the effect of repeated common terms. BM25 cannot match a term to a synonym that is absent from the query or document.",
+      "tags": ["lexical", "bm25", "ranking"]
+    },
+    {
+      "id": "doc-03",
+      "title": "The inverted index",
+      "text": "An inverted index maps each term to a list of document IDs. A query can use the lists to find documents without scanning the full corpus. This data structure supports fast exact keyword search.",
+      "tags": ["index", "lexical", "data-structure"]
+    },
+    {
+      "id": "doc-04",
+      "title": "Synonyms and paraphrases",
+      "text": "Paraphrase handling links automobile with car. It connects alternative expressions that describe one information need. A relevance decision checks whether two passages answer the same question.",
+      "tags": ["semantics", "paraphrase", "relevance"]
+    },
+    {
+      "id": "doc-05",
+      "title": "Dense embeddings",
+      "text": "A dense embedding maps each passage to a vector of numbers. The encoder captures patterns of meaning, so related passages can sit near each other even when their wording changes. This enables semantic retrieval.",
+      "tags": ["embeddings", "semantic", "vector"]
+    },
+    {
+      "id": "doc-06",
+      "title": "Vector similarity",
+      "text": "Cosine similarity compares a question vector with passage vectors. A high score signals a close representation. The measure can surface related phrasing, but it does not verify that a passage contains the required evidence.",
+      "tags": ["vector", "cosine", "semantic"]
+    },
+    {
+      "id": "doc-07",
+      "title": "Chunking changes the search unit",
+      "text": "Chunking splits a long document into smaller passages. Small chunks can improve precision, while large chunks preserve context. The chunk size changes which text a retrieval method can rank.",
+      "tags": ["chunking", "corpus", "context"]
+    },
+    {
+      "id": "doc-08",
+      "title": "Metadata filters",
+      "text": "Metadata filters restrict the candidate set by fields such as date, author, or product. They can remove irrelevant documents before ranking. A filter cannot return information that the corpus does not contain.",
+      "tags": ["metadata", "filters", "candidates"]
+    },
+    {
+      "id": "doc-09",
+      "title": "Reranking after retrieval",
+      "text": "Reranking reads the query and a first-stage candidate passage together. It can change the order of retrieved documents and improve the top results. It cannot rank a relevant document that candidate retrieval missed.",
+      "tags": ["reranking", "candidates", "pipeline"]
+    },
+    {
+      "id": "doc-10",
+      "title": "Relevance labels",
+      "text": "A relevance label records whether a document satisfies a defined information need. A search score is not a relevance label. A person must define the label rule before evaluation.",
+      "tags": ["evaluation", "labels", "relevance"]
+    },
+    {
+      "id": "doc-11",
+      "title": "Retrieval evaluation",
+      "text": "Recall measures the share of relevant documents that a method retrieves. Mean reciprocal rank, or MRR, measures the position of the first relevant result. Each metric describes a different part of ranking quality.",
+      "tags": ["evaluation", "recall", "mrr"]
+    },
+    {
+      "id": "doc-12",
+      "title": "Missing and stale documents",
+      "text": "A missing document cannot appear in a result. A stale document can return old evidence. Corpus coverage and update policy limit every retrieval method, including exact search, BM25, and vector search.",
+      "tags": ["corpus", "freshness", "limitations"]
+    }
+  ],
+  "queries": {
+    "main": {
+      "text": "How can a search system find relevant text when the user's words differ from the words in the documents?",
+      "relevant_ids": ["doc-04", "doc-05", "doc-06"],
+      "purpose": "The running query for the article. It asks for retrieval across different wording."
+    },
+    "validation_direct": {
+      "text": "Which data structure maps terms to document IDs for fast exact keyword search?",
+      "relevant_ids": ["doc-03"],
+      "purpose": "A direct-term query. The relevant document contains the main query terms."
+    },
+    "validation_paraphrase": {
+      "text": "How can a machine match a question to a passage that uses different language?",
+      "relevant_ids": ["doc-04", "doc-05", "doc-06"],
+      "purpose": "A paraphrase query. It describes the semantic task without naming embeddings or cosine similarity."
+    }
+  }
+}
