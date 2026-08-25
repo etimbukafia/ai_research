@@ -28,7 +28,7 @@ import subprocess
 import sys
 import time
 from collections import Counter, defaultdict
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any, Protocol
@@ -47,8 +47,8 @@ CONTRACT_PATH = LAB_ROOT / "CONTRACT.md"
 if not CONTRACT_PATH.exists():
     CONTRACT_PATH = ROOT / "CONTRACT.md"
 TOP_K = 8
-MODEL_NAME = "google:gemini-3.7-flash"
-MODEL_SUFFIX = "gemini-3.7-flash"
+MODEL_NAME = "google:gemini-3.5-flash-lite"
+MODEL_SUFFIX = "gemini-3.5-flash-lite"
 EXPERIMENT = "semantic_retrieval_for_enterprise_agents"
 CONDITIONS = ("raw_schema", "prose_rag", "semantic_catalog")
 EXPECTED_CLASSES = (
@@ -89,6 +89,38 @@ PROMPT_TEXT = (
     "Create drafts only. Never mutate source records. Stop for missing evidence "
     "or human approval."
 )
+
+
+@dataclass
+class LiveRequestLimiter:
+    """Space standalone live requests below the project RPM limit."""
+
+    rpm: float = 15.0
+    safety_factor: float = 0.8
+    _lock: asyncio.Lock = field(init=False, repr=False)
+    _next_allowed: float = field(default=0.0, init=False, repr=False)
+
+    def __post_init__(self) -> None:
+        if self.rpm <= 0:
+            raise ValueError("rpm must be greater than zero")
+        if not 0 < self.safety_factor <= 1:
+            raise ValueError("safety_factor must be in the range (0, 1]")
+        self._lock = asyncio.Lock()
+
+    @classmethod
+    def from_env(cls) -> "LiveRequestLimiter":
+        return cls(
+            rpm=float(os.getenv("GEMINI_RPM", "15")),
+            safety_factor=float(os.getenv("GEMINI_RATE_SAFETY", "0.8")),
+        )
+
+    async def wait(self) -> None:
+        interval = 60.0 / (self.rpm * self.safety_factor)
+        async with self._lock:
+            delay = self._next_allowed - time.monotonic()
+            if delay > 0:
+                await asyncio.sleep(delay)
+            self._next_allowed = time.monotonic() + interval
 
 
 def utc_now() -> str:
@@ -1207,6 +1239,8 @@ class LabAdapter:
         try:
             from pydantic import BaseModel, ConfigDict, Field
             from pydantic_ai import Agent, RunContext
+            from pydantic_ai.messages import ModelMessage, ModelResponse
+            from pydantic_ai.models import Model, ModelRequestParameters, ModelSettings, infer_model
         except ImportError as error:
             raise RuntimeError(
                 "Live mode needs pydantic-ai-slim[google]. Install requirements.txt first."
@@ -1229,8 +1263,35 @@ class LabAdapter:
             def __init__(self, contexts: list[dict[str, Any]]) -> None:
                 self.contexts = contexts
 
+        class RateLimitedModel(Model):
+            def __init__(self, delegate: Model) -> None:
+                super().__init__(settings=delegate.settings, profile=delegate.profile)
+                self._delegate = delegate
+                self._provider = delegate.provider
+                self._limiter = LiveRequestLimiter.from_env()
+
+            @property
+            def model_name(self) -> str:
+                return self._delegate.model_name
+
+            @property
+            def system(self) -> str:
+                return self._delegate.system
+
+            async def request(
+                self,
+                messages: list[ModelMessage],
+                model_settings: ModelSettings | None,
+                model_request_parameters: ModelRequestParameters,
+            ) -> ModelResponse:
+                await self._limiter.wait()
+                return await self._delegate.request(messages, model_settings, model_request_parameters)
+
+        model = RateLimitedModel(
+            infer_model(f"google:{os.getenv('GEMINI_MODEL', MODEL_SUFFIX)}")
+        )
         agent = Agent(
-            f"google:{os.getenv('GEMINI_MODEL', MODEL_SUFFIX)}",
+            model,
             deps_type=Dependencies,
             output_type=LiveDecision,
             system_prompt=PROMPT_TEXT,

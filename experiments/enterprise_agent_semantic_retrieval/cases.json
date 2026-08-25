@@ -3,7 +3,7 @@
   "cases": [
     {
       "case_id": "case-01",
-      "request": "The Aster Cloud account used 150 seats in May, but the invoice shows 100. Can we issue a service credit and offer a plan change?",
+      "request": "The Acme Robotics account used 150 seats in May, but the invoice shows 100. Can we issue a service credit and offer a plan change?",
       "account_id": "account-01",
       "case_class": "cross_system",
       "case_time": "2026-05-31",

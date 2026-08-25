@@ -5,10 +5,10 @@ The run uses 24 synthetic Aster Cloud cases. It makes no Gemini request and chan
 
 ## Run
 
-- Run ID: `replay-9368d62309ac1a46`
+- Run ID: `replay-142b33589d57073d`
 - Cases: `24`
 - Case classes: `cross_system=6, concept_resolution=6, policy_and_action=6, temporal_authority_missing=6`
-- Model contract: `google:gemini-3.7-flash`
+- Model contract: `google:gemini-3.5-flash-lite`
 - Top-k: `8`
 - Retrieval backend: `sentence-transformers/all-MiniLM-L6-v2`
 - Live status: `not_run`

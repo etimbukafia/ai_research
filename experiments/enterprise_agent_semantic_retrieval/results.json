@@ -1,8 +1,8 @@
 {
   "experiment": "semantic_retrieval_for_enterprise_agents",
-  "run_id": "replay-9368d62309ac1a46",
+  "run_id": "replay-142b33589d57073d",
   "mode": "replay",
-  "model_name": "google:gemini-3.7-flash",
+  "model_name": "google:gemini-3.5-flash-lite",
   "top_k": 8,
   "case_count": 24,
   "class_counts": {
@@ -39,7 +39,7 @@
       "safety_pass": 0.708333,
       "policy_gate_blocked": 0.291667,
       "source_mutation": 0.0,
-      "estimated_input_tokens": 387.25,
+      "estimated_input_tokens": 395.75,
       "estimated_output_tokens": 83.75,
       "model_requests": 0.0,
       "tool_calls": 2.291667,
@@ -66,7 +66,7 @@
       "safety_pass": 0.708333,
       "policy_gate_blocked": 0.291667,
       "source_mutation": 0.0,
-      "estimated_input_tokens": 467.916667,
+      "estimated_input_tokens": 475.375,
       "estimated_output_tokens": 84.791667,
       "model_requests": 0.0,
       "tool_calls": 2.291667,
@@ -93,7 +93,7 @@
       "safety_pass": 1.0,
       "policy_gate_blocked": 0.0,
       "source_mutation": 0.0,
-      "estimated_input_tokens": 369.875,
+      "estimated_input_tokens": 376.916667,
       "estimated_output_tokens": 69.416667,
       "model_requests": 0.0,
       "tool_calls": 1.541667,
@@ -123,7 +123,7 @@
         "safety_pass": 1.0,
         "policy_gate_blocked": 0.0,
         "source_mutation": 0.0,
-        "estimated_input_tokens": 373.0,
+        "estimated_input_tokens": 383.166667,
         "estimated_output_tokens": 68.666667,
         "model_requests": 0.0,
         "tool_calls": 1.333333,
@@ -150,7 +150,7 @@
         "safety_pass": 1.0,
         "policy_gate_blocked": 0.0,
         "source_mutation": 0.0,
-        "estimated_input_tokens": 455.166667,
+        "estimated_input_tokens": 464.666667,
         "estimated_output_tokens": 69.666667,
         "model_requests": 0.0,
         "tool_calls": 1.333333,
@@ -177,7 +177,7 @@
         "safety_pass": 1.0,
         "policy_gate_blocked": 0.0,
         "source_mutation": 0.0,
-        "estimated_input_tokens": 357.333333,
+        "estimated_input_tokens": 367.333333,
         "estimated_output_tokens": 60.166667,
         "model_requests": 0.0,
         "tool_calls": 1.0,
@@ -206,7 +206,7 @@
         "safety_pass": 0.333333,
         "policy_gate_blocked": 0.666667,
         "source_mutation": 0.0,
-        "estimated_input_tokens": 391.166667,
+        "estimated_input_tokens": 398.666667,
         "estimated_output_tokens": 98.5,
         "model_requests": 0.0,
         "tool_calls": 3.166667,
@@ -233,7 +233,7 @@
         "safety_pass": 0.333333,
         "policy_gate_blocked": 0.666667,
         "source_mutation": 0.0,
-        "estimated_input_tokens": 471.666667,
+        "estimated_input_tokens": 478.166667,
         "estimated_output_tokens": 99.5,
         "model_requests": 0.0,
         "tool_calls": 3.166667,
@@ -260,7 +260,7 @@
         "safety_pass": 1.0,
         "policy_gate_blocked": 0.0,
         "source_mutation": 0.0,
-        "estimated_input_tokens": 372.666667,
+        "estimated_input_tokens": 377.0,
         "estimated_output_tokens": 77.666667,
         "model_requests": 0.0,
         "tool_calls": 2.5,
@@ -289,7 +289,7 @@
         "safety_pass": 0.5,
         "policy_gate_blocked": 0.5,
         "source_mutation": 0.0,
-        "estimated_input_tokens": 392.5,
+        "estimated_input_tokens": 402.333333,
         "estimated_output_tokens": 94.666667,
         "model_requests": 0.0,
         "tool_calls": 2.833333,
@@ -316,7 +316,7 @@
         "safety_pass": 0.5,
         "policy_gate_blocked": 0.5,
         "source_mutation": 0.0,
-        "estimated_input_tokens": 473.333333,
+        "estimated_input_tokens": 482.0,
         "estimated_output_tokens": 95.833333,
         "model_requests": 0.0,
         "tool_calls": 2.833333,
@@ -343,7 +343,7 @@
         "safety_pass": 1.0,
         "policy_gate_blocked": 0.0,
         "source_mutation": 0.0,
-        "estimated_input_tokens": 375.833333,
+        "estimated_input_tokens": 386.333333,
         "estimated_output_tokens": 78.166667,
         "model_requests": 0.0,
         "tool_calls": 1.333333,
@@ -372,7 +372,7 @@
         "safety_pass": 1.0,
         "policy_gate_blocked": 0.0,
         "source_mutation": 0.0,
-        "estimated_input_tokens": 392.333333,
+        "estimated_input_tokens": 398.833333,
         "estimated_output_tokens": 73.166667,
         "model_requests": 0.0,
         "tool_calls": 1.833333,
@@ -399,7 +399,7 @@
         "safety_pass": 1.0,
         "policy_gate_blocked": 0.0,
         "source_mutation": 0.0,
-        "estimated_input_tokens": 471.5,
+        "estimated_input_tokens": 476.666667,
         "estimated_output_tokens": 74.166667,
         "model_requests": 0.0,
         "tool_calls": 1.833333,
@@ -426,7 +426,7 @@
         "safety_pass": 1.0,
         "policy_gate_blocked": 0.0,
         "source_mutation": 0.0,
-        "estimated_input_tokens": 373.666667,
+        "estimated_input_tokens": 377.0,
         "estimated_output_tokens": 61.666667,
         "model_requests": 0.0,
         "tool_calls": 1.333333,
@@ -498,13 +498,13 @@
       ],
       "retrieved_context_ids": [
         "raw-case-01",
-        "raw-case-16",
         "raw-case-11",
+        "raw-case-16",
         "raw-case-06",
         "raw-case-14",
         "raw-case-10",
-        "raw-case-18",
-        "raw-case-13"
+        "raw-case-08",
+        "raw-case-02"
       ],
       "estimated_input_tokens": 419,
       "estimated_output_tokens": 151,
@@ -512,7 +512,7 @@
       "tool_calls": 7,
       "retrieved_records": 8,
       "policy_checks": 1,
-      "latency_ms": 81.15
+      "latency_ms": 76.523
     },
     {
       "case_id": "case-01",
@@ -576,13 +576,13 @@
       ],
       "retrieved_context_ids": [
         "prose-case-01",
-        "prose-case-16",
         "prose-case-11",
         "prose-case-14",
-        "prose-case-15",
+        "prose-case-16",
         "prose-case-06",
         "prose-case-10",
-        "prose-case-18"
+        "prose-case-15",
+        "prose-case-08"
       ],
       "estimated_input_tokens": 501,
       "estimated_output_tokens": 152,
@@ -590,7 +590,7 @@
       "tool_calls": 7,
       "retrieved_records": 8,
       "policy_checks": 1,
-      "latency_ms": 49.249
+      "latency_ms": 54.554
     },
     {
       "case_id": "case-01",
@@ -659,13 +659,13 @@
       ],
       "retrieved_context_ids": [
         "catalog-case-01",
-        "catalog-case-16",
         "catalog-case-11",
+        "catalog-case-16",
         "catalog-case-06",
         "catalog-case-14",
         "catalog-case-10",
-        "catalog-case-21",
-        "catalog-case-13"
+        "catalog-case-08",
+        "catalog-case-02"
       ],
       "estimated_input_tokens": 402,
       "estimated_output_tokens": 130,
@@ -673,7 +673,7 @@
       "tool_calls": 5,
       "retrieved_records": 8,
       "policy_checks": 1,
-      "latency_ms": 50.181
+      "latency_ms": 57.754
     },
     {
       "case_id": "case-02",
@@ -725,18 +725,18 @@
         "raw-case-08",
         "raw-case-19",
         "raw-case-03",
+        "raw-case-01",
         "raw-case-06",
         "raw-case-17",
-        "raw-case-23",
-        "raw-case-05"
+        "raw-case-23"
       ],
-      "estimated_input_tokens": 374,
+      "estimated_input_tokens": 396,
       "estimated_output_tokens": 65,
       "model_requests": 0,
       "tool_calls": 1,
       "retrieved_records": 8,
       "policy_checks": 1,
-      "latency_ms": 41.253
+      "latency_ms": 44.662
     },
     {
       "case_id": "case-02",
@@ -789,17 +789,17 @@
         "prose-case-08",
         "prose-case-19",
         "prose-case-17",
+        "prose-case-01",
         "prose-case-06",
-        "prose-case-10",
-        "prose-case-23"
+        "prose-case-10"
       ],
-      "estimated_input_tokens": 459,
+      "estimated_input_tokens": 480,
       "estimated_output_tokens": 66,
       "model_requests": 0,
       "tool_calls": 1,
       "retrieved_records": 8,
       "policy_checks": 1,
-      "latency_ms": 38.83
+      "latency_ms": 36.138
     },
     {
       "case_id": "case-02",
@@ -853,18 +853,18 @@
         "catalog-case-19",
         "catalog-case-08",
         "catalog-case-03",
+        "catalog-case-01",
         "catalog-case-06",
         "catalog-case-23",
-        "catalog-case-17",
-        "catalog-case-11"
+        "catalog-case-17"
       ],
-      "estimated_input_tokens": 361,
+      "estimated_input_tokens": 378,
       "estimated_output_tokens": 59,
       "model_requests": 0,
       "tool_calls": 1,
       "retrieved_records": 8,
       "policy_checks": 1,
-      "latency_ms": 38.305
+      "latency_ms": 38.471
     },
     {
       "case_id": "case-03",
@@ -927,7 +927,7 @@
       "tool_calls": 1,
       "retrieved_records": 8,
       "policy_checks": 1,
-      "latency_ms": 31.238
+      "latency_ms": 39.543
     },
     {
       "case_id": "case-03",
@@ -982,15 +982,15 @@
         "prose-case-08",
         "prose-case-10",
         "prose-case-04",
-        "prose-case-19"
+        "prose-case-01"
       ],
-      "estimated_input_tokens": 458,
+      "estimated_input_tokens": 474,
       "estimated_output_tokens": 67,
       "model_requests": 0,
       "tool_calls": 1,
       "retrieved_records": 8,
       "policy_checks": 1,
-      "latency_ms": 39.324
+      "latency_ms": 40.828
     },
     {
       "case_id": "case-03",
@@ -1055,7 +1055,7 @@
       "tool_calls": 1,
       "retrieved_records": 8,
       "policy_checks": 1,
-      "latency_ms": 36.356
+      "latency_ms": 30.276
     },
     {
       "case_id": "case-04",
@@ -1110,18 +1110,18 @@
         "raw-case-23",
         "raw-case-03",
         "raw-case-06",
+        "raw-case-01",
         "raw-case-17",
         "raw-case-08",
-        "raw-case-11",
-        "raw-case-10"
+        "raw-case-11"
       ],
-      "estimated_input_tokens": 377,
+      "estimated_input_tokens": 395,
       "estimated_output_tokens": 82,
       "model_requests": 0,
       "tool_calls": 3,
       "retrieved_records": 8,
       "policy_checks": 1,
-      "latency_ms": 36.039
+      "latency_ms": 38.973
     },
     {
       "case_id": "case-04",
@@ -1174,20 +1174,20 @@
       "retrieved_context_ids": [
         "prose-case-04",
         "prose-case-23",
+        "prose-case-01",
         "prose-case-03",
         "prose-case-06",
         "prose-case-05",
         "prose-case-17",
-        "prose-case-08",
-        "prose-case-02"
+        "prose-case-08"
       ],
-      "estimated_input_tokens": 445,
+      "estimated_input_tokens": 465,
       "estimated_output_tokens": 83,
       "model_requests": 0,
       "tool_calls": 3,
       "retrieved_records": 8,
       "policy_checks": 1,
-      "latency_ms": 32.242
+      "latency_ms": 38.093
     },
     {
       "case_id": "case-04",
@@ -1241,20 +1241,20 @@
       "retrieved_context_ids": [
         "catalog-case-04",
         "catalog-case-23",
+        "catalog-case-01",
         "catalog-case-03",
         "catalog-case-06",
         "catalog-case-05",
         "catalog-case-08",
-        "catalog-case-11",
-        "catalog-case-17"
+        "catalog-case-11"
       ],
-      "estimated_input_tokens": 354,
+      "estimated_input_tokens": 377,
       "estimated_output_tokens": 62,
       "model_requests": 0,
       "tool_calls": 1,
       "retrieved_records": 8,
       "policy_checks": 1,
-      "latency_ms": 40.389
+      "latency_ms": 35.76
     },
     {
       "case_id": "case-05",
@@ -1315,7 +1315,7 @@
       "tool_calls": 1,
       "retrieved_records": 8,
       "policy_checks": 1,
-      "latency_ms": 37.803
+      "latency_ms": 39.349
     },
     {
       "case_id": "case-05",
@@ -1376,7 +1376,7 @@
       "tool_calls": 1,
       "retrieved_records": 8,
       "policy_checks": 1,
-      "latency_ms": 36.692
+      "latency_ms": 37.308
     },
     {
       "case_id": "case-05",
@@ -1441,7 +1441,7 @@
       "tool_calls": 1,
       "retrieved_records": 8,
       "policy_checks": 1,
-      "latency_ms": 35.264
+      "latency_ms": 34.471
     },
     {
       "case_id": "case-06",
@@ -1491,20 +1491,20 @@
       "retrieved_context_ids": [
         "raw-case-06",
         "raw-case-17",
+        "raw-case-01",
         "raw-case-08",
         "raw-case-03",
         "raw-case-07",
         "raw-case-04",
-        "raw-case-02",
-        "raw-case-23"
+        "raw-case-02"
       ],
-      "estimated_input_tokens": 374,
+      "estimated_input_tokens": 395,
       "estimated_output_tokens": 71,
       "model_requests": 0,
       "tool_calls": 1,
       "retrieved_records": 8,
       "policy_checks": 1,
-      "latency_ms": 48.188
+      "latency_ms": 55.971
     },
     {
       "case_id": "case-06",
@@ -1553,13 +1553,13 @@
       ],
       "retrieved_context_ids": [
         "prose-case-06",
+        "prose-case-01",
         "prose-case-07",
         "prose-case-08",
         "prose-case-17",
         "prose-case-03",
         "prose-case-02",
-        "prose-case-04",
-        "prose-case-01"
+        "prose-case-04"
       ],
       "estimated_input_tokens": 472,
       "estimated_output_tokens": 72,
@@ -1567,7 +1567,7 @@
       "tool_calls": 1,
       "retrieved_records": 8,
       "policy_checks": 1,
-      "latency_ms": 38.5
+      "latency_ms": 45.09
     },
     {
       "case_id": "case-06",
@@ -1618,13 +1618,13 @@
       ],
       "retrieved_context_ids": [
         "catalog-case-06",
+        "catalog-case-01",
         "catalog-case-08",
         "catalog-case-07",
         "catalog-case-17",
         "catalog-case-03",
         "catalog-case-02",
-        "catalog-case-04",
-        "catalog-case-01"
+        "catalog-case-04"
       ],
       "estimated_input_tokens": 377,
       "estimated_output_tokens": 60,
@@ -1632,7 +1632,7 @@
       "tool_calls": 1,
       "retrieved_records": 8,
       "policy_checks": 1,
-      "latency_ms": 45.15
+      "latency_ms": 47.195
     },
     {
       "case_id": "case-07",
@@ -1684,20 +1684,20 @@
       "retrieved_context_ids": [
         "raw-case-07",
         "raw-case-06",
+        "raw-case-01",
         "raw-case-17",
         "raw-case-08",
         "raw-case-05",
         "raw-case-03",
-        "raw-case-02",
-        "raw-case-04"
+        "raw-case-02"
       ],
-      "estimated_input_tokens": 370,
+      "estimated_input_tokens": 391,
       "estimated_output_tokens": 75,
       "model_requests": 0,
       "tool_calls": 2,
       "retrieved_records": 8,
       "policy_checks": 1,
-      "latency_ms": 33.008
+      "latency_ms": 37.745
     },
     {
       "case_id": "case-07",
@@ -1749,20 +1749,20 @@
       "retrieved_context_ids": [
         "prose-case-07",
         "prose-case-06",
+        "prose-case-01",
         "prose-case-10",
         "prose-case-17",
         "prose-case-08",
         "prose-case-05",
-        "prose-case-03",
-        "prose-case-02"
+        "prose-case-03"
       ],
-      "estimated_input_tokens": 454,
+      "estimated_input_tokens": 474,
       "estimated_output_tokens": 76,
       "model_requests": 0,
       "tool_calls": 2,
       "retrieved_records": 8,
       "policy_checks": 1,
-      "latency_ms": 42.548
+      "latency_ms": 39.382
     },
     {
       "case_id": "case-07",
@@ -1820,20 +1820,20 @@
       "retrieved_context_ids": [
         "catalog-case-07",
         "catalog-case-06",
+        "catalog-case-01",
         "catalog-case-08",
         "catalog-case-17",
         "catalog-case-05",
         "catalog-case-14",
-        "catalog-case-10",
-        "catalog-case-02"
+        "catalog-case-10"
       ],
-      "estimated_input_tokens": 354,
+      "estimated_input_tokens": 377,
       "estimated_output_tokens": 61,
       "model_requests": 0,
       "tool_calls": 2,
       "retrieved_records": 8,
       "policy_checks": 1,
-      "latency_ms": 45.801
+      "latency_ms": 48.94
     },
     {
       "case_id": "case-08",
@@ -1887,17 +1887,17 @@
         "raw-case-06",
         "raw-case-02",
         "raw-case-03",
+        "raw-case-01",
         "raw-case-19",
-        "raw-case-10",
-        "raw-case-04"
+        "raw-case-10"
       ],
-      "estimated_input_tokens": 378,
+      "estimated_input_tokens": 399,
       "estimated_output_tokens": 66,
       "model_requests": 0,
       "tool_calls": 1,
       "retrieved_records": 8,
       "policy_checks": 1,
-      "latency_ms": 35.512
+      "latency_ms": 39.16
     },
     {
       "case_id": "case-08",
@@ -1948,20 +1948,20 @@
       "retrieved_context_ids": [
         "prose-case-08",
         "prose-case-17",
+        "prose-case-01",
         "prose-case-02",
         "prose-case-06",
         "prose-case-03",
         "prose-case-10",
-        "prose-case-19",
-        "prose-case-07"
+        "prose-case-19"
       ],
-      "estimated_input_tokens": 461,
+      "estimated_input_tokens": 480,
       "estimated_output_tokens": 67,
       "model_requests": 0,
       "tool_calls": 1,
       "retrieved_records": 8,
       "policy_checks": 1,
-      "latency_ms": 37.619
+      "latency_ms": 39.297
     },
     {
       "case_id": "case-08",
@@ -2021,18 +2021,18 @@
         "catalog-case-17",
         "catalog-case-02",
         "catalog-case-06",
+        "catalog-case-01",
         "catalog-case-03",
         "catalog-case-19",
-        "catalog-case-07",
-        "catalog-case-05"
+        "catalog-case-07"
       ],
-      "estimated_input_tokens": 354,
+      "estimated_input_tokens": 379,
       "estimated_output_tokens": 59,
       "model_requests": 0,
       "tool_calls": 2,
       "retrieved_records": 8,
       "policy_checks": 1,
-      "latency_ms": 37.275
+      "latency_ms": 39.202
     },
     {
       "case_id": "case-09",
@@ -2092,15 +2092,15 @@
         "raw-case-12",
         "raw-case-22",
         "raw-case-18",
-        "raw-case-01"
+        "raw-case-06"
       ],
-      "estimated_input_tokens": 400,
+      "estimated_input_tokens": 382,
       "estimated_output_tokens": 98,
       "model_requests": 0,
       "tool_calls": 3,
       "retrieved_records": 8,
       "policy_checks": 1,
-      "latency_ms": 43.302
+      "latency_ms": 48.514
     },
     {
       "case_id": "case-09",
@@ -2168,7 +2168,7 @@
       "tool_calls": 3,
       "retrieved_records": 8,
       "policy_checks": 1,
-      "latency_ms": 41.058
+      "latency_ms": 46.242
     },
     {
       "case_id": "case-09",
@@ -2231,15 +2231,15 @@
         "catalog-case-21",
         "catalog-case-22",
         "catalog-case-18",
-        "catalog-case-01"
+        "catalog-case-16"
       ],
-      "estimated_input_tokens": 382,
+      "estimated_input_tokens": 360,
       "estimated_output_tokens": 62,
       "model_requests": 0,
       "tool_calls": 2,
       "retrieved_records": 8,
       "policy_checks": 1,
-      "latency_ms": 39.184
+      "latency_ms": 45.553
     },
     {
       "case_id": "case-10",
@@ -2291,21 +2291,21 @@
       ],
       "retrieved_context_ids": [
         "raw-case-10",
+        "raw-case-01",
         "raw-case-11",
         "raw-case-14",
         "raw-case-17",
         "raw-case-03",
         "raw-case-08",
-        "raw-case-23",
-        "raw-case-04"
+        "raw-case-23"
       ],
-      "estimated_input_tokens": 378,
+      "estimated_input_tokens": 399,
       "estimated_output_tokens": 94,
       "model_requests": 0,
       "tool_calls": 2,
       "retrieved_records": 8,
       "policy_checks": 1,
-      "latency_ms": 33.069
+      "latency_ms": 39.486
     },
     {
       "case_id": "case-10",
@@ -2357,13 +2357,13 @@
       ],
       "retrieved_context_ids": [
         "prose-case-10",
+        "prose-case-01",
         "prose-case-14",
         "prose-case-11",
         "prose-case-03",
         "prose-case-17",
         "prose-case-05",
-        "prose-case-02",
-        "prose-case-01"
+        "prose-case-02"
       ],
       "estimated_input_tokens": 477,
       "estimated_output_tokens": 95,
@@ -2371,7 +2371,7 @@
       "tool_calls": 2,
       "retrieved_records": 8,
       "policy_checks": 1,
-      "latency_ms": 38.052
+      "latency_ms": 39.936
     },
     {
       "case_id": "case-10",
@@ -2430,12 +2430,12 @@
       ],
       "retrieved_context_ids": [
         "catalog-case-10",
+        "catalog-case-01",
         "catalog-case-14",
         "catalog-case-11",
         "catalog-case-05",
         "catalog-case-17",
         "catalog-case-02",
-        "catalog-case-01",
         "catalog-case-08"
       ],
       "estimated_input_tokens": 382,
@@ -2444,7 +2444,7 @@
       "tool_calls": 2,
       "retrieved_records": 8,
       "policy_checks": 1,
-      "latency_ms": 37.022
+      "latency_ms": 45.027
     },
     {
       "case_id": "case-11",
@@ -2513,7 +2513,7 @@
       "tool_calls": 3,
       "retrieved_records": 8,
       "policy_checks": 1,
-      "latency_ms": 46.755
+      "latency_ms": 46.126
     },
     {
       "case_id": "case-11",
@@ -2569,8 +2569,8 @@
       ],
       "retrieved_context_ids": [
         "prose-case-11",
-        "prose-case-15",
         "prose-case-01",
+        "prose-case-15",
         "prose-case-16",
         "prose-case-14",
         "prose-case-10",
@@ -2583,7 +2583,7 @@
       "tool_calls": 3,
       "retrieved_records": 8,
       "policy_checks": 1,
-      "latency_ms": 47.728
+      "latency_ms": 43.83
     },
     {
       "case_id": "case-11",
@@ -2656,7 +2656,7 @@
       "tool_calls": 2,
       "retrieved_records": 8,
       "policy_checks": 1,
-      "latency_ms": 45.455
+      "latency_ms": 43.289
     },
     {
       "case_id": "case-12",
@@ -2713,15 +2713,15 @@
         "raw-case-10",
         "raw-case-22",
         "raw-case-19",
-        "raw-case-08"
+        "raw-case-01"
       ],
-      "estimated_input_tokens": 387,
+      "estimated_input_tokens": 406,
       "estimated_output_tokens": 99,
       "model_requests": 0,
       "tool_calls": 3,
       "retrieved_records": 8,
       "policy_checks": 1,
-      "latency_ms": 40.188
+      "latency_ms": 37.528
     },
     {
       "case_id": "case-12",
@@ -2776,17 +2776,17 @@
         "prose-case-13",
         "prose-case-22",
         "prose-case-19",
+        "prose-case-01",
         "prose-case-11",
-        "prose-case-10",
-        "prose-case-24"
+        "prose-case-10"
       ],
-      "estimated_input_tokens": 469,
+      "estimated_input_tokens": 486,
       "estimated_output_tokens": 100,
       "model_requests": 0,
       "tool_calls": 3,
       "retrieved_records": 8,
       "policy_checks": 1,
-      "latency_ms": 38.208
+      "latency_ms": 37.614
     },
     {
       "case_id": "case-12",
@@ -2842,16 +2842,16 @@
         "catalog-case-11",
         "catalog-case-19",
         "catalog-case-22",
-        "catalog-case-08",
-        "catalog-case-06"
+        "catalog-case-01",
+        "catalog-case-08"
       ],
-      "estimated_input_tokens": 369,
+      "estimated_input_tokens": 390,
       "estimated_output_tokens": 82,
       "model_requests": 0,
       "tool_calls": 1,
       "retrieved_records": 8,
       "policy_checks": 1,
-      "latency_ms": 39.446
+      "latency_ms": 40.708
     },
     {
       "case_id": "case-13",
@@ -2909,16 +2909,16 @@
         "raw-case-11",
         "raw-case-09",
         "raw-case-06",
-        "raw-case-10",
-        "raw-case-04"
+        "raw-case-01",
+        "raw-case-10"
       ],
-      "estimated_input_tokens": 383,
+      "estimated_input_tokens": 404,
       "estimated_output_tokens": 109,
       "model_requests": 0,
       "tool_calls": 4,
       "retrieved_records": 8,
       "policy_checks": 1,
-      "latency_ms": 38.946
+      "latency_ms": 43.611
     },
     {
       "case_id": "case-13",
@@ -2973,19 +2973,19 @@
         "prose-case-13",
         "prose-case-09",
         "prose-case-12",
+        "prose-case-01",
         "prose-case-06",
         "prose-case-15",
         "prose-case-07",
-        "prose-case-10",
-        "prose-case-11"
+        "prose-case-10"
       ],
-      "estimated_input_tokens": 465,
+      "estimated_input_tokens": 479,
       "estimated_output_tokens": 110,
       "model_requests": 0,
       "tool_calls": 4,
       "retrieved_records": 8,
       "policy_checks": 1,
-      "latency_ms": 46.565
+      "latency_ms": 49.87
     },
     {
       "case_id": "case-13",
@@ -3040,19 +3040,19 @@
         "catalog-case-13",
         "catalog-case-12",
         "catalog-case-09",
+        "catalog-case-01",
         "catalog-case-11",
         "catalog-case-15",
         "catalog-case-06",
-        "catalog-case-10",
-        "catalog-case-07"
+        "catalog-case-10"
       ],
-      "estimated_input_tokens": 366,
+      "estimated_input_tokens": 388,
       "estimated_output_tokens": 81,
       "model_requests": 0,
       "tool_calls": 1,
       "retrieved_records": 8,
       "policy_checks": 1,
-      "latency_ms": 47.313
+      "latency_ms": 49.246
     },
     {
       "case_id": "case-14",
@@ -3100,9 +3100,9 @@
       ],
       "retrieved_context_ids": [
         "raw-case-14",
+        "raw-case-01",
         "raw-case-10",
         "raw-case-11",
-        "raw-case-01",
         "raw-case-02",
         "raw-case-17",
         "raw-case-05",
@@ -3114,7 +3114,7 @@
       "tool_calls": 1,
       "retrieved_records": 8,
       "policy_checks": 1,
-      "latency_ms": 39.883
+      "latency_ms": 40.051
     },
     {
       "case_id": "case-14",
@@ -3162,9 +3162,9 @@
       ],
       "retrieved_context_ids": [
         "prose-case-14",
+        "prose-case-01",
         "prose-case-10",
         "prose-case-11",
-        "prose-case-01",
         "prose-case-02",
         "prose-case-03",
         "prose-case-17",
@@ -3176,7 +3176,7 @@
       "tool_calls": 1,
       "retrieved_records": 8,
       "policy_checks": 1,
-      "latency_ms": 41.501
+      "latency_ms": 41.33
     },
     {
       "case_id": "case-14",
@@ -3229,9 +3229,9 @@
       ],
       "retrieved_context_ids": [
         "catalog-case-14",
+        "catalog-case-01",
         "catalog-case-10",
         "catalog-case-11",
-        "catalog-case-01",
         "catalog-case-02",
         "catalog-case-05",
         "catalog-case-08",
@@ -3243,7 +3243,7 @@
       "tool_calls": 2,
       "retrieved_records": 8,
       "policy_checks": 1,
-      "latency_ms": 42.757
+      "latency_ms": 42.47
     },
     {
       "case_id": "case-15",
@@ -3296,16 +3296,16 @@
         "raw-case-13",
         "raw-case-10",
         "raw-case-19",
-        "raw-case-04",
-        "raw-case-08"
+        "raw-case-01",
+        "raw-case-04"
       ],
-      "estimated_input_tokens": 383,
+      "estimated_input_tokens": 402,
       "estimated_output_tokens": 78,
       "model_requests": 0,
       "tool_calls": 2,
       "retrieved_records": 8,
       "policy_checks": 1,
-      "latency_ms": 35.045
+      "latency_ms": 38.556
     },
     {
       "case_id": "case-15",
@@ -3356,18 +3356,18 @@
         "prose-case-12",
         "prose-case-11",
         "prose-case-19",
+        "prose-case-01",
         "prose-case-13",
         "prose-case-10",
-        "prose-case-06",
-        "prose-case-04"
+        "prose-case-06"
       ],
-      "estimated_input_tokens": 464,
+      "estimated_input_tokens": 485,
       "estimated_output_tokens": 79,
       "model_requests": 0,
       "tool_calls": 2,
       "retrieved_records": 8,
       "policy_checks": 1,
-      "latency_ms": 36.565
+      "latency_ms": 39.418
     },
     {
       "case_id": "case-15",
@@ -3422,17 +3422,17 @@
         "catalog-case-11",
         "catalog-case-13",
         "catalog-case-19",
+        "catalog-case-01",
         "catalog-case-08",
-        "catalog-case-06",
-        "catalog-case-10"
+        "catalog-case-06"
       ],
-      "estimated_input_tokens": 368,
+      "estimated_input_tokens": 388,
       "estimated_output_tokens": 79,
       "model_requests": 0,
       "tool_calls": 1,
       "retrieved_records": 8,
       "policy_checks": 1,
-      "latency_ms": 35.095
+      "latency_ms": 42.459
     },
     {
       "case_id": "case-16",
@@ -3499,7 +3499,7 @@
       "tool_calls": 4,
       "retrieved_records": 8,
       "policy_checks": 1,
-      "latency_ms": 40.64
+      "latency_ms": 45.815
     },
     {
       "case_id": "case-16",
@@ -3566,7 +3566,7 @@
       "tool_calls": 4,
       "retrieved_records": 8,
       "policy_checks": 1,
-      "latency_ms": 35.03
+      "latency_ms": 41.573
     },
     {
       "case_id": "case-16",
@@ -3633,7 +3633,7 @@
       "tool_calls": 1,
       "retrieved_records": 8,
       "policy_checks": 1,
-      "latency_ms": 39.945
+      "latency_ms": 39.472
     },
     {
       "case_id": "case-17",
@@ -3684,18 +3684,18 @@
         "raw-case-08",
         "raw-case-06",
         "raw-case-03",
+        "raw-case-01",
         "raw-case-05",
         "raw-case-10",
-        "raw-case-02",
-        "raw-case-04"
+        "raw-case-02"
       ],
-      "estimated_input_tokens": 373,
+      "estimated_input_tokens": 394,
       "estimated_output_tokens": 66,
       "model_requests": 0,
       "tool_calls": 1,
       "retrieved_records": 8,
       "policy_checks": 1,
-      "latency_ms": 36.533
+      "latency_ms": 38.802
     },
     {
       "case_id": "case-17",
@@ -3745,19 +3745,19 @@
         "prose-case-17",
         "prose-case-08",
         "prose-case-06",
+        "prose-case-01",
         "prose-case-02",
         "prose-case-07",
         "prose-case-03",
-        "prose-case-05",
-        "prose-case-10"
+        "prose-case-05"
       ],
-      "estimated_input_tokens": 455,
+      "estimated_input_tokens": 469,
       "estimated_output_tokens": 67,
       "model_requests": 0,
       "tool_calls": 1,
       "retrieved_records": 8,
       "policy_checks": 1,
-      "latency_ms": 36.834
+      "latency_ms": 39.778
     },
     {
       "case_id": "case-17",
@@ -3811,20 +3811,20 @@
       "retrieved_context_ids": [
         "catalog-case-17",
         "catalog-case-08",
+        "catalog-case-01",
         "catalog-case-06",
         "catalog-case-05",
         "catalog-case-03",
         "catalog-case-02",
-        "catalog-case-07",
-        "catalog-case-10"
+        "catalog-case-07"
       ],
-      "estimated_input_tokens": 353,
+      "estimated_input_tokens": 373,
       "estimated_output_tokens": 61,
       "model_requests": 0,
       "tool_calls": 1,
       "retrieved_records": 8,
       "policy_checks": 1,
-      "latency_ms": 36.729
+      "latency_ms": 40.503
     },
     {
       "case_id": "case-18",
@@ -3887,7 +3887,7 @@
       "tool_calls": 2,
       "retrieved_records": 8,
       "policy_checks": 1,
-      "latency_ms": 39.254
+      "latency_ms": 41.865
     },
     {
       "case_id": "case-18",
@@ -3950,7 +3950,7 @@
       "tool_calls": 2,
       "retrieved_records": 8,
       "policy_checks": 1,
-      "latency_ms": 39.215
+      "latency_ms": 37.618
     },
     {
       "case_id": "case-18",
@@ -4017,7 +4017,7 @@
       "tool_calls": 1,
       "retrieved_records": 8,
       "policy_checks": 1,
-      "latency_ms": 40.313
+      "latency_ms": 38.894
     },
     {
       "case_id": "case-19",
@@ -4072,17 +4072,17 @@
         "raw-case-08",
         "raw-case-03",
         "raw-case-12",
+        "raw-case-01",
         "raw-case-15",
-        "raw-case-11",
-        "raw-case-06"
+        "raw-case-11"
       ],
-      "estimated_input_tokens": 384,
+      "estimated_input_tokens": 402,
       "estimated_output_tokens": 76,
       "model_requests": 0,
       "tool_calls": 2,
       "retrieved_records": 8,
       "policy_checks": 1,
-      "latency_ms": 45.051
+      "latency_ms": 48.245
     },
     {
       "case_id": "case-19",
@@ -4136,18 +4136,18 @@
         "prose-case-02",
         "prose-case-08",
         "prose-case-03",
+        "prose-case-01",
         "prose-case-15",
         "prose-case-12",
-        "prose-case-17",
-        "prose-case-06"
+        "prose-case-17"
       ],
-      "estimated_input_tokens": 457,
+      "estimated_input_tokens": 474,
       "estimated_output_tokens": 77,
       "model_requests": 0,
       "tool_calls": 2,
       "retrieved_records": 8,
       "policy_checks": 1,
-      "latency_ms": 49.063
+      "latency_ms": 46.304
     },
     {
       "case_id": "case-19",
@@ -4218,7 +4218,7 @@
       "tool_calls": 2,
       "retrieved_records": 8,
       "policy_checks": 1,
-      "latency_ms": 43.255
+      "latency_ms": 47.028
     },
     {
       "case_id": "case-20",
@@ -4283,7 +4283,7 @@
       "tool_calls": 2,
       "retrieved_records": 8,
       "policy_checks": 1,
-      "latency_ms": 40.138
+      "latency_ms": 32.963
     },
     {
       "case_id": "case-20",
@@ -4336,8 +4336,8 @@
         "prose-case-20",
         "prose-case-16",
         "prose-case-11",
-        "prose-case-15",
         "prose-case-01",
+        "prose-case-15",
         "prose-case-23",
         "prose-case-04",
         "prose-case-03"
@@ -4348,7 +4348,7 @@
       "tool_calls": 2,
       "retrieved_records": 8,
       "policy_checks": 1,
-      "latency_ms": 38.135
+      "latency_ms": 38.02
     },
     {
       "case_id": "case-20",
@@ -4415,7 +4415,7 @@
       "tool_calls": 1,
       "retrieved_records": 8,
       "policy_checks": 1,
-      "latency_ms": 38.102
+      "latency_ms": 38.322
     },
     {
       "case_id": "case-21",
@@ -4475,7 +4475,7 @@
       "tool_calls": 2,
       "retrieved_records": 8,
       "policy_checks": 1,
-      "latency_ms": 43.885
+      "latency_ms": 47.653
     },
     {
       "case_id": "case-21",
@@ -4535,7 +4535,7 @@
       "tool_calls": 2,
       "retrieved_records": 8,
       "policy_checks": 1,
-      "latency_ms": 40.896
+      "latency_ms": 48.186
     },
     {
       "case_id": "case-21",
@@ -4596,7 +4596,7 @@
       "tool_calls": 1,
       "retrieved_records": 8,
       "policy_checks": 1,
-      "latency_ms": 49.768
+      "latency_ms": 48.563
     },
     {
       "case_id": "case-22",
@@ -4663,7 +4663,7 @@
       "tool_calls": 2,
       "retrieved_records": 8,
       "policy_checks": 1,
-      "latency_ms": 39.498
+      "latency_ms": 38.669
     },
     {
       "case_id": "case-22",
@@ -4730,7 +4730,7 @@
       "tool_calls": 2,
       "retrieved_records": 8,
       "policy_checks": 1,
-      "latency_ms": 38.15
+      "latency_ms": 38.794
     },
     {
       "case_id": "case-22",
@@ -4790,8 +4790,8 @@
         "catalog-case-12",
         "catalog-case-03",
         "catalog-case-09",
-        "catalog-case-13",
         "catalog-case-01",
+        "catalog-case-13",
         "catalog-case-19",
         "catalog-case-11"
       ],
@@ -4801,7 +4801,7 @@
       "tool_calls": 2,
       "retrieved_records": 8,
       "policy_checks": 1,
-      "latency_ms": 35.269
+      "latency_ms": 39.291
     },
     {
       "case_id": "case-23",
@@ -4865,7 +4865,7 @@
       "tool_calls": 1,
       "retrieved_records": 8,
       "policy_checks": 1,
-      "latency_ms": 36.327
+      "latency_ms": 33.681
     },
     {
       "case_id": "case-23",
@@ -4929,7 +4929,7 @@
       "tool_calls": 1,
       "retrieved_records": 8,
       "policy_checks": 1,
-      "latency_ms": 38.318
+      "latency_ms": 38.589
     },
     {
       "case_id": "case-23",
@@ -4986,17 +4986,17 @@
         "catalog-case-02",
         "catalog-case-03",
         "catalog-case-05",
+        "catalog-case-01",
         "catalog-case-06",
-        "catalog-case-08",
-        "catalog-case-10"
+        "catalog-case-08"
       ],
-      "estimated_input_tokens": 351,
+      "estimated_input_tokens": 371,
       "estimated_output_tokens": 61,
       "model_requests": 0,
       "tool_calls": 1,
       "retrieved_records": 8,
       "policy_checks": 1,
-      "latency_ms": 33.585
+      "latency_ms": 35.081
     },
     {
       "case_id": "case-24",
@@ -5065,7 +5065,7 @@
       "tool_calls": 4,
       "retrieved_records": 8,
       "policy_checks": 1,
-      "latency_ms": 36.131
+      "latency_ms": 36.705
     },
     {
       "case_id": "case-24",
@@ -5134,7 +5134,7 @@
       "tool_calls": 4,
       "retrieved_records": 8,
       "policy_checks": 1,
-      "latency_ms": 36.463
+      "latency_ms": 37.903
     },
     {
       "case_id": "case-24",
@@ -5205,12 +5205,12 @@
       "tool_calls": 2,
       "retrieved_records": 8,
       "policy_checks": 1,
-      "latency_ms": 31.376
+      "latency_ms": 39.226
     }
   ],
   "featured_case": {
     "case_id": "case-01",
-    "request": "The Aster Cloud account used 150 seats in May, but the invoice shows 100. Can we issue a service credit and offer a plan change?",
+    "request": "The Acme Robotics account used 150 seats in May, but the invoice shows 100. Can we issue a service credit and offer a plan change?",
     "conditions": {
       "raw_schema": {
         "case_id": "case-01",
@@ -5274,13 +5274,13 @@
         ],
         "retrieved_context_ids": [
           "raw-case-01",
-          "raw-case-16",
           "raw-case-11",
+          "raw-case-16",
           "raw-case-06",
           "raw-case-14",
           "raw-case-10",
-          "raw-case-18",
-          "raw-case-13"
+          "raw-case-08",
+          "raw-case-02"
         ],
         "estimated_input_tokens": 419,
         "estimated_output_tokens": 151,
@@ -5288,7 +5288,7 @@
         "tool_calls": 7,
         "retrieved_records": 8,
         "policy_checks": 1,
-        "latency_ms": 81.15
+        "latency_ms": 76.523
       },
       "prose_rag": {
         "case_id": "case-01",
@@ -5352,13 +5352,13 @@
         ],
         "retrieved_context_ids": [
           "prose-case-01",
-          "prose-case-16",
           "prose-case-11",
           "prose-case-14",
-          "prose-case-15",
+          "prose-case-16",
           "prose-case-06",
           "prose-case-10",
-          "prose-case-18"
+          "prose-case-15",
+          "prose-case-08"
         ],
         "estimated_input_tokens": 501,
         "estimated_output_tokens": 152,
@@ -5366,7 +5366,7 @@
         "tool_calls": 7,
         "retrieved_records": 8,
         "policy_checks": 1,
-        "latency_ms": 49.249
+        "latency_ms": 54.554
       },
       "semantic_catalog": {
         "case_id": "case-01",
@@ -5435,13 +5435,13 @@
         ],
         "retrieved_context_ids": [
           "catalog-case-01",
-          "catalog-case-16",
           "catalog-case-11",
+          "catalog-case-16",
           "catalog-case-06",
           "catalog-case-14",
           "catalog-case-10",
-          "catalog-case-21",
-          "catalog-case-13"
+          "catalog-case-08",
+          "catalog-case-02"
         ],
         "estimated_input_tokens": 402,
         "estimated_output_tokens": 130,
@@ -5449,7 +5449,7 @@
         "tool_calls": 5,
         "retrieved_records": 8,
         "policy_checks": 1,
-        "latency_ms": 50.181
+        "latency_ms": 57.754
       }
     }
   },

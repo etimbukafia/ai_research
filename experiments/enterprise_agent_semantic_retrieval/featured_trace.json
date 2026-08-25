@@ -1,8 +1,8 @@
 {
-  "run_id": "replay-9368d62309ac1a46",
+  "run_id": "replay-142b33589d57073d",
   "case": {
     "case_id": "case-01",
-    "request": "The Aster Cloud account used 150 seats in May, but the invoice shows 100. Can we issue a service credit and offer a plan change?",
+    "request": "The Acme Robotics account used 150 seats in May, but the invoice shows 100. Can we issue a service credit and offer a plan change?",
     "account_id": "account-01",
     "case_class": "cross_system",
     "case_time": "2026-05-31",
@@ -60,21 +60,21 @@
   },
   "conditions": {
     "raw_schema": {
-      "run_id": "replay-9368d62309ac1a46",
+      "run_id": "replay-142b33589d57073d",
       "case_id": "case-01",
       "condition": "raw_schema",
       "mode": "replay",
-      "model_name": "google:gemini-3.7-flash",
-      "prompt_hash": "2a16a7a560e2e19f24c0b7098a319826d0224264299d5fa036a186658a386459",
+      "model_name": "google:gemini-3.5-flash-lite",
+      "prompt_hash": "3e1b6f255dfc7560ac6ee4e5c47daa142d136b164c8bfbc5776b1c7c10a623df",
       "retrieved_context_ids": [
         "raw-case-01",
-        "raw-case-16",
         "raw-case-11",
+        "raw-case-16",
         "raw-case-06",
         "raw-case-14",
         "raw-case-10",
-        "raw-case-18",
-        "raw-case-13"
+        "raw-case-08",
+        "raw-case-02"
       ],
       "tool_calls": [
         {
@@ -185,7 +185,7 @@
       ],
       "final_decision": {
         "status": "answer",
-        "request": "The Aster Cloud account used 150 seats in May, but the invoice shows 100. Can we issue a service credit and offer a plan change?",
+        "request": "The Acme Robotics account used 150 seats in May, but the invoice shows 100. Can we issue a service credit and offer a plan change?",
         "resolved_concepts": [
           "service_credit"
         ],
@@ -267,9 +267,9 @@
         },
         "explanation": "The raw schema supplied interface names and fields but no business definition or authority."
       },
-      "started_at": "2026-08-25T20:48:15.330Z",
-      "finished_at": "2026-08-25T20:48:15.331Z",
-      "latency_ms": 81.15,
+      "started_at": "2026-08-25T21:33:36.409Z",
+      "finished_at": "2026-08-25T21:33:36.409Z",
+      "latency_ms": 76.523,
       "usage": {
         "requests": 0,
         "input_tokens": null,
@@ -280,7 +280,7 @@
         "retrieved_records": 8,
         "policy_checks": 1,
         "replay_fixture": "deterministic-replay-v1",
-        "latency_ms": 81.15
+        "latency_ms": 76.523
       },
       "error": null,
       "evaluator": {
@@ -345,13 +345,13 @@
         ],
         "retrieved_context_ids": [
           "raw-case-01",
-          "raw-case-16",
           "raw-case-11",
+          "raw-case-16",
           "raw-case-06",
           "raw-case-14",
           "raw-case-10",
-          "raw-case-18",
-          "raw-case-13"
+          "raw-case-08",
+          "raw-case-02"
         ],
         "estimated_input_tokens": 419,
         "estimated_output_tokens": 151,
@@ -359,7 +359,7 @@
         "tool_calls": 7,
         "retrieved_records": 8,
         "policy_checks": 1,
-        "latency_ms": 81.15
+        "latency_ms": 76.523
       },
       "replay_sidecar": {
         "typed_catalog_hit": false,
@@ -373,21 +373,21 @@
       }
     },
     "prose_rag": {
-      "run_id": "replay-9368d62309ac1a46",
+      "run_id": "replay-142b33589d57073d",
       "case_id": "case-01",
       "condition": "prose_rag",
       "mode": "replay",
-      "model_name": "google:gemini-3.7-flash",
-      "prompt_hash": "8573661325512ab367b42bb3052bb899dac063244608ebff6fce835fe950600f",
+      "model_name": "google:gemini-3.5-flash-lite",
+      "prompt_hash": "789443ded8e77307b692f06ee346fa4cc706f6befa0000bc0cfac8aa05661c1c",
       "retrieved_context_ids": [
         "prose-case-01",
-        "prose-case-16",
         "prose-case-11",
         "prose-case-14",
-        "prose-case-15",
+        "prose-case-16",
         "prose-case-06",
         "prose-case-10",
-        "prose-case-18"
+        "prose-case-15",
+        "prose-case-08"
       ],
       "tool_calls": [
         {
@@ -498,7 +498,7 @@
       ],
       "final_decision": {
         "status": "answer",
-        "request": "The Aster Cloud account used 150 seats in May, but the invoice shows 100. Can we issue a service credit and offer a plan change?",
+        "request": "The Acme Robotics account used 150 seats in May, but the invoice shows 100. Can we issue a service credit and offer a plan change?",
         "resolved_concepts": [
           "service_credit"
         ],
@@ -580,9 +580,9 @@
         },
         "explanation": "The prose context supplied related text but no typed source, time, join, or policy fields."
       },
-      "started_at": "2026-08-25T20:48:15.381Z",
-      "finished_at": "2026-08-25T20:48:15.381Z",
-      "latency_ms": 49.249,
+      "started_at": "2026-08-25T21:33:36.465Z",
+      "finished_at": "2026-08-25T21:33:36.465Z",
+      "latency_ms": 54.554,
       "usage": {
         "requests": 0,
         "input_tokens": null,
@@ -593,7 +593,7 @@
         "retrieved_records": 8,
         "policy_checks": 1,
         "replay_fixture": "deterministic-replay-v1",
-        "latency_ms": 49.249
+        "latency_ms": 54.554
       },
       "error": null,
       "evaluator": {
@@ -658,13 +658,13 @@
         ],
         "retrieved_context_ids": [
           "prose-case-01",
-          "prose-case-16",
           "prose-case-11",
           "prose-case-14",
-          "prose-case-15",
+          "prose-case-16",
           "prose-case-06",
           "prose-case-10",
-          "prose-case-18"
+          "prose-case-15",
+          "prose-case-08"
         ],
         "estimated_input_tokens": 501,
         "estimated_output_tokens": 152,
@@ -672,7 +672,7 @@
         "tool_calls": 7,
         "retrieved_records": 8,
         "policy_checks": 1,
-        "latency_ms": 49.249
+        "latency_ms": 54.554
       },
       "replay_sidecar": {
         "typed_catalog_hit": false,
@@ -686,21 +686,21 @@
       }
     },
     "semantic_catalog": {
-      "run_id": "replay-9368d62309ac1a46",
+      "run_id": "replay-142b33589d57073d",
       "case_id": "case-01",
       "condition": "semantic_catalog",
       "mode": "replay",
-      "model_name": "google:gemini-3.7-flash",
-      "prompt_hash": "46669f6986c05d02d9dc5706962ae4b2c7db74d7c325c0edd5c089694d6ca7be",
+      "model_name": "google:gemini-3.5-flash-lite",
+      "prompt_hash": "a5c91db935387aa782da52bbdcee1ad5d4140e091f958ee91691bd8f6b64e020",
       "retrieved_context_ids": [
         "catalog-case-01",
-        "catalog-case-16",
         "catalog-case-11",
+        "catalog-case-16",
         "catalog-case-06",
         "catalog-case-14",
         "catalog-case-10",
-        "catalog-case-21",
-        "catalog-case-13"
+        "catalog-case-08",
+        "catalog-case-02"
       ],
       "tool_calls": [
         {
@@ -712,11 +712,12 @@
           },
           "result_summary": "replay result; no source mutation",
           "source_ids": [
+            "account-01",
             "contract-02",
             "invoice-01-2026-05",
             "policy-01",
             "policy-02",
-            "ticket-01-1",
+            "subscription-02",
             "usage-01-2026-05"
           ],
           "side_effect_level": "read",
@@ -732,11 +733,12 @@
           },
           "result_summary": "replay result; no source mutation",
           "source_ids": [
+            "account-01",
             "contract-02",
             "invoice-01-2026-05",
             "policy-01",
             "policy-02",
-            "ticket-01-1",
+            "subscription-02",
             "usage-01-2026-05"
           ],
           "side_effect_level": "read",
@@ -752,11 +754,12 @@
           },
           "result_summary": "replay result; no source mutation",
           "source_ids": [
+            "account-01",
             "contract-02",
             "invoice-01-2026-05",
             "policy-01",
             "policy-02",
-            "ticket-01-1",
+            "subscription-02",
             "usage-01-2026-05"
           ],
           "side_effect_level": "read",
@@ -768,11 +771,12 @@
           "arguments": {},
           "result_summary": "replay result; no source mutation",
           "source_ids": [
+            "account-01",
             "contract-02",
             "invoice-01-2026-05",
             "policy-01",
             "policy-02",
-            "ticket-01-1",
+            "subscription-02",
             "usage-01-2026-05"
           ],
           "side_effect_level": "read",
@@ -784,11 +788,12 @@
           "arguments": {},
           "result_summary": "replay result; no source mutation",
           "source_ids": [
+            "account-01",
             "contract-02",
             "invoice-01-2026-05",
             "policy-01",
             "policy-02",
-            "ticket-01-1",
+            "subscription-02",
             "usage-01-2026-05"
           ],
           "side_effect_level": "draft",
@@ -807,7 +812,7 @@
       ],
       "final_decision": {
         "status": "needs_human_review",
-        "request": "The Aster Cloud account used 150 seats in May, but the invoice shows 100. Can we issue a service credit and offer a plan change?",
+        "request": "The Acme Robotics account used 150 seats in May, but the invoice shows 100. Can we issue a service credit and offer a plan change?",
         "resolved_concepts": [
           "billable_seats",
           "service_credit",
@@ -879,9 +884,9 @@
         },
         "explanation": "The semantic catalog supplied the business definition, source authority, time rule, and policy context."
       },
-      "started_at": "2026-08-25T20:48:15.432Z",
-      "finished_at": "2026-08-25T20:48:15.432Z",
-      "latency_ms": 50.181,
+      "started_at": "2026-08-25T21:33:36.525Z",
+      "finished_at": "2026-08-25T21:33:36.525Z",
+      "latency_ms": 57.754,
       "usage": {
         "requests": 0,
         "input_tokens": null,
@@ -892,7 +897,7 @@
         "retrieved_records": 8,
         "policy_checks": 1,
         "replay_fixture": "deterministic-replay-v1",
-        "latency_ms": 50.181
+        "latency_ms": 57.754
       },
       "error": null,
       "evaluator": {
@@ -962,13 +967,13 @@
         ],
         "retrieved_context_ids": [
           "catalog-case-01",
-          "catalog-case-16",
           "catalog-case-11",
+          "catalog-case-16",
           "catalog-case-06",
           "catalog-case-14",
           "catalog-case-10",
-          "catalog-case-21",
-          "catalog-case-13"
+          "catalog-case-08",
+          "catalog-case-02"
         ],
         "estimated_input_tokens": 402,
         "estimated_output_tokens": 130,
@@ -976,17 +981,18 @@
         "tool_calls": 5,
         "retrieved_records": 8,
         "policy_checks": 1,
-        "latency_ms": 50.181
+        "latency_ms": 57.754
       },
       "replay_sidecar": {
         "typed_catalog_hit": true,
         "temporal_result": "valid",
         "retrieved_evidence_ids": [
+          "account-01",
           "contract-02",
           "invoice-01-2026-05",
           "policy-01",
           "policy-02",
-          "ticket-01-1",
+          "subscription-02",
           "usage-01-2026-05"
         ]
       },

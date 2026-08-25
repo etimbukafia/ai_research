@@ -18,9 +18,11 @@ The package is importable from the repository root:
 `run --mode live` uses Gemini and fails with a clear configuration error when
 `GOOGLE_API_KEY` is absent.
 
-The live model name is `google:gemini-3.7-flash` by default. `GEMINI_MODEL`
+The live model name is `google:gemini-3.5-flash-lite` by default. `GEMINI_MODEL`
 may override the model suffix, but it must not be a `latest` alias. The API
-key variable is `GOOGLE_API_KEY`.
+key variable is `GOOGLE_API_KEY`. Live requests use `GEMINI_RPM` and
+`GEMINI_RATE_SAFETY` for a client-side request limit. The default is 15 RPM
+with a 0.8 safety factor.
 
 ## Public models
 

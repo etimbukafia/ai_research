@@ -64,8 +64,9 @@ claims, draft action, abstention, safety, and operation counts.
 ## Live mode
 
 Live mode requires `GOOGLE_API_KEY` and uses the pinned model name
-`google:gemini-3.7-flash` unless `GEMINI_MODEL` supplies another non-`latest`
-model suffix.
+`google:gemini-3.5-flash-lite` unless `GEMINI_MODEL` supplies another
+non-`latest` model suffix. The core runner spaces requests at five seconds by
+default. Set `GEMINI_RPM` and `GEMINI_RATE_SAFETY` for another project limit.
 
 ```powershell
 $env:GOOGLE_API_KEY = '...'
