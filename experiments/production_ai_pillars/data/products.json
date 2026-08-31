@@ -1,0 +1,42 @@
+[
+  {
+    "product_id": "analytics-pro",
+    "tenant_id": "aster",
+    "display_name": "Analytics Pro",
+    "aliases": ["Analytics Pro", "analytics pro"],
+    "version": "2026.1",
+    "status": "active",
+    "owner": "data-platform",
+    "source_id": "catalog"
+  },
+  {
+    "product_id": "analytics-pro-preview",
+    "tenant_id": "aster",
+    "display_name": "Analytics Pro Preview",
+    "aliases": ["Analytics Preview", "analytics"],
+    "version": "2026.1-preview",
+    "status": "active",
+    "owner": "data-platform",
+    "source_id": "catalog"
+  },
+  {
+    "product_id": "ledger-pro",
+    "tenant_id": "aster",
+    "display_name": "Ledger Pro",
+    "aliases": ["Ledger Pro", "ledger"],
+    "version": "2026.1",
+    "status": "active",
+    "owner": "finance-platform",
+    "source_id": "catalog"
+  },
+  {
+    "product_id": "analytics-pro-northstar",
+    "tenant_id": "northstar",
+    "display_name": "Analytics Pro",
+    "aliases": ["Analytics Pro", "analytics pro"],
+    "version": "2026.1",
+    "status": "active",
+    "owner": "data-platform",
+    "source_id": "catalog"
+  }
+]

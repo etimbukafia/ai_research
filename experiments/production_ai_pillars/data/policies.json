@@ -1,0 +1,80 @@
+[
+  {
+    "policy_id": "analytics-create-current",
+    "version": "3.0.0",
+    "tenant_id": "aster",
+    "product_id": "analytics-pro",
+    "action": "create_access_request",
+    "effect": "allow",
+    "requires_approval": false,
+    "effective_from": "2026-01-01",
+    "effective_to": "2026-12-31",
+    "reason": "Finance admins may create a pending request when budget is available.",
+    "source_id": "access-policy"
+  },
+  {
+    "policy_id": "analytics-grant-current",
+    "version": "3.0.0",
+    "tenant_id": "aster",
+    "product_id": "analytics-pro",
+    "action": "grant_access",
+    "effect": "allow",
+    "requires_approval": true,
+    "effective_from": "2026-01-01",
+    "effective_to": "2026-12-31",
+    "reason": "A human reviewer must approve an Analytics Pro grant.",
+    "source_id": "access-policy"
+  },
+  {
+    "policy_id": "analytics-old-permissive",
+    "version": "2.0.0",
+    "tenant_id": "aster",
+    "product_id": "analytics-pro",
+    "action": "grant_access",
+    "effect": "allow",
+    "requires_approval": false,
+    "effective_from": "2025-01-01",
+    "effective_to": "2025-12-31",
+    "reason": "Old policy allowed a direct grant. It has expired.",
+    "source_id": "access-policy"
+  },
+  {
+    "policy_id": "preview-deny-current",
+    "version": "1.0.0",
+    "tenant_id": "aster",
+    "product_id": "analytics-pro-preview",
+    "action": "create_access_request",
+    "effect": "deny",
+    "requires_approval": false,
+    "effective_from": "2026-01-01",
+    "effective_to": "2026-12-31",
+    "reason": "Preview products are not available through this service.",
+    "source_id": "access-policy"
+  },
+  {
+    "policy_id": "ledger-create-current",
+    "version": "2.0.0",
+    "tenant_id": "aster",
+    "product_id": "ledger-pro",
+    "action": "create_access_request",
+    "effect": "allow",
+    "requires_approval": false,
+    "effective_from": "2026-01-01",
+    "effective_to": "2026-12-31",
+    "reason": "Finance admins may create a pending Ledger Pro request when budget is available.",
+    "source_id": "access-policy"
+  },
+  {
+    "policy_id": "ledger-grant-current",
+    "version": "2.0.0",
+    "tenant_id": "aster",
+    "product_id": "ledger-pro",
+    "action": "grant_access",
+    "effect": "allow",
+    "requires_approval": true,
+    "effective_from": "2026-01-01",
+    "effective_to": "2026-12-31",
+    "reason": "A human reviewer must approve a Ledger Pro grant.",
+    "source_id": "access-policy"
+  }
+]

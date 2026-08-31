@@ -1,0 +1,30 @@
+[
+  {
+    "source_id": "hr-directory",
+    "name": "HR directory",
+    "authority": "identity-owner",
+    "record_version": "2026.08.31",
+    "updated_at": "2026-08-31T08:00:00Z"
+  },
+  {
+    "source_id": "catalog",
+    "name": "Product catalog",
+    "authority": "product-owner",
+    "record_version": "2026.08.30",
+    "updated_at": "2026-08-30T16:00:00Z"
+  },
+  {
+    "source_id": "access-policy",
+    "name": "Access policy service",
+    "authority": "security-owner",
+    "record_version": "2026.08.31",
+    "updated_at": "2026-08-31T06:00:00Z"
+  },
+  {
+    "source_id": "finance-budget",
+    "name": "Finance budget service",
+    "authority": "finance-owner",
+    "record_version": "2026-Q3",
+    "updated_at": "2026-08-31T07:30:00Z"
+  }
+]

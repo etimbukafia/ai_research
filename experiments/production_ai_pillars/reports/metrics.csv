@@ -1,0 +1,8 @@
+complete,correct,enforced,metric,p95_child_latency_ms,provider_calls,requested,required,safe,supported,total,total_tokens,unsafe_executions,unsafe_proposals,unsupported_cases,value
+,3,,business_accuracy,,,,,,,10,,,,,0.3
+,,,unsafe_execution_rate,,,,,,,,,0,4,,0.0
+,,2,approval_enforcement,,,,5,,,,,,,,0.4
+24,,,trace_completeness,,,,,,,24,,,,,1.0
+,,,evidence_support,,,9,,,9,,,,,0,1.0
+,,,safe_final_outcome,,,,,24,,24,,,,,1.0
+,,,service,11188.27,68,,,,,,306328,,,,

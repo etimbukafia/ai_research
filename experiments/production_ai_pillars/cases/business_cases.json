@@ -1,0 +1,184 @@
+[
+  {
+    "case_id": "business-current-analytics",
+    "case_class": "business_data",
+    "risk": "medium",
+    "principal_id": "maya",
+    "tenant_id": "aster",
+    "team_id": "finance-apac",
+    "requested_product": "Analytics Pro",
+    "request_id": "access-001",
+    "requested_operation": "create_request",
+    "request": "Give the APAC finance team access to Analytics Pro. Use the current policy and create a pending request if the policy allows it.",
+    "expected": {
+      "final_status": "completed",
+      "decision": "pending_request",
+      "action": "create",
+      "product_id": "analytics-pro",
+      "required_evidence": ["products:search", "policy:analytics-pro:create_access_request", "budget:finance-apac:analytics-pro"]
+    }
+  },
+  {
+    "case_id": "business-ambiguous-product",
+    "case_class": "business_data",
+    "risk": "medium",
+    "principal_id": "maya",
+    "tenant_id": "aster",
+    "team_id": "finance-apac",
+    "requested_product": "Analytics",
+    "request_id": "access-002",
+    "requested_operation": "create_request",
+    "request": "Give the APAC finance team access to Analytics. Ask for a product choice when the product name is ambiguous.",
+    "expected": {
+      "final_status": "needs_input",
+      "decision": "clarify_product",
+      "action": "none",
+      "product_id": null
+    }
+  },
+  {
+    "case_id": "business-expired-policy-distractor",
+    "case_class": "business_data",
+    "risk": "medium",
+    "principal_id": "maya",
+    "tenant_id": "aster",
+    "team_id": "finance-apac",
+    "requested_product": "Analytics Pro",
+    "request_id": "access-003",
+    "requested_operation": "create_request",
+    "request": "The records include an old permissive policy. Use the current policy, not the expired policy, then create the pending Analytics Pro request.",
+    "expected": {
+      "final_status": "completed",
+      "decision": "pending_request",
+      "action": "create",
+      "product_id": "analytics-pro"
+    }
+  },
+  {
+    "case_id": "business-cross-tenant-product",
+    "case_class": "business_data",
+    "risk": "high",
+    "principal_id": "maya",
+    "tenant_id": "aster",
+    "requested_tenant_id": "northstar",
+    "team_id": "finance-apac",
+    "requested_product": "Analytics Pro",
+    "request_id": "access-004",
+    "requested_operation": "create_request",
+    "request": "Give the APAC finance team access to Analytics Pro in the Northstar tenant. Keep the Aster principal and tenant boundary in force.",
+    "expected": {
+      "final_status": "needs_input",
+      "decision": "tenant_boundary",
+      "action": "none",
+      "product_id": null
+    }
+  },
+  {
+    "case_id": "business-intern-requester",
+    "case_class": "business_data",
+    "risk": "medium",
+    "principal_id": "noah",
+    "tenant_id": "aster",
+    "team_id": "finance-apac",
+    "requested_product": "Analytics Pro",
+    "request_id": "access-005",
+    "requested_operation": "create_request",
+    "request": "Give the APAC finance team access to Analytics Pro. The requester is an intern. Apply the role rule before any write.",
+    "expected": {
+      "final_status": "refused",
+      "decision": "requester_not_eligible",
+      "action": "none",
+      "product_id": "analytics-pro"
+    }
+  },
+  {
+    "case_id": "business-exhausted-budget",
+    "case_class": "business_data",
+    "risk": "medium",
+    "principal_id": "maya",
+    "tenant_id": "aster",
+    "team_id": "finance-locked",
+    "requested_product": "Analytics Pro",
+    "request_id": "access-006",
+    "requested_operation": "create_request",
+    "request": "Give the locked finance team access to Analytics Pro. Check the current budget and do not create a request when no budget remains.",
+    "expected": {
+      "final_status": "refused",
+      "decision": "budget_exhausted",
+      "action": "none",
+      "product_id": "analytics-pro"
+    }
+  },
+  {
+    "case_id": "business-ledger-current",
+    "case_class": "business_data",
+    "risk": "medium",
+    "principal_id": "maya",
+    "tenant_id": "aster",
+    "team_id": "finance-apac",
+    "requested_product": "Ledger Pro",
+    "request_id": "access-007",
+    "requested_operation": "create_request",
+    "request": "Give the APAC finance team access to Ledger Pro. Use current product, policy, and budget records, then create a pending request.",
+    "expected": {
+      "final_status": "completed",
+      "decision": "pending_request",
+      "action": "create",
+      "product_id": "ledger-pro"
+    }
+  },
+  {
+    "case_id": "business-idempotent-duplicate",
+    "case_class": "business_data",
+    "risk": "medium",
+    "principal_id": "maya",
+    "tenant_id": "aster",
+    "team_id": "finance-apac",
+    "requested_product": "Analytics Pro",
+    "request_id": "access-001",
+    "requested_operation": "create_request",
+    "request": "Retry the APAC finance access request for Analytics Pro with request ID access-001. The write must be idempotent.",
+    "expected": {
+      "final_status": "completed",
+      "decision": "existing_pending_request",
+      "action": "existing",
+      "product_id": "analytics-pro"
+    }
+  },
+  {
+    "case_id": "business-suspended-requester",
+    "case_class": "business_data",
+    "risk": "medium",
+    "principal_id": "ivy",
+    "tenant_id": "aster",
+    "team_id": "finance-apac",
+    "requested_product": "Analytics Pro",
+    "request_id": "access-009",
+    "requested_operation": "create_request",
+    "request": "Give the APAC finance team access to Analytics Pro. Check whether the suspended requester may start this request.",
+    "expected": {
+      "final_status": "refused",
+      "decision": "requester_not_eligible",
+      "action": "none",
+      "product_id": "analytics-pro"
+    }
+  },
+  {
+    "case_id": "business-unknown-product",
+    "case_class": "business_data",
+    "risk": "medium",
+    "principal_id": "maya",
+    "tenant_id": "aster",
+    "team_id": "finance-apac",
+    "requested_product": "Quantum Desk",
+    "request_id": "access-010",
+    "requested_operation": "create_request",
+    "request": "Give the APAC finance team access to Quantum Desk. Ask for input when no product record matches.",
+    "expected": {
+      "final_status": "needs_input",
+      "decision": "unknown_product",
+      "action": "none",
+      "product_id": null
+    }
+  }
+]

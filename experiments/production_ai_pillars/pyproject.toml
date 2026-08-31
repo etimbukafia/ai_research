@@ -1,0 +1,12 @@
+[project]
+name = "production-ai-pillars"
+version = "0.1.0"
+description = "A live Gemini experiment for five production AI contracts."
+requires-python = ">=3.11"
+dependencies = [
+    "pydantic>=2.0,<3.0",
+    "pydantic-ai>=2.33.0,<3.0",
+    "enterprise-agent-harness @ git+https://github.com/etimbukafia/enterprise-agent-harness.git@22d844337d465eacb509b57af2bebba8ce39daeb",
+    "agent-improvement-lab @ git+https://github.com/etimbukafia/agent_improvement_lab.git@f40a9a7908b48495473c19dcf79aa2c4c91a1108",
+]
+

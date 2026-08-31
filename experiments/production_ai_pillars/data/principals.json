@@ -1,0 +1,34 @@
+[
+  {
+    "principal_id": "maya",
+    "tenant_id": "aster",
+    "team_id": "finance-apac",
+    "role": "finance_admin",
+    "status": "active",
+    "source_id": "hr-directory"
+  },
+  {
+    "principal_id": "noah",
+    "tenant_id": "aster",
+    "team_id": "finance-apac",
+    "role": "intern",
+    "status": "active",
+    "source_id": "hr-directory"
+  },
+  {
+    "principal_id": "ivy",
+    "tenant_id": "aster",
+    "team_id": "finance-apac",
+    "role": "finance_admin",
+    "status": "suspended",
+    "source_id": "hr-directory"
+  },
+  {
+    "principal_id": "lee",
+    "tenant_id": "northstar",
+    "team_id": "finance-us",
+    "role": "finance_admin",
+    "status": "active",
+    "source_id": "hr-directory"
+  }
+]

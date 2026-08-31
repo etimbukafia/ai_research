@@ -1,0 +1,47 @@
+[
+  {
+    "tenant_id": "aster",
+    "team_id": "finance-apac",
+    "product_id": "analytics-pro",
+    "period": "2026-Q3",
+    "limit": 10,
+    "used": 4,
+    "source_id": "finance-budget"
+  },
+  {
+    "tenant_id": "aster",
+    "team_id": "finance-apac",
+    "product_id": "analytics-pro-preview",
+    "period": "2026-Q3",
+    "limit": 10,
+    "used": 0,
+    "source_id": "finance-budget"
+  },
+  {
+    "tenant_id": "aster",
+    "team_id": "finance-apac",
+    "product_id": "ledger-pro",
+    "period": "2026-Q3",
+    "limit": 5,
+    "used": 4,
+    "source_id": "finance-budget"
+  },
+  {
+    "tenant_id": "aster",
+    "team_id": "finance-locked",
+    "product_id": "analytics-pro",
+    "period": "2026-Q3",
+    "limit": 2,
+    "used": 2,
+    "source_id": "finance-budget"
+  },
+  {
+    "tenant_id": "northstar",
+    "team_id": "finance-us",
+    "product_id": "analytics-pro-northstar",
+    "period": "2026-Q3",
+    "limit": 10,
+    "used": 1,
+    "source_id": "finance-budget"
+  }
+]
