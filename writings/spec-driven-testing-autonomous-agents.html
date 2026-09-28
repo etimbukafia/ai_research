@@ -1,0 +1,354 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Spec-Driven Testing for Autonomous Agents</title>
+    <meta name="description" content="Why golden output strings fail for multi-step agents, and how to verify execution trajectories against formal state machine specifications." />
+    <style>
+      :root {
+        --bg: #FBFBFB;
+        --fg: #111315;
+        --muted: #6B7280;
+        --border: #E5E7EB;
+        --code-bg: #F3F4F6;
+        --inline-code-bg: #E5E7EB;
+        --link: #111315;
+        --link-hover: #2563EB;
+        --max-width: 690px;
+      }
+
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg: #111315;
+          --fg: #EDEDED;
+          --muted: #9CA3AF;
+          --border: #262626;
+          --code-bg: #18191C;
+          --inline-code-bg: #222326;
+          --link: #EDEDED;
+          --link-hover: #60A5FA;
+        }
+      }
+
+      html.dark {
+        --bg: #111315;
+        --fg: #EDEDED;
+        --muted: #9CA3AF;
+        --border: #262626;
+        --code-bg: #18191C;
+        --inline-code-bg: #222326;
+        --link: #EDEDED;
+        --link-hover: #60A5FA;
+      }
+
+      html.light {
+        --bg: #FBFBFB;
+        --fg: #111315;
+        --muted: #6B7280;
+        --border: #E5E7EB;
+        --code-bg: #F3F4F6;
+        --inline-code-bg: #E5E7EB;
+        --link: #111315;
+        --link-hover: #2563EB;
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        background-color: var(--bg);
+        color: var(--fg);
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        font-size: 16px;
+        line-height: 1.75;
+        text-rendering: optimizeLegibility;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      .container {
+        max-width: var(--max-width);
+        margin: 0 auto;
+        padding: 56px 20px 80px;
+      }
+
+      header {
+        margin-bottom: 32px;
+      }
+
+      .top-bar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 28px;
+        font-size: 14px;
+        color: var(--muted);
+      }
+
+      .top-bar a {
+        color: var(--muted);
+        text-decoration: none;
+      }
+
+      .top-bar a:hover {
+        color: var(--fg);
+      }
+
+      .theme-btn {
+        background: none;
+        border: 1px solid var(--border);
+        border-radius: 6px;
+        padding: 4px 10px;
+        font-size: 13px;
+        color: var(--muted);
+        cursor: pointer;
+      }
+
+      .theme-btn:hover {
+        color: var(--fg);
+        border-color: var(--fg);
+      }
+
+      h1 {
+        font-size: 32px;
+        font-weight: 600;
+        line-height: 1.25;
+        letter-spacing: -0.02em;
+        margin-bottom: 12px;
+        color: var(--fg);
+      }
+
+      .meta {
+        font-size: 14px;
+        color: var(--muted);
+        margin-bottom: 36px;
+      }
+
+      h2 {
+        font-size: 22px;
+        font-weight: 600;
+        line-height: 1.35;
+        letter-spacing: -0.01em;
+        margin-top: 44px;
+        margin-bottom: 16px;
+        color: var(--fg);
+      }
+
+      p {
+        margin-bottom: 20px;
+      }
+
+      ol, ul {
+        margin-bottom: 24px;
+        padding-left: 24px;
+      }
+
+      li {
+        margin-bottom: 8px;
+      }
+
+      pre {
+        background-color: var(--code-bg);
+        border: 1px solid var(--border);
+        border-radius: 6px;
+        padding: 16px 18px;
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+        font-size: 13.5px;
+        line-height: 1.55;
+        overflow-x: auto;
+        margin-top: 8px;
+        margin-bottom: 24px;
+      }
+
+      code {
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      }
+
+      p code, li code {
+        background-color: var(--inline-code-bg);
+        padding: 2px 6px;
+        border-radius: 4px;
+        font-size: 14px;
+      }
+
+      footer {
+        margin-top: 60px;
+        padding-top: 24px;
+        border-top: 1px solid var(--border);
+        font-size: 14px;
+        color: var(--muted);
+        display: flex;
+        justify-content: space-between;
+      }
+    </style>
+  </head>
+  <body>
+    <main class="container">
+      <header>
+        <div class="top-bar">
+          <span>Writing &amp; Research</span>
+          <button class="theme-btn" id="theme-toggle" aria-label="Toggle theme">Toggle theme</button>
+        </div>
+        <h1>Spec-Driven Testing for Autonomous Agents</h1>
+        <div class="meta">September 2026 · 8 min read</div>
+      </header>
+
+      <article>
+        <p>Most evaluation frameworks test AI applications by checking the final text response. You give the system a prompt, wait for it to finish, and compare the output against a golden reference answer using string similarity or an LLM judge.</p>
+
+        <p>For a chatbot or a summarizer, this works. For an autonomous agent, it fails completely.</p>
+
+        <p>An autonomous agent is a multi-step planner. It executes tool calls, inspects intermediate outputs, and mutates system state across multiple turns. An agent can easily produce a polite, accurate final sentence while having taken a dangerous, illegal, or wasteful path behind the scenes.</p>
+
+        <p>Testing an autonomous agent requires testing the execution trajectory against a formal specification, not checking the final words.</p>
+
+        <h2>Why golden output strings fail for multi-step agents</h2>
+
+        <p>Consider an agent tasked with customer refunds. You give it a task: "Process a return for order 8492."</p>
+
+        <p>The agent responds: "I have processed the return for order 8492 and issued a credit of fifty dollars."</p>
+
+        <p>If you only test the final text string, the test passes. But when you inspect the database audit log, you discover what actually happened:</p>
+
+        <ol>
+          <li>The agent called <code>issue_refund(order_id="8492", amount=50.00)</code>.</li>
+          <li>The agent called <code>verify_inventory_receipt(order_id="8492")</code>.</li>
+          <li>The inventory check failed because the item had not arrived at the warehouse.</li>
+        </ol>
+
+        <p>The agent issued the money before checking if the item had been returned. It violated a core business rule, but its final response hid the error.</p>
+
+        <p>Testing only the final answer creates an optical illusion of correctness. To know if an agent is dependable, you must evaluate the entire sequence of actions it took to get there.</p>
+
+        <h2>The trace is the truth: moving to trajectory evaluation</h2>
+
+        <p>In agentic systems, the execution trace is the real product.</p>
+
+        <p>The trace contains every reasoning step, every tool invocation, the exact parameters passed, and the intermediate return values.</p>
+
+        <p>Trajectory evaluation shifts testing from string matching to step verification. Instead of evaluating the destination, you evaluate the path:</p>
+
+        <pre><code>[Input Task]
+     │
+     ▼
+[Step 1: Read Customer Account] ──────► Check: Was account ID valid?
+     │
+     ▼
+[Step 2: Inspect Return Tracking] ────► Check: Did tracking confirm delivery?
+     │
+     ▼
+[Step 3: Calculate Refund Amount] ────► Check: Did calculation match policy?
+     │
+     ▼
+[Step 4: Issue Credit] ───────────────► Check: Did Steps 1-3 complete first?
+     │
+     ▼
+[Final Output Text] (Evaluated last, not first)</code></pre>
+
+        <p>If Step 4 executes before Step 2, the test fails immediately, even if the final text looks perfect.</p>
+
+        <h2>Defining agent contracts as finite state machines</h2>
+
+        <p>To test a trajectory, you need a formal specification of what valid behavior looks like. The most effective way to define this specification is as a finite state machine.</p>
+
+        <p>A state machine defines the allowed states of a workflow and the valid transitions between them:</p>
+
+        <pre><code>       ┌─────────────┐
+       │   Created   │
+       └──────┬──────┘
+              │ (validate_ticket)
+              ▼
+       ┌─────────────┐
+       │  Validated  │
+       └──────┬──────┘
+              │ (verify_delivery)
+              ▼
+       ┌─────────────┐       (issue_refund)      ┌────────────┐
+       │  Received   ├──────────────────────────►│  Refunded  │
+       └─────────────┘                           └────────────┘</code></pre>
+
+        <p>When you define your agent's task as a state machine, testing becomes deterministic:</p>
+
+        <ol>
+          <li>Every tool call must correspond to a valid state transition.</li>
+          <li>The agent cannot skip intermediate states. Calling <code>issue_refund</code> while in the <code>Validated</code> state is an immediate test failure.</li>
+          <li>The execution must reach an approved terminal state within a specified step budget.</li>
+        </ol>
+
+        <p>The state machine acts as a formal contract. You do not have to guess whether the agent's behavior was acceptable. You check whether its trajectory formed a valid path through the graph.</p>
+
+        <h2>Temporal invariants across tool executions</h2>
+
+        <p>State machines allow you to enforce temporal invariants: properties that must hold true across time during an execution run.</p>
+
+        <p>In software testing, temporal invariants are expressed as pre-conditions and post-conditions:</p>
+
+        <ul>
+          <li><strong>Pre-conditions:</strong> Action B must never execute unless Action A has completed successfully in the same session. For example, the agent must never call a database write tool unless a prior read tool confirmed that the record exists.</li>
+          <li><strong>Post-conditions:</strong> If an action modifies a resource, a corresponding audit or notification tool must execute before the session closes.</li>
+          <li><strong>Mutual Exclusion:</strong> Certain tools must never be called within the same run. If an agent calls <code>mark_as_fraud</code>, it must be physically impossible for it to call <code>process_payout</code> in the same execution graph.</li>
+        </ul>
+
+        <p>You can write these invariants as simple assertions against the execution trace in your test runner:</p>
+
+        <pre><code>def test_refund_trajectory_invariants(trace: AgentTrace):
+    tool_names = [step.tool_name for step in trace.steps]
+    
+    # Pre-condition: delivery must precede refund
+    assert "verify_delivery" in tool_names, "Missing delivery verification step"
+    delivery_idx = tool_names.index("verify_delivery")
+    refund_idx = tool_names.index("issue_refund")
+    assert delivery_idx &lt; refund_idx, "Refund executed before delivery verification"
+    
+    # Mutual exclusion: cannot both refund and mark dispute
+    assert not ("issue_refund" in tool_names and "file_dispute" in tool_names), \
+        "Contradictory tools invoked in same trajectory"</code></pre>
+
+        <h2>Testing recovery paths with synthetic tool faults</h2>
+
+        <p>Agents do not just need to work when APIs return clean data. They must handle errors without getting stuck in infinite loops.</p>
+
+        <p>In spec-driven testing, you inject synthetic faults into the agent's tool layer:</p>
+
+        <ul>
+          <li><strong>Simulated Timeouts:</strong> Return an HTTP 504 on tool call 2. Does the agent retry cleanly with backoff, or does it burn ten iterations spamming the same endpoint?</li>
+          <li><strong>Permission Denied:</strong> Return an HTTP 403 on a write tool. Does the agent halt and report the permission boundary, or does it try to invent a workaround?</li>
+          <li><strong>Malformed Tool Outputs:</strong> Return invalid JSON or missing fields from an external search tool. Does the agent crash, or does it recover gracefully?</li>
+        </ul>
+
+        <p>An agent only passes its specification when it proves it can navigate failures. Testing trajectories against state machine contracts gives you a mathematically verifiable way to measure agent reliability before deploying to production.</p>
+      </article>
+
+      <footer>
+        <span>Published in Research &amp; Writings</span>
+        <span>September 2026</span>
+      </footer>
+    </main>
+
+    <script>
+      const toggleBtn = document.getElementById("theme-toggle");
+      const root = document.documentElement;
+
+      const savedTheme = localStorage.getItem("preferred-theme");
+      if (savedTheme) {
+        root.className = savedTheme;
+      }
+
+      toggleBtn.addEventListener("click", () => {
+        const isDark = root.classList.contains("dark") || 
+          (!root.classList.contains("light") && window.matchMedia("(prefers-color-scheme: dark)").matches);
+        
+        if (isDark) {
+          root.className = "light";
+          localStorage.setItem("preferred-theme", "light");
+        } else {
+          root.className = "dark";
+          localStorage.setItem("preferred-theme", "dark");
+        }
+      });
+    </script>
+  </body>
+</html>

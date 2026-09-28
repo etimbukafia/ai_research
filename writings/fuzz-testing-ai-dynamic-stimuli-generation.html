@@ -1,0 +1,351 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Beyond the Static For-Loop: Fuzz-Testing AI With Dynamic Stimuli Generation</title>
+    <meta name="description" content="Why running a for-loop over a static CSV dataset is an illusion of testing, and how to borrow fuzzing from software security to find AI edge cases at scale." />
+    <style>
+      :root {
+        --bg: #FBFBFB;
+        --fg: #111315;
+        --muted: #6B7280;
+        --border: #E5E7EB;
+        --code-bg: #F3F4F6;
+        --inline-code-bg: #E5E7EB;
+        --link: #111315;
+        --link-hover: #2563EB;
+        --max-width: 690px;
+      }
+
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg: #111315;
+          --fg: #EDEDED;
+          --muted: #9CA3AF;
+          --border: #262626;
+          --code-bg: #18191C;
+          --inline-code-bg: #222326;
+          --link: #EDEDED;
+          --link-hover: #60A5FA;
+        }
+      }
+
+      html.dark {
+        --bg: #111315;
+        --fg: #EDEDED;
+        --muted: #9CA3AF;
+        --border: #262626;
+        --code-bg: #18191C;
+        --inline-code-bg: #222326;
+        --link: #EDEDED;
+        --link-hover: #60A5FA;
+      }
+
+      html.light {
+        --bg: #FBFBFB;
+        --fg: #111315;
+        --muted: #6B7280;
+        --border: #E5E7EB;
+        --code-bg: #F3F4F6;
+        --inline-code-bg: #E5E7EB;
+        --link: #111315;
+        --link-hover: #2563EB;
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        background-color: var(--bg);
+        color: var(--fg);
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        font-size: 16px;
+        line-height: 1.75;
+        text-rendering: optimizeLegibility;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      .container {
+        max-width: var(--max-width);
+        margin: 0 auto;
+        padding: 56px 20px 80px;
+      }
+
+      header {
+        margin-bottom: 32px;
+      }
+
+      .top-bar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 28px;
+        font-size: 14px;
+        color: var(--muted);
+      }
+
+      .top-bar a {
+        color: var(--muted);
+        text-decoration: none;
+      }
+
+      .top-bar a:hover {
+        color: var(--fg);
+      }
+
+      .theme-btn {
+        background: none;
+        border: 1px solid var(--border);
+        border-radius: 6px;
+        padding: 4px 10px;
+        font-size: 13px;
+        color: var(--muted);
+        cursor: pointer;
+      }
+
+      .theme-btn:hover {
+        color: var(--fg);
+        border-color: var(--fg);
+      }
+
+      h1 {
+        font-size: 32px;
+        font-weight: 600;
+        line-height: 1.25;
+        letter-spacing: -0.02em;
+        margin-bottom: 12px;
+        color: var(--fg);
+      }
+
+      .meta {
+        font-size: 14px;
+        color: var(--muted);
+        margin-bottom: 36px;
+      }
+
+      h2 {
+        font-size: 22px;
+        font-weight: 600;
+        line-height: 1.35;
+        letter-spacing: -0.01em;
+        margin-top: 44px;
+        margin-bottom: 16px;
+        color: var(--fg);
+      }
+
+      p {
+        margin-bottom: 20px;
+      }
+
+      ol, ul {
+        margin-bottom: 24px;
+        padding-left: 24px;
+      }
+
+      li {
+        margin-bottom: 8px;
+      }
+
+      pre {
+        background-color: var(--code-bg);
+        border: 1px solid var(--border);
+        border-radius: 6px;
+        padding: 16px 18px;
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+        font-size: 13.5px;
+        line-height: 1.55;
+        overflow-x: auto;
+        margin-top: 8px;
+        margin-bottom: 24px;
+      }
+
+      code {
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      }
+
+      p code, li code {
+        background-color: var(--inline-code-bg);
+        padding: 2px 6px;
+        border-radius: 4px;
+        font-size: 14px;
+      }
+
+      footer {
+        margin-top: 60px;
+        padding-top: 24px;
+        border-top: 1px solid var(--border);
+        font-size: 14px;
+        color: var(--muted);
+        display: flex;
+        justify-content: space-between;
+      }
+    </style>
+  </head>
+  <body>
+    <main class="container">
+      <header>
+        <div class="top-bar">
+          <span>Writing &amp; Research</span>
+          <button class="theme-btn" id="theme-toggle" aria-label="Toggle theme">Toggle theme</button>
+        </div>
+        <h1>Beyond the Static For-Loop: Fuzz-Testing AI With Dynamic Stimuli Generation</h1>
+        <div class="meta">September 2026 · 8 min read</div>
+      </header>
+
+      <article>
+        <p>In modern AI engineering, "eval" has become an overloaded word.</p>
+
+        <p>When a team says they are running an evaluation, they might mean a static CSV dataset of fifty prompts. They might mean a scoring metric like accuracy or BLEU. They might mean a human labeling pipeline, or an automated model judge, or a third-party benchmark leaderboard.</p>
+
+        <p>This confusion leads to brittle engineering. The default testing pattern in most organizations is a for-loop over a static dataset: send one hundred hardcoded prompts to an endpoint, calculate an average pass rate, and ship to production.</p>
+
+        <p>In production, real users break the system within hours.</p>
+
+        <p>Testing a generative model with a static dataset is like testing a database engine with five fixed SQL queries and declaring it bug-free. Real reliability requires borrowing an established discipline from software security: fuzzing.</p>
+
+        <h2>The cacophony of the word eval</h2>
+
+        <p>At the AI Engineer World's Fair, Leonard Tang from Haize Labs pointed out that the industry conflates four distinct concepts under the single label of "eval":</p>
+
+        <ol>
+          <li><strong>The Dataset:</strong> The collection of input stimuli presented to the system.</li>
+          <li><strong>The Quality Metric:</strong> The formal criteria used to decide whether an output is acceptable.</li>
+          <li><strong>The Scorer:</strong> The mechanism (human annotator, deterministic regex, or model judge) that executes the measurement.</li>
+          <li><strong>The Benchmark:</strong> A standardized external score used to compare models against one another.</li>
+        </ol>
+
+        <p>When these concepts are blended together, teams treat the static dataset as if it were the evaluation itself.</p>
+
+        <p>They curate seventy questions, tune their system prompt until all seventy pass, and assume the application is reliable. In reality, they have simply overfit their prompt to a tiny, biased sample of human language.</p>
+
+        <h2>Why a for-loop over a static dataset is not testing</h2>
+
+        <p>A static dataset tests the path you already thought of. It says nothing about the thousands of paths users will actually take.</p>
+
+        <p>Language models operate in an open-ended input space. A user will not phrase a request with the tidy grammar of your test CSV. They will include typos, ambiguous constraints, contradictory requirements, multiple languages, and adversarial injections.</p>
+
+        <p>When you evaluate with a fixed for-loop:</p>
+
+        <ul>
+          <li><strong>Coverage is near zero:</strong> Fifty prompts cover an infinitesimal fraction of the model's semantic state space.</li>
+          <li><strong>Failure modes remain hidden:</strong> If a specific combination of tokens triggers a hallucination or a policy violation, a static test will never discover it unless an engineer happened to type that exact sentence into the CSV.</li>
+          <li><strong>Testing is passive:</strong> The test suite does not adapt when the model changes. When you swap models or update a prompt, a static dataset cannot actively seek out the new edge cases introduced by the update.</li>
+        </ul>
+
+        <h2>Borrowing fuzzing from software security</h2>
+
+        <p>In systems programming, engineers do not test parsers or network protocols with a static list of valid packets. They use fuzzers like AFL and libFuzzer.</p>
+
+        <p>A fuzzer bombards the target software with thousands of simulated, unexpected, and mutated inputs. It monitors execution to detect crashes, memory leaks, and boundary violations.</p>
+
+        <p>Applying this perspective to generative AI decomposes evaluation into two core engineering problems:</p>
+
+        <pre><code>               ┌─────────────────────────────────┐
+               │    Stimuli Generation Engine    │
+               │ (Mutators, Adversarial Models)  │
+               └────────────────┬────────────────┘
+                                │
+                        [Dynamic Inputs]
+                                │
+                                ▼
+                     ┌─────────────────────┐
+                     │  Target AI System   │
+                     └──────────┬──────────┘
+                                │
+                       [Model Outputs]
+                                │
+                                ▼
+               ┌─────────────────────────────────┐
+               │     Automated Quality Judge     │
+               │ (Operationalized Domain Metric) │
+               └─────────────────────────────────┘</code></pre>
+
+        <ol>
+          <li><strong>Stimuli Generation:</strong> How do you generate complex, diverse, and representative test inputs at scale to probe the system's boundaries?</li>
+          <li><strong>The Quality Metric:</strong> How do you turn human domain criteria into an automated judge that evaluates outputs reliably?</li>
+        </ol>
+
+        <h2>Stimuli generation: flooding the model with dynamic edge cases</h2>
+
+        <p>Instead of writing test inputs by hand, you build a stimuli generation engine.</p>
+
+        <p>The engine uses secondary models and structured grammar mutators to actively probe the target system:</p>
+
+        <ul>
+          <li><strong>Semantic Mutations:</strong> Take a base customer scenario and systematically vary tone, verbosity, emotional urgency, and dialect.</li>
+          <li><strong>Constraint Stress-Testing:</strong> Inject contradictory instructions: "Book the cheapest flight, but it must be non-stop, and it must arrive before 9:00 AM on a carrier that offers free baggage." Can the system detect the trade-off and ask for clarification, or does it hallucinate an impossible ticket?</li>
+          <li><strong>Adversarial Perturbations:</strong> Insert typos, unusual encodings, and prompt injection payloads into benign business queries to test whether safety boundaries hold under noise.</li>
+        </ul>
+
+        <p>The stimuli generator does not produce random noise. It produces high-dimensional, faithful variations designed to find where the system's reasoning fractures.</p>
+
+        <h2>Operationalizing human criteria into automated judges</h2>
+
+        <p>Generating thousands of dynamic inputs is useless if a human has to read every response. You need an automated judge.</p>
+
+        <p>The hard part of building an automated judge is extracting the quality metric from human domain experts. A support manager or legal officer often has clear intuitive judgment about what makes an answer "good" or "bad", but they have rarely written down the mathematical criteria.</p>
+
+        <p>To operationalize human criteria into a reliable judge:</p>
+
+        <ol>
+          <li><strong>Elicit the implicit rubrics:</strong> Present the expert with pairs of model responses and ask them to choose the better one. Probe the specific reasons: Was it length? Was it certainty? Did it cite a specific source?</li>
+          <li><strong>Translate to deterministic assertions first:</strong> If the expert says "the answer must never quote expired pricing," write a Python assertion that parses numbers and checks them against the active catalog.</li>
+          <li><strong>Use calibrated model judges for semantic nuance:</strong> Where natural language judgment is required, provide the judge model with explicit, few-shot examples of acceptable and unacceptable answers derived directly from the human expert's choices.</li>
+          <li><strong>Audit the judge:</strong> Periodically measure the judge's agreement rate against human verdicts. A judge that disagrees with the human expert more than ten percent of the time must be recalibrated before running at scale.</li>
+        </ol>
+
+        <h2>Building the continuous fuzzing flywheel</h2>
+
+        <p>When stimuli generation and automated quality judges operate together, testing becomes an active feedback loop:</p>
+
+        <pre><code>[Dynamic Fuzz Run] ──► [Failure Detected] ──► [Capture Input &amp; Trace]
+                              ▲                         │
+                              │                         ▼
+                              └─────────────── [Promote to Golden Regression Suite]</code></pre>
+
+        <ol>
+          <li>The fuzzer generates ten thousand variations against the current staging build.</li>
+          <li>The automated judge detects three edge cases where the model violated policy or gave a contradictory answer.</li>
+          <li>The orchestrator captures those exact inputs, execution traces, and model parameters.</li>
+          <li>The failing cases are automatically added to the permanent regression dataset.</li>
+        </ol>
+
+        <p>Your test suite is no longer a frozen document maintained by hand. It is an evolving catalog of every boundary condition your system has ever failed.</p>
+
+        <p>Moving beyond the static for-loop turns evaluation from a ceremonial rubber stamp into an active vulnerability scanner. You find the cracks in your system's reasoning before your users do.</p>
+      </article>
+
+      <footer>
+        <span>Published in Research &amp; Writings</span>
+        <span>September 2026</span>
+      </footer>
+    </main>
+
+    <script>
+      const toggleBtn = document.getElementById("theme-toggle");
+      const root = document.documentElement;
+
+      const savedTheme = localStorage.getItem("preferred-theme");
+      if (savedTheme) {
+        root.className = savedTheme;
+      }
+
+      toggleBtn.addEventListener("click", () => {
+        const isDark = root.classList.contains("dark") || 
+          (!root.classList.contains("light") && window.matchMedia("(prefers-color-scheme: dark)").matches);
+        
+        if (isDark) {
+          root.className = "light";
+          localStorage.setItem("preferred-theme", "light");
+        } else {
+          root.className = "dark";
+          localStorage.setItem("preferred-theme", "dark");
+        }
+      });
+    </script>
+  </body>
+</html>

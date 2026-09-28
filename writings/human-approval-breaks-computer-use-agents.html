@@ -1,0 +1,351 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Modal Approval Fails for Autonomous Agents</title>
+    <meta name="description" content="Putting a confirmation box in front of an AI agent trains people to click approve without reading. Use transaction rollbacks and clear diffs instead." />
+    <style>
+      :root {
+        --bg: #FBFBFB;
+        --fg: #111315;
+        --muted: #6B7280;
+        --border: #E5E7EB;
+        --code-bg: #F3F4F6;
+        --inline-code-bg: #E5E7EB;
+        --link: #111315;
+        --link-hover: #2563EB;
+        --max-width: 690px;
+      }
+
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg: #111315;
+          --fg: #EDEDED;
+          --muted: #9CA3AF;
+          --border: #262626;
+          --code-bg: #18191C;
+          --inline-code-bg: #222326;
+          --link: #EDEDED;
+          --link-hover: #60A5FA;
+        }
+      }
+
+      html.dark {
+        --bg: #111315;
+        --fg: #EDEDED;
+        --muted: #9CA3AF;
+        --border: #262626;
+        --code-bg: #18191C;
+        --inline-code-bg: #222326;
+        --link: #EDEDED;
+        --link-hover: #60A5FA;
+      }
+
+      html.light {
+        --bg: #FBFBFB;
+        --fg: #111315;
+        --muted: #6B7280;
+        --border: #E5E7EB;
+        --code-bg: #F3F4F6;
+        --inline-code-bg: #E5E7EB;
+        --link: #111315;
+        --link-hover: #2563EB;
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        background-color: var(--bg);
+        color: var(--fg);
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        font-size: 16px;
+        line-height: 1.75;
+        text-rendering: optimizeLegibility;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      .container {
+        max-width: var(--max-width);
+        margin: 0 auto;
+        padding: 56px 20px 80px;
+      }
+
+      header {
+        margin-bottom: 32px;
+      }
+
+      .top-bar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 28px;
+        font-size: 14px;
+        color: var(--muted);
+      }
+
+      .top-bar a {
+        color: var(--muted);
+        text-decoration: none;
+      }
+
+      .top-bar a:hover {
+        color: var(--fg);
+      }
+
+      .theme-btn {
+        background: none;
+        border: 1px solid var(--border);
+        border-radius: 6px;
+        padding: 4px 10px;
+        font-size: 13px;
+        color: var(--muted);
+        cursor: pointer;
+      }
+
+      .theme-btn:hover {
+        color: var(--fg);
+        border-color: var(--fg);
+      }
+
+      h1 {
+        font-size: 32px;
+        font-weight: 600;
+        line-height: 1.25;
+        letter-spacing: -0.02em;
+        margin-bottom: 12px;
+        color: var(--fg);
+      }
+
+      .meta {
+        font-size: 14px;
+        color: var(--muted);
+        margin-bottom: 36px;
+      }
+
+      h2 {
+        font-size: 22px;
+        font-weight: 600;
+        line-height: 1.35;
+        letter-spacing: -0.01em;
+        margin-top: 44px;
+        margin-bottom: 16px;
+        color: var(--fg);
+      }
+
+      p {
+        margin-bottom: 20px;
+      }
+
+      ul, ol {
+        margin-bottom: 24px;
+        padding-left: 24px;
+      }
+
+      li {
+        margin-bottom: 8px;
+      }
+
+      pre {
+        background-color: var(--code-bg);
+        border: 1px solid var(--border);
+        border-radius: 6px;
+        padding: 16px 18px;
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+        font-size: 13.5px;
+        line-height: 1.55;
+        overflow-x: auto;
+        margin-top: 8px;
+        margin-bottom: 24px;
+      }
+
+      code {
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      }
+
+      p code, li code {
+        background-color: var(--inline-code-bg);
+        padding: 2px 6px;
+        border-radius: 4px;
+        font-size: 14px;
+      }
+
+      footer {
+        margin-top: 60px;
+        padding-top: 24px;
+        border-top: 1px solid var(--border);
+        font-size: 14px;
+        color: var(--muted);
+        display: flex;
+        justify-content: space-between;
+      }
+    </style>
+  </head>
+  <body>
+    <main class="container">
+      <header>
+        <div class="top-bar">
+          <span>Writing &amp; Research</span>
+          <button class="theme-btn" id="theme-toggle" aria-label="Toggle theme">Toggle theme</button>
+        </div>
+        <h1>Modal Approval Fails for Autonomous Agents</h1>
+        <div class="meta">September 2026 · 6 min read</div>
+      </header>
+
+      <article>
+        <p>Putting a confirmation box in front of an AI agent trains people to click approve without reading. If you want safety that works, use transaction rollbacks and clear diffs instead.</p>
+
+        <p>When an AI agent runs shell commands, clicks through a browser, or changes rows in a database, teams usually add a popup before every write:</p>
+
+        <pre><code>[Approve] or [Deny]</code></pre>
+
+        <p>This seems fine in a demo. In everyday use, it breaks down quickly.</p>
+
+        <h2>Popups train people to click yes</h2>
+
+        <p>Supervisory control research in aviation, industrial SCADA systems, and security operations centers documents a consistent failure mode: when a warning or confirmation prompt appears frequently without presenting actual danger, human inspection drops toward zero.</p>
+
+        <p>On the first few prompts of the day, someone reads the command, checks the arguments, and thinks about what will happen. That takes ten or fifteen seconds.</p>
+
+        <p>After twenty prompts where the agent does harmless work, that review disappears. The person clicks approve in a fraction of a second. The popup is no longer a safety check. It is just an extra click in the way of getting work done.</p>
+
+        <p>Putting an approval button in front of every action does not keep the system safe. It just makes people click without thinking.</p>
+
+        <h2>The explanation hides the command</h2>
+
+        <p>Most agent setups try to help by having the model explain what it plans to do:</p>
+
+        <pre><code>Explanation: "Clearing expired session tokens for account 4819."
+Command:     ./cleanup.sh --pattern * --force</code></pre>
+
+        <p>Modern models write clear, polite English. That makes the problem worse.</p>
+
+        <p>The explanation is just text the model made up. The command is code that actually runs. If the model gets confused, hallucinates an argument, or reads a bad instruction from a webpage, the English explanation can sound completely safe while the shell command deletes real data.</p>
+
+        <p>When someone is tired, they read the friendly English sentence and skip the command line below it. The explanation hides the bad code.</p>
+
+        <h2>Sort actions by how easy they are to undo</h2>
+
+        <p>Instead of asking for approval on every step, split actions into three groups based on how hard they are to undo:</p>
+
+        <pre><code>[Agent Action]
+       │
+       ├── Reads and checks ──────────► Run right away
+       │                                (No popups, no waiting)
+       │
+       ├── Changes you can undo ──────► Run in a sandbox
+       │                                (Roll back automatically if a check fails)
+       │
+       └── Changes you cannot undo ───► Show a raw diff
+                                        (Require a real confirmation)</code></pre>
+
+        <h2>Let the agent read without asking</h2>
+
+        <p>Most steps an agent takes do not change anything. It reads a web page, queries an API, looks up a database row, or tests a small script in a private scratchpad.</p>
+
+        <p>If the agent runs a bad query or reads the wrong page, you waste a bit of compute. You do not break real systems.</p>
+
+        <p>Running reads right away without popups cuts out roughly eighty percent of the interruptions. When you remove that noise, people have attention left for the few things that matter.</p>
+
+        <h2>Use rollbacks for changes you can undo</h2>
+
+        <p>Most changes can be undone if you set up the plumbing for it:</p>
+
+        <ul>
+          <li>In a database: run the updates inside a transaction, or test them on a throwaway copy first.</li>
+          <li>In code: have the agent commit to a temporary branch and run your test suite.</li>
+          <li>On a server: run the work inside a container or VM snapshot.</li>
+        </ul>
+
+        <p>Once the agent finishes, run quick automated checks. Did the service stay up? Are the records valid? Did error rates stay flat?</p>
+
+        <p>If the checks pass, commit the change. If a check fails, or if someone clicks an undo button, roll back to the snapshot.</p>
+
+        <p>Safety comes from the database transaction and the snapshot. It does not depend on a tired person reading command flags.</p>
+
+        <h2>Show the exact change for things you cannot undo</h2>
+
+        <p>A few actions cannot be undone:</p>
+
+        <ul>
+          <li>Sending money or issuing refunds</li>
+          <li>Emailing an outside customer</li>
+          <li>Dropping a database table or deleting a disk</li>
+          <li>Changing live DNS records or admin permissions</li>
+        </ul>
+
+        <p>In a normal setup, these make up less than three percent of what an agent does. Because someone only sees one or two of these a day, they actually stop and read them.</p>
+
+        <p>When an action cannot be undone, drop the model's explanation entirely. Do not let the model tell you what it thinks it is doing.</p>
+
+        <p>Show the exact diff instead:</p>
+
+        <pre><code>Target: Customer Master Database
+Action: UPDATE customer_accounts SET active = false
+Rows affected: 8,412
+
+State Diff:
+- active: true  (8,412 rows)
++ active: false (8,412 rows)
+
+Applied Constraint: WHERE last_login &lt; '2024-01-01'</code></pre>
+
+        <p>If the agent is driving a browser, show the exact form fields it filled and the exact button it is about to click. If it is calling an API, show the URL and the exact JSON body.</p>
+
+        <p>The person can look at the real numbers and the real endpoints, without a paragraph of polite text getting in the way.</p>
+
+        <h2>Keep the approval button away from the agent</h2>
+
+        <p>Agents that drive computers do it by looking at pixels, moving the mouse, and typing keys.</p>
+
+        <p>If the approval popup appears on the same screen or browser tab the agent can click, the agent can approve its own actions. That can happen by accident, or because a malicious webpage tells the agent where to click.</p>
+
+        <p>Keep the approval step outside the agent's reach:</p>
+
+        <ol>
+          <li>Put the approval screen on a separate dashboard the agent cannot see or open.</li>
+          <li>Use a phone push notification or a hardware key for big actions.</li>
+          <li>Freeze the agent's mouse and keyboard while a decision is pending.</li>
+        </ol>
+
+        <h2>Save people for the decisions that matter</h2>
+
+        <p>Putting an approval popup on every step gives you the feeling of safety without the reality. It slows down the agent when things are fine, and people click through it anyway when things go wrong.</p>
+
+        <p>Human attention is a finite operational resource. Systems should handle routine validation, sandboxing, and automated rollbacks programmatically. Reserve human review exclusively for the narrow boundary where state changes cannot be undone.</p>
+      </article>
+
+      <footer>
+        <span>Published in Research &amp; Writings</span>
+        <span>September 2026</span>
+      </footer>
+    </main>
+
+    <script>
+      const toggleBtn = document.getElementById("theme-toggle");
+      const root = document.documentElement;
+
+      const savedTheme = localStorage.getItem("preferred-theme");
+      if (savedTheme) {
+        root.className = savedTheme;
+      }
+
+      toggleBtn.addEventListener("click", () => {
+        const isDark = root.classList.contains("dark") || 
+          (!root.classList.contains("light") && window.matchMedia("(prefers-color-scheme: dark)").matches);
+        
+        if (isDark) {
+          root.className = "light";
+          localStorage.setItem("preferred-theme", "light");
+        } else {
+          root.className = "dark";
+          localStorage.setItem("preferred-theme", "dark");
+        }
+      });
+    </script>
+  </body>
+</html>

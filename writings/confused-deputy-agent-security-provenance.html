@@ -1,0 +1,321 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>The Confused Deputy in the Loop: Why Agent Security Needs Provenance, Not Just Permissions</title>
+    <meta name="description" content="When an agent processes untrusted text while holding privileged credentials, permissions become a trap. Why agent security requires data taint tracking rather than API keys." />
+    <style>
+      :root {
+        --bg: #FBFBFB;
+        --fg: #111315;
+        --muted: #6B7280;
+        --border: #E5E7EB;
+        --code-bg: #F3F4F6;
+        --inline-code-bg: #E5E7EB;
+        --link: #111315;
+        --link-hover: #2563EB;
+        --max-width: 690px;
+      }
+
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg: #111315;
+          --fg: #EDEDED;
+          --muted: #9CA3AF;
+          --border: #262626;
+          --code-bg: #18191C;
+          --inline-code-bg: #222326;
+          --link: #EDEDED;
+          --link-hover: #60A5FA;
+        }
+      }
+
+      html.dark {
+        --bg: #111315;
+        --fg: #EDEDED;
+        --muted: #9CA3AF;
+        --border: #262626;
+        --code-bg: #18191C;
+        --inline-code-bg: #222326;
+        --link: #EDEDED;
+        --link-hover: #60A5FA;
+      }
+
+      html.light {
+        --bg: #FBFBFB;
+        --fg: #111315;
+        --muted: #6B7280;
+        --border: #E5E7EB;
+        --code-bg: #F3F4F6;
+        --inline-code-bg: #E5E7EB;
+        --link: #111315;
+        --link-hover: #2563EB;
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        background-color: var(--bg);
+        color: var(--fg);
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        font-size: 16px;
+        line-height: 1.75;
+        text-rendering: optimizeLegibility;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      .container {
+        max-width: var(--max-width);
+        margin: 0 auto;
+        padding: 56px 20px 80px;
+      }
+
+      header {
+        margin-bottom: 32px;
+      }
+
+      .top-bar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 28px;
+        font-size: 14px;
+        color: var(--muted);
+      }
+
+      .top-bar a {
+        color: var(--muted);
+        text-decoration: none;
+      }
+
+      .top-bar a:hover {
+        color: var(--fg);
+      }
+
+      .theme-btn {
+        background: none;
+        border: 1px solid var(--border);
+        border-radius: 6px;
+        padding: 4px 10px;
+        font-size: 13px;
+        color: var(--muted);
+        cursor: pointer;
+      }
+
+      .theme-btn:hover {
+        color: var(--fg);
+        border-color: var(--fg);
+      }
+
+      h1 {
+        font-size: 32px;
+        font-weight: 600;
+        line-height: 1.25;
+        letter-spacing: -0.02em;
+        margin-bottom: 12px;
+        color: var(--fg);
+      }
+
+      .meta {
+        font-size: 14px;
+        color: var(--muted);
+        margin-bottom: 36px;
+      }
+
+      h2 {
+        font-size: 22px;
+        font-weight: 600;
+        line-height: 1.35;
+        letter-spacing: -0.01em;
+        margin-top: 44px;
+        margin-bottom: 16px;
+        color: var(--fg);
+      }
+
+      p {
+        margin-bottom: 20px;
+      }
+
+      ol, ul {
+        margin-bottom: 24px;
+        padding-left: 24px;
+      }
+
+      li {
+        margin-bottom: 8px;
+      }
+
+      pre {
+        background-color: var(--code-bg);
+        border: 1px solid var(--border);
+        border-radius: 6px;
+        padding: 16px 18px;
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+        font-size: 13.5px;
+        line-height: 1.55;
+        overflow-x: auto;
+        margin-top: 8px;
+        margin-bottom: 24px;
+      }
+
+      code {
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      }
+
+      p code, li code {
+        background-color: var(--inline-code-bg);
+        padding: 2px 6px;
+        border-radius: 4px;
+        font-size: 14px;
+      }
+
+      footer {
+        margin-top: 60px;
+        padding-top: 24px;
+        border-top: 1px solid var(--border);
+        font-size: 14px;
+        color: var(--muted);
+        display: flex;
+        justify-content: space-between;
+      }
+    </style>
+  </head>
+  <body>
+    <main class="container">
+      <header>
+        <div class="top-bar">
+          <span>Writing &amp; Research</span>
+          <button class="theme-btn" id="theme-toggle" aria-label="Toggle theme">Toggle theme</button>
+        </div>
+        <h1>The Confused Deputy in the Loop: Why Agent Security Needs Provenance, Not Just Permissions</h1>
+        <div class="meta">September 2026 · 8 min read</div>
+      </header>
+
+      <article>
+        <p>Most engineering teams secure autonomous agents by assigning them API keys and role-based permissions. They ask a simple question: does this agent have access to this service?</p>
+
+        <p>This works for traditional microservices. It fails for autonomous agents.</p>
+
+        <p>When an agent processes untrusted text while holding privileged credentials, permissions become a trap. The agent turns into a confused deputy: an entity with full authority to act, but whose decisions are directed by untrusted data.</p>
+
+        <h2>Why an API key is not an authorization model</h2>
+
+        <p>In standard cloud infrastructure, an API key represents intent. If service A calls service B with a valid bearer token, service B assumes that service A intended to make the call.</p>
+
+        <p>With an AI agent, that assumption collapses.</p>
+
+        <p>An agent reads natural language from outside sources: customer support tickets, emails, GitHub issues, and web search snippets. In a language model, data and instructions share the exact same context window. They are both just strings of tokens.</p>
+
+        <p>If an attacker buries a prompt injection inside an invoice or a documentation page, the model treats those words as instructions. When the agent uses its API key to execute a tool call, the key proves that the agent has permission. It proves nothing about who ordered the action.</p>
+
+        <p>Permissions answer who is allowed to knock on the door. Provenance answers whose idea it was to turn the knob.</p>
+
+        <h2>The lethal trifecta in production agents</h2>
+
+        <p>Security researchers describe a specific pattern that makes an agent vulnerable to takeover: the lethal trifecta.</p>
+
+        <p>An agent becomes exploitable the moment it combines three capabilities:</p>
+
+        <ol>
+          <li>Access to private or sensitive internal data</li>
+          <li>Exposure to untrusted external content</li>
+          <li>The ability to execute actions or communicate externally</li>
+        </ol>
+
+        <pre><code>       [Access to Private Data]
+                  ▲
+                  │
+                  │  (Lethal Trifecta)
+                  ▼
+[Untrusted Content] ◄───► [External Write Capabilities]</code></pre>
+
+        <p>Consider an internal support agent. It reads a customer email (untrusted content). It searches an internal customer database for billing records (private data). It has access to an email API or an external webhook (external communication).</p>
+
+        <p>If the customer email contains hidden text instructing the agent to forward the latest billing record to an external server, the agent has every capability required to execute the attack.</p>
+
+        <p>Traditional identity systems see a legitimate service identity calling an approved endpoint. The attack succeeds without breaking a single permission rule.</p>
+
+        <h2>How untrusted data hijacks ambient authority</h2>
+
+        <p>The underlying flaw is ambient authority. When you give an agent a broad set of permissions, those permissions remain active for every step of its execution loop, regardless of what the agent is reading.</p>
+
+        <p>The agent carries those privileges into every untrusted room it visits.</p>
+
+        <p>When an agent fetches a web page, that page gains access to every tool the agent holds. If the agent has a tool to delete records, the web page can attempt to trigger it. If the agent has a tool to run shell commands, the web page can try to execute bash arguments.</p>
+
+        <p>Treating the agent as a trusted caller ignores the reality of how language models work. A language model is an interpreter that executes untrusted code whenever it reads untrusted text.</p>
+
+        <h2>Tracking taint across the tool execution chain</h2>
+
+        <p>To stop confused deputy attacks, you must track data taint through the agent's reasoning loop.</p>
+
+        <p>Taint tracking is an established concept in compiler design and operating systems. You mark any data originating from an untrusted source as tainted. As that data moves through functions and variables, anything derived from it inherits the taint flag.</p>
+
+        <p>In an agentic pipeline, data sources are categorized into clear trust tiers:</p>
+
+        <pre><code>[Trusted Sources]                    [Untrusted Sources]
+(System prompt, internal configs)    (Incoming emails, web pages, PDFs)
+         │                                       │
+         ▼                                       ▼
+  [Clean Context]                        [Tainted Context]
+         │                                       │
+         ▼                                       ▼
+[Privileged Actions Allowed]          [Privileged Actions Blocked]
+(Database writes, funds transfer)     (Read-only scratchpads only)</code></pre>
+
+        <p>When an agent reads an email or scrapes a web page, the orchestrator marks the working context as tainted.</p>
+
+        <p>If the agent subsequently proposes an action that mutates state (such as updating a database, sending an outbound email, or executing a shell command), the execution gateway inspects the context's taint status.</p>
+
+        <p>If the context contains untrusted data, the gateway blocks the action immediately.</p>
+
+        <h2>Severing write access when untrusted data enters the context</h2>
+
+        <p>Taint tracking changes how agent tools are orchestrated. Instead of giving an agent access to all tools at once, split execution into distinct phases:</p>
+
+        <ol>
+          <li><strong>The Ingestion Phase:</strong> The agent can search the web, read emails, and parse documents. In this phase, all write and communication tools are physically disconnected. The agent can take notes in an isolated scratchpad, but it cannot emit network packets or write to storage.</li>
+          <li><strong>The Sanitization Phase:</strong> If data from the ingestion phase must be used for a write operation, it passes through a deterministic parser. The parser extracts required fields into a strict schema. Freeform natural language is discarded.</li>
+          <li><strong>The Execution Phase:</strong> The agent receives the sanitized data and proposes the write operation. The gateway checks that the command matches the validated schema before committing the change.</li>
+        </ol>
+
+        <p>By decoupling the reading of untrusted content from the execution of privileged tools, you break the lethal trifecta.</p>
+
+        <p>Even if an indirect prompt injection completely tricks the model, the agent lacks the tools to execute the attacker's will. Safety is guaranteed by the data flow architecture, not by hoping the model ignores malicious text.</p>
+      </article>
+
+      <footer>
+        <span>Published in Research &amp; Writings</span>
+        <span>September 2026</span>
+      </footer>
+    </main>
+
+    <script>
+      const toggleBtn = document.getElementById("theme-toggle");
+      const root = document.documentElement;
+
+      const savedTheme = localStorage.getItem("preferred-theme");
+      if (savedTheme) {
+        root.className = savedTheme;
+      }
+
+      toggleBtn.addEventListener("click", () => {
+        const isDark = root.classList.contains("dark") || 
+          (!root.classList.contains("light") && window.matchMedia("(prefers-color-scheme: dark)").matches);
+        
+        if (isDark) {
+          root.className = "light";
+          localStorage.setItem("preferred-theme", "light");
+        } else {
+          root.className = "dark";
+          localStorage.setItem("preferred-theme", "dark");
+        }
+      });
+    </script>
+  </body>
+</html>

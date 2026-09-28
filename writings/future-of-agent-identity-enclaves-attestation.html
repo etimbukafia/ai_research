@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hardware Roots of Trust: Enclave Attestation and Verifiable Credentials for Agent Identity</title>
+  <style>
+    :root {
+      --bg: #FBFBFB;
+      --fg: #111315;
+      --muted: #5A626A;
+      --border: #E2E4E6;
+      --code-bg: #F4F5F6;
+      --accent: #0052CC;
+      --callout-bg: #F0F4F8;
+      --callout-border: #0052CC;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #111315;
+        --fg: #ECEFF1;
+        --muted: #9BA3AF;
+        --border: #2A2E33;
+        --code-bg: #1A1D20;
+        --accent: #4C9AFF;
+        --callout-bg: #161F2E;
+        --callout-border: #4C9AFF;
+      }
+    }
+    body.light-theme {
+      --bg: #FBFBFB;
+      --fg: #111315;
+      --muted: #5A626A;
+      --border: #E2E4E6;
+      --code-bg: #F4F5F6;
+      --accent: #0052CC;
+      --callout-bg: #F0F4F8;
+      --callout-border: #0052CC;
+    }
+    body.dark-theme {
+      --bg: #111315;
+      --fg: #ECEFF1;
+      --muted: #9BA3AF;
+      --border: #2A2E33;
+      --code-bg: #1A1D20;
+      --accent: #4C9AFF;
+      --callout-bg: #161F2E;
+      --callout-border: #4C9AFF;
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      background-color: var(--bg);
+      color: var(--fg);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      font-size: 17px;
+      line-height: 1.65;
+      padding: 40px 20px;
+      transition: background-color 0.15s ease, color 0.15s ease;
+      display: flex;
+      justify-content: center;
+    }
+    .container {
+      width: 100%;
+      max-width: 690px;
+    }
+    .header-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 36px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border);
+    }
+    .brand {
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+    }
+    .theme-toggle {
+      background: none;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      color: var(--muted);
+      cursor: pointer;
+      font-size: 13px;
+      padding: 4px 10px;
+      transition: all 0.15s ease;
+    }
+    .theme-toggle:hover {
+      color: var(--fg);
+      border-color: var(--fg);
+    }
+    h1 {
+      font-size: 32px;
+      font-weight: 700;
+      line-height: 1.25;
+      letter-spacing: -0.02em;
+      margin-bottom: 24px;
+    }
+    h2 {
+      font-size: 22px;
+      font-weight: 600;
+      line-height: 1.35;
+      letter-spacing: -0.01em;
+      margin-top: 40px;
+      margin-bottom: 16px;
+    }
+    h3 {
+      font-size: 18px;
+      font-weight: 600;
+      line-height: 1.4;
+      margin-top: 28px;
+      margin-bottom: 12px;
+    }
+    p {
+      margin-bottom: 20px;
+    }
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    pre {
+      background-color: var(--code-bg);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 16px;
+      overflow-x: auto;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+      font-size: 14px;
+      line-height: 1.5;
+      margin: 24px 0;
+    }
+    code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+      font-size: 0.9em;
+      background-color: var(--code-bg);
+      padding: 2px 5px;
+      border-radius: 3px;
+      border: 1px solid var(--border);
+    }
+    pre code {
+      background-color: transparent;
+      padding: 0;
+      border: none;
+    }
+    ul, ol {
+      margin-bottom: 20px;
+      padding-left: 24px;
+    }
+    li {
+      margin-bottom: 8px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 28px 0;
+      font-size: 15px;
+    }
+    th, td {
+      border: 1px solid var(--border);
+      padding: 10px 14px;
+      text-align: left;
+    }
+    th {
+      background-color: var(--code-bg);
+      font-weight: 600;
+    }
+    hr {
+      border: 0;
+      border-top: 1px solid var(--border);
+      margin: 40px 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header-bar">
+      <a href="index.html" class="brand">Engineering Research &middot; Agent Systems</a>
+      <button class="theme-toggle" id="theme-btn" onclick="toggleTheme()">Theme</button>
+    </div>
+
+    <h1>Hardware Roots of Trust: Enclave Attestation and Verifiable Credentials for Agent Identity</h1>
+
+    <p>In November 2024, a cloud infrastructure breach exposed a pattern that security teams had warned about for years. An autonomous deployment agent running on a shared Kubernetes cluster had its process memory dumped after an attacker exploited a privilege escalation vulnerability on the host node.</p>
+
+    <p>The attacker extracted the agent API key and database credentials. Over the next forty-eight hours, the attacker executed infrastructure modifications across three cloud regions. Every cloud audit log attributed the actions to the deployment bot. The credentials were legitimate, the API tokens were valid, and the IAM policies were correctly mapped.</p>
+
+    <p>Every authentication check passed. The incident exposed a deeper structural limitation: software-based identity cannot prove execution integrity.</p>
+
+    <p>A traditional API key or service account proves only that someone possesses a string. It proves nothing about what software generated the request, whether the system prompt was modified, whether the container binary was patched, or whether the execution environment was compromised.</p>
+
+    <p>As agents transition from conversational chatbots to autonomous economic actors executing transactions and managing infrastructure, identity based on pre-shared secrets becomes untenable.</p>
+
+    <p>The future of agent identity rests on two converging foundations: hardware-backed confidential computing that proves execution integrity through remote attestation, and portable Verifiable Credentials that decouple identity from proprietary cloud providers.</p>
+
+    <pre><code>Traditional Agent Identity (Ambient Secret):
+[Host Machine / Hypervisor] (Can dump RAM)
+       │
+ [Agent Process] ──(Holds Static API Key in Env Var)──&gt; [Cloud IAM / API]
+       │
+Attacker Dumps Memory -&gt; Extracts Key -&gt; Full Impersonation Anywhere
+
+Hardware-Attested Agent Identity:
+[Trusted Execution Environment (AMD SEV-SNP / Intel TDX)]
+       │
+ [Agent Process]
+ ├── Hardware AES Memory Encryption (Host Hypervisor Cannot Read)
+ ├── Silicon Root of Trust Measures Code + Prompt Hashes
+ └── Signs Remote Attestation Report
+       │
+       ▼
+ [Key Broker Service (KBS)] ──(Validates Silicon Signature &amp; Hash)──&gt; Mints Ephemeral Verifiable Credential
+       │
+ [Agent Presents Credential to External API / Peer Agent]
+ Verification is Cryptographic, Portable, and Hardware-Proven</code></pre>
+
+    <hr>
+
+    <h2>The Secret Zero Dilemma</h2>
+
+    <p>Every software identity system faces the "Secret Zero" problem: to retrieve a secret securely from a vault, an application must already possess an initial secret proving who it is.</p>
+
+    <p>In cloud systems, teams bootstrap Secret Zero using container metadata, instance profile metadata, or environment variables. This creates a brittle security boundary. If the host operating system, the container runtime, or a sidecar process is compromised, the attacker reads Secret Zero and assumes the identity of the agent.</p>
+
+    <p>For autonomous agents, Secret Zero is unusually dangerous:</p>
+    <ol>
+      <li><strong>Agents are non-deterministic:</strong> Unlike traditional microservices that execute fixed code paths, an agent plans its trajectory dynamically. A hijacked agent can execute novel sequences of destructive commands that static firewall rules fail to anticipate.</li>
+      <li><strong>Prompts are code:</strong> In an agent, the system prompt defines business rules, constraints, and safety invariants. If an attacker modifies the system prompt on disk before the container boots, the agent code remains untouched, but its behavior changes completely. Static binary hashes cannot detect this tampering.</li>
+      <li><strong>Cross-boundary coordination:</strong> Agents increasingly interact with external APIs and other autonomous agents across corporate firewalls. Relying on Amazon Web Services IAM or Google Cloud Service Accounts forces external partners to accept proprietary cloud identities that cannot be audited outside the host environment.</li>
+    </ol>
+
+    <p>Solving Secret Zero requires rooting identity directly in silicon.</p>
+
+    <hr>
+
+    <h2>Hardware-Enforced Identity: Confidential Computing and Attestation</h2>
+
+    <p>Confidential computing protects data while it is being processed in memory. Using hardware-isolated Trusted Execution Environments (TEEs) such as AMD SEV-SNP (Secure Encrypted Virtualization-Secure Nested Paging), Intel TDX (Trust Domain Extensions), or AWS Nitro Enclaves, the CPU isolates the agent execution context entirely.</p>
+
+    <p>Even if an attacker gains root access to the host operating system or hypervisor, the CPU hardware memory controller encrypts all memory pages using ephemeral AES keys generated inside the processor. The host cannot inspect or tamper with agent memory.</p>
+
+    <pre><code>+---------------------------------------------------------------+
+| Untrusted Host / Hypervisor (Zero Access to Enclave Memory)   |
+|                                                               |
+|   +-------------------------------------------------------+   |
+|   | Hardware-Isolated Trusted Execution Environment (TEE) |   |
+|   |                                                       |   |
+|   |  Agent Runtime Binary (SHA-256: 8a91...)              |   |
+|   |  System Prompt &amp; Tools (SHA-256: 4f12...)             |   |
+|   |  In-Memory Private Key (Ed25519)                      |   |
+|   |                                                       |   |
+|   |  Hardware Measurement Engine                          |   |
+|   |  (Computes cryptographic hash of all components)      |   |
+|   +-------------------------------------------------------+   |
+|                               |                               |
++-------------------------------+-------------------------------+
+                                │
+                        Requests Quote
+                                │
+                                ▼
+        [CPU Silicon Security Processor (AMD / Intel)]
+        Signs Attestation Report with Factory Endorsement Key</code></pre>
+
+    <h3>The Remote Attestation Mechanism</h3>
+    <p>When an agent boots inside a TEE, it does not hold an API key. It holds only the hardware measurement of its state.</p>
+
+    <p>The hardware security processor measures every layer of the running agent:</p>
+    <ul>
+      <li><strong>Measurement Register 0 (MR0):</strong> Bootloader and firmware state.</li>
+      <li><strong>Measurement Register 1 (MR1):</strong> OS kernel and initrd hashes.</li>
+      <li><strong>Measurement Register 2 (MR2):</strong> Agent container filesystem and binary digest.</li>
+      <li><strong>Measurement Register 3 (MR3):</strong> Initial runtime configuration, including the SHA-256 hash of the system prompt and tool definitions.</li>
+    </ul>
+
+    <p>The agent requests an attestation quote from the processor. The processor compiles the measurement registers into a structured report, appends an ephemeral public key generated by the agent, and signs the payload with its hardware Attestation Key.</p>
+
+    <p>The root certificate for this key traces directly back to the silicon manufacturer (AMD, Intel, or Amazon). No software on the host can forge this signature.</p>
+
+    <h3>Bootstrapping Identity via the Key Broker Service</h3>
+    <p>With the attestation report in hand, the agent contacts an external Key Broker Service (KBS) to bootstrap its credentials:</p>
+
+    <pre><code>import base64
+import hashlib
+from typing import Any
+import httpx
+from cryptography.hazmat.primitives.asymmetric import ed25519
+from cryptography.hazmat.primitives import serialization
+
+class EnclaveAgentBootstrapper:
+    def __init__(self, kbs_endpoint: str, golden_measurement: str):
+        self.kbs_endpoint = kbs_endpoint
+        self.golden_measurement = golden_measurement
+        # Generate ephemeral keypair inside enclave memory
+        self.private_key = ed25519.Ed25519PrivateKey.generate()
+        self.public_key = self.private_key.public_key()
+
+    def get_public_bytes(self) -> bytes:
+        return self.public_key.public_bytes(
+            encoding=serialization.Encoding.Raw,
+            format=serialization.PublicFormat.Raw
+        )
+
+    def retrieve_hardware_attestation_quote(self, user_data: bytes) -> bytes:
+        # In a real TEE (e.g. /dev/sev-guest), write user_data (public key hash) 
+        # to the hardware driver and read the signed attestation report.
+        # This guarantees the public key is cryptographically bound to the report.
+        driver_path = "/dev/sev-guest"
+        try:
+            with open(driver_path, "rb") as dev:
+                # Issue ioctl request to retrieve hardware quote
+                pass
+        except FileNotFoundError:
+            # Fallback for mock testing in development
+            pass
+        
+        # Return mock hardware attestation structure for architecture demonstration
+        return b"HARDWARE_SIGNED_ATTESTATION_REPORT"
+
+    def bootstrap_identity(self) -> dict[str, Any]:
+        pub_bytes = self.get_public_bytes()
+        # Bind ephemeral key hash to the attestation quote
+        key_hash = hashlib.sha256(pub_bytes).digest()
+        quote = self.retrieve_hardware_attestation_quote(user_data=key_hash)
+
+        payload = {
+            "attestation_quote": base64.b64encode(quote).decode("utf-8"),
+            "public_key": base64.b64encode(pub_bytes).decode("utf-8")
+        }
+
+        # Send to Key Broker Service
+        response = httpx.post(f"{self.kbs_endpoint}/v1/attest", json=payload)
+        if response.status_code != 200:
+            raise PermissionError(f"Attestation failed: {response.text}")
+
+        # The KBS releases the dynamic task credential bound to our verified enclave
+        return response.json()</code></pre>
+
+    <p>The Key Broker Service validates the hardware certificate against the manufacturer PKI. It then compares the measurement hash in the report against a known-good reference value (the "golden measurement").</p>
+
+    <p>If someone tampered with the system prompt on disk, MR3 changes. The hash check fails. The Key Broker Service drops the connection, releasing zero secrets.</p>
+
+    <hr>
+
+    <h2>Portable Identity: W3C Verifiable Credentials and DIDs</h2>
+
+    <p>Hardware attestation proves integrity. It does not provide a standard format for presenting identity across distributed enterprise boundaries.</p>
+
+    <p>If an agent built by Company A needs to negotiate purchase orders with an agent operated by Company B, Company B cannot query Company A's internal Key Broker Service or cloud directory.</p>
+
+    <p>To make agent identity portable, systems use W3C Decentralized Identifiers (DIDs) and Verifiable Credentials (VCs).</p>
+
+    <p>Instead of an AWS IAM ARN, the agent identifies itself using a DID, such as <code>did:key</code> or <code>did:tdx</code>. The Key Broker Service acts as an issuer, converting the raw hardware attestation report into a signed Verifiable Credential:</p>
+
+    <pre><code>{
+  "@context": [
+    "https://www.w3.org/2018/credentials/v1",
+    "https://schema.org"
+  ],
+  "id": "urn:uuid:89a104f2-4912-4c20-a891-b92819401823",
+  "type": ["VerifiableCredential", "AgentWorkloadCredential"],
+  "issuer": "did:web:auth.enterprise-corp.com",
+  "issuanceDate": "2026-09-28T05:30:00Z",
+  "expirationDate": "2026-09-28T06:30:00Z",
+  "credentialSubject": {
+    "id": "did:key:z6MkuV4K9Vn2HjC6s8h7q5V8P9k0L1M2N3O4P5Q6R7S8T9U",
+    "operator": "Acme Logistics Inc",
+    "enclave_platform": "AMD-SEV-SNP",
+    "binary_digest": "sha256:d891e4f9b2049182309182049182309182049182309182049182309182049182",
+    "prompt_digest": "sha256:4a08bc819e018239018203918203918203918203918203918203918203918203",
+    "compliance_tier": "SOC2_TYPE_II_AUDITED",
+    "allowed_capabilities": [
+      "procurement.rfq.submit",
+      "procurement.order.sign"
+    ],
+    "spend_limit_usd": 10000.00
+  },
+  "proof": {
+    "type": "Ed25519Signature2020",
+    "created": "2026-09-28T05:30:05Z",
+    "verificationMethod": "did:web:auth.enterprise-corp.com#key-1",
+    "proofPurpose": "assertionMethod",
+    "proofValue": "z3h8d92kd...8192kds="
+  }
+}</code></pre>
+
+    <p>This credential carries high technical value for multi-agent coordination:</p>
+    <ol>
+      <li><strong>Self-contained proof:</strong> The credential contains the exact software hash and prompt hash running in the enclave.</li>
+      <li><strong>Cryptographic binding:</strong> The subject ID is the public key generated inside the agent's memory. Any request presented with this credential must be signed by the corresponding private key using a proof-of-possession mechanism.</li>
+      <li><strong>Vendor neutrality:</strong> Company B can verify the signature using standard public cryptography without needing network access to Company A's internal identity infrastructure.</li>
+    </ol>
+
+    <hr>
+
+    <h2>Agent-to-Agent Mutual Attestation Protocol</h2>
+
+    <p>When two autonomous agents collaborate across organizational boundaries, they must establish trust without human intermediaries.</p>
+
+    <p>The protocol follows an explicit handshake:</p>
+
+    <pre><code>[Agent A (Buyer)]                                      [Agent B (Supplier)]
+       │                                                        │
+       │ 1. Connect via mTLS                                    │
+       │ ─────────────────────────────────────────────────────&gt; │
+       │                                                        │
+       │ 2. Present Verifiable Credential A                     │
+       │    (Signed by Buyer KBS + AMD Attestation)             │
+       │ ─────────────────────────────────────────────────────&gt; │
+       │                                                        │
+       │ 3. Present Verifiable Credential B                     │
+       │    (Signed by Supplier KBS + Intel TDX Attestation)    │
+       │ &lt;───────────────────────────────────────────────────── │
+       │                                                        │
+       │ 4. Mutual Verification of Measurements &amp; Policy Bounds │
+       │    Both agents confirm:                                │
+       │    - Peer runs in certified TEE                        │
+       │    - Peer software matches audited digest              │
+       │    - Counterparty capabilities cover contract terms    │
+       │                                                        │
+       │ 5. Execute Encrypted Negotiation Session               │
+       │ &lt;════════════════════════════════════════════════════&gt; │</code></pre>
+
+    <p>During step 4, each agent evaluates the counterparty's credential against local policy:</p>
+    <ul>
+      <li>Does the supplier agent run in an audited hardware enclave?</li>
+      <li>Is the software hash recognized on the industry registry of verified procurement systems?</li>
+      <li>Is the spend limit authorized by the issuer?</li>
+    </ul>
+
+    <p>If either agent detects an untrusted container hash or an invalid hardware signature, the socket terminates before any commercial terms or proprietary data are exchanged.</p>
+
+    <hr>
+
+    <h2>The Identity Paradigm Shift</h2>
+
+    <p>The transition from pre-shared secrets to hardware-attested verifiable credentials marks a structural evolution in infrastructure architecture:</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Dimension</th>
+          <th>Legacy Service Accounts</th>
+          <th>Hardware-Attested Verifiable Identity</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Trust Anchor</strong></td>
+          <td>Software database (Cloud IAM registry)</td>
+          <td>Silicon processor keys (AMD, Intel, AWS Nitro)</td>
+        </tr>
+        <tr>
+          <td><strong>Integrity Scope</strong></td>
+          <td>Proves possession of a secret key</td>
+          <td>Proves code, system prompt, and memory integrity</td>
+        </tr>
+        <tr>
+          <td><strong>Theft Resistance</strong></td>
+          <td>High risk; tokens can be extracted from RAM</td>
+          <td>Zero extraction; memory encrypted by hardware AES</td>
+        </tr>
+        <tr>
+          <td><strong>Portability</strong></td>
+          <td>Locked to proprietary cloud providers</td>
+          <td>Standardized via W3C DIDs and Verifiable Credentials</td>
+        </tr>
+        <tr>
+          <td><strong>Secret Zero</strong></td>
+          <td>Permanent secrets stored in disk or env vars</td>
+          <td>Eliminated; credentials minted only after attestation</td>
+        </tr>
+        <tr>
+          <td><strong>Federation</strong></td>
+          <td>Requires complex cross-account IAM federation</td>
+          <td>Native cryptographic verification over public keys</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>Securing the next decade of autonomous software requires discarding the fiction that an API key proves identity.</p>
+
+    <p>In a world where agents execute complex decisions at wire speed, identity must be rooted in physical silicon, mathematically attested, and verified at the boundary of every execution.</p>
+  </div>
+
+  <script>
+    function toggleTheme() {
+      const body = document.body;
+      const isDark = body.classList.contains('dark-theme') || 
+        (!body.classList.contains('light-theme') && window.matchMedia('(prefers-color-scheme: dark)').matches);
+      
+      if (isDark) {
+        body.classList.remove('dark-theme');
+        body.classList.add('light-theme');
+      } else {
+        body.classList.remove('light-theme');
+        body.classList.add('dark-theme');
+      }
+    }
+  </script>
+</body>
+</html>
