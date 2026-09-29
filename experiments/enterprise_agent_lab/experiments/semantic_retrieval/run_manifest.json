@@ -1,0 +1,64 @@
+{
+  "run_id": "replay-142b33589d57073d",
+  "experiment": "semantic_retrieval_for_enterprise_agents",
+  "mode": "replay",
+  "model_name": "google:gemini-3.5-flash-lite",
+  "model_suffix": "gemini-3.5-flash-lite",
+  "top_k": 8,
+  "replay_fixture": "deterministic-replay-v1",
+  "prompt_hash": "27cb5e33f1804706e500719e219edaf99e6b5839a7373df97d7e461323959697",
+  "cases_sha256": "9a2687f78a27bf1d6f5389e30bfe59d3aa32b39c68f56c333d739950a1425faa",
+  "contract_sha256": "dc5133fd0e0b74168d93a9fd1590adfeba55a645fc2032f2804309480de4c7b9",
+  "contract_path": "C:\\Users\\Etimbuk\\afiavana\\enterprise_agent_lab\\CONTRACT.md",
+  "retrieval": {
+    "interface": "SemanticRetriever.search_business_context",
+    "implementation": "SQLiteHybridRetriever",
+    "conditions": [
+      "raw_schema",
+      "prose_rag",
+      "semantic_catalog"
+    ],
+    "top_k": 8,
+    "vectors_requested": true,
+    "vector_backend": "sentence-transformers/all-MiniLM-L6-v2",
+    "vector_error": null
+  },
+  "package_versions": {
+    "python": "3.14.6",
+    "pydantic": "2.13.4",
+    "pydantic-ai-slim": "2.33.0",
+    "pydantic-ai": "not-installed",
+    "google-genai": "2.19.0",
+    "sentence-transformers": "5.1.0",
+    "numpy": "2.5.2"
+  },
+  "adapter": {
+    "contract_present": true,
+    "contract_path": "C:\\Users\\Etimbuk\\afiavana\\enterprise_agent_lab\\CONTRACT.md",
+    "contract_sha256": "dc5133fd0e0b74168d93a9fd1590adfeba55a645fc2032f2804309480de4c7b9",
+    "available_modules": {
+      "enterprise_agent_lab.models": true,
+      "enterprise_agent_lab.retrieval": true,
+      "enterprise_agent_lab.tools": true,
+      "enterprise_agent_lab.agent": true,
+      "enterprise_agent_lab.runner": true,
+      "enterprise_agent_lab.cases": true,
+      "enterprise_agent_lab.cli": true
+    },
+    "missing_modules": [],
+    "cases_source": "enterprise_agent_lab.cases.build_cases",
+    "adapter_used": false
+  },
+  "environment": {
+    "python_executable": "C:\\Users\\Etimbuk\\projects\\.projects\\Scripts\\python.exe",
+    "python_version": "3.14.6",
+    "google_api_key_present": false,
+    "gemini_model_override": null
+  },
+  "source_files": {
+    "cases.json": "9a2687f78a27bf1d6f5389e30bfe59d3aa32b39c68f56c333d739950a1425faa",
+    "run_experiment.py": "13ba66d88a7967248d8fd1c273eac5fb9c7916c034b3d13ed4c3383ed4e41d61",
+    "README.md": "270ccdaf41d190376e8bf8e7d41e058572a99ae0d9533a9bea6a9b96bcf6379b",
+    "requirements.txt": "be7195efbb1d4212be60d04d8a66d1a50c52e64f23aedafeff81418c6abf6ba2"
+  }
+}

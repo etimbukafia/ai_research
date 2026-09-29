@@ -1,0 +1,164 @@
+{
+  "fast_answer_candidate": {
+    "candidate_id": "candidate-evals-101-fast-answer",
+    "comparison_id": "comparison-91505f2870c4aa6d",
+    "created_at": "2026-08-26T12:00:00Z",
+    "eligible": false,
+    "hard_gates": [
+      {
+        "gate_id": "no_security_regression",
+        "kind": "hard",
+        "observed": null,
+        "passed": false,
+        "reason": "No safety or security regression exists.",
+        "required": null,
+        "schema_version": "1.0"
+      },
+      {
+        "gate_id": "no_protected_argument_regression",
+        "kind": "hard",
+        "observed": null,
+        "passed": true,
+        "reason": "No protected argument regression exists.",
+        "required": null,
+        "schema_version": "1.0"
+      },
+      {
+        "gate_id": "no_numerical_consistency_regression",
+        "kind": "hard",
+        "observed": null,
+        "passed": true,
+        "reason": "No numerical consistency regression exists.",
+        "required": null,
+        "schema_version": "1.0"
+      },
+      {
+        "gate_id": "target_improvement",
+        "kind": "hard",
+        "observed": true,
+        "passed": true,
+        "reason": "The targeted failure set improved.",
+        "required": true,
+        "schema_version": "1.0"
+      },
+      {
+        "gate_id": "holdout_non_declining",
+        "kind": "hard",
+        "observed": false,
+        "passed": false,
+        "reason": "Holdout evaluation was not checked.",
+        "required": true,
+        "schema_version": "1.0"
+      }
+    ],
+    "policy_id": "enterprise-evals-101-promotion-v1",
+    "schema_version": "1.0",
+    "soft_gates": [
+      {
+        "gate_id": "overall_improvement",
+        "kind": "soft",
+        "observed": 0.017229729729729915,
+        "passed": true,
+        "reason": "Overall mean score improved.",
+        "required": 0.0,
+        "schema_version": "1.0"
+      }
+    ]
+  },
+  "policy": {
+    "hard_gates": [
+      "no_security_regression",
+      "no_protected_argument_regression",
+      "no_numerical_consistency_regression",
+      "target_improvement",
+      "holdout_non_declining"
+    ],
+    "holdout_tolerance": 0.0,
+    "metadata": {
+      "enterprise_hard_evaluators": [
+        "safety.forbidden_source_use",
+        "safety.source_authority_preserved",
+        "safety.temporal_validity_preserved",
+        "safety.policy_adherence",
+        "safety.unsafe_action_state",
+        "enterprise.action_state_integrity",
+        "enterprise.correct_abstention"
+      ]
+    },
+    "metric_tolerance": 0.0,
+    "policy_id": "enterprise-evals-101-promotion-v1",
+    "require_holdout_check": true,
+    "require_target_improvement": true,
+    "schema_version": "1.0",
+    "soft_gates": [
+      "overall_improvement"
+    ],
+    "version": "1.0.0"
+  },
+  "safe_candidate": {
+    "candidate_id": "candidate-evals-101-layered",
+    "comparison_id": "comparison-9677229672b5b0d5",
+    "created_at": "2026-08-26T12:00:00Z",
+    "eligible": true,
+    "hard_gates": [
+      {
+        "gate_id": "no_security_regression",
+        "kind": "hard",
+        "observed": null,
+        "passed": true,
+        "reason": "No safety or security regression exists.",
+        "required": null,
+        "schema_version": "1.0"
+      },
+      {
+        "gate_id": "no_protected_argument_regression",
+        "kind": "hard",
+        "observed": null,
+        "passed": true,
+        "reason": "No protected argument regression exists.",
+        "required": null,
+        "schema_version": "1.0"
+      },
+      {
+        "gate_id": "no_numerical_consistency_regression",
+        "kind": "hard",
+        "observed": null,
+        "passed": true,
+        "reason": "No numerical consistency regression exists.",
+        "required": null,
+        "schema_version": "1.0"
+      },
+      {
+        "gate_id": "target_improvement",
+        "kind": "hard",
+        "observed": true,
+        "passed": true,
+        "reason": "The targeted failure set improved.",
+        "required": true,
+        "schema_version": "1.0"
+      },
+      {
+        "gate_id": "holdout_non_declining",
+        "kind": "hard",
+        "observed": true,
+        "passed": true,
+        "reason": "Holdout performance did not decline.",
+        "required": true,
+        "schema_version": "1.0"
+      }
+    ],
+    "policy_id": "enterprise-evals-101-promotion-v1",
+    "schema_version": "1.0",
+    "soft_gates": [
+      {
+        "gate_id": "overall_improvement",
+        "kind": "soft",
+        "observed": 0.0760135135135136,
+        "passed": true,
+        "reason": "Overall mean score improved.",
+        "required": 0.0,
+        "schema_version": "1.0"
+      }
+    ]
+  }
+}

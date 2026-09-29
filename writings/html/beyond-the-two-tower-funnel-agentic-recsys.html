@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Beyond the Two-Tower Funnel: Architecting Recommendation Systems for the Agentic Era</title>
+  <style>
+    :root {
+      --bg: #FBFBFB;
+      --fg: #111315;
+      --muted: #5A626A;
+      --border: #E2E4E6;
+      --code-bg: #F4F5F6;
+      --accent: #0052CC;
+      --callout-bg: #F0F4F8;
+      --callout-border: #0052CC;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #111315;
+        --fg: #ECEFF1;
+        --muted: #9BA3AF;
+        --border: #2A2E33;
+        --code-bg: #1A1D20;
+        --accent: #4C9AFF;
+        --callout-bg: #161F2E;
+        --callout-border: #4C9AFF;
+      }
+    }
+    body.light-theme {
+      --bg: #FBFBFB;
+      --fg: #111315;
+      --muted: #5A626A;
+      --border: #E2E4E6;
+      --code-bg: #F4F5F6;
+      --accent: #0052CC;
+      --callout-bg: #F0F4F8;
+      --callout-border: #0052CC;
+    }
+    body.dark-theme {
+      --bg: #111315;
+      --fg: #ECEFF1;
+      --muted: #9BA3AF;
+      --border: #2A2E33;
+      --code-bg: #1A1D20;
+      --accent: #4C9AFF;
+      --callout-bg: #161F2E;
+      --callout-border: #4C9AFF;
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      background-color: var(--bg);
+      color: var(--fg);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      font-size: 17px;
+      line-height: 1.65;
+      padding: 40px 20px;
+      transition: background-color 0.15s ease, color 0.15s ease;
+      display: flex;
+      justify-content: center;
+    }
+    .container {
+      width: 100%;
+      max-width: 690px;
+    }
+    .header-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 36px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border);
+    }
+    .brand {
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+    }
+    .theme-toggle {
+      background: none;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      color: var(--muted);
+      cursor: pointer;
+      font-size: 13px;
+      padding: 4px 10px;
+      transition: all 0.15s ease;
+    }
+    .theme-toggle:hover {
+      color: var(--fg);
+      border-color: var(--fg);
+    }
+    h1 {
+      font-size: 32px;
+      font-weight: 700;
+      line-height: 1.25;
+      letter-spacing: -0.02em;
+      margin-bottom: 24px;
+    }
+    h2 {
+      font-size: 22px;
+      font-weight: 600;
+      line-height: 1.35;
+      letter-spacing: -0.01em;
+      margin-top: 40px;
+      margin-bottom: 16px;
+    }
+    h3 {
+      font-size: 18px;
+      font-weight: 600;
+      line-height: 1.4;
+      margin-top: 28px;
+      margin-bottom: 12px;
+    }
+    p {
+      margin-bottom: 20px;
+    }
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    pre {
+      background-color: var(--code-bg);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 16px;
+      overflow-x: auto;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+      font-size: 14px;
+      line-height: 1.5;
+      margin: 24px 0;
+    }
+    code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+      font-size: 0.9em;
+      background-color: var(--code-bg);
+      padding: 2px 5px;
+      border-radius: 3px;
+      border: 1px solid var(--border);
+    }
+    pre code {
+      background-color: transparent;
+      padding: 0;
+      border: none;
+    }
+    ul, ol {
+      margin-bottom: 20px;
+      padding-left: 24px;
+    }
+    li {
+      margin-bottom: 8px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 28px 0;
+      font-size: 15px;
+    }
+    th, td {
+      border: 1px solid var(--border);
+      padding: 10px 14px;
+      text-align: left;
+    }
+    th {
+      background-color: var(--code-bg);
+      font-weight: 600;
+    }
+    hr {
+      border: 0;
+      border-top: 1px solid var(--border);
+      margin: 40px 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header-bar">
+      <a href="index.html" class="brand">Engineering Research &middot; Recommender Systems</a>
+      <button class="theme-toggle" id="theme-btn" onclick="toggleTheme()">Theme</button>
+    </div>
+
+    <h1>Beyond the Two-Tower Funnel: Architecting Recommendation Systems for the Agentic Era</h1>
+
+    <p>An electronics marketplace optimized its recommendation engine for eighteen months. The engineering team deployed a dual-encoder two-tower architecture for candidate generation, backed by a Deep Learning Recommendation Model (DLRM) scoring click-through probability across millions of user-item pairs. On human mobile web traffic, the system increased engagement metrics by fourteen percent.</p>
+
+    <p>When autonomous buying agents began interacting with the platform in late 2024, conversion rates plummeted.</p>
+
+    <p>An agent given the goal: "Purchase a 4K home projector under $1,200 with optical zoom, noise below 28 decibels, and delivery before Friday" sent structured queries to the platform search API.</p>
+
+    <p>The two-tower candidate generator returned twenty popular projectors based on collaborative filtering. Half lacked optical zoom. Several had acoustic noise exceeding 34 decibels. The agent burned tokens inspecting product specifications, discarded the candidates, and terminated the trajectory without purchasing.</p>
+
+    <p>This failure revealed an architectural mismatch. For fifteen years, internet search and recommendation pipelines were engineered for human visual consumption. They optimize for click-through rate (CTR), dwell time, and catalog browsing.</p>
+
+    <p>Autonomous agents do not browse feeds. They execute tasks against explicit constraint boundaries.</p>
+
+    <p>In the agentic era, recommender systems must undergo a dual transformation: transforming the backend from passive candidate scoring to goal-conditioned planning policies, and exposing deterministic constraint planes that machine buyers can query at wire speed.</p>
+
+    <pre><code>Classic Recommender Funnel (Engineered for Humans):
+[Entire Catalog: 10M Items]
+       │
+       ▼  Two-Tower Dual Encoder (ANN Vector Search)
+[Candidate Set: 1,000 Items]
+       │
+       ▼  DLRM / Deep &amp; Cross Network (Scoring P(Click))
+[Ranked Set: 50 Items]
+       │
+       ▼  Diversity &amp; Ad Placement (MMR)
+[Visual Feed: 10 Items] ──&gt; Human Scrolls &amp; Clicks (Optimized for Attention)
+
+Agentic Recommender Architecture (Engineered for Goal Execution):
+[User Goal / Agent Intent]
+       │
+       ▼
+[Goal-Conditioned Planning Policy (ARS)]
+       │
+       ├── Calls Semantic ID Generative Index (RQ-VAE Tokens)
+       ├── Executes Live Tool Verification (Inventory, Real-Time Pricing, SLA)
+       └── Resolves Constraint Satisfaction Problem (CSP)
+       │
+       ▼
+[Deterministic Execution Plan] ──&gt; Autonomous Checkout / Structured Proof</code></pre>
+
+    <hr>
+
+    <h2>The Collapse of the Three-Stage Funnel</h2>
+
+    <p>The three-stage funnel has served as the universal architecture for large-scale industrial recommenders:</p>
+    <ol>
+      <li><strong>Candidate Generation (Retrieval):</strong> Uses two-tower vector embeddings to compress user history and item features into a shared latent space, retrieving candidate sets via Approximate Nearest Neighbor (ANN) search.</li>
+      <li><strong>Scoring (Ranking):</strong> Applies deep neural networks (such as DLRM) to evaluate complex feature interactions and predict the likelihood of an interaction (<em>P</em>(click) or <em>P</em>(conversion)).</li>
+      <li><strong>Re-Ranking:</strong> Enforces business logic, category diversity, and promotional placement.</li>
+    </ol>
+
+    <p>This architecture relies on three assumptions that break down when agents enter the system.</p>
+
+    <h3>Assumption 1: Engagement Correlates with Success</h3>
+    <p>Traditional ranking models treat clicks and dwell time as positive reward signals. When an autonomous agent interacts with an API, extra network calls and page loads represent friction, latency, and token waste.</p>
+
+    <p>An agent that finds the exact item in a single API call records zero dwell time and a single request. Under traditional metrics, this interaction appears unsuccessful, even though task completion was optimal.</p>
+
+    <h3>Assumption 2: Soft Relevance Satisfies User Intent</h3>
+    <p>Two-tower embeddings operate on geometric proximity. If a user searches for a "laptop with 64GB RAM," a two-tower model considers an otherwise identical 32GB laptop very close in latent space. For a human browsing a screen, that recommendation might spark interest.</p>
+
+    <p>For an autonomous agent running an automated pipeline, an item failing a hard constraint is completely invalid. Soft similarity scoring generates false candidates that waste agent context budgets.</p>
+
+    <h3>Assumption 3: Catalogs are Static Between Batch Inferences</h3>
+    <p>Two-tower embeddings and offline item vectors assume catalog states change slowly. An agent requires real-time transactional certainty: exact current warehouse inventory, delivery guarantees, dynamic pricing discounts, and return policies.</p>
+
+    <p>Decoupling retrieval from state verification causes agents to abort checkout workflows at the final transaction step when live inventory fails to match vector predictions.</p>
+
+    <hr>
+
+    <h2>Generative Recommendation: Replacing ANN with Semantic IDs</h2>
+
+    <p>To overcome the latency and capacity limits of two-tower vector indexes, frontier recommendation research (such as the TIGER architecture and recent work from Google) has shifted toward <strong>Generative Recommendation (GR)</strong>.</p>
+
+    <p>Instead of computing dot products across millions of pre-computed vectors, generative models treat recommendation as autoregressive sequence generation over discrete <strong>Semantic IDs</strong>.</p>
+
+    <pre><code>Vector Retrieval (Classic):
+Query Vector ────(ANN Dot Product)────&gt; Search 10M vectors in HNSW index
+
+Generative Retrieval (Modern):
+User History Tokens ────(Autoregressive LLM)────&gt; Emits Semantic ID: [C48, B12, V09]
+                                                         │
+                                                  Maps Deterministically
+                                                  to Product SKU</code></pre>
+
+    <h3>Residual Quantized VAE (RQ-VAE) Tokenization</h3>
+    <p>A Semantic ID is a hierarchical tuple generated by a Residual Quantized Variational Autoencoder (RQ-VAE).</p>
+
+    <p>The RQ-VAE compresses an item's continuous semantic features into a tree of discrete codebook indices:</p>
+    <ul>
+      <li>Layer 1 Token (<em>c</em><sub>1</sub>): Broad domain or product category.</li>
+      <li>Layer 2 Token (<em>c</em><sub>2</sub>): Subcategory, brand tier, or functional form.</li>
+      <li>Layer 3 Token (<em>c</em><sub>3</sub>): Specific variant, material, or configuration.</li>
+    </ul>
+
+    <p>Every item in the catalog receives a deterministic tuple, such as <code>[48, 12, 9]</code>.</p>
+
+    <p>When recommending an item, a decoder-only transformer autoregressively predicts the tokens of the target item given the user's historical interaction sequence. Because the token space is structured as a prefix tree (trie), inference runs in <em>O</em>(<em>L</em>) steps (where <em>L</em> is the codebook depth, typically 3 or 4) rather than scanning millions of items in a vector database.</p>
+
+    <p>Generative recommendation unifies candidate generation and ranking into a single forward pass, providing high semantic coherence without maintaining separate embedding indexes.</p>
+
+    <hr>
+
+    <h2>The Recommender as an Agent: Goal-Conditioned Policies</h2>
+
+    <p>Generative retrieval resolves catalog scaling, but recommendation in the agentic era requires more than generating item tokens. It requires transforming the recommender itself into an active agent.</p>
+
+    <p>Frameworks like <em>Agent4Rec</em>, <em>ToolRec</em>, and <em>RecMind</em> demonstrate this transition. The recommender shifts from a passive ranking matrix to an <strong>Agentic Recommender System (ARS)</strong> operating as a goal-conditioned policy.</p>
+
+    <p>An ARS loop consists of four discrete capabilities:</p>
+    <ol>
+      <li><strong>Constraint Extraction:</strong> Translating ambiguous human prompts into formal constraint satisfaction schemas.</li>
+      <li><strong>Tool-Augmented Verification:</strong> Querying live microservices to confirm pricing, stock allocations, and delivery schedules before recommending an item.</li>
+      <li><strong>Counterfactual Simulation:</strong> Evaluating trade-offs across competing requirements (for example, comparing flight duration against total cost).</li>
+      <li><strong>Proactive Elicitation:</strong> Initiating targeted, single-question dialogues to resolve underspecified constraints.</li>
+    </ol>
+
+    <p>Here is a functional implementation of an Agentic Recommender Policy Engine:</p>
+
+    <pre><code>from dataclasses import dataclass
+from typing import Any
+import json
+
+@dataclass
+class RecommendationGoal:
+    category: str
+    hard_constraints: dict[str, Any]
+    soft_preferences: list[str]
+    max_candidates: int = 3
+
+class AgenticRecommenderPolicy:
+    def __init__(self, inventory_tool, review_analysis_tool):
+        self.inventory = inventory_tool
+        self.reviews = review_analysis_tool
+
+    def execute_recommendation_trajectory(self, goal: RecommendationGoal) -> dict[str, Any]:
+        # Step 1: Constraint-First Candidate Retrieval
+        # Filter strictly on deterministic fields (budget, physical specs, availability)
+        raw_candidates = self.inventory.query_with_constraints(
+            category=goal.category,
+            price_ceiling=goal.hard_constraints.get("max_price"),
+            required_attributes=goal.hard_constraints.get("specs", {})
+        )
+
+        if not raw_candidates:
+            return {
+                "status": "unresolvable_constraints",
+                "message": "No inventory satisfies the required physical specifications.",
+                "candidates": []
+            }
+
+        verified_candidates = []
+
+        # Step 2: Tool-Augmented Live Verification
+        for item in raw_candidates:
+            sku = item["sku"]
+            
+            # Verify live stock allocation
+            stock_status = self.inventory.check_live_stock(sku)
+            if not stock_status.get("available"):
+                continue
+
+            # Verify acoustic noise / physical metrics using specialized review tool
+            acoustic_data = self.reviews.extract_metric(sku, metric_name="noise_decibels")
+            max_noise = goal.hard_constraints.get("max_noise_db")
+            
+            if max_noise and acoustic_data.get("p95_db", 999) > max_noise:
+                continue
+
+            verified_candidates.append({
+                "sku": sku,
+                "title": item["title"],
+                "price": item["price"],
+                "live_stock": stock_status["quantity"],
+                "verified_noise_db": acoustic_data.get("p95_db"),
+                "delivery_guarantee": stock_status.get("earliest_delivery")
+            })
+
+            if len(verified_candidates) >= goal.max_candidates:
+                break
+
+        # Step 3: Trajectory Output Formatting
+        return {
+            "status": "success",
+            "decision_rationale": "Filtered against hard acoustic and price constraints with live stock verification.",
+            "recommendations": verified_candidates
+        }</code></pre>
+
+    <p>The system executes deterministic tool verifications against live operational infrastructure, ensuring that every recommended item is actionable.</p>
+
+    <hr>
+
+    <h2>Machine-to-Machine Commerce: The Dual-Interface Architecture</h2>
+
+    <p>Modern recommendation platforms must serve two fundamentally different consumers:</p>
+    <ol>
+      <li><strong>Human Users:</strong> Consuming interactive mobile and web applications.</li>
+      <li><strong>Buyer Agents:</strong> Consuming headless APIs on behalf of enterprises and individual shoppers.</li>
+    </ol>
+
+    <p>Serving both requires decoupling the presentation layer from the constraint evaluation engine.</p>
+
+    <pre><code>Unified Enterprise Recommendation Platform:
+
+               [Human User (Browser/App)]          [Autonomous Buyer Agent]
+                            │                                  │
+                            ▼                                  ▼
+                [Conversational Agent UI]            [JSON-RPC / MCP Endpoint]
+                - Proactive preference elicitation   - Strict Pydantic input schemas
+                - Visual comparison tables           - Instant constraint filtering
+                            │                                  │
+                            └────────────────┬─────────────────┘
+                                             │
+                                             ▼
+                          [Constraint Evaluation Engine]
+                                             │
+                       ┌─────────────────────┴─────────────────────┐
+                       ▼                                           ▼
+            [Generative Semantic Index]                  [Live Inventory &amp; Tools]
+            RQ-VAE Autoregressive IDs                   Real-time stock, pricing, SLAs</code></pre>
+
+    <h3>The Machine-Facing Interface: Structured Constraint Protocols</h3>
+    <p>For buyer agents, recommenders must eliminate paginated HTML scraping and fuzzy search endpoints. The interface must expose structured protocols (such as Model Context Protocol tools or typed JSON-RPC):</p>
+
+    <pre><code>// Incoming Agent Request
+{
+  "jsonrpc": "2.0",
+  "method": "recsys.resolve_constraints",
+  "params": {
+    "category": "projectors",
+    "filter": {
+      "price_usd": {"lte": 1200},
+      "resolution": "4K",
+      "optical_zoom": true,
+      "noise_db": {"lte": 28},
+      "delivery_before": "2026-10-02T12:00:00Z"
+    }
+  },
+  "id": "req_849102"
+}
+
+// Deterministic Recommender Response
+{
+  "jsonrpc": "2.0",
+  "result": {
+    "matches": [
+      {
+        "sku": "PROJ-OPT-4K-28",
+        "price_usd": 1149.00,
+        "stock_reserved_seconds": 300,
+        "reservation_token": "res_tok_94819",
+        "verification_proof": {
+          "noise_test_db": 26.5,
+          "zoom_ratio": "1.3x",
+          "guaranteed_delivery": "2026-10-01T16:00:00Z"
+        }
+      }
+    ]
+  },
+  "id": "req_849102"
+}</code></pre>
+
+    <p>The response includes an ephemeral inventory reservation token (<code>res_tok_94819</code>). This allows the buyer agent to execute the transaction immediately without race conditions on stock.</p>
+
+    <hr>
+
+    <h2>Architectural Evolution of Recommender Systems</h2>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Architectural Axis</th>
+          <th>Traditional Funnel (2015–2023)</th>
+          <th>Generative Recommendation (2024–2025)</th>
+          <th>Agentic Recommender Systems (2025–2026)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Primary Objective</strong></td>
+          <td>Maximize Click-Through Rate (<em>P</em>(click))</td>
+          <td>Next-item sequence prediction</td>
+          <td>Multi-constraint task completion</td>
+        </tr>
+        <tr>
+          <td><strong>Candidate Retrieval</strong></td>
+          <td>Two-Tower dual encoders + ANN index</td>
+          <td>Autoregressive decoding over Semantic IDs</td>
+          <td>Constraint satisfaction + live tool verification</td>
+        </tr>
+        <tr>
+          <td><strong>User Representation</strong></td>
+          <td>Static interaction history vector</td>
+          <td>Sequential token history</td>
+          <td>Dynamic goal state + conversational memory</td>
+        </tr>
+        <tr>
+          <td><strong>Handling Hard Limits</strong></td>
+          <td>Ad-hoc post-filtering in re-ranking layer</td>
+          <td>Constrained decoding over prefix tries</td>
+          <td>Deterministic pre-filtering in planning loop</td>
+        </tr>
+        <tr>
+          <td><strong>Consumer Identity</strong></td>
+          <td>Human viewing visual interface</td>
+          <td>Human viewing visual interface</td>
+          <td>Autonomous agent executing transactions</td>
+        </tr>
+        <tr>
+          <td><strong>Core Operational Metric</strong></td>
+          <td>Dwell Time / NDCG / CTR</td>
+          <td>Cross-entropy loss / Recall@K</td>
+          <td>Trajectory Success Rate / Token Efficiency</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>Recommendation systems are shifting from engagement engines into operational planners.</p>
+
+    <p>The two-tower funnel was engineered for a web where humans scrolled through infinite feeds of uncertain candidates. In an internet increasingly navigated by autonomous software agents, recommendation systems must deliver deterministic constraint satisfaction, live inventory guarantees, and machine-native transaction APIs.</p>
+  </div>
+
+  <script>
+    function toggleTheme() {
+      const body = document.body;
+      const isDark = body.classList.contains('dark-theme') || 
+        (!body.classList.contains('light-theme') && window.matchMedia('(prefers-color-scheme: dark)').matches);
+      
+      if (isDark) {
+        body.classList.remove('dark-theme');
+        body.classList.add('light-theme');
+      } else {
+        body.classList.remove('light-theme');
+        body.classList.add('dark-theme');
+      }
+    }
+  </script>
+</body>
+</html>

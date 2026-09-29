@@ -1,0 +1,61 @@
+{
+  "artifact_hashes": {
+    "cases.json": "412527c6de6e97b47bcbc6ce0e9f133475f8994bc2bda9b0b22b0a796fc6883e",
+    "comparison.json": "78fa3e8fb521a882bea5776d4aff68292840ba67f51a9d999761a9373b809b3d",
+    "evaluator_coverage.json": "93f2a96d4c2a80fe905aa353df5f545e2f98e1bf1a8f5d841188753424f62855",
+    "featured_trace.json": "d131aa7aa407324361e834ba4c712740e8b6177f26397f7003dc93ac384e887d",
+    "promotion_decision.json": "e67a85ffad4168c48c7eeaabdc1c09a0b7c64ff5ace94674a0d6b34a50bff20e",
+    "promotion_evaluation.json": "61507f4b8f4417fc1ff627de674b5d45d2d357b327113f10ae51944652c82e4b",
+    "records/access.json": "f30cbf257bce3f2c48bf1fece055d78373fe28da6bc21f3fea48a82c13f9183e",
+    "records/approvals.json": "6c07076f87fd8981f2250d9bd6bb38f7feb1a17a20b5fa0d51091708246ed068",
+    "records/employees.json": "9b913f0b952ca9ad5992929fd83970d0d4f08318795d20f86e6a9a87c3ee47d7",
+    "records/notes.json": "d2763f955d4985b02159612e326f47b303392f86131df0b7d6e6578315a2415d",
+    "records/policies.json": "764395e6ffc3f391501514e77cebb1866ef57e84cd043fb5bf064fe1b53ef582",
+    "records/roles.json": "3fcb16e0d3342416ad8f5cf77b5b259085aa1a0f529afff9c7bb9ba2789a328b",
+    "report.md": "4065946d163744a7af73bdec1601ed590ad8eafff4ab492d89bd5c9b9bbebd5d",
+    "results.json": "5c0cfb6e8896b88e08cc598eaefc48a8294703d14c1aae57e348ae6bda08141e",
+    "semantic_contract.json": "092ac6f9a64a95c2f5a2a59f46fbf045998813af675059619a8c6b7782dee727",
+    "traces.jsonl": "c94655c762ad04695f86a94e542a58b6676c5fde17389b2ca2f28f7a969f926a"
+  },
+  "conditions": {
+    "raw-record": {
+      "candidate_id": "northstar-raw-record",
+      "manifest_id": "miranda-distortion-northstar-raw-record"
+    },
+    "retrieval": {
+      "candidate_id": "northstar-retrieval",
+      "manifest_id": "miranda-distortion-northstar-retrieval"
+    },
+    "semantic": {
+      "candidate_id": "northstar-semantic",
+      "manifest_id": "miranda-distortion-northstar-semantic"
+    }
+  },
+  "created_at": "2026-08-26T12:00:00Z",
+  "dataset": "northstar_access_semantics@1.0.0",
+  "experiment": "northstar_access_semantics",
+  "live": {
+    "interval_seconds": 5,
+    "model": "google:gemini-3.5-flash-lite",
+    "reason": "The deterministic replay does not make live Gemini requests.",
+    "rpm_limit": 15,
+    "slice_cases": 8,
+    "status": "not_run",
+    "trials": 3,
+    "workers": 1
+  },
+  "mode": "replay",
+  "model": "google:gemini-3.5-flash-lite",
+  "package_versions": {
+    "agent-improvement-lab": "0.1.0",
+    "pydantic": "2.13.4",
+    "pydantic-ai": "2.33.0",
+    "pydantic-evals": "2.33.0",
+    "python": "3.14.6"
+  },
+  "runtime": {
+    "name": "northstar-miranda-distortion-replay",
+    "version": "1.0.0"
+  },
+  "seed": 0
+}

@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>When Customer Assistants Need Graph Memory</title>
+  <style>
+    :root {
+      --bg: #FBFBFB;
+      --fg: #111315;
+      --muted: #5A626A;
+      --border: #E2E4E6;
+      --code-bg: #F4F5F6;
+      --accent: #0052CC;
+      --callout-bg: #F0F4F8;
+      --callout-border: #0052CC;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #111315;
+        --fg: #ECEFF1;
+        --muted: #9BA3AF;
+        --border: #2A2E33;
+        --code-bg: #1A1D20;
+        --accent: #4C9AFF;
+        --callout-bg: #161F2E;
+        --callout-border: #4C9AFF;
+      }
+    }
+    body.light-theme {
+      --bg: #FBFBFB;
+      --fg: #111315;
+      --muted: #5A626A;
+      --border: #E2E4E6;
+      --code-bg: #F4F5F6;
+      --accent: #0052CC;
+      --callout-bg: #F0F4F8;
+      --callout-border: #0052CC;
+    }
+    body.dark-theme {
+      --bg: #111315;
+      --fg: #ECEFF1;
+      --muted: #9BA3AF;
+      --border: #2A2E33;
+      --code-bg: #1A1D20;
+      --accent: #4C9AFF;
+      --callout-bg: #161F2E;
+      --callout-border: #4C9AFF;
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      background-color: var(--bg);
+      color: var(--fg);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      font-size: 17px;
+      line-height: 1.65;
+      padding: 40px 20px;
+      display: flex;
+      justify-content: center;
+      transition: background-color 0.2s ease, color 0.2s ease;
+    }
+    .container {
+      max-width: 690px;
+      width: 100%;
+    }
+    header {
+      margin-bottom: 2.5rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+    h1 {
+      font-size: 2.1rem;
+      line-height: 1.25;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.5rem;
+    }
+    .theme-toggle {
+      background: none;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      padding: 6px 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 13px;
+      white-space: nowrap;
+      transition: border-color 0.2s ease, color 0.2s ease;
+    }
+    .theme-toggle:hover {
+      color: var(--fg);
+      border-color: var(--accent);
+    }
+    h2 {
+      font-size: 1.4rem;
+      margin-top: 2.2rem;
+      margin-bottom: 0.8rem;
+      letter-spacing: -0.01em;
+      font-weight: 600;
+    }
+    p {
+      margin-bottom: 1.2rem;
+    }
+    blockquote {
+      border-left: 3px solid var(--accent);
+      background-color: var(--callout-bg);
+      padding: 12px 18px;
+      margin: 1.4rem 0;
+      border-radius: 0 6px 6px 0;
+      font-style: italic;
+      color: var(--fg);
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1.6rem 0;
+      font-size: 14.5px;
+    }
+    th, td {
+      border: 1px solid var(--border);
+      padding: 10px 12px;
+      text-align: left;
+    }
+    th {
+      background-color: var(--code-bg);
+      font-weight: 600;
+    }
+    pre {
+      background-color: var(--code-bg);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 14px 16px;
+      overflow-x: auto;
+      margin: 1.4rem 0;
+      font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+      font-size: 13.5px;
+      line-height: 1.5;
+    }
+    code {
+      font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+      font-size: 14px;
+      background-color: var(--code-bg);
+      padding: 2px 5px;
+      border-radius: 4px;
+      border: 1px solid var(--border);
+    }
+    pre code {
+      background-color: transparent;
+      padding: 0;
+      border: none;
+    }
+    ul, ol {
+      margin: 1rem 0 1.4rem 1.6rem;
+    }
+    li {
+      margin-bottom: 0.5rem;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 2.2rem 0;
+    }
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div>
+        <h1>When Customer Assistants Need Graph Memory</h1>
+      </div>
+      <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">Toggle Theme</button>
+    </header>
+
+    <p>Customer support tickets arrive as deceptively simple sentences. A customer writes in with a straightforward inquiry, yet fulfilling that request requires an assistant to traverse half a dozen disconnected backend systems.</p>
+
+    <p>Consider a familiar support message:</p>
+
+    <blockquote>
+      The battery for the camera I bought last year has failed. Is it covered by my warranty? Please use my current delivery address.
+    </blockquote>
+
+    <p>To formulate an answer that an operations team can safely trust, an automated assistant must perform five distinct tasks in sequence. It must identify the customer, locate the exact camera order from twelve months ago, inspect the warranty schedule tied to that specific SKU, confirm which replacement pack fits that model, and verify the customer's current shipping address.</p>
+
+    <p>The required answer is an explicit path through enterprise records. When you store those facts in graph memory, that traversal becomes a first-class operation. When you attach validity timestamps and source IDs to every edge, the path becomes safe for production use.</p>
+
+    <p>The question we set out to answer in our <a href="file:///C:/Users/j/afiavana/research/experiments/customer_assistant_memory">customer assistant memory experiment</a> is straightforward: under what conditions does graph memory justify its operational overhead?</p>
+
+    <hr>
+
+    <h2>The Answer Path Crosses Multiple Records</h2>
+
+    <p>Every production support case has an underlying topology. In our benchmark, the camera support ticket maps to a directed graph:</p>
+
+    <pre><code>Customer
+  ├── PLACED ──> Order ── CONTAINS ──> Camera
+  │                                      ├── COVERED_BY ──> Warranty
+  │                                      └── COMPATIBLE_WITH ──> Battery
+  ├── OPENED ──> Support ticket ── REPORTS ──> Battery issue
+  └── HAS_ADDRESS ──> Current delivery address</code></pre>
+
+    <p>Each edge resolves a necessary condition of the request:</p>
+    <ul>
+      <li>The purchase order identifies the specific hardware variant the customer actually owns.</li>
+      <li>The hardware node points directly to the active warranty contract and compatible part catalog.</li>
+      <li>The support ticket links the reported symptom to the hardware fault.</li>
+      <li>The address record designates where replacement hardware may lawfully be shipped.</li>
+    </ul>
+
+    <p>Critically, the assistant must constrain this entire traversal to a single customer scope while checking temporal validity at every step. A relocated customer frequently has an expired address on file alongside a current one. A warranty expires on a specific calendar date. A manufacturer issues updated replacement guidelines that override older support articles.</p>
+
+    <blockquote>
+      Graph memory proves its worth when an answer requires connected facts across distinct records, time horizons, and source systems.
+    </blockquote>
+
+    <hr>
+
+    <h2>A Flat List of Notes Discards Structural Joins</h2>
+
+    <p>When teams implement memory using standard flat document stores, they typically convert customer interactions into isolated text chunks:</p>
+
+    <pre><code>Customer note: Customer owns a Lumix camera.
+Order note: Customer purchased camera body on 2025-04-12.
+Ticket note: Camera battery fails to hold charge.
+Warranty note: Standard battery packs carry 24-month limited coverage.
+Address note: Customer updated shipping address in Austin.</code></pre>
+
+    <p>Each note contains relevant keywords, but the relational glue between them has evaporated.</p>
+
+    <p>If you query this store with a recent-window heuristic, the system retrieves the latest support ticket and the updated address, yet it drops the older purchase invoice and warranty documentation. If you rely purely on semantic vector search, the embedding model frequently retrieves a high-scoring battery ticket belonging to an entirely different customer who described identical symptoms. The language model must then guess whether every retrieved snippet belongs to the same hardware asset.</p>
+
+    <p>Graph memory internalizes these relational joins into the retrieval pass itself. Execution begins at the authenticated customer identity, traverses typed edges to the target order, and collects only the records bound to that validated lineage:</p>
+
+    <pre><code>from datetime import datetime
+from pydantic import BaseModel, Field
+
+class MemoryEdge(BaseModel):
+    source_id: str
+    target_id: str
+    relation: str
+    observed_at: datetime
+    valid_from: datetime
+    valid_to: datetime
+    confidence: float = Field(ge=0.0, le=1.0)
+    status: str = "active"
+
+    def is_currently_valid(self, as_of: datetime) -> bool:
+        return self.valid_from <= as_of <= self.valid_to and self.status == "active"</code></pre>
+
+    <p>A graph containing unverified links or stale timestamps will still mislead an agent. The database structure alone does not guarantee correctness; temporal boundaries and authority scores supply the necessary safeguards.</p>
+
+    <hr>
+
+    <h2>Grounding Memory in Typed Entities and Valid Time</h2>
+
+    <p>Our implementation models customer interactions across nine distinct node types:</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Node</th>
+          <th>Functional Responsibility</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>Customer</code></td>
+          <td>The verified account entity that anchors record lineage.</td>
+        </tr>
+        <tr>
+          <td><code>Ticket</code></td>
+          <td>The active support interaction and its state machine.</td>
+        </tr>
+        <tr>
+          <td><code>Order</code></td>
+          <td>The financial purchase record and fulfillment timestamp.</td>
+        </tr>
+        <tr>
+          <td><code>Product</code></td>
+          <td>The hardware SKU, assembly variant, or replacement part.</td>
+        </tr>
+        <tr>
+          <td><code>Warranty</code></td>
+          <td>Legal coverage clauses, duration limits, and exceptions.</td>
+        </tr>
+        <tr>
+          <td><code>Issue</code></td>
+          <td>The categorized mechanical or electrical failure.</td>
+        </tr>
+        <tr>
+          <td><code>Address</code></td>
+          <td>Physical delivery coordinates bound to effective date ranges.</td>
+        </tr>
+        <tr>
+          <td><code>Preference</code></td>
+          <td>Communication channels and opt-in settings.</td>
+        </tr>
+        <tr>
+          <td><code>Resolution</code></td>
+          <td>Authoritative support decisions and approved remediation policies.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>The relationships define the precise operational dependencies between nodes:</p>
+
+    <pre><code>Customer -[PLACED]-> Order
+Order -[CONTAINS]-> Product
+Product -[COVERED_BY]-> Warranty
+Ticket -[REPORTS]-> Issue
+Product -[COMPATIBLE_WITH]-> Replacement
+Customer -[HAS_ADDRESS]-> Address</code></pre>
+
+    <p>Every edge in our benchmark carries six metadata attributes:</p>
+    <ul>
+      <li><code>observed_at</code>: The exact timestamp when our ingestion pipeline recorded the fact.</li>
+      <li><code>valid_from</code> and <code>valid_to</code>: The interval during which the relationship legally governs support decisions.</li>
+      <li><code>source_id</code>: The system of record providing evidentiary provenance (such as <code>billing-postgres</code> or <code>zendesk-core</code>).</li>
+      <li><code>confidence</code>: Extraction certainty score for inferred relations.</li>
+      <li><code>status</code>: Lifecycle marker (<code>active</code>, <code>closed</code>, <code>superseded</code>, or <code>disputed</code>).</li>
+    </ul>
+
+    <p>These attributes protect the agent from common production traps. When a customer moves, the previous address edge is marked <code>superseded</code> with a terminated <code>valid_to</code> date. When an agent verifies warranty eligibility, it evaluates coverage as of the ticket creation date rather than today's wall-clock time.</p>
+
+    <hr>
+
+    <h2>Evaluating Four Memory Architectures Under Equal Conditions</h2>
+
+    <p>To measure the real impact of memory layout, we constructed a controlled test harness. The agent policy, skill toolset, prompts, and output schema remained strictly identical across runs; only the underlying retrieval engine changed:</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Architecture</th>
+          <th>Retrieval Strategy</th>
+          <th>Primary Failure Mode</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>flat_recent</code></td>
+          <td>Reads a fixed chronological window of recent interactions.</td>
+          <td>Older foundational purchase and warranty records fall outside the window.</td>
+        </tr>
+        <tr>
+          <td><code>vector_chroma</code></td>
+          <td>Cosine similarity retrieval over customer-scoped chunks.</td>
+          <td>Surface semantic matches lack relational joins or pull noisy neighbor data.</td>
+        </tr>
+        <tr>
+          <td><code>graph_ladybug</code></td>
+          <td>Breadth-first graph traversal anchored to customer ID with time filters.</td>
+          <td>Broken entity links or incorrect timestamps yield empty or diverted paths.</td>
+        </tr>
+        <tr>
+          <td><code>hybrid_graph_vector</code></td>
+          <td>Vector search seeds candidates; graph traversal validates structural path.</td>
+          <td>Multi-stage pipeline adds latency and operational complexity.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>The evaluation harness ran across 24 enterprise support cases divided into four equal categories: direct lookups, multi-step relational traversals, temporal state transitions, and missing-evidence conflict cases.</p>
+
+    <p>We used embedded LadybugDB for the graph store, Chroma with <code>sentence-transformers/all-MiniLM-L6-v2</code> for dense embeddings, and executed the entire suite deterministically on CPU inside the <a href="file:///C:/Users/j/afiavana/research/experiments/customer_assistant_memory">customer assistant memory harness</a>.</p>
+
+    <hr>
+
+    <h2>Benchmark Results: The Multi-Step Relational Divide</h2>
+
+    <p>When looking across all 24 cases, top-line accuracy figures can easily hide where systems fail:</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Method</th>
+          <th>Evidence Recall</th>
+          <th>Path Recall</th>
+          <th>Answer Accuracy</th>
+          <th>Provenance Precision</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>flat_recent</code></td>
+          <td>0.6201</td>
+          <td>0.0000</td>
+          <td>0.4583</td>
+          <td>0.5000</td>
+        </tr>
+        <tr>
+          <td><code>vector_chroma</code></td>
+          <td>0.9625</td>
+          <td>0.0000</td>
+          <td>0.8750</td>
+          <td>0.9708</td>
+        </tr>
+        <tr>
+          <td><code>graph_ladybug</code></td>
+          <td>0.9545</td>
+          <td>0.9545</td>
+          <td>0.9583</td>
+          <td>0.9292</td>
+        </tr>
+        <tr>
+          <td><code>hybrid_graph_vector</code></td>
+          <td>0.9545</td>
+          <td>0.9545</td>
+          <td>0.9583</td>
+          <td>0.9292</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>The critical divergence emerges when we isolate the multi-step relationship category:</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Method</th>
+          <th>Evidence Recall</th>
+          <th>Path Recall</th>
+          <th>Answer Accuracy</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>flat_recent</code></td>
+          <td>0.4958</td>
+          <td>0.0000</td>
+          <td>0.0000</td>
+        </tr>
+        <tr>
+          <td><code>vector_chroma</code></td>
+          <td>0.8625</td>
+          <td>0.0000</td>
+          <td>0.5000</td>
+        </tr>
+        <tr>
+          <td><code>graph_ladybug</code></td>
+          <td>1.0000</td>
+          <td>1.0000</td>
+          <td>1.0000</td>
+        </tr>
+        <tr>
+          <td><code>hybrid_graph_vector</code></td>
+          <td>1.0000</td>
+          <td>1.0000</td>
+          <td>1.0000</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>Dense embeddings retrieved individual documents effectively, achieving 0.8625 evidence recall on multi-step queries, but failed to assemble the relational path between them. Because vector search treats each chunk as an island in embedding space, it scored 0.0000 on path recall, leading to an answer accuracy of only 0.5000.</p>
+
+    <p>Both <code>graph_ladybug</code> and <code>hybrid_graph_vector</code> achieved 1.0000 across evidence recall, path recall, and final answer accuracy on these multi-step queries. They followed the verified link from order to SKU to warranty contract without relying on language model guesswork.</p>
+
+    <p>In our featured camera battery case, this difference determined whether the case required human intervention:</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Architecture</th>
+          <th>System Decision</th>
+          <th>Evidence Recall</th>
+          <th>Path Recall</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>flat_recent</code></td>
+          <td><code>needs_human_review</code></td>
+          <td>0.6250</td>
+          <td>0.0000</td>
+        </tr>
+        <tr>
+          <td><code>vector_chroma</code></td>
+          <td><code>needs_human_review</code></td>
+          <td>0.6250</td>
+          <td>0.0000</td>
+        </tr>
+        <tr>
+          <td><code>graph_ladybug</code></td>
+          <td><code>answer</code></td>
+          <td>1.0000</td>
+          <td>1.0000</td>
+        </tr>
+        <tr>
+          <td><code>hybrid_graph_vector</code></td>
+          <td><code>answer</code></td>
+          <td>1.0000</td>
+          <td>1.0000</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>Both flat and vector retrievers missed the conjunction of active warranty policy and current shipping coordinates, triggering our safety policy and routing the ticket to an agent queue. The graph engines assembled the entire chain (<code>order-01</code> &rarr; <code>product-01</code> &rarr; <code>warranty-01</code> &rarr; <code>replacement-01</code> &rarr; <code>address-current-01</code>), validating both currency and authority before generating an automated response.</p>
+
+    <hr>
+
+    <h2>Inspecting Execution Traces</h2>
+
+    <p>Rather than reviewing unstructured model dialogue, production monitoring requires inspecting execution traces:</p>
+
+    <pre><code>Ticket Input (Customer: cust-01)
+  ├── 1. find_customer(cust-01) ──> OK
+  ├── 2. traverse_graph(cust-01 -[PLACED]-> Order) ──> order-01
+  ├── 3. traverse_graph(order-01 -[CONTAINS]-> Product) ──> product-01 (Camera)
+  ├── 4. traverse_graph(product-01 -[COVERED_BY]-> Warranty) ──> warranty-01 (Valid through 2026-12-31)
+  ├── 5. traverse_graph(product-01 -[COMPATIBLE_WITH]-> Part) ──> replacement-01 (Battery Pack)
+  ├── 6. filter_edges(cust-01 -[HAS_ADDRESS]-> Address, status="active") ──> address-current-01
+  └── 7. synthesize_response() ──> Approved for automated resolution</code></pre>
+
+    <p>When an engine fails, the trace exposes the breakdown immediately:</p>
+    <ul>
+      <li>The flat window drops <code>warranty-01</code> because the original invoice sits outside the rolling 30-day window.</li>
+      <li>The vector retriever pulls an address update from <code>cust-04</code> due to overlapping street terminology.</li>
+      <li>An unindexed graph returns an expired billing address because the query omitted the <code>valid_to</code> predicate.</li>
+    </ul>
+
+    <p>Making the traversal explicit allows engineering teams to debug retrieval failures deterministically, isolating whether an issue stemmed from missing raw data, faulty entity resolution, or improper temporal filtering.</p>
+
+    <hr>
+
+    <h2>Architectural Trade-offs and Decision Framework</h2>
+
+    <p>Graph databases introduce operational overhead that pure vector stores avoid. Before committing to a graph architecture, engineering teams should evaluate their retrieval requirements along four dimensions:</p>
+
+    <ol>
+      <li><strong>Relational Depth</strong>: Does answering a request require joining three or more distinct business entities? If queries consistently touch a single document or simple key-value pairs, a vector index or standard document store is more maintainable.</li>
+      <li><strong>Temporal Volatility</strong>: Do customer attributes change over time while older interactions remain on record? If shipping addresses, warranty terms, or account tiers evolve, explicit validity intervals on graph edges prevent stale data contamination.</li>
+      <li><strong>Auditability and Compliance</strong>: Must the system prove exactly why an automated warranty replacement or refund was authorized? Graph memory preserves an immutable chain of custody from original purchase to current ticket.</li>
+      <li><strong>Data Hygiene Dependency</strong>: A graph is only as reliable as its entity extraction and edge maintenance. If your pipeline creates incorrect edges between similar products, the assistant will traverse that erroneous path with complete confidence.</li>
+    </ol>
+
+    <p>When your application requires joining disparate business records across shifting temporal boundaries, graph memory provides the structural foundation that vector similarity alone cannot deliver.</p>
+
+    <p>All evaluation scripts, datasets, and benchmark traces are available in the <a href="file:///C:/Users/j/afiavana/research/experiments/customer_assistant_memory">customer assistant memory experiment</a>.</p>
+  </div>
+
+  <script>
+    function toggleTheme() {
+      const body = document.body;
+      if (body.classList.contains('dark-theme')) {
+        body.classList.remove('dark-theme');
+        body.classList.add('light-theme');
+      } else if (body.classList.contains('light-theme')) {
+        body.classList.remove('light-theme');
+        body.classList.add('dark-theme');
+      } else {
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        body.classList.add(prefersDark ? 'light-theme' : 'dark-theme');
+      }
+    }
+  </script>
+</body>
+</html>

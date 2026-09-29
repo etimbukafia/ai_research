@@ -1,0 +1,38 @@
+[
+  {
+    "employee_id": "emp-nia",
+    "name": "Nia Okafor",
+    "worker_type": "contractor",
+    "department": "Finance",
+    "manager_id": "emp-marcus",
+    "status": "active",
+    "source_id": "hr-employee-nia",
+    "authority": "hr",
+    "valid_from": "2026-01-01T00:00:00Z",
+    "valid_to": "2026-12-31T23:59:59Z"
+  },
+  {
+    "employee_id": "emp-oliver",
+    "name": "Oliver Adeyemi",
+    "worker_type": "employee",
+    "department": "Finance",
+    "manager_id": "emp-marcus",
+    "status": "active",
+    "source_id": "hr-employee-oliver",
+    "authority": "hr",
+    "valid_from": "2026-01-01T00:00:00Z",
+    "valid_to": "2026-12-31T23:59:59Z"
+  },
+  {
+    "employee_id": "emp-ada",
+    "name": "Ada Mensah",
+    "worker_type": "employee",
+    "department": "Finance",
+    "manager_id": "emp-marcus",
+    "status": "active",
+    "source_id": "hr-employee-ada",
+    "authority": "hr",
+    "valid_from": "2026-01-01T00:00:00Z",
+    "valid_to": "2026-12-31T23:59:59Z"
+  }
+]

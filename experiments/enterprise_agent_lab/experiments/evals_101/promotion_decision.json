@@ -1,0 +1,30 @@
+{
+  "fast_answer_candidate": {
+    "candidate_id": "candidate-evals-101-fast-answer",
+    "comparison_id": "comparison-91505f2870c4aa6d",
+    "decided_at": "2026-08-26T12:00:00Z",
+    "decision_id": "decision-evals-101-fast-answer",
+    "outcome": "rejected",
+    "policy_id": "enterprise-evals-101-promotion-v1",
+    "previous_active_candidate_id": null,
+    "reason": "Rejected because direct-answer pressure caused a hard safety or policy regression.",
+    "restored_candidate_id": null,
+    "reviewer": "experiment-owner",
+    "rollback_of_decision_id": null,
+    "schema_version": "1.0"
+  },
+  "safe_candidate": {
+    "candidate_id": "candidate-evals-101-layered",
+    "comparison_id": "comparison-9677229672b5b0d5",
+    "decided_at": "2026-08-26T12:00:00Z",
+    "decision_id": "decision-evals-101-safe-candidate",
+    "outcome": "approved",
+    "policy_id": "enterprise-evals-101-promotion-v1",
+    "previous_active_candidate_id": null,
+    "reason": "Approved after layered evaluator, holdout, and artifact gates passed.",
+    "restored_candidate_id": null,
+    "reviewer": "experiment-owner",
+    "rollback_of_decision_id": null,
+    "schema_version": "1.0"
+  }
+}

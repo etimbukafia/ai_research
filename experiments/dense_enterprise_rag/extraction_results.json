@@ -1,0 +1,450 @@
+{
+  "document_count": 16,
+  "error_count": 0,
+  "interval_seconds": 5.0,
+  "metrics": {
+    "authority_accuracy": 0.0,
+    "edge_precision": 0.02083333,
+    "edge_recall": 0.02083333,
+    "invalid_edge_rejection_rate": 1.0,
+    "node_precision": 0.05486111,
+    "node_recall": 0.05850694,
+    "review_rate": 1.0,
+    "scope_field_accuracy": 0.04166667,
+    "validity_field_accuracy": 0.0
+  },
+  "model": "google:gemini-3.5-flash-lite",
+  "reason": null,
+  "records": [
+    {
+      "comparison": {
+        "authority_accuracy": 0.0,
+        "edge": {
+          "correct": 0,
+          "gold": 11,
+          "precision": 0.0,
+          "predicted": 9,
+          "recall": 0.0
+        },
+        "node": {
+          "correct": 1,
+          "gold": 10,
+          "precision": 0.1,
+          "predicted": 10,
+          "recall": 0.1
+        },
+        "scope_field_accuracy": 0.0,
+        "validity_field_accuracy": 0.0
+      },
+      "document_id": "spec-17",
+      "latency_ms": 6238.3252,
+      "status": "review",
+      "validation_reason": "edge_missing_source_id"
+    },
+    {
+      "comparison": {
+        "authority_accuracy": 0.0,
+        "edge": {
+          "correct": 0,
+          "gold": 9,
+          "precision": 0.0,
+          "predicted": 11,
+          "recall": 0.0
+        },
+        "node": {
+          "correct": 0,
+          "gold": 8,
+          "precision": 0.0,
+          "predicted": 9,
+          "recall": 0.0
+        },
+        "scope_field_accuracy": 0.0,
+        "validity_field_accuracy": 0.0
+      },
+      "document_id": "bulletin-08",
+      "latency_ms": 2594.0388,
+      "status": "review",
+      "validation_reason": "edge_missing_source_id"
+    },
+    {
+      "comparison": {
+        "authority_accuracy": 0.0,
+        "edge": {
+          "correct": 0,
+          "gold": 10,
+          "precision": 0.0,
+          "predicted": 8,
+          "recall": 0.0
+        },
+        "node": {
+          "correct": 0,
+          "gold": 9,
+          "precision": 0.0,
+          "predicted": 9,
+          "recall": 0.0
+        },
+        "scope_field_accuracy": 0.0,
+        "validity_field_accuracy": 0.0
+      },
+      "document_id": "spec-19",
+      "latency_ms": 2570.8617,
+      "status": "review",
+      "validation_reason": "edge_missing_source_id"
+    },
+    {
+      "comparison": {
+        "authority_accuracy": 0.0,
+        "edge": {
+          "correct": 0,
+          "gold": 11,
+          "precision": 0.0,
+          "predicted": 8,
+          "recall": 0.0
+        },
+        "node": {
+          "correct": 0,
+          "gold": 10,
+          "precision": 0.0,
+          "predicted": 9,
+          "recall": 0.0
+        },
+        "scope_field_accuracy": 0.0,
+        "validity_field_accuracy": 0.0
+      },
+      "document_id": "spec-07",
+      "latency_ms": 2274.2232,
+      "status": "review",
+      "validation_reason": "edge_missing_source_id"
+    },
+    {
+      "comparison": {
+        "authority_accuracy": 0.0,
+        "edge": {
+          "correct": 0,
+          "gold": 11,
+          "precision": 0.0,
+          "predicted": 9,
+          "recall": 0.0
+        },
+        "node": {
+          "correct": 0,
+          "gold": 10,
+          "precision": 0.0,
+          "predicted": 10,
+          "recall": 0.0
+        },
+        "scope_field_accuracy": 0.0,
+        "validity_field_accuracy": 0.0
+      },
+      "document_id": "spec-08",
+      "latency_ms": 3237.6836,
+      "status": "review",
+      "validation_reason": "edge_missing_source_id"
+    },
+    {
+      "comparison": {
+        "authority_accuracy": 0.0,
+        "edge": {
+          "correct": 0,
+          "gold": 10,
+          "precision": 0.0,
+          "predicted": 7,
+          "recall": 0.0
+        },
+        "node": {
+          "correct": 0,
+          "gold": 9,
+          "precision": 0.0,
+          "predicted": 8,
+          "recall": 0.0
+        },
+        "scope_field_accuracy": 0.0,
+        "validity_field_accuracy": 0.0
+      },
+      "document_id": "spec-11",
+      "latency_ms": 2012.6794,
+      "status": "review",
+      "validation_reason": "edge_missing_source_id"
+    },
+    {
+      "comparison": {
+        "authority_accuracy": 0.0,
+        "edge": {
+          "correct": 0,
+          "gold": 9,
+          "precision": 0.0,
+          "predicted": 8,
+          "recall": 0.0
+        },
+        "node": {
+          "correct": 0,
+          "gold": 8,
+          "precision": 0.0,
+          "predicted": 9,
+          "recall": 0.0
+        },
+        "scope_field_accuracy": 0.0,
+        "validity_field_accuracy": 0.0
+      },
+      "document_id": "bulletin-09",
+      "latency_ms": 2025.9325,
+      "status": "review",
+      "validation_reason": "edge_missing_source_id"
+    },
+    {
+      "comparison": {
+        "authority_accuracy": 0.0,
+        "edge": {
+          "correct": 0,
+          "gold": 11,
+          "precision": 0.0,
+          "predicted": 9,
+          "recall": 0.0
+        },
+        "node": {
+          "correct": 0,
+          "gold": 10,
+          "precision": 0.0,
+          "predicted": 10,
+          "recall": 0.0
+        },
+        "scope_field_accuracy": 0.0,
+        "validity_field_accuracy": 0.0
+      },
+      "document_id": "spec-44",
+      "latency_ms": 2755.0076,
+      "status": "review",
+      "validation_reason": "edge_missing_source_id"
+    },
+    {
+      "comparison": {
+        "authority_accuracy": 0.0,
+        "edge": {
+          "correct": 0,
+          "gold": 11,
+          "precision": 0.0,
+          "predicted": 8,
+          "recall": 0.0
+        },
+        "node": {
+          "correct": 1,
+          "gold": 10,
+          "precision": 0.1111111111111111,
+          "predicted": 9,
+          "recall": 0.1
+        },
+        "scope_field_accuracy": 0.0,
+        "validity_field_accuracy": 0.0
+      },
+      "document_id": "spec-21",
+      "latency_ms": 2577.6285,
+      "status": "review",
+      "validation_reason": "edge_missing_source_id"
+    },
+    {
+      "comparison": {
+        "authority_accuracy": 0.0,
+        "edge": {
+          "correct": 0,
+          "gold": 11,
+          "precision": 0.0,
+          "predicted": 8,
+          "recall": 0.0
+        },
+        "node": {
+          "correct": 0,
+          "gold": 10,
+          "precision": 0.0,
+          "predicted": 9,
+          "recall": 0.0
+        },
+        "scope_field_accuracy": 0.0,
+        "validity_field_accuracy": 0.0
+      },
+      "document_id": "spec-09",
+      "latency_ms": 2025.924,
+      "status": "review",
+      "validation_reason": "edge_missing_source_id"
+    },
+    {
+      "comparison": {
+        "authority_accuracy": 0.0,
+        "edge": {
+          "correct": 3,
+          "gold": 9,
+          "precision": 0.3333333333333333,
+          "predicted": 9,
+          "recall": 0.3333333333333333
+        },
+        "node": {
+          "correct": 5,
+          "gold": 8,
+          "precision": 0.5555555555555556,
+          "predicted": 9,
+          "recall": 0.625
+        },
+        "scope_field_accuracy": 0.6666666666666666,
+        "validity_field_accuracy": 0.0
+      },
+      "document_id": "bulletin-10",
+      "latency_ms": 2632.4125,
+      "status": "review",
+      "validation_reason": "edge_missing_source_id"
+    },
+    {
+      "comparison": {
+        "authority_accuracy": 0.0,
+        "edge": {
+          "correct": 0,
+          "gold": 11,
+          "precision": 0.0,
+          "predicted": 9,
+          "recall": 0.0
+        },
+        "node": {
+          "correct": 0,
+          "gold": 10,
+          "precision": 0.0,
+          "predicted": 10,
+          "recall": 0.0
+        },
+        "scope_field_accuracy": 0.0,
+        "validity_field_accuracy": 0.0
+      },
+      "document_id": "spec-27",
+      "latency_ms": 2557.3448,
+      "status": "review",
+      "validation_reason": "edge_missing_source_id"
+    },
+    {
+      "comparison": {
+        "authority_accuracy": 0.0,
+        "edge": {
+          "correct": 0,
+          "gold": 10,
+          "precision": 0.0,
+          "predicted": 8,
+          "recall": 0.0
+        },
+        "node": {
+          "correct": 1,
+          "gold": 9,
+          "precision": 0.1111111111111111,
+          "predicted": 9,
+          "recall": 0.1111111111111111
+        },
+        "scope_field_accuracy": 0.0,
+        "validity_field_accuracy": 0.0
+      },
+      "document_id": "spec-12",
+      "latency_ms": 2278.5196,
+      "status": "review",
+      "validation_reason": "edge_missing_source_id"
+    },
+    {
+      "comparison": {
+        "authority_accuracy": 0.0,
+        "edge": {
+          "correct": 0,
+          "gold": 10,
+          "precision": 0.0,
+          "predicted": 9,
+          "recall": 0.0
+        },
+        "node": {
+          "correct": 0,
+          "gold": 9,
+          "precision": 0.0,
+          "predicted": 8,
+          "recall": 0.0
+        },
+        "scope_field_accuracy": 0.0,
+        "validity_field_accuracy": 0.0
+      },
+      "document_id": "spec-01",
+      "latency_ms": 2393.0649,
+      "status": "review",
+      "validation_reason": "edge_missing_source_id"
+    },
+    {
+      "comparison": {
+        "authority_accuracy": 0.0,
+        "edge": {
+          "correct": 0,
+          "gold": 10,
+          "precision": 0.0,
+          "predicted": 7,
+          "recall": 0.0
+        },
+        "node": {
+          "correct": 0,
+          "gold": 9,
+          "precision": 0.0,
+          "predicted": 8,
+          "recall": 0.0
+        },
+        "scope_field_accuracy": 0.0,
+        "validity_field_accuracy": 0.0
+      },
+      "document_id": "spec-10",
+      "latency_ms": 2313.1887,
+      "status": "review",
+      "validation_reason": "edge_missing_source_id"
+    },
+    {
+      "comparison": {
+        "authority_accuracy": 0.0,
+        "edge": {
+          "correct": 0,
+          "gold": 9,
+          "precision": 0.0,
+          "predicted": 9,
+          "recall": 0.0
+        },
+        "node": {
+          "correct": 0,
+          "gold": 8,
+          "precision": 0.0,
+          "predicted": 9,
+          "recall": 0.0
+        },
+        "scope_field_accuracy": 0.0,
+        "validity_field_accuracy": 0.0
+      },
+      "document_id": "bulletin-07",
+      "latency_ms": 2403.1959,
+      "status": "review",
+      "validation_reason": "edge_missing_source_id"
+    }
+  ],
+  "request_count": 16,
+  "review_count": 16,
+  "schema_version": "1.0",
+  "selected_documents_by_case_class": {
+    "authority_and_status": [
+      "spec-17",
+      "bulletin-08",
+      "spec-19",
+      "spec-07"
+    ],
+    "missing_or_ambiguous_evidence": [
+      "spec-08",
+      "spec-11",
+      "bulletin-09",
+      "spec-44"
+    ],
+    "region_and_entity_scope": [
+      "spec-21",
+      "spec-09",
+      "bulletin-10",
+      "spec-27"
+    ],
+    "version_and_supersession": [
+      "spec-12",
+      "spec-01",
+      "spec-10",
+      "bulletin-07"
+    ]
+  },
+  "status": "completed"
+}

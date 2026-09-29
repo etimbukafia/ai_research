@@ -1,0 +1,27 @@
+[project]
+name = "enterprise-agent-lab"
+version = "0.1.0"
+description = "A deterministic local lab for enterprise-agent experiments."
+requires-python = ">=3.11"
+dependencies = [
+  "pydantic>=2.0",
+  "pydantic-ai-slim[google]>=0.0.0",
+  "google-genai>=1.0.0",
+  "numpy>=1.26",
+]
+
+[project.scripts]
+enterprise-agent-lab = "enterprise_agent_lab.cli:main"
+
+[project.optional-dependencies]
+integrations = [
+  "ai-assistant-harness @ git+https://github.com/etimbukafia/ai-assistant-harness@9b38f4d37f00bc14432cc75d3f577ba9d1c0f5fa",
+  "agent-improvement-lab[evals] @ git+https://github.com/etimbukafia/agent_improvement_lab@f40a9a7908b48495473c19dcf79aa2c4c91a1108",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+
+[tool.ruff]
+line-length = 100

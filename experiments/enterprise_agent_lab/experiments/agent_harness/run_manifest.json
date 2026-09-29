@@ -1,0 +1,36 @@
+{
+  "artifact_hashes": {
+    "cases.json": "ae73b658722ceddb715984fb4a7df59d1171ebb8719de494a5c4bfdb88df4c2a"
+  },
+  "case_count": 24,
+  "conditions": [
+    "raw_schema",
+    "prose_rag",
+    "semantic_catalog"
+  ],
+  "dataset_id": "enterprise_agent_harness",
+  "dataset_version": "1.0.0",
+  "fixed_controls": {
+    "max_concurrency": 1,
+    "source_store": "synthetic_aster_cloud",
+    "toolset": [
+      "check_policy",
+      "draft_service_credit",
+      "draft_support_ticket",
+      "find_account",
+      "get_active_contract",
+      "get_invoice",
+      "get_subscription",
+      "get_usage_record",
+      "search_business_concepts"
+    ],
+    "top_k": 8
+  },
+  "mode": "replay",
+  "model": "google:gemini-3.5-flash-lite",
+  "pair_count": 12,
+  "runtime_name": "enterprise-agent-harness-replay",
+  "runtime_version": "1.0.0",
+  "seed": 0,
+  "trace_count": 72
+}

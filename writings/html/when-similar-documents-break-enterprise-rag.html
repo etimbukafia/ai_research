@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>When Similar Documents Break Enterprise RAG</title>
+  <style>
+    :root {
+      --bg: #FBFBFB;
+      --fg: #111315;
+      --muted: #5A626A;
+      --border: #E2E4E6;
+      --code-bg: #F4F5F6;
+      --accent: #0052CC;
+      --callout-bg: #F0F4F8;
+      --callout-border: #0052CC;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #111315;
+        --fg: #ECEFF1;
+        --muted: #9BA3AF;
+        --border: #2A2E33;
+        --code-bg: #1A1D20;
+        --accent: #4C9AFF;
+        --callout-bg: #161F2E;
+        --callout-border: #4C9AFF;
+      }
+    }
+    body.light-theme {
+      --bg: #FBFBFB;
+      --fg: #111315;
+      --muted: #5A626A;
+      --border: #E2E4E6;
+      --code-bg: #F4F5F6;
+      --accent: #0052CC;
+      --callout-bg: #F0F4F8;
+      --callout-border: #0052CC;
+    }
+    body.dark-theme {
+      --bg: #111315;
+      --fg: #ECEFF1;
+      --muted: #9BA3AF;
+      --border: #2A2E33;
+      --code-bg: #1A1D20;
+      --accent: #4C9AFF;
+      --callout-bg: #161F2E;
+      --callout-border: #4C9AFF;
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      background-color: var(--bg);
+      color: var(--fg);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      font-size: 17px;
+      line-height: 1.65;
+      padding: 40px 20px;
+      transition: background-color 0.15s ease, color 0.15s ease;
+      display: flex;
+      justify-content: center;
+    }
+    .container {
+      width: 100%;
+      max-width: 690px;
+    }
+    .header-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 36px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border);
+    }
+    .brand {
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+    }
+    .theme-toggle {
+      background: none;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      color: var(--muted);
+      cursor: pointer;
+      font-size: 13px;
+      padding: 4px 10px;
+      transition: all 0.15s ease;
+    }
+    .theme-toggle:hover {
+      color: var(--fg);
+      border-color: var(--fg);
+    }
+    h1 {
+      font-size: 32px;
+      font-weight: 700;
+      line-height: 1.25;
+      letter-spacing: -0.02em;
+      margin-bottom: 24px;
+    }
+    h2 {
+      font-size: 22px;
+      font-weight: 600;
+      line-height: 1.35;
+      letter-spacing: -0.01em;
+      margin-top: 40px;
+      margin-bottom: 16px;
+    }
+    h3 {
+      font-size: 18px;
+      font-weight: 600;
+      line-height: 1.4;
+      margin-top: 28px;
+      margin-bottom: 12px;
+    }
+    p {
+      margin-bottom: 20px;
+    }
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    pre {
+      background-color: var(--code-bg);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 16px;
+      overflow-x: auto;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+      font-size: 14px;
+      line-height: 1.5;
+      margin: 24px 0;
+    }
+    code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+      font-size: 0.9em;
+      background-color: var(--code-bg);
+      padding: 2px 5px;
+      border-radius: 3px;
+      border: 1px solid var(--border);
+    }
+    pre code {
+      background-color: transparent;
+      padding: 0;
+      border: none;
+    }
+    blockquote {
+      border-left: 3px solid var(--accent);
+      margin: 24px 0;
+      padding-left: 16px;
+      color: var(--muted);
+      font-style: italic;
+    }
+    ul, ol {
+      margin-bottom: 20px;
+      padding-left: 24px;
+    }
+    li {
+      margin-bottom: 8px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 28px 0;
+      font-size: 15px;
+    }
+    th, td {
+      border: 1px solid var(--border);
+      padding: 10px 14px;
+      text-align: left;
+    }
+    th {
+      background-color: var(--code-bg);
+      font-weight: 600;
+    }
+    hr {
+      border: 0;
+      border-top: 1px solid var(--border);
+      margin: 40px 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header-bar">
+      <a href="index.html" class="brand">Engineering Research &middot; Retrieval Architecture</a>
+      <button class="theme-toggle" id="theme-btn" onclick="toggleTheme()">Theme</button>
+    </div>
+
+    <h1>When Similar Documents Break Enterprise RAG</h1>
+
+    <p>In enterprise search, one question routinely matches dozens of plausible documents. The real engineering problem is rarely finding text that looks relevant; the problem is selecting the single document whose operational scope actually applies.</p>
+
+    <p>Consider this user request:</p>
+
+    <blockquote>
+      What pressure limit applies to the Atlas X200 in Europe with firmware 4.2?
+    </blockquote>
+
+    <p>When you query an enterprise knowledge base with this prompt, five documents surface near the top of the candidate list:</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Document</th>
+          <th>Scope</th>
+          <th>Status</th>
+          <th>Pressure Limit</th>
+          <th>Role in the Case</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>spec-17</code></td>
+          <td>Atlas X200, Europe, firmware 4.2</td>
+          <td>Approved and current</td>
+          <td>220 kPa</td>
+          <td>Correct source</td>
+        </tr>
+        <tr>
+          <td><code>spec-12</code></td>
+          <td>Atlas X200, global, firmware 3.8</td>
+          <td>Superseded</td>
+          <td>250 kPa</td>
+          <td>Old-version distractor</td>
+        </tr>
+        <tr>
+          <td><code>spec-19</code></td>
+          <td>Atlas X200, Europe, firmware 4.3</td>
+          <td>Draft</td>
+          <td>230 kPa</td>
+          <td>Newer draft distractor</td>
+        </tr>
+        <tr>
+          <td><code>bulletin-08</code></td>
+          <td>Atlas X200, Europe, firmware 4.2</td>
+          <td>Informational</td>
+          <td>220 kPa</td>
+          <td>Supporting source without specification authority</td>
+        </tr>
+        <tr>
+          <td><code>spec-27</code></td>
+          <td>Atlas X210, Europe, firmware 4.2</td>
+          <td>Approved and current</td>
+          <td>240 kPa</td>
+          <td>Similar-product distractor</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>Every single row contains the exact words the embedding model is looking for: Atlas, Europe, firmware, pressure, and limit. Yet only <code>spec-17</code> satisfies the joint constraints of product line, firmware revision, geographical region, effective timestamp, approval status, and organizational authority.</p>
+
+    <p>When I ran this test case through standard retrieval pipelines in our <a href="file:///C:/Users/j/afiavana/research/experiments/dense_enterprise_rag">dense enterprise RAG experiment</a>, the limitations of pure semantic search became immediate.</p>
+
+    <p>Standard vector search returned <code>spec-17</code>, but it also surfaced superseded and draft versions with nearly identical cosine scores. BM25 selected <code>bulletin-08</code>, which contained the correct numeric value (220 kPa) but carried zero legal specification authority.</p>
+
+    <p>The complete benchmark evaluated 96 synthetic documents across 32 test cases structured into 16 matched pairs. The findings settled an important architectural question: metadata-filtered vector retrieval and graph-guided hybrid retrieval tied at 100.00% strict applicability across all 24 answer cases.</p>
+
+    <p>Where the graph earned its keep was in evidence-path verification: metadata filtering produced 0.00% (0/24) path accuracy because it discards relationship provenance, whereas graph retrieval delivered a fully verified evidence chain in 100.00% (24/24) of cases.</p>
+
+    <p>The governing engineering rule is straightforward:</p>
+    <blockquote>
+      Use semantic similarity to discover candidates. Apply explicit scope checks before answering. Add a knowledge graph when the answer must carry a verifiable, auditable chain of custody.
+    </blockquote>
+
+    <hr>
+
+    <h2>Similarity Finds Candidates, Applicability Selects Evidence</h2>
+
+    <p>In production knowledge bases, teams frequently maintain multiple active revisions of manuals, regional addenda, compliance policies, and service bulletins. Each variant repeats identical terminology, field labels, and schematic structures.</p>
+
+    <p>This creates dense document overlap: a condition where dozens of documents share high semantic similarity while their real-world applicability diverges sharply.</p>
+
+    <p>The mathematical distinction between candidate discovery and evidentiary proof is fundamental:</p>
+
+    <pre><code>similarity(question, document) -&gt; candidate pool
+applicable(document, question) -&gt; verified evidence</code></pre>
+
+    <p>A candidate can score a 0.92 cosine similarity while failing basic version applicability. Conversely, a lower-ranked candidate can represent the only legally binding document for the user's specific context.</p>
+
+    <p>In the Atlas experiment, applicability is defined as a strict conjunction of operational constraints:</p>
+
+    <pre><code>from pydantic import BaseModel, Field
+from datetime import datetime
+
+class DocumentScope(BaseModel):
+    product_id: str
+    firmware_version: str
+    region: str
+    effective_date: datetime
+    expiration_date: datetime | None = None
+    status: str = Field(description="Must be 'approved_current'")
+    authoritative_body: str
+
+    def is_applicable(self, target_product: str, target_version: str, target_region: str, query_time: datetime) -> bool:
+        if self.product_id != target_product:
+            return False
+        if self.firmware_version != target_version:
+            return False
+        if self.region != target_region:
+            return False
+        if self.status != "approved_current":
+            return False
+        if query_time &lt; self.effective_date:
+            return False
+        if self.expiration_date and query_time &gt; self.expiration_date:
+            return False
+        return True</code></pre>
+
+    <p>If any single term evaluates to false, the document is inapplicable, regardless of how high its vector score ranks in the candidate pool.</p>
+
+    <hr>
+
+    <h2>Making the Evidence Chain Inspectable Through Graphs</h2>
+
+    <p>Vector databases project documents into continuous geometric coordinates, discarding the relational structure connecting entities, documents, and authorities.</p>
+
+    <p>When you index these relationships inside a property graph, the system returns a verified traversal path rather than an isolated chunk. In <code>case-01-dense</code>, graph-guided hybrid retrieval returned this explicit traversal chain:</p>
+
+    <pre><code>product-atlas-x200
+  -&gt; firmware-4-2
+  -&gt; region-europe
+  -&gt; document-spec-17
+  -&gt; fact-spec-17-pressure-limit
+  -&gt; authority-product-safety</code></pre>
+
+    <p>The traversal verifies each hop: it confirms that <code>spec-17</code> applies to firmware 4.2 in Europe, defines the pressure limit as 220 kPa, and originates from Product Safety rather than marketing or general documentation.</p>
+
+    <pre><code>import networkx as nx
+
+def verify_document_path(graph: nx.MultiDiGraph, product: str, version: str, region: str, doc_id: str) -> bool:
+    # Verify the topological path from product entity to document authority
+    try:
+        has_firmware = graph.has_edge(product, version)
+        valid_region = graph.has_edge(version, region)
+        governing_doc = graph.has_edge(region, doc_id)
+        is_approved = graph.nodes[doc_id].get("status") == "approved_current"
+        
+        return has_firmware and valid_region and governing_doc and is_approved
+    except KeyError:
+        return False</code></pre>
+
+    <hr>
+
+    <h2>How Strong is the Metadata Baseline?</h2>
+
+    <p>Before reaching for a graph database, engineers should measure the strength of direct metadata filtering.</p>
+
+    <p>If source documents have clean, structured metadata tags (product, version, region, effective date, and status), pre-filtering the vector index can solve applicability without graph traversal overhead.</p>
+
+    <p>The experiment compared four retrieval configurations over the exact same 96 documents:</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Condition</th>
+          <th>Primary Operation</th>
+          <th>Scope Enforcement</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>bm25</code></td>
+          <td>Weighted lexical term matching over title and body</td>
+          <td>None (lexical similarity only)</td>
+        </tr>
+        <tr>
+          <td><code>vector</code></td>
+          <td>Dense MiniLM embedding similarity</td>
+          <td>None (semantic similarity only)</td>
+        </tr>
+        <tr>
+          <td><code>metadata_filtered_vector</code></td>
+          <td>Filter direct scope attributes, then rank candidates by vector distance</td>
+          <td>Strict pre-filters on product, version, region, time, and status</td>
+        </tr>
+        <tr>
+          <td><code>graph_guided_hybrid</code></td>
+          <td>Retrieve top-20 vector candidates, then traverse and validate graph paths</td>
+          <td>Multi-hop validation of authority, status, and topological constraints</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>Across the 24 answer cases and eight abstention cases, metadata-filtered vector search achieved 100.00% accuracy, matching the graph condition on document selection.</p>
+
+    <p>Where metadata filtering falls short is on complex relational questions: verifying that Document A supersedes Document B, or validating that the department issuing a technical bulletin owns the regulatory authority for the underlying specification.</p>
+
+    <hr>
+
+    <h2>The Reality of Automated Graph Extraction</h2>
+
+    <p>A common assumption in GenAI marketing is that LLMs can automatically construct knowledge graphs from unstructured documentation with minimal human intervention.</p>
+
+    <p>To test this assumption, I built a schema-constrained extraction runner using <code>google:gemini-3.5-flash-lite</code> through PydanticAI. The extraction prompt enforced typed schemas, requiring models to extract entities, relationships, temporal validity bounds, and authority tags from 16 technical documents.</p>
+
+    <p>The audit completed 16 requests with zero network or provider errors. However, the extraction quality was remarkably low:</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Extraction Metric</th>
+          <th>Benchmark Result</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Node Precision</strong></td>
+          <td>5.49%</td>
+        </tr>
+        <tr>
+          <td><strong>Node Recall</strong></td>
+          <td>5.85%</td>
+        </tr>
+        <tr>
+          <td><strong>Edge Precision</strong></td>
+          <td>2.08%</td>
+        </tr>
+        <tr>
+          <td><strong>Edge Recall</strong></td>
+          <td>2.08%</td>
+        </tr>
+        <tr>
+          <td><strong>Scope Field Accuracy</strong></td>
+          <td>4.17%</td>
+        </tr>
+        <tr>
+          <td><strong>Validity Field Accuracy</strong></td>
+          <td>0.00%</td>
+        </tr>
+        <tr>
+          <td><strong>Authority Accuracy</strong></td>
+          <td>0.00%</td>
+        </tr>
+        <tr>
+          <td><strong>Invalid Edge Rejection</strong></td>
+          <td>100.00%</td>
+        </tr>
+        <tr>
+          <td><strong>Human Review Required</strong></td>
+          <td>100.00% (16/16)</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>The validator successfully rejected every hallucinated edge, forcing all 16 outputs into human review queues.</p>
+
+    <p>This result highlights an unvarnished engineering reality: general-purpose language models cannot reliably build enterprise knowledge graphs without human-in-the-loop review. The deterministic retrieval benchmark succeeded because it evaluated a verified gold graph. Relying on uncurated, fully automated extraction in production guarantees corrupted edge topologies.</p>
+
+    <hr>
+
+    <h2>Live Inference: Full Documents Outperform Evidence Packets</h2>
+
+    <p>In the live evaluation run, the system executed 64 requests using <code>google:gemini-3.5-flash-lite</code> through PydanticAI at a sustained rate of 15 requests per minute, recording zero errors and zero retries.</p>
+
+    <p>The run tested two context delivery forms: feeding the model full document text versus feeding it compressed evidence packets stripped down to key graph assertions.</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Context Form</th>
+          <th>Exact Fact Accuracy</th>
+          <th>Answer Status Accuracy</th>
+          <th>Source Recall</th>
+          <th>Input Tokens</th>
+          <th>P95 Latency</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Full Documents</strong></td>
+          <td>100.00% (32/32)</td>
+          <td>100.00% (32/32)</td>
+          <td>100.00% (32/32)</td>
+          <td>40,025</td>
+          <td>2,463 ms</td>
+        </tr>
+        <tr>
+          <td><strong>Evidence Packets</strong></td>
+          <td>75.00% (24/32)</td>
+          <td>75.00% (24/32)</td>
+          <td>65.62% (21/32)</td>
+          <td>31,062</td>
+          <td>2,049 ms</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>I expected compressed evidence packets to win on latency while maintaining near-perfect accuracy. Instead, the live model stumbled: dropping from 100% down to 75% on exact facts because aggressive compression stripped subtle contextual qualifiers that the model needed to interpret the rule correctly.</p>
+
+    <p>While evidence packets reduced input token consumption by 22.39% and lowered P95 latency by 414 milliseconds, the accuracy cost was unacceptable for enterprise compliance.</p>
+
+    <hr>
+
+    <h2>Review Enterprise RAG in This Order</h2>
+
+    <p>When architecting retrieval systems over dense, overlapping document catalogs, execute your engineering evaluation in this sequence:</p>
+
+    <ol>
+      <li><strong>Identify the Target Entity:</strong> Exactly which product, SKU, or organizational unit does the query concern?</li>
+      <li><strong>Bind Environmental Dimensions:</strong> Which firmware version, geographical region, and timestamp apply to the user's active session?</li>
+      <li><strong>Verify Source Authority:</strong> Does the authoring department hold legal or operational jurisdiction over the requested specification?</li>
+      <li><strong>Evaluate Supersession Rules:</strong> Has a newer bulletin or specification superseded the candidate document?</li>
+      <li><strong>Test Metadata Baseline First:</strong> Can direct relational filters resolve the constraints before introducing graph dependencies?</li>
+      <li><strong>Validate the Full Path:</strong> When regulatory audits or high-stakes agents require proof, does the system output an inspectable evidence chain?</li>
+    </ol>
+
+    <p>Semantic similarity is a powerful tool for discovering candidates in an archive. In high-stakes enterprise systems, similarity is only the opening step. True retrieval accuracy requires enforcing explicit scope boundaries, and using graph structures when you need to prove why an answer is true.</p>
+  </div>
+
+  <script>
+    function toggleTheme() {
+      const body = document.body;
+      const isDark = body.classList.contains('dark-theme') || 
+        (!body.classList.contains('light-theme') && window.matchMedia('(prefers-color-scheme: dark)').matches);
+      
+      if (isDark) {
+        body.classList.remove('dark-theme');
+        body.classList.add('light-theme');
+      } else {
+        body.classList.remove('light-theme');
+        body.classList.add('dark-theme');
+      }
+    }
+  </script>
+</body>
+</html>

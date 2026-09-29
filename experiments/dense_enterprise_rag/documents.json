@@ -1,0 +1,3581 @@
+{
+  "documents": [
+    {
+      "authority": "support",
+      "authority_name": "Support",
+      "body": "Support bulletin bulletin-01 records a field observation for Atlas X100 with firmware 3.8 in Global. It reports a pressure limit of 200 kPa and a flow rate limit of 42 L/min. The bulletin is approved and is effective from 2025-01-01 to 2027-01-01. The source authority is Support. For Atlas X100 with firmware 3.8 in Global, the pressure limit applies as 200 kPa. This informational bulletin does not define the approved product specification.",
+      "document_id": "bulletin-01",
+      "document_role": "Informational",
+      "document_type": "bulletin",
+      "extraction_confidence": 1.0,
+      "extraction_method": "gold_template",
+      "facts": [
+        {
+          "name": "pressure_limit",
+          "unit": "kPa",
+          "value": 200
+        },
+        {
+          "name": "flow_rate_limit",
+          "unit": "L/min",
+          "value": 42
+        }
+      ],
+      "firmware_versions": [
+        "3.8"
+      ],
+      "product_ids": [
+        "atlas_x100"
+      ],
+      "regions": [
+        "global"
+      ],
+      "specification_authority": false,
+      "status": "Approved",
+      "supersedes": [],
+      "title": "Atlas X100 firmware 3.8 Global informational bulletin-01",
+      "valid_from": "2025-01-01",
+      "valid_to": "2027-01-01"
+    },
+    {
+      "authority": "support",
+      "authority_name": "Support",
+      "body": "Support bulletin bulletin-02 records a field observation for Atlas X100 with firmware 3.8 in Europe. It reports a pressure limit of 210 kPa and a flow rate limit of 44 L/min. The bulletin is approved and is effective from 2025-01-01 to 2027-01-01. The source authority is Support. For Atlas X100 with firmware 3.8 in Europe, the pressure limit applies as 210 kPa. This informational bulletin does not define the approved product specification.",
+      "document_id": "bulletin-02",
+      "document_role": "Informational",
+      "document_type": "bulletin",
+      "extraction_confidence": 1.0,
+      "extraction_method": "gold_template",
+      "facts": [
+        {
+          "name": "pressure_limit",
+          "unit": "kPa",
+          "value": 210
+        },
+        {
+          "name": "flow_rate_limit",
+          "unit": "L/min",
+          "value": 44
+        }
+      ],
+      "firmware_versions": [
+        "3.8"
+      ],
+      "product_ids": [
+        "atlas_x100"
+      ],
+      "regions": [
+        "europe"
+      ],
+      "specification_authority": false,
+      "status": "Approved",
+      "supersedes": [],
+      "title": "Atlas X100 firmware 3.8 Europe informational bulletin-02",
+      "valid_from": "2025-01-01",
+      "valid_to": "2027-01-01"
+    },
+    {
+      "authority": "sales",
+      "authority_name": "Sales",
+      "body": "Support bulletin bulletin-03 records a field observation for Atlas X100 with firmware 3.8 in North America. It reports a pressure limit of 205 kPa and a flow rate limit of 43 L/min. The bulletin is approved and is effective from 2025-01-01 to 2027-01-01. The source authority is Sales. For Atlas X100 with firmware 3.8 in North America, the pressure limit applies as 205 kPa. This informational bulletin does not define the approved product specification.",
+      "document_id": "bulletin-03",
+      "document_role": "Informational",
+      "document_type": "bulletin",
+      "extraction_confidence": 1.0,
+      "extraction_method": "gold_template",
+      "facts": [
+        {
+          "name": "pressure_limit",
+          "unit": "kPa",
+          "value": 205
+        },
+        {
+          "name": "flow_rate_limit",
+          "unit": "L/min",
+          "value": 43
+        }
+      ],
+      "firmware_versions": [
+        "3.8"
+      ],
+      "product_ids": [
+        "atlas_x100"
+      ],
+      "regions": [
+        "north_america"
+      ],
+      "specification_authority": false,
+      "status": "Approved",
+      "supersedes": [],
+      "title": "Atlas X100 firmware 3.8 North America informational bulletin-03",
+      "valid_from": "2025-01-01",
+      "valid_to": "2027-01-01"
+    },
+    {
+      "authority": "support",
+      "authority_name": "Support",
+      "body": "Support bulletin bulletin-04 records a field observation for Atlas X100 with firmware 4.1 in Global. It reports a pressure limit of 190 kPa and a flow rate limit of 40 L/min. The bulletin is approved and is effective from 2025-01-01 to 2027-01-01. The source authority is Support. For Atlas X100 with firmware 4.1 in Global, the pressure limit applies as 190 kPa. This informational bulletin does not define the approved product specification.",
+      "document_id": "bulletin-04",
+      "document_role": "Informational",
+      "document_type": "bulletin",
+      "extraction_confidence": 1.0,
+      "extraction_method": "gold_template",
+      "facts": [
+        {
+          "name": "pressure_limit",
+          "unit": "kPa",
+          "value": 190
+        },
+        {
+          "name": "flow_rate_limit",
+          "unit": "L/min",
+          "value": 40
+        }
+      ],
+      "firmware_versions": [
+        "4.1"
+      ],
+      "product_ids": [
+        "atlas_x100"
+      ],
+      "regions": [
+        "global"
+      ],
+      "specification_authority": false,
+      "status": "Approved",
+      "supersedes": [],
+      "title": "Atlas X100 firmware 4.1 Global informational bulletin-04",
+      "valid_from": "2025-01-01",
+      "valid_to": "2027-01-01"
+    },
+    {
+      "authority": "support",
+      "authority_name": "Support",
+      "body": "Support bulletin bulletin-05 records a field observation for Atlas X100 with firmware 4.1 in Europe. It reports a pressure limit of 200 kPa and a flow rate limit of 42 L/min. The bulletin is approved and is effective from 2025-01-01 to 2027-01-01. The source authority is Support. For Atlas X100 with firmware 4.1 in Europe, the pressure limit applies as 200 kPa. This informational bulletin does not define the approved product specification.",
+      "document_id": "bulletin-05",
+      "document_role": "Informational",
+      "document_type": "bulletin",
+      "extraction_confidence": 1.0,
+      "extraction_method": "gold_template",
+      "facts": [
+        {
+          "name": "pressure_limit",
+          "unit": "kPa",
+          "value": 200
+        },
+        {
+          "name": "flow_rate_limit",
+          "unit": "L/min",
+          "value": 42
+        }
+      ],
+      "firmware_versions": [
+        "4.1"
+      ],
+      "product_ids": [
+        "atlas_x100"
+      ],
+      "regions": [
+        "europe"
+      ],
+      "specification_authority": false,
+      "status": "Approved",
+      "supersedes": [],
+      "title": "Atlas X100 firmware 4.1 Europe informational bulletin-05",
+      "valid_from": "2025-01-01",
+      "valid_to": "2027-01-01"
+    },
+    {
+      "authority": "sales",
+      "authority_name": "Sales",
+      "body": "Support bulletin bulletin-06 records a field observation for Atlas X100 with firmware 4.1 in North America. It reports a pressure limit of 195 kPa and a flow rate limit of 41 L/min. The bulletin is approved and is effective from 2025-01-01 to 2027-01-01. The source authority is Sales. For Atlas X100 with firmware 4.1 in North America, the pressure limit applies as 195 kPa. This informational bulletin does not define the approved product specification.",
+      "document_id": "bulletin-06",
+      "document_role": "Informational",
+      "document_type": "bulletin",
+      "extraction_confidence": 1.0,
+      "extraction_method": "gold_template",
+      "facts": [
+        {
+          "name": "pressure_limit",
+          "unit": "kPa",
+          "value": 195
+        },
+        {
+          "name": "flow_rate_limit",
+          "unit": "L/min",
+          "value": 41
+        }
+      ],
+      "firmware_versions": [
+        "4.1"
+      ],
+      "product_ids": [
+        "atlas_x100"
+      ],
+      "regions": [
+        "north_america"
+      ],
+      "specification_authority": false,
+      "status": "Approved",
+      "supersedes": [],
+      "title": "Atlas X100 firmware 4.1 North America informational bulletin-06",
+      "valid_from": "2025-01-01",
+      "valid_to": "2027-01-01"
+    },
+    {
+      "authority": "support",
+      "authority_name": "Support",
+      "body": "Support bulletin bulletin-07 records a field observation for Atlas X100 with firmware 4.2 in Global. It reports a pressure limit of 180 kPa and a flow rate limit of 38 L/min. The bulletin is approved and is effective from 2025-01-01 to 2027-01-01. The source authority is Support. For Atlas X100 with firmware 4.2 in Global, the pressure limit applies as 180 kPa. This informational bulletin does not define the approved product specification.",
+      "document_id": "bulletin-07",
+      "document_role": "Informational",
+      "document_type": "bulletin",
+      "extraction_confidence": 1.0,
+      "extraction_method": "gold_template",
+      "facts": [
+        {
+          "name": "pressure_limit",
+          "unit": "kPa",
+          "value": 180
+        },
+        {
+          "name": "flow_rate_limit",
+          "unit": "L/min",
+          "value": 38
+        }
+      ],
+      "firmware_versions": [
+        "4.2"
+      ],
+      "product_ids": [
+        "atlas_x100"
+      ],
+      "regions": [
+        "global"
+      ],
+      "specification_authority": false,
+      "status": "Approved",
+      "supersedes": [],
+      "title": "Atlas X100 firmware 4.2 Global informational bulletin-07",
+      "valid_from": "2025-01-01",
+      "valid_to": "2027-01-01"
+    },
+    {
+      "authority": "support",
+      "authority_name": "Support",
+      "body": "Support bulletin bulletin-08 records a field observation for Atlas X200 with firmware 4.2 in Europe. It reports a pressure limit of 220 kPa and a flow rate limit of 50 L/min. The bulletin is approved and is effective from 2025-01-01 to 2027-01-01. The source authority is Support. For Atlas X200 with firmware 4.2 in Europe, the pressure limit applies as 220 kPa. This informational bulletin does not define the approved product specification.",
+      "document_id": "bulletin-08",
+      "document_role": "Informational",
+      "document_type": "bulletin",
+      "extraction_confidence": 1.0,
+      "extraction_method": "gold_template",
+      "facts": [
+        {
+          "name": "pressure_limit",
+          "unit": "kPa",
+          "value": 220
+        },
+        {
+          "name": "flow_rate_limit",
+          "unit": "L/min",
+          "value": 50
+        }
+      ],
+      "firmware_versions": [
+        "4.2"
+      ],
+      "product_ids": [
+        "atlas_x200"
+      ],
+      "regions": [
+        "europe"
+      ],
+      "specification_authority": false,
+      "status": "Approved",
+      "supersedes": [],
+      "title": "Atlas X200 firmware 4.2 Europe informational bulletin-08",
+      "valid_from": "2025-01-01",
+      "valid_to": "2027-01-01"
+    },
+    {
+      "authority": "support",
+      "authority_name": "Support",
+      "body": "Support bulletin bulletin-09 records a field observation for Atlas X100 with firmware 4.2 in Europe. It reports a pressure limit of 190 kPa and a flow rate limit of 40 L/min. The bulletin is approved and is effective from 2025-01-01 to 2027-01-01. The source authority is Support. For Atlas X100 with firmware 4.2 in Europe, the pressure limit applies as 190 kPa. This informational bulletin does not define the approved product specification.",
+      "document_id": "bulletin-09",
+      "document_role": "Informational",
+      "document_type": "bulletin",
+      "extraction_confidence": 1.0,
+      "extraction_method": "gold_template",
+      "facts": [
+        {
+          "name": "pressure_limit",
+          "unit": "kPa",
+          "value": 190
+        },
+        {
+          "name": "flow_rate_limit",
+          "unit": "L/min",
+          "value": 40
+        }
+      ],
+      "firmware_versions": [
+        "4.2"
+      ],
+      "product_ids": [
+        "atlas_x100"
+      ],
+      "regions": [
+        "europe"
+      ],
+      "specification_authority": false,
+      "status": "Approved",
+      "supersedes": [],
+      "title": "Atlas X100 firmware 4.2 Europe informational bulletin-09",
+      "valid_from": "2025-01-01",
+      "valid_to": "2027-01-01"
+    },
+    {
+      "authority": "sales",
+      "authority_name": "Sales",
+      "body": "Support bulletin bulletin-10 records a field observation for Atlas X100 with firmware 4.2 in North America. It reports a pressure limit of 185 kPa and a flow rate limit of 39 L/min. The bulletin is approved and is effective from 2025-01-01 to 2027-01-01. The source authority is Sales. For Atlas X100 with firmware 4.2 in North America, the pressure limit applies as 185 kPa. This informational bulletin does not define the approved product specification.",
+      "document_id": "bulletin-10",
+      "document_role": "Informational",
+      "document_type": "bulletin",
+      "extraction_confidence": 1.0,
+      "extraction_method": "gold_template",
+      "facts": [
+        {
+          "name": "pressure_limit",
+          "unit": "kPa",
+          "value": 185
+        },
+        {
+          "name": "flow_rate_limit",
+          "unit": "L/min",
+          "value": 39
+        }
+      ],
+      "firmware_versions": [
+        "4.2"
+      ],
+      "product_ids": [
+        "atlas_x100"
+      ],
+      "regions": [
+        "north_america"
+      ],
+      "specification_authority": false,
+      "status": "Approved",
+      "supersedes": [],
+      "title": "Atlas X100 firmware 4.2 North America informational bulletin-10",
+      "valid_from": "2025-01-01",
+      "valid_to": "2027-01-01"
+    },
+    {
+      "authority": "support",
+      "authority_name": "Support",
+      "body": "Support bulletin bulletin-11 records a field observation for Atlas X100 with firmware 4.3 in Global. It reports a pressure limit of 190 kPa and a flow rate limit of 41 L/min. The bulletin is approved and is effective from 2025-01-01 to 2027-01-01. The source authority is Support. For Atlas X100 with firmware 4.3 in Global, the pressure limit applies as 190 kPa. This informational bulletin does not define the approved product specification.",
+      "document_id": "bulletin-11",
+      "document_role": "Informational",
+      "document_type": "bulletin",
+      "extraction_confidence": 1.0,
+      "extraction_method": "gold_template",
+      "facts": [
+        {
+          "name": "pressure_limit",
+          "unit": "kPa",
+          "value": 190
+        },
+        {
+          "name": "flow_rate_limit",
+          "unit": "L/min",
+          "value": 41
+        }
+      ],
+      "firmware_versions": [
+        "4.3"
+      ],
+      "product_ids": [
+        "atlas_x100"
+      ],
+      "regions": [
+        "global"
+      ],
+      "specification_authority": false,
+      "status": "Approved",
+      "supersedes": [],
+      "title": "Atlas X100 firmware 4.3 Global informational bulletin-11",
+      "valid_from": "2025-01-01",
+      "valid_to": "2027-01-01"
+    },
+    {
+      "authority": "support",
+      "authority_name": "Support",
+      "body": "Support bulletin bulletin-12 records a field observation for Atlas X100 with firmware 4.3 in Europe. It reports a pressure limit of 200 kPa and a flow rate limit of 43 L/min. The bulletin is approved and is effective from 2025-01-01 to 2027-01-01. The source authority is Support. For Atlas X100 with firmware 4.3 in Europe, the pressure limit applies as 200 kPa. This informational bulletin does not define the approved product specification.",
+      "document_id": "bulletin-12",
+      "document_role": "Informational",
+      "document_type": "bulletin",
+      "extraction_confidence": 1.0,
+      "extraction_method": "gold_template",
+      "facts": [
+        {
+          "name": "pressure_limit",
+          "unit": "kPa",
+          "value": 200
+        },
+        {
+          "name": "flow_rate_limit",
+          "unit": "L/min",
+          "value": 43
+        }
+      ],
+      "firmware_versions": [
+        "4.3"
+      ],
+      "product_ids": [
+        "atlas_x100"
+      ],
+      "regions": [
+        "europe"
+      ],
+      "specification_authority": false,
+      "status": "Approved",
+      "supersedes": [],
+      "title": "Atlas X100 firmware 4.3 Europe informational bulletin-12",
+      "valid_from": "2025-01-01",
+      "valid_to": "2027-01-01"
+    },
+    {
+      "authority": "sales",
+      "authority_name": "Sales",
+      "body": "Support bulletin bulletin-13 records a field observation for Atlas X100 with firmware 4.3 in North America. It reports a pressure limit of 195 kPa and a flow rate limit of 42 L/min. The bulletin is approved and is effective from 2025-01-01 to 2027-01-01. The source authority is Sales. For Atlas X100 with firmware 4.3 in North America, the pressure limit applies as 195 kPa. This informational bulletin does not define the approved product specification.",
+      "document_id": "bulletin-13",
+      "document_role": "Informational",
+      "document_type": "bulletin",
+      "extraction_confidence": 1.0,
+      "extraction_method": "gold_template",
+      "facts": [
+        {
+          "name": "pressure_limit",
+          "unit": "kPa",
+          "value": 195
+        },
+        {
+          "name": "flow_rate_limit",
+          "unit": "L/min",
+          "value": 42
+        }
+      ],
+      "firmware_versions": [
+        "4.3"
+      ],
+      "product_ids": [
+        "atlas_x100"
+      ],
+      "regions": [
+        "north_america"
+      ],
+      "specification_authority": false,
+      "status": "Approved",
+      "supersedes": [],
+      "title": "Atlas X100 firmware 4.3 North America informational bulletin-13",
+      "valid_from": "2025-01-01",
+      "valid_to": "2027-01-01"
+    },
+    {
+      "authority": "support",
+      "authority_name": "Support",
+      "body": "Support bulletin bulletin-14 records a field observation for Atlas X200 with firmware 3.8 in Global. It reports a pressure limit of 250 kPa and a flow rate limit of 52 L/min. The bulletin is approved and is effective from 2025-01-01 to 2027-01-01. The source authority is Support. For Atlas X200 with firmware 3.8 in Global, the pressure limit applies as 250 kPa. This informational bulletin does not define the approved product specification.",
+      "document_id": "bulletin-14",
+      "document_role": "Informational",
+      "document_type": "bulletin",
+      "extraction_confidence": 1.0,
+      "extraction_method": "gold_template",
+      "facts": [
+        {
+          "name": "pressure_limit",
+          "unit": "kPa",
+          "value": 250
+        },
+        {
+          "name": "flow_rate_limit",
+          "unit": "L/min",
+          "value": 52
+        }
+      ],
+      "firmware_versions": [
+        "3.8"
+      ],
+      "product_ids": [
+        "atlas_x200"
+      ],
+      "regions": [
+        "global"
+      ],
+      "specification_authority": false,
+      "status": "Approved",
+      "supersedes": [],
+      "title": "Atlas X200 firmware 3.8 Global informational bulletin-14",
+      "valid_from": "2025-01-01",
+      "valid_to": "2027-01-01"
+    },
+    {
+      "authority": "support",
+      "authority_name": "Support",
+      "body": "Support bulletin bulletin-15 records a field observation for Atlas X200 with firmware 3.8 in Europe. It reports a pressure limit of 240 kPa and a flow rate limit of 54 L/min. The bulletin is approved and is effective from 2025-01-01 to 2027-01-01. The source authority is Support. For Atlas X200 with firmware 3.8 in Europe, the pressure limit applies as 240 kPa. This informational bulletin does not define the approved product specification.",
+      "document_id": "bulletin-15",
+      "document_role": "Informational",
+      "document_type": "bulletin",
+      "extraction_confidence": 1.0,
+      "extraction_method": "gold_template",
+      "facts": [
+        {
+          "name": "pressure_limit",
+          "unit": "kPa",
+          "value": 240
+        },
+        {
+          "name": "flow_rate_limit",
+          "unit": "L/min",
+          "value": 54
+        }
+      ],
+      "firmware_versions": [
+        "3.8"
+      ],
+      "product_ids": [
+        "atlas_x200"
+      ],
+      "regions": [
+        "europe"
+      ],
+      "specification_authority": false,
+      "status": "Approved",
+      "supersedes": [],
+      "title": "Atlas X200 firmware 3.8 Europe informational bulletin-15",
+      "valid_from": "2025-01-01",
+      "valid_to": "2027-01-01"
+    },
+    {
+      "authority": "sales",
+      "authority_name": "Sales",
+      "body": "Support bulletin bulletin-16 records a field observation for Atlas X200 with firmware 3.8 in North America. It reports a pressure limit of 235 kPa and a flow rate limit of 53 L/min. The bulletin is approved and is effective from 2025-01-01 to 2027-01-01. The source authority is Sales. For Atlas X200 with firmware 3.8 in North America, the pressure limit applies as 235 kPa. This informational bulletin does not define the approved product specification.",
+      "document_id": "bulletin-16",
+      "document_role": "Informational",
+      "document_type": "bulletin",
+      "extraction_confidence": 1.0,
+      "extraction_method": "gold_template",
+      "facts": [
+        {
+          "name": "pressure_limit",
+          "unit": "kPa",
+          "value": 235
+        },
+        {
+          "name": "flow_rate_limit",
+          "unit": "L/min",
+          "value": 53
+        }
+      ],
+      "firmware_versions": [
+        "3.8"
+      ],
+      "product_ids": [
+        "atlas_x200"
+      ],
+      "regions": [
+        "north_america"
+      ],
+      "specification_authority": false,
+      "status": "Approved",
+      "supersedes": [],
+      "title": "Atlas X200 firmware 3.8 North America informational bulletin-16",
+      "valid_from": "2025-01-01",
+      "valid_to": "2027-01-01"
+    },
+    {
+      "authority": "support",
+      "authority_name": "Support",
+      "body": "Support bulletin bulletin-17 records a field observation for Atlas X200 with firmware 4.1 in Global. It reports a pressure limit of 220 kPa and a flow rate limit of 50 L/min. The bulletin is approved and is effective from 2025-01-01 to 2027-01-01. The source authority is Support. For Atlas X200 with firmware 4.1 in Global, the pressure limit applies as 220 kPa. This informational bulletin does not define the approved product specification.",
+      "document_id": "bulletin-17",
+      "document_role": "Informational",
+      "document_type": "bulletin",
+      "extraction_confidence": 1.0,
+      "extraction_method": "gold_template",
+      "facts": [
+        {
+          "name": "pressure_limit",
+          "unit": "kPa",
+          "value": 220
+        },
+        {
+          "name": "flow_rate_limit",
+          "unit": "L/min",
+          "value": 50
+        }
+      ],
+      "firmware_versions": [
+        "4.1"
+      ],
+      "product_ids": [
+        "atlas_x200"
+      ],
+      "regions": [
+        "global"
+      ],
+      "specification_authority": false,
+      "status": "Approved",
+      "supersedes": [],
+      "title": "Atlas X200 firmware 4.1 Global informational bulletin-17",
+      "valid_from": "2025-01-01",
+      "valid_to": "2027-01-01"
+    },
+    {
+      "authority": "support",
+      "authority_name": "Support",
+      "body": "Support bulletin bulletin-18 records a field observation for Atlas X200 with firmware 4.1 in Europe. It reports a pressure limit of 230 kPa and a flow rate limit of 52 L/min. The bulletin is approved and is effective from 2025-01-01 to 2027-01-01. The source authority is Support. For Atlas X200 with firmware 4.1 in Europe, the pressure limit applies as 230 kPa. This informational bulletin does not define the approved product specification.",
+      "document_id": "bulletin-18",
+      "document_role": "Informational",
+      "document_type": "bulletin",
+      "extraction_confidence": 1.0,
+      "extraction_method": "gold_template",
+      "facts": [
+        {
+          "name": "pressure_limit",
+          "unit": "kPa",
+          "value": 230
+        },
+        {
+          "name": "flow_rate_limit",
+          "unit": "L/min",
+          "value": 52
+        }
+      ],
+      "firmware_versions": [
+        "4.1"
+      ],
+      "product_ids": [
+        "atlas_x200"
+      ],
+      "regions": [
+        "europe"
+      ],
+      "specification_authority": false,
+      "status": "Approved",
+      "supersedes": [],
+      "title": "Atlas X200 firmware 4.1 Europe informational bulletin-18",
+      "valid_from": "2025-01-01",
+      "valid_to": "2027-01-01"
+    },
+    {
+      "authority": "sales",
+      "authority_name": "Sales",
+      "body": "Support bulletin bulletin-19 records a field observation for Atlas X200 with firmware 4.1 in North America. It reports a pressure limit of 225 kPa and a flow rate limit of 51 L/min. The bulletin is approved and is effective from 2025-01-01 to 2027-01-01. The source authority is Sales. For Atlas X200 with firmware 4.1 in North America, the pressure limit applies as 225 kPa. This informational bulletin does not define the approved product specification.",
+      "document_id": "bulletin-19",
+      "document_role": "Informational",
+      "document_type": "bulletin",
+      "extraction_confidence": 1.0,
+      "extraction_method": "gold_template",
+      "facts": [
+        {
+          "name": "pressure_limit",
+          "unit": "kPa",
+          "value": 225
+        },
+        {
+          "name": "flow_rate_limit",
+          "unit": "L/min",
+          "value": 51
+        }
+      ],
+      "firmware_versions": [
+        "4.1"
+      ],
+      "product_ids": [
+        "atlas_x200"
+      ],
+      "regions": [
+        "north_america"
+      ],
+      "specification_authority": false,
+      "status": "Approved",
+      "supersedes": [],
+      "title": "Atlas X200 firmware 4.1 North America informational bulletin-19",
+      "valid_from": "2025-01-01",
+      "valid_to": "2027-01-01"
+    },
+    {
+      "authority": "support",
+      "authority_name": "Support",
+      "body": "Support bulletin bulletin-20 records a field observation for Atlas X200 with firmware 4.2 in Global. It reports a pressure limit of 210 kPa and a flow rate limit of 48 L/min. The bulletin is approved and is effective from 2025-01-01 to 2027-01-01. The source authority is Support. For Atlas X200 with firmware 4.2 in Global, the pressure limit applies as 210 kPa. This informational bulletin does not define the approved product specification.",
+      "document_id": "bulletin-20",
+      "document_role": "Informational",
+      "document_type": "bulletin",
+      "extraction_confidence": 1.0,
+      "extraction_method": "gold_template",
+      "facts": [
+        {
+          "name": "pressure_limit",
+          "unit": "kPa",
+          "value": 210
+        },
+        {
+          "name": "flow_rate_limit",
+          "unit": "L/min",
+          "value": 48
+        }
+      ],
+      "firmware_versions": [
+        "4.2"
+      ],
+      "product_ids": [
+        "atlas_x200"
+      ],
+      "regions": [
+        "global"
+      ],
+      "specification_authority": false,
+      "status": "Approved",
+      "supersedes": [],
+      "title": "Atlas X200 firmware 4.2 Global informational bulletin-20",
+      "valid_from": "2025-01-01",
+      "valid_to": "2027-01-01"
+    },
+    {
+      "authority": "sales",
+      "authority_name": "Sales",
+      "body": "Support bulletin bulletin-21 records a field observation for Atlas X200 with firmware 4.2 in North America. It reports a pressure limit of 215 kPa and a flow rate limit of 49 L/min. The bulletin is approved and is effective from 2025-01-01 to 2027-01-01. The source authority is Sales. For Atlas X200 with firmware 4.2 in North America, the pressure limit applies as 215 kPa. This informational bulletin does not define the approved product specification.",
+      "document_id": "bulletin-21",
+      "document_role": "Informational",
+      "document_type": "bulletin",
+      "extraction_confidence": 1.0,
+      "extraction_method": "gold_template",
+      "facts": [
+        {
+          "name": "pressure_limit",
+          "unit": "kPa",
+          "value": 215
+        },
+        {
+          "name": "flow_rate_limit",
+          "unit": "L/min",
+          "value": 49
+        }
+      ],
+      "firmware_versions": [
+        "4.2"
+      ],
+      "product_ids": [
+        "atlas_x200"
+      ],
+      "regions": [
+        "north_america"
+      ],
+      "specification_authority": false,
+      "status": "Approved",
+      "supersedes": [],
+      "title": "Atlas X200 firmware 4.2 North America informational bulletin-21",
+      "valid_from": "2025-01-01",
+      "valid_to": "2027-01-01"
+    },
+    {
+      "authority": "support",
+      "authority_name": "Support",
+      "body": "Support bulletin bulletin-22 records a field observation for Atlas X200 with firmware 4.3 in Global. It reports a pressure limit of 220 kPa and a flow rate limit of 51 L/min. The bulletin is approved and is effective from 2025-01-01 to 2027-01-01. The source authority is Support. For Atlas X200 with firmware 4.3 in Global, the pressure limit applies as 220 kPa. This informational bulletin does not define the approved product specification.",
+      "document_id": "bulletin-22",
+      "document_role": "Informational",
+      "document_type": "bulletin",
+      "extraction_confidence": 1.0,
+      "extraction_method": "gold_template",
+      "facts": [
+        {
+          "name": "pressure_limit",
+          "unit": "kPa",
+          "value": 220
+        },
+        {
+          "name": "flow_rate_limit",
+          "unit": "L/min",
+          "value": 51
+        }
+      ],
+      "firmware_versions": [
+        "4.3"
+      ],
+      "product_ids": [
+        "atlas_x200"
+      ],
+      "regions": [
+        "global"
+      ],
+      "specification_authority": false,
+      "status": "Approved",
+      "supersedes": [],
+      "title": "Atlas X200 firmware 4.3 Global informational bulletin-22",
+      "valid_from": "2025-01-01",
+      "valid_to": "2027-01-01"
+    },
+    {
+      "authority": "support",
+      "authority_name": "Support",
+      "body": "Support bulletin bulletin-23 records a field observation for Atlas X200 with firmware 4.3 in Europe. It reports a pressure limit of 230 kPa and a flow rate limit of 53 L/min. The bulletin is approved and is effective from 2025-01-01 to 2027-01-01. The source authority is Support. For Atlas X200 with firmware 4.3 in Europe, the pressure limit applies as 230 kPa. This informational bulletin does not define the approved product specification.",
+      "document_id": "bulletin-23",
+      "document_role": "Informational",
+      "document_type": "bulletin",
+      "extraction_confidence": 1.0,
+      "extraction_method": "gold_template",
+      "facts": [
+        {
+          "name": "pressure_limit",
+          "unit": "kPa",
+          "value": 230
+        },
+        {
+          "name": "flow_rate_limit",
+          "unit": "L/min",
+          "value": 53
+        }
+      ],
+      "firmware_versions": [
+        "4.3"
+      ],
+      "product_ids": [
+        "atlas_x200"
+      ],
+      "regions": [
+        "europe"
+      ],
+      "specification_authority": false,
+      "status": "Approved",
+      "supersedes": [],
+      "title": "Atlas X200 firmware 4.3 Europe informational bulletin-23",
+      "valid_from": "2025-01-01",
+      "valid_to": "2027-01-01"
+    },
+    {
+      "authority": "sales",
+      "authority_name": "Sales",
+      "body": "Support bulletin bulletin-24 records a field observation for Atlas X200 with firmware 4.3 in North America. It reports a pressure limit of 225 kPa and a flow rate limit of 52 L/min. The bulletin is approved and is effective from 2025-01-01 to 2027-01-01. The source authority is Sales. For Atlas X200 with firmware 4.3 in North America, the pressure limit applies as 225 kPa. This informational bulletin does not define the approved product specification.",
+      "document_id": "bulletin-24",
+      "document_role": "Informational",
+      "document_type": "bulletin",
+      "extraction_confidence": 1.0,
+      "extraction_method": "gold_template",
+      "facts": [
+        {
+          "name": "pressure_limit",
+          "unit": "kPa",
+          "value": 225
+        },
+        {
+          "name": "flow_rate_limit",
+          "unit": "L/min",
+          "value": 52
+        }
+      ],
+      "firmware_versions": [
+        "4.3"
+      ],
+      "product_ids": [
+        "atlas_x200"
+      ],
+      "regions": [
+        "north_america"
+      ],
+      "specification_authority": false,
+      "status": "Approved",
+      "supersedes": [],
+      "title": "Atlas X200 firmware 4.3 North America informational bulletin-24",
+      "valid_from": "2025-01-01",
+      "valid_to": "2027-01-01"
+    },
+    {
+      "authority": "support",
+      "authority_name": "Support",
+      "body": "Support bulletin bulletin-25 records a field observation for Atlas X210 with firmware 3.8 in Global. It reports a pressure limit of 250 kPa and a flow rate limit of 56 L/min. The bulletin is approved and is effective from 2025-01-01 to 2027-01-01. The source authority is Support. For Atlas X210 with firmware 3.8 in Global, the pressure limit applies as 250 kPa. This informational bulletin does not define the approved product specification.",
+      "document_id": "bulletin-25",
+      "document_role": "Informational",
+      "document_type": "bulletin",
+      "extraction_confidence": 1.0,
+      "extraction_method": "gold_template",
+      "facts": [
+        {
+          "name": "pressure_limit",
+          "unit": "kPa",
+          "value": 250
+        },
+        {
+          "name": "flow_rate_limit",
+          "unit": "L/min",
+          "value": 56
+        }
+      ],
+      "firmware_versions": [
+        "3.8"
+      ],
+      "product_ids": [
+        "atlas_x210"
+      ],
+      "regions": [
+        "global"
+      ],
+      "specification_authority": false,
+      "status": "Approved",
+      "supersedes": [],
+      "title": "Atlas X210 firmware 3.8 Global informational bulletin-25",
+      "valid_from": "2025-01-01",
+      "valid_to": "2027-01-01"
+    },
+    {
+      "authority": "support",
+      "authority_name": "Support",
+      "body": "Support bulletin bulletin-26 records a field observation for Atlas X210 with firmware 3.8 in Europe. It reports a pressure limit of 260 kPa and a flow rate limit of 58 L/min. The bulletin is approved and is effective from 2025-01-01 to 2027-01-01. The source authority is Support. For Atlas X210 with firmware 3.8 in Europe, the pressure limit applies as 260 kPa. This informational bulletin does not define the approved product specification.",
+      "document_id": "bulletin-26",
+      "document_role": "Informational",
+      "document_type": "bulletin",
+      "extraction_confidence": 1.0,
+      "extraction_method": "gold_template",
+      "facts": [
+        {
+          "name": "pressure_limit",
+          "unit": "kPa",
+          "value": 260
+        },
+        {
+          "name": "flow_rate_limit",
+          "unit": "L/min",
+          "value": 58
+        }
+      ],
+      "firmware_versions": [
+        "3.8"
+      ],
+      "product_ids": [
+        "atlas_x210"
+      ],
+      "regions": [
+        "europe"
+      ],
+      "specification_authority": false,
+      "status": "Approved",
+      "supersedes": [],
+      "title": "Atlas X210 firmware 3.8 Europe informational bulletin-26",
+      "valid_from": "2025-01-01",
+      "valid_to": "2027-01-01"
+    },
+    {
+      "authority": "sales",
+      "authority_name": "Sales",
+      "body": "Support bulletin bulletin-27 records a field observation for Atlas X210 with firmware 3.8 in North America. It reports a pressure limit of 255 kPa and a flow rate limit of 57 L/min. The bulletin is approved and is effective from 2025-01-01 to 2027-01-01. The source authority is Sales. For Atlas X210 with firmware 3.8 in North America, the pressure limit applies as 255 kPa. This informational bulletin does not define the approved product specification.",
+      "document_id": "bulletin-27",
+      "document_role": "Informational",
+      "document_type": "bulletin",
+      "extraction_confidence": 1.0,
+      "extraction_method": "gold_template",
+      "facts": [
+        {
+          "name": "pressure_limit",
+          "unit": "kPa",
+          "value": 255
+        },
+        {
+          "name": "flow_rate_limit",
+          "unit": "L/min",
+          "value": 57
+        }
+      ],
+      "firmware_versions": [
+        "3.8"
+      ],
+      "product_ids": [
+        "atlas_x210"
+      ],
+      "regions": [
+        "north_america"
+      ],
+      "specification_authority": false,
+      "status": "Approved",
+      "supersedes": [],
+      "title": "Atlas X210 firmware 3.8 North America informational bulletin-27",
+      "valid_from": "2025-01-01",
+      "valid_to": "2027-01-01"
+    },
+    {
+      "authority": "support",
+      "authority_name": "Support",
+      "body": "Support bulletin bulletin-28 records a field observation for Atlas X210 with firmware 4.1 in Global. It reports a pressure limit of 240 kPa and a flow rate limit of 54 L/min. The bulletin is approved and is effective from 2025-01-01 to 2027-01-01. The source authority is Support. For Atlas X210 with firmware 4.1 in Global, the pressure limit applies as 240 kPa. This informational bulletin does not define the approved product specification.",
+      "document_id": "bulletin-28",
+      "document_role": "Informational",
+      "document_type": "bulletin",
+      "extraction_confidence": 1.0,
+      "extraction_method": "gold_template",
+      "facts": [
+        {
+          "name": "pressure_limit",
+          "unit": "kPa",
+          "value": 240
+        },
+        {
+          "name": "flow_rate_limit",
+          "unit": "L/min",
+          "value": 54
+        }
+      ],
+      "firmware_versions": [
+        "4.1"
+      ],
+      "product_ids": [
+        "atlas_x210"
+      ],
+      "regions": [
+        "global"
+      ],
+      "specification_authority": false,
+      "status": "Approved",
+      "supersedes": [],
+      "title": "Atlas X210 firmware 4.1 Global informational bulletin-28",
+      "valid_from": "2025-01-01",
+      "valid_to": "2027-01-01"
+    },
+    {
+      "authority": "support",
+      "authority_name": "Support",
+      "body": "Support bulletin bulletin-29 records a field observation for Atlas X210 with firmware 4.1 in Europe. It reports a pressure limit of 250 kPa and a flow rate limit of 56 L/min. The bulletin is approved and is effective from 2025-01-01 to 2027-01-01. The source authority is Support. For Atlas X210 with firmware 4.1 in Europe, the pressure limit applies as 250 kPa. This informational bulletin does not define the approved product specification.",
+      "document_id": "bulletin-29",
+      "document_role": "Informational",
+      "document_type": "bulletin",
+      "extraction_confidence": 1.0,
+      "extraction_method": "gold_template",
+      "facts": [
+        {
+          "name": "pressure_limit",
+          "unit": "kPa",
+          "value": 250
+        },
+        {
+          "name": "flow_rate_limit",
+          "unit": "L/min",
+          "value": 56
+        }
+      ],
+      "firmware_versions": [
+        "4.1"
+      ],
+      "product_ids": [
+        "atlas_x210"
+      ],
+      "regions": [
+        "europe"
+      ],
+      "specification_authority": false,
+      "status": "Approved",
+      "supersedes": [],
+      "title": "Atlas X210 firmware 4.1 Europe informational bulletin-29",
+      "valid_from": "2025-01-01",
+      "valid_to": "2027-01-01"
+    },
+    {
+      "authority": "sales",
+      "authority_name": "Sales",
+      "body": "Support bulletin bulletin-30 records a field observation for Atlas X210 with firmware 4.1 in North America. It reports a pressure limit of 245 kPa and a flow rate limit of 55 L/min. The bulletin is approved and is effective from 2025-01-01 to 2027-01-01. The source authority is Sales. For Atlas X210 with firmware 4.1 in North America, the pressure limit applies as 245 kPa. This informational bulletin does not define the approved product specification.",
+      "document_id": "bulletin-30",
+      "document_role": "Informational",
+      "document_type": "bulletin",
+      "extraction_confidence": 1.0,
+      "extraction_method": "gold_template",
+      "facts": [
+        {
+          "name": "pressure_limit",
+          "unit": "kPa",
+          "value": 245
+        },
+        {
+          "name": "flow_rate_limit",
+          "unit": "L/min",
+          "value": 55
+        }
+      ],
+      "firmware_versions": [
+        "4.1"
+      ],
+      "product_ids": [
+        "atlas_x210"
+      ],
+      "regions": [
+        "north_america"
+      ],
+      "specification_authority": false,
+      "status": "Approved",
+      "supersedes": [],
+      "title": "Atlas X210 firmware 4.1 North America informational bulletin-30",
+      "valid_from": "2025-01-01",
+      "valid_to": "2027-01-01"
+    },
+    {
+      "authority": "support",
+      "authority_name": "Support",
+      "body": "Support bulletin bulletin-31 records a field observation for Atlas X210 with firmware 4.2 in Global. It reports a pressure limit of 230 kPa and a flow rate limit of 52 L/min. The bulletin is approved and is effective from 2025-01-01 to 2027-01-01. The source authority is Support. For Atlas X210 with firmware 4.2 in Global, the pressure limit applies as 230 kPa. This informational bulletin does not define the approved product specification.",
+      "document_id": "bulletin-31",
+      "document_role": "Informational",
+      "document_type": "bulletin",
+      "extraction_confidence": 1.0,
+      "extraction_method": "gold_template",
+      "facts": [
+        {
+          "name": "pressure_limit",
+          "unit": "kPa",
+          "value": 230
+        },
+        {
+          "name": "flow_rate_limit",
+          "unit": "L/min",
+          "value": 52
+        }
+      ],
+      "firmware_versions": [
+        "4.2"
+      ],
+      "product_ids": [
+        "atlas_x210"
+      ],
+      "regions": [
+        "global"
+      ],
+      "specification_authority": false,
+      "status": "Approved",
+      "supersedes": [],
+      "title": "Atlas X210 firmware 4.2 Global informational bulletin-31",
+      "valid_from": "2025-01-01",
+      "valid_to": "2027-01-01"
+    },
+    {
+      "authority": "support",
+      "authority_name": "Support",
+      "body": "Support bulletin bulletin-32 records a field observation for Atlas X210 with firmware 4.2 in Europe. It reports a pressure limit of 240 kPa and a flow rate limit of 54 L/min. The bulletin is approved and is effective from 2025-01-01 to 2027-01-01. The source authority is Support. For Atlas X210 with firmware 4.2 in Europe, the pressure limit applies as 240 kPa. This informational bulletin does not define the approved product specification.",
+      "document_id": "bulletin-32",
+      "document_role": "Informational",
+      "document_type": "bulletin",
+      "extraction_confidence": 1.0,
+      "extraction_method": "gold_template",
+      "facts": [
+        {
+          "name": "pressure_limit",
+          "unit": "kPa",
+          "value": 240
+        },
+        {
+          "name": "flow_rate_limit",
+          "unit": "L/min",
+          "value": 54
+        }
+      ],
+      "firmware_versions": [
+        "4.2"
+      ],
+      "product_ids": [
+        "atlas_x210"
+      ],
+      "regions": [
+        "europe"
+      ],
+      "specification_authority": false,
+      "status": "Approved",
+      "supersedes": [],
+      "title": "Atlas X210 firmware 4.2 Europe informational bulletin-32",
+      "valid_from": "2025-01-01",
+      "valid_to": "2027-01-01"
+    },
+    {
+      "authority": "sales",
+      "authority_name": "Sales",
+      "body": "Support bulletin bulletin-33 records a field observation for Atlas X210 with firmware 4.2 in North America. It reports a pressure limit of 235 kPa and a flow rate limit of 53 L/min. The bulletin is approved and is effective from 2025-01-01 to 2027-01-01. The source authority is Sales. For Atlas X210 with firmware 4.2 in North America, the pressure limit applies as 235 kPa. This informational bulletin does not define the approved product specification.",
+      "document_id": "bulletin-33",
+      "document_role": "Informational",
+      "document_type": "bulletin",
+      "extraction_confidence": 1.0,
+      "extraction_method": "gold_template",
+      "facts": [
+        {
+          "name": "pressure_limit",
+          "unit": "kPa",
+          "value": 235
+        },
+        {
+          "name": "flow_rate_limit",
+          "unit": "L/min",
+          "value": 53
+        }
+      ],
+      "firmware_versions": [
+        "4.2"
+      ],
+      "product_ids": [
+        "atlas_x210"
+      ],
+      "regions": [
+        "north_america"
+      ],
+      "specification_authority": false,
+      "status": "Approved",
+      "supersedes": [],
+      "title": "Atlas X210 firmware 4.2 North America informational bulletin-33",
+      "valid_from": "2025-01-01",
+      "valid_to": "2027-01-01"
+    },
+    {
+      "authority": "support",
+      "authority_name": "Support",
+      "body": "Support bulletin bulletin-34 records a field observation for Atlas X210 with firmware 4.3 in Global. It reports a pressure limit of 240 kPa and a flow rate limit of 55 L/min. The bulletin is approved and is effective from 2025-01-01 to 2027-01-01. The source authority is Support. For Atlas X210 with firmware 4.3 in Global, the pressure limit applies as 240 kPa. This informational bulletin does not define the approved product specification.",
+      "document_id": "bulletin-34",
+      "document_role": "Informational",
+      "document_type": "bulletin",
+      "extraction_confidence": 1.0,
+      "extraction_method": "gold_template",
+      "facts": [
+        {
+          "name": "pressure_limit",
+          "unit": "kPa",
+          "value": 240
+        },
+        {
+          "name": "flow_rate_limit",
+          "unit": "L/min",
+          "value": 55
+        }
+      ],
+      "firmware_versions": [
+        "4.3"
+      ],
+      "product_ids": [
+        "atlas_x210"
+      ],
+      "regions": [
+        "global"
+      ],
+      "specification_authority": false,
+      "status": "Approved",
+      "supersedes": [],
+      "title": "Atlas X210 firmware 4.3 Global informational bulletin-34",
+      "valid_from": "2025-01-01",
+      "valid_to": "2027-01-01"
+    },
+    {
+      "authority": "support",
+      "authority_name": "Support",
+      "body": "Support bulletin bulletin-35 records a field observation for Atlas X210 with firmware 4.3 in Europe. It reports a pressure limit of 250 kPa and a flow rate limit of 57 L/min. The bulletin is approved and is effective from 2025-01-01 to 2027-01-01. The source authority is Support. For Atlas X210 with firmware 4.3 in Europe, the pressure limit applies as 250 kPa. This informational bulletin does not define the approved product specification.",
+      "document_id": "bulletin-35",
+      "document_role": "Informational",
+      "document_type": "bulletin",
+      "extraction_confidence": 1.0,
+      "extraction_method": "gold_template",
+      "facts": [
+        {
+          "name": "pressure_limit",
+          "unit": "kPa",
+          "value": 250
+        },
+        {
+          "name": "flow_rate_limit",
+          "unit": "L/min",
+          "value": 57
+        }
+      ],
+      "firmware_versions": [
+        "4.3"
+      ],
+      "product_ids": [
+        "atlas_x210"
+      ],
+      "regions": [
+        "europe"
+      ],
+      "specification_authority": false,
+      "status": "Approved",
+      "supersedes": [],
+      "title": "Atlas X210 firmware 4.3 Europe informational bulletin-35",
+      "valid_from": "2025-01-01",
+      "valid_to": "2027-01-01"
+    },
+    {
+      "authority": "sales",
+      "authority_name": "Sales",
+      "body": "Support bulletin bulletin-36 records a field observation for Atlas X210 with firmware 4.3 in North America. It reports a pressure limit of 245 kPa and a flow rate limit of 56 L/min. The bulletin is approved and is effective from 2025-01-01 to 2027-01-01. The source authority is Sales. For Atlas X210 with firmware 4.3 in North America, the pressure limit applies as 245 kPa. This informational bulletin does not define the approved product specification.",
+      "document_id": "bulletin-36",
+      "document_role": "Informational",
+      "document_type": "bulletin",
+      "extraction_confidence": 1.0,
+      "extraction_method": "gold_template",
+      "facts": [
+        {
+          "name": "pressure_limit",
+          "unit": "kPa",
+          "value": 245
+        },
+        {
+          "name": "flow_rate_limit",
+          "unit": "L/min",
+          "value": 56
+        }
+      ],
+      "firmware_versions": [
+        "4.3"
+      ],
+      "product_ids": [
+        "atlas_x210"
+      ],
+      "regions": [
+        "north_america"
+      ],
+      "specification_authority": false,
+      "status": "Approved",
+      "supersedes": [],
+      "title": "Atlas X210 firmware 4.3 North America informational bulletin-36",
+      "valid_from": "2025-01-01",
+      "valid_to": "2027-01-01"
+    },
+    {
+      "authority": "support",
+      "authority_name": "Support",
+      "body": "Support bulletin bulletin-37 records a field observation for Atlas Y200 with firmware 3.8 in Global. It reports a pressure limit of 225 kPa and a flow rate limit of 48 L/min. The bulletin is approved and is effective from 2025-01-01 to 2027-01-01. The source authority is Support. For Atlas Y200 with firmware 3.8 in Global, the pressure limit applies as 225 kPa. This informational bulletin does not define the approved product specification.",
+      "document_id": "bulletin-37",
+      "document_role": "Informational",
+      "document_type": "bulletin",
+      "extraction_confidence": 1.0,
+      "extraction_method": "gold_template",
+      "facts": [
+        {
+          "name": "pressure_limit",
+          "unit": "kPa",
+          "value": 225
+        },
+        {
+          "name": "flow_rate_limit",
+          "unit": "L/min",
+          "value": 48
+        }
+      ],
+      "firmware_versions": [
+        "3.8"
+      ],
+      "product_ids": [
+        "atlas_y200"
+      ],
+      "regions": [
+        "global"
+      ],
+      "specification_authority": false,
+      "status": "Approved",
+      "supersedes": [],
+      "title": "Atlas Y200 firmware 3.8 Global informational bulletin-37",
+      "valid_from": "2025-01-01",
+      "valid_to": "2027-01-01"
+    },
+    {
+      "authority": "support",
+      "authority_name": "Support",
+      "body": "Support bulletin bulletin-38 records a field observation for Atlas Y200 with firmware 3.8 in Europe. It reports a pressure limit of 235 kPa and a flow rate limit of 50 L/min. The bulletin is approved and is effective from 2025-01-01 to 2027-01-01. The source authority is Support. For Atlas Y200 with firmware 3.8 in Europe, the pressure limit applies as 235 kPa. This informational bulletin does not define the approved product specification.",
+      "document_id": "bulletin-38",
+      "document_role": "Informational",
+      "document_type": "bulletin",
+      "extraction_confidence": 1.0,
+      "extraction_method": "gold_template",
+      "facts": [
+        {
+          "name": "pressure_limit",
+          "unit": "kPa",
+          "value": 235
+        },
+        {
+          "name": "flow_rate_limit",
+          "unit": "L/min",
+          "value": 50
+        }
+      ],
+      "firmware_versions": [
+        "3.8"
+      ],
+      "product_ids": [
+        "atlas_y200"
+      ],
+      "regions": [
+        "europe"
+      ],
+      "specification_authority": false,
+      "status": "Approved",
+      "supersedes": [],
+      "title": "Atlas Y200 firmware 3.8 Europe informational bulletin-38",
+      "valid_from": "2025-01-01",
+      "valid_to": "2027-01-01"
+    },
+    {
+      "authority": "sales",
+      "authority_name": "Sales",
+      "body": "Support bulletin bulletin-39 records a field observation for Atlas Y200 with firmware 3.8 in North America. It reports a pressure limit of 230 kPa and a flow rate limit of 49 L/min. The bulletin is approved and is effective from 2025-01-01 to 2027-01-01. The source authority is Sales. For Atlas Y200 with firmware 3.8 in North America, the pressure limit applies as 230 kPa. This informational bulletin does not define the approved product specification.",
+      "document_id": "bulletin-39",
+      "document_role": "Informational",
+      "document_type": "bulletin",
+      "extraction_confidence": 1.0,
+      "extraction_method": "gold_template",
+      "facts": [
+        {
+          "name": "pressure_limit",
+          "unit": "kPa",
+          "value": 230
+        },
+        {
+          "name": "flow_rate_limit",
+          "unit": "L/min",
+          "value": 49
+        }
+      ],
+      "firmware_versions": [
+        "3.8"
+      ],
+      "product_ids": [
+        "atlas_y200"
+      ],
+      "regions": [
+        "north_america"
+      ],
+      "specification_authority": false,
+      "status": "Approved",
+      "supersedes": [],
+      "title": "Atlas Y200 firmware 3.8 North America informational bulletin-39",
+      "valid_from": "2025-01-01",
+      "valid_to": "2027-01-01"
+    },
+    {
+      "authority": "support",
+      "authority_name": "Support",
+      "body": "Support bulletin bulletin-40 records a field observation for Atlas Y200 with firmware 4.1 in Global. It reports a pressure limit of 215 kPa and a flow rate limit of 46 L/min. The bulletin is approved and is effective from 2025-01-01 to 2027-01-01. The source authority is Support. For Atlas Y200 with firmware 4.1 in Global, the pressure limit applies as 215 kPa. This informational bulletin does not define the approved product specification.",
+      "document_id": "bulletin-40",
+      "document_role": "Informational",
+      "document_type": "bulletin",
+      "extraction_confidence": 1.0,
+      "extraction_method": "gold_template",
+      "facts": [
+        {
+          "name": "pressure_limit",
+          "unit": "kPa",
+          "value": 215
+        },
+        {
+          "name": "flow_rate_limit",
+          "unit": "L/min",
+          "value": 46
+        }
+      ],
+      "firmware_versions": [
+        "4.1"
+      ],
+      "product_ids": [
+        "atlas_y200"
+      ],
+      "regions": [
+        "global"
+      ],
+      "specification_authority": false,
+      "status": "Approved",
+      "supersedes": [],
+      "title": "Atlas Y200 firmware 4.1 Global informational bulletin-40",
+      "valid_from": "2025-01-01",
+      "valid_to": "2027-01-01"
+    },
+    {
+      "authority": "support",
+      "authority_name": "Support",
+      "body": "Support bulletin bulletin-41 records a field observation for Atlas Y200 with firmware 4.1 in Europe. It reports a pressure limit of 225 kPa and a flow rate limit of 48 L/min. The bulletin is approved and is effective from 2025-01-01 to 2027-01-01. The source authority is Support. For Atlas Y200 with firmware 4.1 in Europe, the pressure limit applies as 225 kPa. This informational bulletin does not define the approved product specification.",
+      "document_id": "bulletin-41",
+      "document_role": "Informational",
+      "document_type": "bulletin",
+      "extraction_confidence": 1.0,
+      "extraction_method": "gold_template",
+      "facts": [
+        {
+          "name": "pressure_limit",
+          "unit": "kPa",
+          "value": 225
+        },
+        {
+          "name": "flow_rate_limit",
+          "unit": "L/min",
+          "value": 48
+        }
+      ],
+      "firmware_versions": [
+        "4.1"
+      ],
+      "product_ids": [
+        "atlas_y200"
+      ],
+      "regions": [
+        "europe"
+      ],
+      "specification_authority": false,
+      "status": "Approved",
+      "supersedes": [],
+      "title": "Atlas Y200 firmware 4.1 Europe informational bulletin-41",
+      "valid_from": "2025-01-01",
+      "valid_to": "2027-01-01"
+    },
+    {
+      "authority": "sales",
+      "authority_name": "Sales",
+      "body": "Support bulletin bulletin-42 records a field observation for Atlas Y200 with firmware 4.1 in North America. It reports a pressure limit of 220 kPa and a flow rate limit of 47 L/min. The bulletin is approved and is effective from 2025-01-01 to 2027-01-01. The source authority is Sales. For Atlas Y200 with firmware 4.1 in North America, the pressure limit applies as 220 kPa. This informational bulletin does not define the approved product specification.",
+      "document_id": "bulletin-42",
+      "document_role": "Informational",
+      "document_type": "bulletin",
+      "extraction_confidence": 1.0,
+      "extraction_method": "gold_template",
+      "facts": [
+        {
+          "name": "pressure_limit",
+          "unit": "kPa",
+          "value": 220
+        },
+        {
+          "name": "flow_rate_limit",
+          "unit": "L/min",
+          "value": 47
+        }
+      ],
+      "firmware_versions": [
+        "4.1"
+      ],
+      "product_ids": [
+        "atlas_y200"
+      ],
+      "regions": [
+        "north_america"
+      ],
+      "specification_authority": false,
+      "status": "Approved",
+      "supersedes": [],
+      "title": "Atlas Y200 firmware 4.1 North America informational bulletin-42",
+      "valid_from": "2025-01-01",
+      "valid_to": "2027-01-01"
+    },
+    {
+      "authority": "support",
+      "authority_name": "Support",
+      "body": "Support bulletin bulletin-43 records a field observation for Atlas Y200 with firmware 4.2 in Global. It reports a pressure limit of 205 kPa and a flow rate limit of 44 L/min. The bulletin is approved and is effective from 2025-01-01 to 2027-01-01. The source authority is Support. For Atlas Y200 with firmware 4.2 in Global, the pressure limit applies as 205 kPa. This informational bulletin does not define the approved product specification.",
+      "document_id": "bulletin-43",
+      "document_role": "Informational",
+      "document_type": "bulletin",
+      "extraction_confidence": 1.0,
+      "extraction_method": "gold_template",
+      "facts": [
+        {
+          "name": "pressure_limit",
+          "unit": "kPa",
+          "value": 205
+        },
+        {
+          "name": "flow_rate_limit",
+          "unit": "L/min",
+          "value": 44
+        }
+      ],
+      "firmware_versions": [
+        "4.2"
+      ],
+      "product_ids": [
+        "atlas_y200"
+      ],
+      "regions": [
+        "global"
+      ],
+      "specification_authority": false,
+      "status": "Approved",
+      "supersedes": [],
+      "title": "Atlas Y200 firmware 4.2 Global informational bulletin-43",
+      "valid_from": "2025-01-01",
+      "valid_to": "2027-01-01"
+    },
+    {
+      "authority": "support",
+      "authority_name": "Support",
+      "body": "Support bulletin bulletin-44 records a field observation for Atlas Y200 with firmware 4.2 in Europe. It reports a pressure limit of 215 kPa and a flow rate limit of 46 L/min. The bulletin is approved and is effective from 2025-01-01 to 2027-01-01. The source authority is Support. For Atlas Y200 with firmware 4.2 in Europe, the pressure limit applies as 215 kPa. This informational bulletin does not define the approved product specification.",
+      "document_id": "bulletin-44",
+      "document_role": "Informational",
+      "document_type": "bulletin",
+      "extraction_confidence": 1.0,
+      "extraction_method": "gold_template",
+      "facts": [
+        {
+          "name": "pressure_limit",
+          "unit": "kPa",
+          "value": 215
+        },
+        {
+          "name": "flow_rate_limit",
+          "unit": "L/min",
+          "value": 46
+        }
+      ],
+      "firmware_versions": [
+        "4.2"
+      ],
+      "product_ids": [
+        "atlas_y200"
+      ],
+      "regions": [
+        "europe"
+      ],
+      "specification_authority": false,
+      "status": "Approved",
+      "supersedes": [],
+      "title": "Atlas Y200 firmware 4.2 Europe informational bulletin-44",
+      "valid_from": "2025-01-01",
+      "valid_to": "2027-01-01"
+    },
+    {
+      "authority": "sales",
+      "authority_name": "Sales",
+      "body": "Support bulletin bulletin-45 records a field observation for Atlas Y200 with firmware 4.2 in North America. It reports a pressure limit of 210 kPa and a flow rate limit of 45 L/min. The bulletin is approved and is effective from 2025-01-01 to 2027-01-01. The source authority is Sales. For Atlas Y200 with firmware 4.2 in North America, the pressure limit applies as 210 kPa. This informational bulletin does not define the approved product specification.",
+      "document_id": "bulletin-45",
+      "document_role": "Informational",
+      "document_type": "bulletin",
+      "extraction_confidence": 1.0,
+      "extraction_method": "gold_template",
+      "facts": [
+        {
+          "name": "pressure_limit",
+          "unit": "kPa",
+          "value": 210
+        },
+        {
+          "name": "flow_rate_limit",
+          "unit": "L/min",
+          "value": 45
+        }
+      ],
+      "firmware_versions": [
+        "4.2"
+      ],
+      "product_ids": [
+        "atlas_y200"
+      ],
+      "regions": [
+        "north_america"
+      ],
+      "specification_authority": false,
+      "status": "Approved",
+      "supersedes": [],
+      "title": "Atlas Y200 firmware 4.2 North America informational bulletin-45",
+      "valid_from": "2025-01-01",
+      "valid_to": "2027-01-01"
+    },
+    {
+      "authority": "support",
+      "authority_name": "Support",
+      "body": "Support bulletin bulletin-46 records a field observation for Atlas Y200 with firmware 4.3 in Global. It reports a pressure limit of 215 kPa and a flow rate limit of 47 L/min. The bulletin is approved and is effective from 2025-01-01 to 2027-01-01. The source authority is Support. For Atlas Y200 with firmware 4.3 in Global, the pressure limit applies as 215 kPa. This informational bulletin does not define the approved product specification.",
+      "document_id": "bulletin-46",
+      "document_role": "Informational",
+      "document_type": "bulletin",
+      "extraction_confidence": 1.0,
+      "extraction_method": "gold_template",
+      "facts": [
+        {
+          "name": "pressure_limit",
+          "unit": "kPa",
+          "value": 215
+        },
+        {
+          "name": "flow_rate_limit",
+          "unit": "L/min",
+          "value": 47
+        }
+      ],
+      "firmware_versions": [
+        "4.3"
+      ],
+      "product_ids": [
+        "atlas_y200"
+      ],
+      "regions": [
+        "global"
+      ],
+      "specification_authority": false,
+      "status": "Approved",
+      "supersedes": [],
+      "title": "Atlas Y200 firmware 4.3 Global informational bulletin-46",
+      "valid_from": "2025-01-01",
+      "valid_to": "2027-01-01"
+    },
+    {
+      "authority": "support",
+      "authority_name": "Support",
+      "body": "Support bulletin bulletin-47 records a field observation for Atlas Y200 with firmware 4.3 in Europe. It reports a pressure limit of 225 kPa and a flow rate limit of 49 L/min. The bulletin is approved and is effective from 2025-01-01 to 2027-01-01. The source authority is Support. For Atlas Y200 with firmware 4.3 in Europe, the pressure limit applies as 225 kPa. This informational bulletin does not define the approved product specification.",
+      "document_id": "bulletin-47",
+      "document_role": "Informational",
+      "document_type": "bulletin",
+      "extraction_confidence": 1.0,
+      "extraction_method": "gold_template",
+      "facts": [
+        {
+          "name": "pressure_limit",
+          "unit": "kPa",
+          "value": 225
+        },
+        {
+          "name": "flow_rate_limit",
+          "unit": "L/min",
+          "value": 49
+        }
+      ],
+      "firmware_versions": [
+        "4.3"
+      ],
+      "product_ids": [
+        "atlas_y200"
+      ],
+      "regions": [
+        "europe"
+      ],
+      "specification_authority": false,
+      "status": "Approved",
+      "supersedes": [],
+      "title": "Atlas Y200 firmware 4.3 Europe informational bulletin-47",
+      "valid_from": "2025-01-01",
+      "valid_to": "2027-01-01"
+    },
+    {
+      "authority": "sales",
+      "authority_name": "Sales",
+      "body": "Support bulletin bulletin-48 records a field observation for Atlas Y200 with firmware 4.3 in North America. It reports a pressure limit of 220 kPa and a flow rate limit of 48 L/min. The bulletin is approved and is effective from 2025-01-01 to 2027-01-01. The source authority is Sales. For Atlas Y200 with firmware 4.3 in North America, the pressure limit applies as 220 kPa. This informational bulletin does not define the approved product specification.",
+      "document_id": "bulletin-48",
+      "document_role": "Informational",
+      "document_type": "bulletin",
+      "extraction_confidence": 1.0,
+      "extraction_method": "gold_template",
+      "facts": [
+        {
+          "name": "pressure_limit",
+          "unit": "kPa",
+          "value": 220
+        },
+        {
+          "name": "flow_rate_limit",
+          "unit": "L/min",
+          "value": 48
+        }
+      ],
+      "firmware_versions": [
+        "4.3"
+      ],
+      "product_ids": [
+        "atlas_y200"
+      ],
+      "regions": [
+        "north_america"
+      ],
+      "specification_authority": false,
+      "status": "Approved",
+      "supersedes": [],
+      "title": "Atlas Y200 firmware 4.3 North America informational bulletin-48",
+      "valid_from": "2025-01-01",
+      "valid_to": "2027-01-01"
+    },
+    {
+      "authority": "product_safety",
+      "authority_name": "Product Safety",
+      "body": "Product Safety specification spec-01 defines the operating limits for Atlas X100 with firmware 3.8 in Global. The pressure limit is 200 kPa. The flow rate limit is 42 L/min. The document status is superseded. It is effective from 2022-01-01 to 2025-01-01. The source authority is Product Safety. It has no superseded source.",
+      "document_id": "spec-01",
+      "document_role": "Specification",
+      "document_type": "specification",
+      "extraction_confidence": 1.0,
+      "extraction_method": "gold_template",
+      "facts": [
+        {
+          "name": "pressure_limit",
+          "unit": "kPa",
+          "value": 200
+        },
+        {
+          "name": "flow_rate_limit",
+          "unit": "L/min",
+          "value": 42
+        }
+      ],
+      "firmware_versions": [
+        "3.8"
+      ],
+      "product_ids": [
+        "atlas_x100"
+      ],
+      "regions": [
+        "global"
+      ],
+      "specification_authority": true,
+      "status": "Superseded",
+      "supersedes": [],
+      "title": "Atlas X100 firmware 3.8 Global specification spec-01",
+      "valid_from": "2022-01-01",
+      "valid_to": "2025-01-01"
+    },
+    {
+      "authority": "product_safety",
+      "authority_name": "Product Safety",
+      "body": "Product Safety specification spec-02 defines the operating limits for Atlas X100 with firmware 3.8 in Europe. The pressure limit is 210 kPa. The flow rate limit is 44 L/min. The document status is superseded. It is effective from 2022-01-01 to 2025-01-01. The source authority is Product Safety. It has no superseded source.",
+      "document_id": "spec-02",
+      "document_role": "Specification",
+      "document_type": "specification",
+      "extraction_confidence": 1.0,
+      "extraction_method": "gold_template",
+      "facts": [
+        {
+          "name": "pressure_limit",
+          "unit": "kPa",
+          "value": 210
+        },
+        {
+          "name": "flow_rate_limit",
+          "unit": "L/min",
+          "value": 44
+        }
+      ],
+      "firmware_versions": [
+        "3.8"
+      ],
+      "product_ids": [
+        "atlas_x100"
+      ],
+      "regions": [
+        "europe"
+      ],
+      "specification_authority": true,
+      "status": "Superseded",
+      "supersedes": [],
+      "title": "Atlas X100 firmware 3.8 Europe specification spec-02",
+      "valid_from": "2022-01-01",
+      "valid_to": "2025-01-01"
+    },
+    {
+      "authority": "product_safety",
+      "authority_name": "Product Safety",
+      "body": "Product Safety specification spec-03 defines the operating limits for Atlas X100 with firmware 3.8 in North America. The pressure limit is 205 kPa. The flow rate limit is 43 L/min. The document status is superseded. It is effective from 2022-01-01 to 2025-01-01. The source authority is Product Safety. It has no superseded source.",
+      "document_id": "spec-03",
+      "document_role": "Specification",
+      "document_type": "specification",
+      "extraction_confidence": 1.0,
+      "extraction_method": "gold_template",
+      "facts": [
+        {
+          "name": "pressure_limit",
+          "unit": "kPa",
+          "value": 205
+        },
+        {
+          "name": "flow_rate_limit",
+          "unit": "L/min",
+          "value": 43
+        }
+      ],
+      "firmware_versions": [
+        "3.8"
+      ],
+      "product_ids": [
+        "atlas_x100"
+      ],
+      "regions": [
+        "north_america"
+      ],
+      "specification_authority": true,
+      "status": "Superseded",
+      "supersedes": [],
+      "title": "Atlas X100 firmware 3.8 North America specification spec-03",
+      "valid_from": "2022-01-01",
+      "valid_to": "2025-01-01"
+    },
+    {
+      "authority": "product_safety",
+      "authority_name": "Product Safety",
+      "body": "Product Safety specification spec-04 defines the operating limits for Atlas X100 with firmware 4.1 in Global. The pressure limit is 190 kPa. The flow rate limit is 40 L/min. The document status is expired. It is effective from 2024-01-01 to 2025-06-30. The source authority is Product Safety. It has no superseded source.",
+      "document_id": "spec-04",
+      "document_role": "Specification",
+      "document_type": "specification",
+      "extraction_confidence": 1.0,
+      "extraction_method": "gold_template",
+      "facts": [
+        {
+          "name": "pressure_limit",
+          "unit": "kPa",
+          "value": 190
+        },
+        {
+          "name": "flow_rate_limit",
+          "unit": "L/min",
+          "value": 40
+        }
+      ],
+      "firmware_versions": [
+        "4.1"
+      ],
+      "product_ids": [
+        "atlas_x100"
+      ],
+      "regions": [
+        "global"
+      ],
+      "specification_authority": true,
+      "status": "Expired",
+      "supersedes": [],
+      "title": "Atlas X100 firmware 4.1 Global specification spec-04",
+      "valid_from": "2024-01-01",
+      "valid_to": "2025-06-30"
+    },
+    {
+      "authority": "product_safety",
+      "authority_name": "Product Safety",
+      "body": "Product Safety specification spec-05 defines the operating limits for Atlas X100 with firmware 4.1 in Europe. The pressure limit is 200 kPa. The flow rate limit is 42 L/min. The document status is expired. It is effective from 2024-01-01 to 2025-06-30. The source authority is Product Safety. It has no superseded source.",
+      "document_id": "spec-05",
+      "document_role": "Specification",
+      "document_type": "specification",
+      "extraction_confidence": 1.0,
+      "extraction_method": "gold_template",
+      "facts": [
+        {
+          "name": "pressure_limit",
+          "unit": "kPa",
+          "value": 200
+        },
+        {
+          "name": "flow_rate_limit",
+          "unit": "L/min",
+          "value": 42
+        }
+      ],
+      "firmware_versions": [
+        "4.1"
+      ],
+      "product_ids": [
+        "atlas_x100"
+      ],
+      "regions": [
+        "europe"
+      ],
+      "specification_authority": true,
+      "status": "Expired",
+      "supersedes": [],
+      "title": "Atlas X100 firmware 4.1 Europe specification spec-05",
+      "valid_from": "2024-01-01",
+      "valid_to": "2025-06-30"
+    },
+    {
+      "authority": "product_safety",
+      "authority_name": "Product Safety",
+      "body": "Product Safety specification spec-06 defines the operating limits for Atlas X100 with firmware 4.1 in North America. The pressure limit is 195 kPa. The flow rate limit is 41 L/min. The document status is expired. It is effective from 2024-01-01 to 2025-06-30. The source authority is Product Safety. It has no superseded source.",
+      "document_id": "spec-06",
+      "document_role": "Specification",
+      "document_type": "specification",
+      "extraction_confidence": 1.0,
+      "extraction_method": "gold_template",
+      "facts": [
+        {
+          "name": "pressure_limit",
+          "unit": "kPa",
+          "value": 195
+        },
+        {
+          "name": "flow_rate_limit",
+          "unit": "L/min",
+          "value": 41
+        }
+      ],
+      "firmware_versions": [
+        "4.1"
+      ],
+      "product_ids": [
+        "atlas_x100"
+      ],
+      "regions": [
+        "north_america"
+      ],
+      "specification_authority": true,
+      "status": "Expired",
+      "supersedes": [],
+      "title": "Atlas X100 firmware 4.1 North America specification spec-06",
+      "valid_from": "2024-01-01",
+      "valid_to": "2025-06-30"
+    },
+    {
+      "authority": "product_safety",
+      "authority_name": "Product Safety",
+      "body": "Product Safety specification spec-07 defines the operating limits for Atlas X100 with firmware 4.2 in Global. The pressure limit is 180 kPa. The flow rate limit is 38 L/min. The document status is approved. It is effective from 2025-01-01 to 2027-01-01. The source authority is Product Safety. It supersedes spec-01.",
+      "document_id": "spec-07",
+      "document_role": "Specification",
+      "document_type": "specification",
+      "extraction_confidence": 1.0,
+      "extraction_method": "gold_template",
+      "facts": [
+        {
+          "name": "pressure_limit",
+          "unit": "kPa",
+          "value": 180
+        },
+        {
+          "name": "flow_rate_limit",
+          "unit": "L/min",
+          "value": 38
+        }
+      ],
+      "firmware_versions": [
+        "4.2"
+      ],
+      "product_ids": [
+        "atlas_x100"
+      ],
+      "regions": [
+        "global"
+      ],
+      "specification_authority": true,
+      "status": "Approved",
+      "supersedes": [
+        "spec-01"
+      ],
+      "title": "Atlas X100 firmware 4.2 Global specification spec-07",
+      "valid_from": "2025-01-01",
+      "valid_to": "2027-01-01"
+    },
+    {
+      "authority": "product_safety",
+      "authority_name": "Product Safety",
+      "body": "Product Safety specification spec-08 defines the operating limits for Atlas X100 with firmware 4.2 in Europe. The pressure limit is 190 kPa. The flow rate limit is 40 L/min. The document status is approved. It is effective from 2025-01-01 to 2027-01-01. The source authority is Product Safety. It supersedes spec-02.",
+      "document_id": "spec-08",
+      "document_role": "Specification",
+      "document_type": "specification",
+      "extraction_confidence": 1.0,
+      "extraction_method": "gold_template",
+      "facts": [
+        {
+          "name": "pressure_limit",
+          "unit": "kPa",
+          "value": 190
+        },
+        {
+          "name": "flow_rate_limit",
+          "unit": "L/min",
+          "value": 40
+        }
+      ],
+      "firmware_versions": [
+        "4.2"
+      ],
+      "product_ids": [
+        "atlas_x100"
+      ],
+      "regions": [
+        "europe"
+      ],
+      "specification_authority": true,
+      "status": "Approved",
+      "supersedes": [
+        "spec-02"
+      ],
+      "title": "Atlas X100 firmware 4.2 Europe specification spec-08",
+      "valid_from": "2025-01-01",
+      "valid_to": "2027-01-01"
+    },
+    {
+      "authority": "product_safety",
+      "authority_name": "Product Safety",
+      "body": "Product Safety specification spec-09 defines the operating limits for Atlas X100 with firmware 4.2 in North America. The pressure limit is 185 kPa. The flow rate limit is 39 L/min. The document status is approved. It is effective from 2025-01-01 to 2027-01-01. The source authority is Product Safety. It supersedes spec-03.",
+      "document_id": "spec-09",
+      "document_role": "Specification",
+      "document_type": "specification",
+      "extraction_confidence": 1.0,
+      "extraction_method": "gold_template",
+      "facts": [
+        {
+          "name": "pressure_limit",
+          "unit": "kPa",
+          "value": 185
+        },
+        {
+          "name": "flow_rate_limit",
+          "unit": "L/min",
+          "value": 39
+        }
+      ],
+      "firmware_versions": [
+        "4.2"
+      ],
+      "product_ids": [
+        "atlas_x100"
+      ],
+      "regions": [
+        "north_america"
+      ],
+      "specification_authority": true,
+      "status": "Approved",
+      "supersedes": [
+        "spec-03"
+      ],
+      "title": "Atlas X100 firmware 4.2 North America specification spec-09",
+      "valid_from": "2025-01-01",
+      "valid_to": "2027-01-01"
+    },
+    {
+      "authority": "product_safety",
+      "authority_name": "Product Safety",
+      "body": "Product Safety specification spec-10 defines the operating limits for Atlas X100 with firmware 4.3 in Global. The pressure limit is 190 kPa. The flow rate limit is 41 L/min. The document status is draft. It is effective from 2026-09-01 to 2027-12-31. The source authority is Product Safety. It has no superseded source.",
+      "document_id": "spec-10",
+      "document_role": "Specification",
+      "document_type": "specification",
+      "extraction_confidence": 1.0,
+      "extraction_method": "gold_template",
+      "facts": [
+        {
+          "name": "pressure_limit",
+          "unit": "kPa",
+          "value": 190
+        },
+        {
+          "name": "flow_rate_limit",
+          "unit": "L/min",
+          "value": 41
+        }
+      ],
+      "firmware_versions": [
+        "4.3"
+      ],
+      "product_ids": [
+        "atlas_x100"
+      ],
+      "regions": [
+        "global"
+      ],
+      "specification_authority": true,
+      "status": "Draft",
+      "supersedes": [],
+      "title": "Atlas X100 firmware 4.3 Global specification spec-10",
+      "valid_from": "2026-09-01",
+      "valid_to": "2027-12-31"
+    },
+    {
+      "authority": "product_safety",
+      "authority_name": "Product Safety",
+      "body": "Product Safety specification spec-11 defines the operating limits for Atlas X100 with firmware 4.3 in Europe. The pressure limit is 200 kPa. The flow rate limit is 43 L/min. The document status is draft. It is effective from 2026-09-01 to 2027-12-31. The source authority is Product Safety. It has no superseded source.",
+      "document_id": "spec-11",
+      "document_role": "Specification",
+      "document_type": "specification",
+      "extraction_confidence": 1.0,
+      "extraction_method": "gold_template",
+      "facts": [
+        {
+          "name": "pressure_limit",
+          "unit": "kPa",
+          "value": 200
+        },
+        {
+          "name": "flow_rate_limit",
+          "unit": "L/min",
+          "value": 43
+        }
+      ],
+      "firmware_versions": [
+        "4.3"
+      ],
+      "product_ids": [
+        "atlas_x100"
+      ],
+      "regions": [
+        "europe"
+      ],
+      "specification_authority": true,
+      "status": "Draft",
+      "supersedes": [],
+      "title": "Atlas X100 firmware 4.3 Europe specification spec-11",
+      "valid_from": "2026-09-01",
+      "valid_to": "2027-12-31"
+    },
+    {
+      "authority": "product_safety",
+      "authority_name": "Product Safety",
+      "body": "Product Safety specification spec-12 defines the operating limits for Atlas X200 with firmware 3.8 in Global. The pressure limit is 250 kPa. The flow rate limit is 52 L/min. The document status is superseded. It is effective from 2022-01-01 to 2025-01-01. The source authority is Product Safety. It has no superseded source.",
+      "document_id": "spec-12",
+      "document_role": "Specification",
+      "document_type": "specification",
+      "extraction_confidence": 1.0,
+      "extraction_method": "gold_template",
+      "facts": [
+        {
+          "name": "pressure_limit",
+          "unit": "kPa",
+          "value": 250
+        },
+        {
+          "name": "flow_rate_limit",
+          "unit": "L/min",
+          "value": 52
+        }
+      ],
+      "firmware_versions": [
+        "3.8"
+      ],
+      "product_ids": [
+        "atlas_x200"
+      ],
+      "regions": [
+        "global"
+      ],
+      "specification_authority": true,
+      "status": "Superseded",
+      "supersedes": [],
+      "title": "Atlas X200 firmware 3.8 Global specification spec-12",
+      "valid_from": "2022-01-01",
+      "valid_to": "2025-01-01"
+    },
+    {
+      "authority": "product_safety",
+      "authority_name": "Product Safety",
+      "body": "Product Safety specification spec-13 defines the operating limits for Atlas X100 with firmware 4.3 in North America. The pressure limit is 195 kPa. The flow rate limit is 42 L/min. The document status is draft. It is effective from 2026-09-01 to 2027-12-31. The source authority is Product Safety. It has no superseded source.",
+      "document_id": "spec-13",
+      "document_role": "Specification",
+      "document_type": "specification",
+      "extraction_confidence": 1.0,
+      "extraction_method": "gold_template",
+      "facts": [
+        {
+          "name": "pressure_limit",
+          "unit": "kPa",
+          "value": 195
+        },
+        {
+          "name": "flow_rate_limit",
+          "unit": "L/min",
+          "value": 42
+        }
+      ],
+      "firmware_versions": [
+        "4.3"
+      ],
+      "product_ids": [
+        "atlas_x100"
+      ],
+      "regions": [
+        "north_america"
+      ],
+      "specification_authority": true,
+      "status": "Draft",
+      "supersedes": [],
+      "title": "Atlas X100 firmware 4.3 North America specification spec-13",
+      "valid_from": "2026-09-01",
+      "valid_to": "2027-12-31"
+    },
+    {
+      "authority": "product_safety",
+      "authority_name": "Product Safety",
+      "body": "Product Safety specification spec-14 defines the operating limits for Atlas X200 with firmware 3.8 in Europe. The pressure limit is 240 kPa. The flow rate limit is 54 L/min. The document status is superseded. It is effective from 2022-01-01 to 2025-01-01. The source authority is Product Safety. It has no superseded source.",
+      "document_id": "spec-14",
+      "document_role": "Specification",
+      "document_type": "specification",
+      "extraction_confidence": 1.0,
+      "extraction_method": "gold_template",
+      "facts": [
+        {
+          "name": "pressure_limit",
+          "unit": "kPa",
+          "value": 240
+        },
+        {
+          "name": "flow_rate_limit",
+          "unit": "L/min",
+          "value": 54
+        }
+      ],
+      "firmware_versions": [
+        "3.8"
+      ],
+      "product_ids": [
+        "atlas_x200"
+      ],
+      "regions": [
+        "europe"
+      ],
+      "specification_authority": true,
+      "status": "Superseded",
+      "supersedes": [],
+      "title": "Atlas X200 firmware 3.8 Europe specification spec-14",
+      "valid_from": "2022-01-01",
+      "valid_to": "2025-01-01"
+    },
+    {
+      "authority": "product_safety",
+      "authority_name": "Product Safety",
+      "body": "Product Safety specification spec-15 defines the operating limits for Atlas X200 with firmware 3.8 in North America. The pressure limit is 235 kPa. The flow rate limit is 53 L/min. The document status is superseded. It is effective from 2022-01-01 to 2025-01-01. The source authority is Product Safety. It has no superseded source.",
+      "document_id": "spec-15",
+      "document_role": "Specification",
+      "document_type": "specification",
+      "extraction_confidence": 1.0,
+      "extraction_method": "gold_template",
+      "facts": [
+        {
+          "name": "pressure_limit",
+          "unit": "kPa",
+          "value": 235
+        },
+        {
+          "name": "flow_rate_limit",
+          "unit": "L/min",
+          "value": 53
+        }
+      ],
+      "firmware_versions": [
+        "3.8"
+      ],
+      "product_ids": [
+        "atlas_x200"
+      ],
+      "regions": [
+        "north_america"
+      ],
+      "specification_authority": true,
+      "status": "Superseded",
+      "supersedes": [],
+      "title": "Atlas X200 firmware 3.8 North America specification spec-15",
+      "valid_from": "2022-01-01",
+      "valid_to": "2025-01-01"
+    },
+    {
+      "authority": "product_safety",
+      "authority_name": "Product Safety",
+      "body": "Product Safety specification spec-16 defines the operating limits for Atlas X200 with firmware 4.1 in Global. The pressure limit is 220 kPa. The flow rate limit is 50 L/min. The document status is expired. It is effective from 2024-01-01 to 2025-06-30. The source authority is Product Safety. It has no superseded source.",
+      "document_id": "spec-16",
+      "document_role": "Specification",
+      "document_type": "specification",
+      "extraction_confidence": 1.0,
+      "extraction_method": "gold_template",
+      "facts": [
+        {
+          "name": "pressure_limit",
+          "unit": "kPa",
+          "value": 220
+        },
+        {
+          "name": "flow_rate_limit",
+          "unit": "L/min",
+          "value": 50
+        }
+      ],
+      "firmware_versions": [
+        "4.1"
+      ],
+      "product_ids": [
+        "atlas_x200"
+      ],
+      "regions": [
+        "global"
+      ],
+      "specification_authority": true,
+      "status": "Expired",
+      "supersedes": [],
+      "title": "Atlas X200 firmware 4.1 Global specification spec-16",
+      "valid_from": "2024-01-01",
+      "valid_to": "2025-06-30"
+    },
+    {
+      "authority": "product_safety",
+      "authority_name": "Product Safety",
+      "body": "Product Safety specification spec-17 defines the operating limits for Atlas X200 with firmware 4.2 in Europe. The pressure limit is 220 kPa. The flow rate limit is 50 L/min. The document status is approved. It is effective from 2025-01-01 to 2027-01-01. The source authority is Product Safety. It supersedes spec-12.",
+      "document_id": "spec-17",
+      "document_role": "Specification",
+      "document_type": "specification",
+      "extraction_confidence": 1.0,
+      "extraction_method": "gold_template",
+      "facts": [
+        {
+          "name": "pressure_limit",
+          "unit": "kPa",
+          "value": 220
+        },
+        {
+          "name": "flow_rate_limit",
+          "unit": "L/min",
+          "value": 50
+        }
+      ],
+      "firmware_versions": [
+        "4.2"
+      ],
+      "product_ids": [
+        "atlas_x200"
+      ],
+      "regions": [
+        "europe"
+      ],
+      "specification_authority": true,
+      "status": "Approved",
+      "supersedes": [
+        "spec-12"
+      ],
+      "title": "Atlas X200 firmware 4.2 Europe specification spec-17",
+      "valid_from": "2025-01-01",
+      "valid_to": "2027-01-01"
+    },
+    {
+      "authority": "product_safety",
+      "authority_name": "Product Safety",
+      "body": "Product Safety specification spec-18 defines the operating limits for Atlas X200 with firmware 4.1 in Europe. The pressure limit is 230 kPa. The flow rate limit is 52 L/min. The document status is expired. It is effective from 2024-01-01 to 2025-06-30. The source authority is Product Safety. It has no superseded source.",
+      "document_id": "spec-18",
+      "document_role": "Specification",
+      "document_type": "specification",
+      "extraction_confidence": 1.0,
+      "extraction_method": "gold_template",
+      "facts": [
+        {
+          "name": "pressure_limit",
+          "unit": "kPa",
+          "value": 230
+        },
+        {
+          "name": "flow_rate_limit",
+          "unit": "L/min",
+          "value": 52
+        }
+      ],
+      "firmware_versions": [
+        "4.1"
+      ],
+      "product_ids": [
+        "atlas_x200"
+      ],
+      "regions": [
+        "europe"
+      ],
+      "specification_authority": true,
+      "status": "Expired",
+      "supersedes": [],
+      "title": "Atlas X200 firmware 4.1 Europe specification spec-18",
+      "valid_from": "2024-01-01",
+      "valid_to": "2025-06-30"
+    },
+    {
+      "authority": "product_safety",
+      "authority_name": "Product Safety",
+      "body": "Product Safety specification spec-19 defines the operating limits for Atlas X200 with firmware 4.3 in Europe. The pressure limit is 230 kPa. The flow rate limit is 53 L/min. The document status is draft. It is effective from 2026-09-01 to 2027-12-31. The source authority is Product Safety. It has no superseded source.",
+      "document_id": "spec-19",
+      "document_role": "Specification",
+      "document_type": "specification",
+      "extraction_confidence": 1.0,
+      "extraction_method": "gold_template",
+      "facts": [
+        {
+          "name": "pressure_limit",
+          "unit": "kPa",
+          "value": 230
+        },
+        {
+          "name": "flow_rate_limit",
+          "unit": "L/min",
+          "value": 53
+        }
+      ],
+      "firmware_versions": [
+        "4.3"
+      ],
+      "product_ids": [
+        "atlas_x200"
+      ],
+      "regions": [
+        "europe"
+      ],
+      "specification_authority": true,
+      "status": "Draft",
+      "supersedes": [],
+      "title": "Atlas X200 firmware 4.3 Europe specification spec-19",
+      "valid_from": "2026-09-01",
+      "valid_to": "2027-12-31"
+    },
+    {
+      "authority": "product_safety",
+      "authority_name": "Product Safety",
+      "body": "Product Safety specification spec-20 defines the operating limits for Atlas X200 with firmware 4.1 in North America. The pressure limit is 225 kPa. The flow rate limit is 51 L/min. The document status is expired. It is effective from 2024-01-01 to 2025-06-30. The source authority is Product Safety. It has no superseded source.",
+      "document_id": "spec-20",
+      "document_role": "Specification",
+      "document_type": "specification",
+      "extraction_confidence": 1.0,
+      "extraction_method": "gold_template",
+      "facts": [
+        {
+          "name": "pressure_limit",
+          "unit": "kPa",
+          "value": 225
+        },
+        {
+          "name": "flow_rate_limit",
+          "unit": "L/min",
+          "value": 51
+        }
+      ],
+      "firmware_versions": [
+        "4.1"
+      ],
+      "product_ids": [
+        "atlas_x200"
+      ],
+      "regions": [
+        "north_america"
+      ],
+      "specification_authority": true,
+      "status": "Expired",
+      "supersedes": [],
+      "title": "Atlas X200 firmware 4.1 North America specification spec-20",
+      "valid_from": "2024-01-01",
+      "valid_to": "2025-06-30"
+    },
+    {
+      "authority": "product_safety",
+      "authority_name": "Product Safety",
+      "body": "Product Safety specification spec-21 defines the operating limits for Atlas X200 with firmware 4.2 in Global. The pressure limit is 210 kPa. The flow rate limit is 48 L/min. The document status is approved. It is effective from 2025-01-01 to 2027-01-01. The source authority is Product Safety. It supersedes spec-12.",
+      "document_id": "spec-21",
+      "document_role": "Specification",
+      "document_type": "specification",
+      "extraction_confidence": 1.0,
+      "extraction_method": "gold_template",
+      "facts": [
+        {
+          "name": "pressure_limit",
+          "unit": "kPa",
+          "value": 210
+        },
+        {
+          "name": "flow_rate_limit",
+          "unit": "L/min",
+          "value": 48
+        }
+      ],
+      "firmware_versions": [
+        "4.2"
+      ],
+      "product_ids": [
+        "atlas_x200"
+      ],
+      "regions": [
+        "global"
+      ],
+      "specification_authority": true,
+      "status": "Approved",
+      "supersedes": [
+        "spec-12"
+      ],
+      "title": "Atlas X200 firmware 4.2 Global specification spec-21",
+      "valid_from": "2025-01-01",
+      "valid_to": "2027-01-01"
+    },
+    {
+      "authority": "product_safety",
+      "authority_name": "Product Safety",
+      "body": "Product Safety specification spec-22 defines the operating limits for Atlas X200 with firmware 4.2 in North America. The pressure limit is 215 kPa. The flow rate limit is 49 L/min. The document status is approved. It is effective from 2025-01-01 to 2027-01-01. The source authority is Product Safety. It supersedes spec-15.",
+      "document_id": "spec-22",
+      "document_role": "Specification",
+      "document_type": "specification",
+      "extraction_confidence": 1.0,
+      "extraction_method": "gold_template",
+      "facts": [
+        {
+          "name": "pressure_limit",
+          "unit": "kPa",
+          "value": 215
+        },
+        {
+          "name": "flow_rate_limit",
+          "unit": "L/min",
+          "value": 49
+        }
+      ],
+      "firmware_versions": [
+        "4.2"
+      ],
+      "product_ids": [
+        "atlas_x200"
+      ],
+      "regions": [
+        "north_america"
+      ],
+      "specification_authority": true,
+      "status": "Approved",
+      "supersedes": [
+        "spec-15"
+      ],
+      "title": "Atlas X200 firmware 4.2 North America specification spec-22",
+      "valid_from": "2025-01-01",
+      "valid_to": "2027-01-01"
+    },
+    {
+      "authority": "product_safety",
+      "authority_name": "Product Safety",
+      "body": "Product Safety specification spec-23 defines the operating limits for Atlas X200 with firmware 4.3 in Global. The pressure limit is 220 kPa. The flow rate limit is 51 L/min. The document status is draft. It is effective from 2026-09-01 to 2027-12-31. The source authority is Product Safety. It has no superseded source.",
+      "document_id": "spec-23",
+      "document_role": "Specification",
+      "document_type": "specification",
+      "extraction_confidence": 1.0,
+      "extraction_method": "gold_template",
+      "facts": [
+        {
+          "name": "pressure_limit",
+          "unit": "kPa",
+          "value": 220
+        },
+        {
+          "name": "flow_rate_limit",
+          "unit": "L/min",
+          "value": 51
+        }
+      ],
+      "firmware_versions": [
+        "4.3"
+      ],
+      "product_ids": [
+        "atlas_x200"
+      ],
+      "regions": [
+        "global"
+      ],
+      "specification_authority": true,
+      "status": "Draft",
+      "supersedes": [],
+      "title": "Atlas X200 firmware 4.3 Global specification spec-23",
+      "valid_from": "2026-09-01",
+      "valid_to": "2027-12-31"
+    },
+    {
+      "authority": "product_safety",
+      "authority_name": "Product Safety",
+      "body": "Product Safety specification spec-24 defines the operating limits for Atlas X200 with firmware 4.3 in North America. The pressure limit is 225 kPa. The flow rate limit is 52 L/min. The document status is draft. It is effective from 2026-09-01 to 2027-12-31. The source authority is Product Safety. It has no superseded source.",
+      "document_id": "spec-24",
+      "document_role": "Specification",
+      "document_type": "specification",
+      "extraction_confidence": 1.0,
+      "extraction_method": "gold_template",
+      "facts": [
+        {
+          "name": "pressure_limit",
+          "unit": "kPa",
+          "value": 225
+        },
+        {
+          "name": "flow_rate_limit",
+          "unit": "L/min",
+          "value": 52
+        }
+      ],
+      "firmware_versions": [
+        "4.3"
+      ],
+      "product_ids": [
+        "atlas_x200"
+      ],
+      "regions": [
+        "north_america"
+      ],
+      "specification_authority": true,
+      "status": "Draft",
+      "supersedes": [],
+      "title": "Atlas X200 firmware 4.3 North America specification spec-24",
+      "valid_from": "2026-09-01",
+      "valid_to": "2027-12-31"
+    },
+    {
+      "authority": "engineering",
+      "authority_name": "Engineering",
+      "body": "Engineering specification spec-25 defines the operating limits for Atlas X210 with firmware 3.8 in Global. The pressure limit is 250 kPa. The flow rate limit is 56 L/min. The document status is superseded. It is effective from 2022-01-01 to 2025-01-01. The source authority is Engineering. It has no superseded source.",
+      "document_id": "spec-25",
+      "document_role": "Specification",
+      "document_type": "specification",
+      "extraction_confidence": 1.0,
+      "extraction_method": "gold_template",
+      "facts": [
+        {
+          "name": "pressure_limit",
+          "unit": "kPa",
+          "value": 250
+        },
+        {
+          "name": "flow_rate_limit",
+          "unit": "L/min",
+          "value": 56
+        }
+      ],
+      "firmware_versions": [
+        "3.8"
+      ],
+      "product_ids": [
+        "atlas_x210"
+      ],
+      "regions": [
+        "global"
+      ],
+      "specification_authority": true,
+      "status": "Superseded",
+      "supersedes": [],
+      "title": "Atlas X210 firmware 3.8 Global specification spec-25",
+      "valid_from": "2022-01-01",
+      "valid_to": "2025-01-01"
+    },
+    {
+      "authority": "engineering",
+      "authority_name": "Engineering",
+      "body": "Engineering specification spec-26 defines the operating limits for Atlas X210 with firmware 3.8 in Europe. The pressure limit is 260 kPa. The flow rate limit is 58 L/min. The document status is superseded. It is effective from 2022-01-01 to 2025-01-01. The source authority is Engineering. It has no superseded source.",
+      "document_id": "spec-26",
+      "document_role": "Specification",
+      "document_type": "specification",
+      "extraction_confidence": 1.0,
+      "extraction_method": "gold_template",
+      "facts": [
+        {
+          "name": "pressure_limit",
+          "unit": "kPa",
+          "value": 260
+        },
+        {
+          "name": "flow_rate_limit",
+          "unit": "L/min",
+          "value": 58
+        }
+      ],
+      "firmware_versions": [
+        "3.8"
+      ],
+      "product_ids": [
+        "atlas_x210"
+      ],
+      "regions": [
+        "europe"
+      ],
+      "specification_authority": true,
+      "status": "Superseded",
+      "supersedes": [],
+      "title": "Atlas X210 firmware 3.8 Europe specification spec-26",
+      "valid_from": "2022-01-01",
+      "valid_to": "2025-01-01"
+    },
+    {
+      "authority": "engineering",
+      "authority_name": "Engineering",
+      "body": "Engineering specification spec-27 defines the operating limits for Atlas X210 with firmware 4.2 in Europe. The pressure limit is 240 kPa. The flow rate limit is 54 L/min. The document status is approved. It is effective from 2025-01-01 to 2027-01-01. The source authority is Engineering. It supersedes spec-26.",
+      "document_id": "spec-27",
+      "document_role": "Specification",
+      "document_type": "specification",
+      "extraction_confidence": 1.0,
+      "extraction_method": "gold_template",
+      "facts": [
+        {
+          "name": "pressure_limit",
+          "unit": "kPa",
+          "value": 240
+        },
+        {
+          "name": "flow_rate_limit",
+          "unit": "L/min",
+          "value": 54
+        }
+      ],
+      "firmware_versions": [
+        "4.2"
+      ],
+      "product_ids": [
+        "atlas_x210"
+      ],
+      "regions": [
+        "europe"
+      ],
+      "specification_authority": true,
+      "status": "Approved",
+      "supersedes": [
+        "spec-26"
+      ],
+      "title": "Atlas X210 firmware 4.2 Europe specification spec-27",
+      "valid_from": "2025-01-01",
+      "valid_to": "2027-01-01"
+    },
+    {
+      "authority": "engineering",
+      "authority_name": "Engineering",
+      "body": "Engineering specification spec-28 defines the operating limits for Atlas X210 with firmware 3.8 in North America. The pressure limit is 255 kPa. The flow rate limit is 57 L/min. The document status is superseded. It is effective from 2022-01-01 to 2025-01-01. The source authority is Engineering. It has no superseded source.",
+      "document_id": "spec-28",
+      "document_role": "Specification",
+      "document_type": "specification",
+      "extraction_confidence": 1.0,
+      "extraction_method": "gold_template",
+      "facts": [
+        {
+          "name": "pressure_limit",
+          "unit": "kPa",
+          "value": 255
+        },
+        {
+          "name": "flow_rate_limit",
+          "unit": "L/min",
+          "value": 57
+        }
+      ],
+      "firmware_versions": [
+        "3.8"
+      ],
+      "product_ids": [
+        "atlas_x210"
+      ],
+      "regions": [
+        "north_america"
+      ],
+      "specification_authority": true,
+      "status": "Superseded",
+      "supersedes": [],
+      "title": "Atlas X210 firmware 3.8 North America specification spec-28",
+      "valid_from": "2022-01-01",
+      "valid_to": "2025-01-01"
+    },
+    {
+      "authority": "engineering",
+      "authority_name": "Engineering",
+      "body": "Engineering specification spec-29 defines the operating limits for Atlas X210 with firmware 4.1 in Global. The pressure limit is 240 kPa. The flow rate limit is 54 L/min. The document status is expired. It is effective from 2024-01-01 to 2025-06-30. The source authority is Engineering. It has no superseded source.",
+      "document_id": "spec-29",
+      "document_role": "Specification",
+      "document_type": "specification",
+      "extraction_confidence": 1.0,
+      "extraction_method": "gold_template",
+      "facts": [
+        {
+          "name": "pressure_limit",
+          "unit": "kPa",
+          "value": 240
+        },
+        {
+          "name": "flow_rate_limit",
+          "unit": "L/min",
+          "value": 54
+        }
+      ],
+      "firmware_versions": [
+        "4.1"
+      ],
+      "product_ids": [
+        "atlas_x210"
+      ],
+      "regions": [
+        "global"
+      ],
+      "specification_authority": true,
+      "status": "Expired",
+      "supersedes": [],
+      "title": "Atlas X210 firmware 4.1 Global specification spec-29",
+      "valid_from": "2024-01-01",
+      "valid_to": "2025-06-30"
+    },
+    {
+      "authority": "engineering",
+      "authority_name": "Engineering",
+      "body": "Engineering specification spec-30 defines the operating limits for Atlas X210 with firmware 4.1 in Europe. The pressure limit is 250 kPa. The flow rate limit is 56 L/min. The document status is expired. It is effective from 2024-01-01 to 2025-06-30. The source authority is Engineering. It has no superseded source.",
+      "document_id": "spec-30",
+      "document_role": "Specification",
+      "document_type": "specification",
+      "extraction_confidence": 1.0,
+      "extraction_method": "gold_template",
+      "facts": [
+        {
+          "name": "pressure_limit",
+          "unit": "kPa",
+          "value": 250
+        },
+        {
+          "name": "flow_rate_limit",
+          "unit": "L/min",
+          "value": 56
+        }
+      ],
+      "firmware_versions": [
+        "4.1"
+      ],
+      "product_ids": [
+        "atlas_x210"
+      ],
+      "regions": [
+        "europe"
+      ],
+      "specification_authority": true,
+      "status": "Expired",
+      "supersedes": [],
+      "title": "Atlas X210 firmware 4.1 Europe specification spec-30",
+      "valid_from": "2024-01-01",
+      "valid_to": "2025-06-30"
+    },
+    {
+      "authority": "engineering",
+      "authority_name": "Engineering",
+      "body": "Engineering specification spec-31 defines the operating limits for Atlas X210 with firmware 4.1 in North America. The pressure limit is 245 kPa. The flow rate limit is 55 L/min. The document status is expired. It is effective from 2024-01-01 to 2025-06-30. The source authority is Engineering. It has no superseded source.",
+      "document_id": "spec-31",
+      "document_role": "Specification",
+      "document_type": "specification",
+      "extraction_confidence": 1.0,
+      "extraction_method": "gold_template",
+      "facts": [
+        {
+          "name": "pressure_limit",
+          "unit": "kPa",
+          "value": 245
+        },
+        {
+          "name": "flow_rate_limit",
+          "unit": "L/min",
+          "value": 55
+        }
+      ],
+      "firmware_versions": [
+        "4.1"
+      ],
+      "product_ids": [
+        "atlas_x210"
+      ],
+      "regions": [
+        "north_america"
+      ],
+      "specification_authority": true,
+      "status": "Expired",
+      "supersedes": [],
+      "title": "Atlas X210 firmware 4.1 North America specification spec-31",
+      "valid_from": "2024-01-01",
+      "valid_to": "2025-06-30"
+    },
+    {
+      "authority": "engineering",
+      "authority_name": "Engineering",
+      "body": "Engineering specification spec-32 defines the operating limits for Atlas X210 with firmware 4.2 in Global. The pressure limit is 230 kPa. The flow rate limit is 52 L/min. The document status is approved. It is effective from 2025-01-01 to 2027-01-01. The source authority is Engineering. It supersedes spec-25.",
+      "document_id": "spec-32",
+      "document_role": "Specification",
+      "document_type": "specification",
+      "extraction_confidence": 1.0,
+      "extraction_method": "gold_template",
+      "facts": [
+        {
+          "name": "pressure_limit",
+          "unit": "kPa",
+          "value": 230
+        },
+        {
+          "name": "flow_rate_limit",
+          "unit": "L/min",
+          "value": 52
+        }
+      ],
+      "firmware_versions": [
+        "4.2"
+      ],
+      "product_ids": [
+        "atlas_x210"
+      ],
+      "regions": [
+        "global"
+      ],
+      "specification_authority": true,
+      "status": "Approved",
+      "supersedes": [
+        "spec-25"
+      ],
+      "title": "Atlas X210 firmware 4.2 Global specification spec-32",
+      "valid_from": "2025-01-01",
+      "valid_to": "2027-01-01"
+    },
+    {
+      "authority": "engineering",
+      "authority_name": "Engineering",
+      "body": "Engineering specification spec-33 defines the operating limits for Atlas X210 with firmware 4.2 in North America. The pressure limit is 235 kPa. The flow rate limit is 53 L/min. The document status is approved. It is effective from 2025-01-01 to 2027-01-01. The source authority is Engineering. It supersedes spec-28.",
+      "document_id": "spec-33",
+      "document_role": "Specification",
+      "document_type": "specification",
+      "extraction_confidence": 1.0,
+      "extraction_method": "gold_template",
+      "facts": [
+        {
+          "name": "pressure_limit",
+          "unit": "kPa",
+          "value": 235
+        },
+        {
+          "name": "flow_rate_limit",
+          "unit": "L/min",
+          "value": 53
+        }
+      ],
+      "firmware_versions": [
+        "4.2"
+      ],
+      "product_ids": [
+        "atlas_x210"
+      ],
+      "regions": [
+        "north_america"
+      ],
+      "specification_authority": true,
+      "status": "Approved",
+      "supersedes": [
+        "spec-28"
+      ],
+      "title": "Atlas X210 firmware 4.2 North America specification spec-33",
+      "valid_from": "2025-01-01",
+      "valid_to": "2027-01-01"
+    },
+    {
+      "authority": "engineering",
+      "authority_name": "Engineering",
+      "body": "Engineering specification spec-34 defines the operating limits for Atlas X210 with firmware 4.3 in Global. The pressure limit is 240 kPa. The flow rate limit is 55 L/min. The document status is draft. It is effective from 2026-09-01 to 2027-12-31. The source authority is Engineering. It has no superseded source.",
+      "document_id": "spec-34",
+      "document_role": "Specification",
+      "document_type": "specification",
+      "extraction_confidence": 1.0,
+      "extraction_method": "gold_template",
+      "facts": [
+        {
+          "name": "pressure_limit",
+          "unit": "kPa",
+          "value": 240
+        },
+        {
+          "name": "flow_rate_limit",
+          "unit": "L/min",
+          "value": 55
+        }
+      ],
+      "firmware_versions": [
+        "4.3"
+      ],
+      "product_ids": [
+        "atlas_x210"
+      ],
+      "regions": [
+        "global"
+      ],
+      "specification_authority": true,
+      "status": "Draft",
+      "supersedes": [],
+      "title": "Atlas X210 firmware 4.3 Global specification spec-34",
+      "valid_from": "2026-09-01",
+      "valid_to": "2027-12-31"
+    },
+    {
+      "authority": "engineering",
+      "authority_name": "Engineering",
+      "body": "Engineering specification spec-35 defines the operating limits for Atlas X210 with firmware 4.3 in Europe. The pressure limit is 250 kPa. The flow rate limit is 57 L/min. The document status is draft. It is effective from 2026-09-01 to 2027-12-31. The source authority is Engineering. It has no superseded source.",
+      "document_id": "spec-35",
+      "document_role": "Specification",
+      "document_type": "specification",
+      "extraction_confidence": 1.0,
+      "extraction_method": "gold_template",
+      "facts": [
+        {
+          "name": "pressure_limit",
+          "unit": "kPa",
+          "value": 250
+        },
+        {
+          "name": "flow_rate_limit",
+          "unit": "L/min",
+          "value": 57
+        }
+      ],
+      "firmware_versions": [
+        "4.3"
+      ],
+      "product_ids": [
+        "atlas_x210"
+      ],
+      "regions": [
+        "europe"
+      ],
+      "specification_authority": true,
+      "status": "Draft",
+      "supersedes": [],
+      "title": "Atlas X210 firmware 4.3 Europe specification spec-35",
+      "valid_from": "2026-09-01",
+      "valid_to": "2027-12-31"
+    },
+    {
+      "authority": "engineering",
+      "authority_name": "Engineering",
+      "body": "Engineering specification spec-36 defines the operating limits for Atlas X210 with firmware 4.3 in North America. The pressure limit is 245 kPa. The flow rate limit is 56 L/min. The document status is draft. It is effective from 2026-09-01 to 2027-12-31. The source authority is Engineering. It has no superseded source.",
+      "document_id": "spec-36",
+      "document_role": "Specification",
+      "document_type": "specification",
+      "extraction_confidence": 1.0,
+      "extraction_method": "gold_template",
+      "facts": [
+        {
+          "name": "pressure_limit",
+          "unit": "kPa",
+          "value": 245
+        },
+        {
+          "name": "flow_rate_limit",
+          "unit": "L/min",
+          "value": 56
+        }
+      ],
+      "firmware_versions": [
+        "4.3"
+      ],
+      "product_ids": [
+        "atlas_x210"
+      ],
+      "regions": [
+        "north_america"
+      ],
+      "specification_authority": true,
+      "status": "Draft",
+      "supersedes": [],
+      "title": "Atlas X210 firmware 4.3 North America specification spec-36",
+      "valid_from": "2026-09-01",
+      "valid_to": "2027-12-31"
+    },
+    {
+      "authority": "engineering",
+      "authority_name": "Engineering",
+      "body": "Engineering specification spec-37 defines the operating limits for Atlas Y200 with firmware 3.8 in Global. The pressure limit is 225 kPa. The flow rate limit is 48 L/min. The document status is superseded. It is effective from 2022-01-01 to 2025-01-01. The source authority is Engineering. It has no superseded source.",
+      "document_id": "spec-37",
+      "document_role": "Specification",
+      "document_type": "specification",
+      "extraction_confidence": 1.0,
+      "extraction_method": "gold_template",
+      "facts": [
+        {
+          "name": "pressure_limit",
+          "unit": "kPa",
+          "value": 225
+        },
+        {
+          "name": "flow_rate_limit",
+          "unit": "L/min",
+          "value": 48
+        }
+      ],
+      "firmware_versions": [
+        "3.8"
+      ],
+      "product_ids": [
+        "atlas_y200"
+      ],
+      "regions": [
+        "global"
+      ],
+      "specification_authority": true,
+      "status": "Superseded",
+      "supersedes": [],
+      "title": "Atlas Y200 firmware 3.8 Global specification spec-37",
+      "valid_from": "2022-01-01",
+      "valid_to": "2025-01-01"
+    },
+    {
+      "authority": "engineering",
+      "authority_name": "Engineering",
+      "body": "Engineering specification spec-38 defines the operating limits for Atlas Y200 with firmware 3.8 in Europe. The pressure limit is 235 kPa. The flow rate limit is 50 L/min. The document status is superseded. It is effective from 2022-01-01 to 2025-01-01. The source authority is Engineering. It has no superseded source.",
+      "document_id": "spec-38",
+      "document_role": "Specification",
+      "document_type": "specification",
+      "extraction_confidence": 1.0,
+      "extraction_method": "gold_template",
+      "facts": [
+        {
+          "name": "pressure_limit",
+          "unit": "kPa",
+          "value": 235
+        },
+        {
+          "name": "flow_rate_limit",
+          "unit": "L/min",
+          "value": 50
+        }
+      ],
+      "firmware_versions": [
+        "3.8"
+      ],
+      "product_ids": [
+        "atlas_y200"
+      ],
+      "regions": [
+        "europe"
+      ],
+      "specification_authority": true,
+      "status": "Superseded",
+      "supersedes": [],
+      "title": "Atlas Y200 firmware 3.8 Europe specification spec-38",
+      "valid_from": "2022-01-01",
+      "valid_to": "2025-01-01"
+    },
+    {
+      "authority": "engineering",
+      "authority_name": "Engineering",
+      "body": "Engineering specification spec-39 defines the operating limits for Atlas Y200 with firmware 3.8 in North America. The pressure limit is 230 kPa. The flow rate limit is 49 L/min. The document status is superseded. It is effective from 2022-01-01 to 2025-01-01. The source authority is Engineering. It has no superseded source.",
+      "document_id": "spec-39",
+      "document_role": "Specification",
+      "document_type": "specification",
+      "extraction_confidence": 1.0,
+      "extraction_method": "gold_template",
+      "facts": [
+        {
+          "name": "pressure_limit",
+          "unit": "kPa",
+          "value": 230
+        },
+        {
+          "name": "flow_rate_limit",
+          "unit": "L/min",
+          "value": 49
+        }
+      ],
+      "firmware_versions": [
+        "3.8"
+      ],
+      "product_ids": [
+        "atlas_y200"
+      ],
+      "regions": [
+        "north_america"
+      ],
+      "specification_authority": true,
+      "status": "Superseded",
+      "supersedes": [],
+      "title": "Atlas Y200 firmware 3.8 North America specification spec-39",
+      "valid_from": "2022-01-01",
+      "valid_to": "2025-01-01"
+    },
+    {
+      "authority": "engineering",
+      "authority_name": "Engineering",
+      "body": "Engineering specification spec-40 defines the operating limits for Atlas Y200 with firmware 4.1 in Global. The pressure limit is 215 kPa. The flow rate limit is 46 L/min. The document status is expired. It is effective from 2024-01-01 to 2025-06-30. The source authority is Engineering. It has no superseded source.",
+      "document_id": "spec-40",
+      "document_role": "Specification",
+      "document_type": "specification",
+      "extraction_confidence": 1.0,
+      "extraction_method": "gold_template",
+      "facts": [
+        {
+          "name": "pressure_limit",
+          "unit": "kPa",
+          "value": 215
+        },
+        {
+          "name": "flow_rate_limit",
+          "unit": "L/min",
+          "value": 46
+        }
+      ],
+      "firmware_versions": [
+        "4.1"
+      ],
+      "product_ids": [
+        "atlas_y200"
+      ],
+      "regions": [
+        "global"
+      ],
+      "specification_authority": true,
+      "status": "Expired",
+      "supersedes": [],
+      "title": "Atlas Y200 firmware 4.1 Global specification spec-40",
+      "valid_from": "2024-01-01",
+      "valid_to": "2025-06-30"
+    },
+    {
+      "authority": "engineering",
+      "authority_name": "Engineering",
+      "body": "Engineering specification spec-41 defines the operating limits for Atlas Y200 with firmware 4.1 in Europe. The pressure limit is 225 kPa. The flow rate limit is 48 L/min. The document status is expired. It is effective from 2024-01-01 to 2025-06-30. The source authority is Engineering. It has no superseded source.",
+      "document_id": "spec-41",
+      "document_role": "Specification",
+      "document_type": "specification",
+      "extraction_confidence": 1.0,
+      "extraction_method": "gold_template",
+      "facts": [
+        {
+          "name": "pressure_limit",
+          "unit": "kPa",
+          "value": 225
+        },
+        {
+          "name": "flow_rate_limit",
+          "unit": "L/min",
+          "value": 48
+        }
+      ],
+      "firmware_versions": [
+        "4.1"
+      ],
+      "product_ids": [
+        "atlas_y200"
+      ],
+      "regions": [
+        "europe"
+      ],
+      "specification_authority": true,
+      "status": "Expired",
+      "supersedes": [],
+      "title": "Atlas Y200 firmware 4.1 Europe specification spec-41",
+      "valid_from": "2024-01-01",
+      "valid_to": "2025-06-30"
+    },
+    {
+      "authority": "engineering",
+      "authority_name": "Engineering",
+      "body": "Engineering specification spec-42 defines the operating limits for Atlas Y200 with firmware 4.1 in North America. The pressure limit is 220 kPa. The flow rate limit is 47 L/min. The document status is expired. It is effective from 2024-01-01 to 2025-06-30. The source authority is Engineering. It has no superseded source.",
+      "document_id": "spec-42",
+      "document_role": "Specification",
+      "document_type": "specification",
+      "extraction_confidence": 1.0,
+      "extraction_method": "gold_template",
+      "facts": [
+        {
+          "name": "pressure_limit",
+          "unit": "kPa",
+          "value": 220
+        },
+        {
+          "name": "flow_rate_limit",
+          "unit": "L/min",
+          "value": 47
+        }
+      ],
+      "firmware_versions": [
+        "4.1"
+      ],
+      "product_ids": [
+        "atlas_y200"
+      ],
+      "regions": [
+        "north_america"
+      ],
+      "specification_authority": true,
+      "status": "Expired",
+      "supersedes": [],
+      "title": "Atlas Y200 firmware 4.1 North America specification spec-42",
+      "valid_from": "2024-01-01",
+      "valid_to": "2025-06-30"
+    },
+    {
+      "authority": "engineering",
+      "authority_name": "Engineering",
+      "body": "Engineering specification spec-43 defines the operating limits for Atlas Y200 with firmware 4.2 in Global. The pressure limit is 205 kPa. The flow rate limit is 44 L/min. The document status is approved. It is effective from 2025-01-01 to 2027-01-01. The source authority is Engineering. It supersedes spec-37.",
+      "document_id": "spec-43",
+      "document_role": "Specification",
+      "document_type": "specification",
+      "extraction_confidence": 1.0,
+      "extraction_method": "gold_template",
+      "facts": [
+        {
+          "name": "pressure_limit",
+          "unit": "kPa",
+          "value": 205
+        },
+        {
+          "name": "flow_rate_limit",
+          "unit": "L/min",
+          "value": 44
+        }
+      ],
+      "firmware_versions": [
+        "4.2"
+      ],
+      "product_ids": [
+        "atlas_y200"
+      ],
+      "regions": [
+        "global"
+      ],
+      "specification_authority": true,
+      "status": "Approved",
+      "supersedes": [
+        "spec-37"
+      ],
+      "title": "Atlas Y200 firmware 4.2 Global specification spec-43",
+      "valid_from": "2025-01-01",
+      "valid_to": "2027-01-01"
+    },
+    {
+      "authority": "engineering",
+      "authority_name": "Engineering",
+      "body": "Engineering specification spec-44 defines the operating limits for Atlas Y200 with firmware 4.2 in Europe. The pressure limit is 215 kPa. The flow rate limit is 46 L/min. The document status is approved. It is effective from 2025-01-01 to 2027-01-01. The source authority is Engineering. It supersedes spec-38.",
+      "document_id": "spec-44",
+      "document_role": "Specification",
+      "document_type": "specification",
+      "extraction_confidence": 1.0,
+      "extraction_method": "gold_template",
+      "facts": [
+        {
+          "name": "pressure_limit",
+          "unit": "kPa",
+          "value": 215
+        },
+        {
+          "name": "flow_rate_limit",
+          "unit": "L/min",
+          "value": 46
+        }
+      ],
+      "firmware_versions": [
+        "4.2"
+      ],
+      "product_ids": [
+        "atlas_y200"
+      ],
+      "regions": [
+        "europe"
+      ],
+      "specification_authority": true,
+      "status": "Approved",
+      "supersedes": [
+        "spec-38"
+      ],
+      "title": "Atlas Y200 firmware 4.2 Europe specification spec-44",
+      "valid_from": "2025-01-01",
+      "valid_to": "2027-01-01"
+    },
+    {
+      "authority": "engineering",
+      "authority_name": "Engineering",
+      "body": "Engineering specification spec-45 defines the operating limits for Atlas Y200 with firmware 4.2 in North America. The pressure limit is 210 kPa. The flow rate limit is 45 L/min. The document status is approved. It is effective from 2025-01-01 to 2027-01-01. The source authority is Engineering. It supersedes spec-39.",
+      "document_id": "spec-45",
+      "document_role": "Specification",
+      "document_type": "specification",
+      "extraction_confidence": 1.0,
+      "extraction_method": "gold_template",
+      "facts": [
+        {
+          "name": "pressure_limit",
+          "unit": "kPa",
+          "value": 210
+        },
+        {
+          "name": "flow_rate_limit",
+          "unit": "L/min",
+          "value": 45
+        }
+      ],
+      "firmware_versions": [
+        "4.2"
+      ],
+      "product_ids": [
+        "atlas_y200"
+      ],
+      "regions": [
+        "north_america"
+      ],
+      "specification_authority": true,
+      "status": "Approved",
+      "supersedes": [
+        "spec-39"
+      ],
+      "title": "Atlas Y200 firmware 4.2 North America specification spec-45",
+      "valid_from": "2025-01-01",
+      "valid_to": "2027-01-01"
+    },
+    {
+      "authority": "engineering",
+      "authority_name": "Engineering",
+      "body": "Engineering specification spec-46 defines the operating limits for Atlas Y200 with firmware 4.3 in Global. The pressure limit is 215 kPa. The flow rate limit is 47 L/min. The document status is draft. It is effective from 2026-09-01 to 2027-12-31. The source authority is Engineering. It has no superseded source.",
+      "document_id": "spec-46",
+      "document_role": "Specification",
+      "document_type": "specification",
+      "extraction_confidence": 1.0,
+      "extraction_method": "gold_template",
+      "facts": [
+        {
+          "name": "pressure_limit",
+          "unit": "kPa",
+          "value": 215
+        },
+        {
+          "name": "flow_rate_limit",
+          "unit": "L/min",
+          "value": 47
+        }
+      ],
+      "firmware_versions": [
+        "4.3"
+      ],
+      "product_ids": [
+        "atlas_y200"
+      ],
+      "regions": [
+        "global"
+      ],
+      "specification_authority": true,
+      "status": "Draft",
+      "supersedes": [],
+      "title": "Atlas Y200 firmware 4.3 Global specification spec-46",
+      "valid_from": "2026-09-01",
+      "valid_to": "2027-12-31"
+    },
+    {
+      "authority": "engineering",
+      "authority_name": "Engineering",
+      "body": "Engineering specification spec-47 defines the operating limits for Atlas Y200 with firmware 4.3 in Europe. The pressure limit is 225 kPa. The flow rate limit is 49 L/min. The document status is draft. It is effective from 2026-09-01 to 2027-12-31. The source authority is Engineering. It has no superseded source.",
+      "document_id": "spec-47",
+      "document_role": "Specification",
+      "document_type": "specification",
+      "extraction_confidence": 1.0,
+      "extraction_method": "gold_template",
+      "facts": [
+        {
+          "name": "pressure_limit",
+          "unit": "kPa",
+          "value": 225
+        },
+        {
+          "name": "flow_rate_limit",
+          "unit": "L/min",
+          "value": 49
+        }
+      ],
+      "firmware_versions": [
+        "4.3"
+      ],
+      "product_ids": [
+        "atlas_y200"
+      ],
+      "regions": [
+        "europe"
+      ],
+      "specification_authority": true,
+      "status": "Draft",
+      "supersedes": [],
+      "title": "Atlas Y200 firmware 4.3 Europe specification spec-47",
+      "valid_from": "2026-09-01",
+      "valid_to": "2027-12-31"
+    },
+    {
+      "authority": "engineering",
+      "authority_name": "Engineering",
+      "body": "Engineering specification spec-48 defines the operating limits for Atlas Y200 with firmware 4.3 in North America. The pressure limit is 220 kPa. The flow rate limit is 48 L/min. The document status is draft. It is effective from 2026-09-01 to 2027-12-31. The source authority is Engineering. It has no superseded source.",
+      "document_id": "spec-48",
+      "document_role": "Specification",
+      "document_type": "specification",
+      "extraction_confidence": 1.0,
+      "extraction_method": "gold_template",
+      "facts": [
+        {
+          "name": "pressure_limit",
+          "unit": "kPa",
+          "value": 220
+        },
+        {
+          "name": "flow_rate_limit",
+          "unit": "L/min",
+          "value": 48
+        }
+      ],
+      "firmware_versions": [
+        "4.3"
+      ],
+      "product_ids": [
+        "atlas_y200"
+      ],
+      "regions": [
+        "north_america"
+      ],
+      "specification_authority": true,
+      "status": "Draft",
+      "supersedes": [],
+      "title": "Atlas Y200 firmware 4.3 North America specification spec-48",
+      "valid_from": "2026-09-01",
+      "valid_to": "2027-12-31"
+    }
+  ],
+  "seed": 20260828
+}

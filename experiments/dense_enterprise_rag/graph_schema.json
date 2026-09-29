@@ -1,0 +1,72 @@
+{
+  "edge_required_attributes": [
+    "source_id",
+    "valid_from",
+    "valid_to",
+    "status",
+    "authority",
+    "extraction_method",
+    "confidence"
+  ],
+  "edge_types": [
+    "APPLIES_TO",
+    "DEFINES",
+    "EFFECTIVE_DURING",
+    "HAS_FIRMWARE",
+    "HAS_STATUS",
+    "ISSUED_BY",
+    "SOLD_IN",
+    "SUPERSEDES",
+    "SUPPORTED_BY",
+    "VALID_IN"
+  ],
+  "node_types": {
+    "Authority": [
+      "authority_id",
+      "name"
+    ],
+    "Document": [
+      "document_id",
+      "document_type",
+      "status",
+      "authority",
+      "valid_from",
+      "valid_to"
+    ],
+    "Fact": [
+      "fact_name",
+      "value",
+      "unit",
+      "authority",
+      "source_id"
+    ],
+    "FirmwareVersion": [
+      "version"
+    ],
+    "Product": [
+      "product_id",
+      "name",
+      "family"
+    ],
+    "Region": [
+      "region_id",
+      "name"
+    ],
+    "Specification": [
+      "document_id",
+      "source_id"
+    ],
+    "Status": [
+      "status"
+    ]
+  },
+  "schema_version": "1.0",
+  "validation_rules": [
+    "Reject unknown node or edge types.",
+    "Reject edges without source_id.",
+    "Reject time-varying edges without valid_from and valid_to.",
+    "Reject numeric facts without a unit.",
+    "Reject specification facts without an authority.",
+    "Reject SUPERSEDES cycles."
+  ]
+}

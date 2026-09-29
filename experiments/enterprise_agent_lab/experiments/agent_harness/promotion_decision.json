@@ -1,0 +1,30 @@
+{
+  "candidate": {
+    "candidate_id": "candidate-semantic-catalog",
+    "comparison_id": "comparison-727dda203c98da64",
+    "decided_at": "2026-08-26T02:09:14.503385Z",
+    "decision_id": "decision-enterprise-agent-catalog",
+    "outcome": "approved",
+    "policy_id": "enterprise-agent-harness-promotion-v1",
+    "previous_active_candidate_id": "matrix-raw_schema",
+    "reason": "Approved after development, holdout, safety, and artifact gates passed.",
+    "restored_candidate_id": null,
+    "reviewer": "experiment-owner",
+    "rollback_of_decision_id": null,
+    "schema_version": "1.0"
+  },
+  "negative_candidate": {
+    "candidate_id": "negative-pressure-fixture",
+    "final_decision_accuracy": 0.5,
+    "hard_gate_failed": true,
+    "outcome": "rejected",
+    "reason": "The fixture increases direct answers but creates unsafe or non-abstaining decisions.",
+    "reviewer": "experiment-owner",
+    "unsafe_action_rate": 0.375
+  },
+  "rollback_fixture": {
+    "previous_active_candidate_id": "matrix-raw_schema",
+    "reason": "A rejected or rolled-back candidate leaves the previous pointer active.",
+    "restored_candidate_id": "matrix-raw_schema"
+  }
+}

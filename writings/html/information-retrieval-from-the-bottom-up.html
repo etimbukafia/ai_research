@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Information Retrieval from the Bottom Up</title>
+  <style>
+    :root {
+      --bg: #FBFBFB;
+      --fg: #111315;
+      --muted: #5A626A;
+      --border: #E2E4E6;
+      --code-bg: #F4F5F6;
+      --accent: #0052CC;
+      --callout-bg: #F0F4F8;
+      --callout-border: #0052CC;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #111315;
+        --fg: #ECEFF1;
+        --muted: #9BA3AF;
+        --border: #2A2E33;
+        --code-bg: #1A1D20;
+        --accent: #4C9AFF;
+        --callout-bg: #161F2E;
+        --callout-border: #4C9AFF;
+      }
+    }
+    body.light-theme {
+      --bg: #FBFBFB;
+      --fg: #111315;
+      --muted: #5A626A;
+      --border: #E2E4E6;
+      --code-bg: #F4F5F6;
+      --accent: #0052CC;
+      --callout-bg: #F0F4F8;
+      --callout-border: #0052CC;
+    }
+    body.dark-theme {
+      --bg: #111315;
+      --fg: #ECEFF1;
+      --muted: #9BA3AF;
+      --border: #2A2E33;
+      --code-bg: #1A1D20;
+      --accent: #4C9AFF;
+      --callout-bg: #161F2E;
+      --callout-border: #4C9AFF;
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      background-color: var(--bg);
+      color: var(--fg);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      font-size: 17px;
+      line-height: 1.65;
+      padding: 40px 20px;
+      display: flex;
+      justify-content: center;
+      transition: background-color 0.2s ease, color 0.2s ease;
+    }
+    .container {
+      max-width: 690px;
+      width: 100%;
+    }
+    header {
+      margin-bottom: 2.5rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+    h1 {
+      font-size: 2.1rem;
+      line-height: 1.25;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.5rem;
+    }
+    .theme-toggle {
+      background: none;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      padding: 6px 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 13px;
+      white-space: nowrap;
+      transition: border-color 0.2s ease, color 0.2s ease;
+    }
+    .theme-toggle:hover {
+      color: var(--fg);
+      border-color: var(--accent);
+    }
+    h2 {
+      font-size: 1.4rem;
+      margin-top: 2.2rem;
+      margin-bottom: 0.8rem;
+      letter-spacing: -0.01em;
+      font-weight: 600;
+    }
+    p {
+      margin-bottom: 1.2rem;
+    }
+    blockquote {
+      border-left: 3px solid var(--accent);
+      background-color: var(--callout-bg);
+      padding: 12px 18px;
+      margin: 1.4rem 0;
+      border-radius: 0 6px 6px 0;
+      font-style: italic;
+      color: var(--fg);
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1.6rem 0;
+      font-size: 14px;
+    }
+    th, td {
+      border: 1px solid var(--border);
+      padding: 10px 11px;
+      text-align: left;
+    }
+    th {
+      background-color: var(--code-bg);
+      font-weight: 600;
+    }
+    pre {
+      background-color: var(--code-bg);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 14px 16px;
+      overflow-x: auto;
+      margin: 1.4rem 0;
+      font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+      font-size: 13.5px;
+      line-height: 1.5;
+    }
+    code {
+      font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+      font-size: 14px;
+      background-color: var(--code-bg);
+      padding: 2px 5px;
+      border-radius: 4px;
+      border: 1px solid var(--border);
+    }
+    pre code {
+      background-color: transparent;
+      padding: 0;
+      border: none;
+    }
+    ul, ol {
+      margin: 1rem 0 1.4rem 1.6rem;
+    }
+    li {
+      margin-bottom: 0.5rem;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 2.2rem 0;
+    }
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div>
+        <h1>Information Retrieval from the Bottom Up</h1>
+      </div>
+      <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">Toggle Theme</button>
+    </header>
+
+    <p>Most tutorials on modern search begin by embedding text into high-dimensional vector spaces. By jumping immediately into neural dense retrieval, developers frequently bypass the foundational question that governs all search architectures: what specific conditions make a retrieved document relevant to an information need?</p>
+
+    <p>Relevance does not originate in an embedding model. It emerges from the relationship between the user's intent, the vocabulary distribution of the corpus, the indexing data structure, and the scoring function that evaluates candidate matches.</p>
+
+    <p>To understand where retrieval pipelines break down, we constructed an empirical benchmark comparing three classical and modern approaches: exact boolean term matching, Okapi BM25 weighted lexical scoring, and dense vector similarity search. By evaluating all three strategies against the exact same corpus under controlled conditions, we can isolate how representation choices dictate retrieval failures.</p>
+
+    <p>The code, document fixtures, and deterministic runner for this study are published in our <a href="file:///C:/Users/j/afiavana/research/experiments/information_retrieval">information retrieval experiment</a>.</p>
+
+    <blockquote>
+      A search system can rank only the information that its corpus vocabulary, index structures, query syntax, and relevance rubrics make visible.
+    </blockquote>
+
+    <hr>
+
+    <h2>Tracing an Information Need</h2>
+
+    <p>Consider a software engineer querying an internal engineering wiki:</p>
+
+    <blockquote>
+      How can a search system find relevant text when the user's words differ from the words in the documents?
+    </blockquote>
+
+    <p>This query articulates the classic vocabulary mismatch problem. The user is seeking conceptual explanations of synonym expansion, semantic embeddings, and paraphrase handling, yet they phrased the inquiry using generic colloquial terms: <code>search</code>, <code>words</code>, <code>differ</code>, and <code>relevant</code>.</p>
+
+    <p>A robust benchmark must expose how different indexing representations react to this phrasing:</p>
+    <ul>
+      <li>Does boolean matching find anything when terms overlap only on generic stop-words?</li>
+      <li>Does BM25's inverse document frequency discount the common terms while surfacing conceptual discussions?</li>
+      <li>Does dense cosine distance capture the underlying semantic need, or does it become distracted by conversational sentence structure?</li>
+    </ul>
+
+    <hr>
+
+    <h2>Constructing the Controlled Corpus</h2>
+
+    <p>To eliminate noise from massive uncurated datasets, we designed a clean twelve-document technical corpus. Each record represents a discrete architectural concept within information retrieval:</p>
+
+    <pre><code>from pydantic import BaseModel, Field
+
+class SearchDocument(BaseModel):
+    id: str
+    title: str
+    text: str
+    tags: list[str] = Field(default_factory=list)
+
+    def full_content(self) -> str:
+        return f"{self.title}. {self.text}"</code></pre>
+
+    <p>Our evaluation suite indexes twelve core documents:</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Document ID</th>
+          <th>Canonical Topic</th>
+          <th>Experimental Purpose</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>doc-01</code></td>
+          <td>Exact keyword matching</td>
+          <td>Verifies unweighted lexical overlap.</td>
+        </tr>
+        <tr>
+          <td><code>doc-02</code></td>
+          <td>Okapi BM25</td>
+          <td>Evaluates frequency and document-length normalization.</td>
+        </tr>
+        <tr>
+          <td><code>doc-03</code></td>
+          <td>Inverted indexing</td>
+          <td>Tests postings lists and term dictionary retrieval.</td>
+        </tr>
+        <tr>
+          <td><code>doc-04</code></td>
+          <td>Synonyms and paraphrases</td>
+          <td>Ground-truth target for vocabulary mismatch handling.</td>
+        </tr>
+        <tr>
+          <td><code>doc-05</code></td>
+          <td>Dense vector embeddings</td>
+          <td>Ground-truth target for continuous representation.</td>
+        </tr>
+        <tr>
+          <td><code>doc-06</code></td>
+          <td>Cosine vector similarity</td>
+          <td>Ground-truth target for geometric distance scoring.</td>
+        </tr>
+        <tr>
+          <td><code>doc-07</code></td>
+          <td>Text chunking strategies</td>
+          <td>Tests document boundary effects.</td>
+        </tr>
+        <tr>
+          <td><code>doc-08</code></td>
+          <td>Metadata filtering</td>
+          <td>Evaluates deterministic scope constraints.</td>
+        </tr>
+        <tr>
+          <td><code>doc-09</code></td>
+          <td>Cross-encoder reranking</td>
+          <td>Tests secondary precision scoring stages.</td>
+        </tr>
+        <tr>
+          <td><code>doc-10</code></td>
+          <td>Human relevance judgments</td>
+          <td>Ground truth definition for evaluation metrics.</td>
+        </tr>
+        <tr>
+          <td><code>doc-11</code></td>
+          <td>Retrieval metrics (Recall@5, MRR)</td>
+          <td>Defines mathematical evaluation formulas.</td>
+        </tr>
+        <tr>
+          <td><code>doc-12</code></td>
+          <td>Stale or missing records</td>
+          <td>Negative distractor representing index decay.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>Consider <code>doc-04</code> in detail:</p>
+
+    <pre><code>{
+  "id": "doc-04",
+  "title": "Synonyms and paraphrases",
+  "text": "Paraphrase handling links automobile with car. It connects alternative expressions that describe one information need. A relevance decision checks whether two passages answer the same question.",
+  "tags": ["semantics", "paraphrase", "relevance"]
+}</code></pre>
+
+    <p>This passage directly answers the query intent, yet it intentionally avoids repeating the query's phrasing: it uses <code>paraphrase handling</code>, <code>alternative expressions</code>, and <code>passages</code> rather than <code>search system</code>, <code>words differ</code>, or <code>documents</code>. For a lexical retriever, this creates a severe vocabulary gap.</p>
+
+    <hr>
+
+    <h2>Comparing Three Indexing Paradigms</h2>
+
+    <p>We implemented three distinct retrieval backends over the exact same twelve-document dataset:</p>
+
+    <h3>1. Exact Keyword Matching</h3>
+    <p>An inverted index maps normalized vocabulary tokens to document posting lists. The scoring algorithm tallies unique query terms appearing in each document title and body, breaking score ties by ascending document identifier.</p>
+    <p>While straightforward, this approach is rigid: a query that shares three incidental words with an irrelevant passage will always outrank a highly relevant document that shares only one word.</p>
+
+    <h3>2. Okapi BM25 Scoring</h3>
+    <p>BM25 refines raw lexical counts by introducing non-linear term saturation and length penalization:</p>
+
+    <pre><code>Score(D, Q) = Sum[ IDF(q_i) * (TF(q_i, D) * (k1 + 1)) / (TF(q_i, D) + k1 * (1 - b + b * (|D| / avgDL))) ]</code></pre>
+
+    <p>We parameterized the engine with standard production values: <code>k1 = 1.5</code> for term saturation and <code>b = 0.75</code> for document length normalization. BM25 appropriately reduces the influence of frequent words like <code>system</code> and <code>find</code>, rewarding rare terms. However, it remains fundamentally constrained by lexical identity: if a concept is discussed using distinct vocabulary, BM25 assigns it a score of zero.</p>
+
+    <h3>3. Dense Vector Similarity</h3>
+    <p>Using <code>sentence-transformers/all-MiniLM-L6-v2</code>, we mapped each document title and body into a normalized 384-dimensional dense vector, storing embeddings in an in-memory Chroma collection. At query time, we compute the cosine similarity between the embedded inquiry and the document representations.</p>
+    <p>Vectors promise semantic understanding, but they introduce geometric distortions: a document describing general search concepts can sit closer in embedding space to a conversational query than a concise technical passage discussing paraphrases.</p>
+
+    <hr>
+
+    <h2>Benchmark Results: The Vocabulary Failure</h2>
+
+    <p>We evaluated all three methods across our primary question using two standard information retrieval metrics:</p>
+    <ul>
+      <li><strong>Recall@5</strong>: The fraction of authoritative documents (<code>doc-04</code>, <code>doc-05</code>, <code>doc-06</code>) surfaced within the top five positions.</li>
+      <li><strong>Mean Reciprocal Rank (MRR)</strong>: The multiplicative inverse of the rank of the first relevant result.</li>
+    </ul>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Retrieval Method</th>
+          <th>Surfaced Top-5 Document IDs</th>
+          <th>Recall@5</th>
+          <th>MRR</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>exact_keyword</code></td>
+          <td><code>doc-03</code>, <code>doc-01</code>, <code>doc-07</code>, <code>doc-09</code>, <code>doc-11</code></td>
+          <td>0.0000</td>
+          <td>0.0000</td>
+        </tr>
+        <tr>
+          <td><code>bm25</code></td>
+          <td><code>doc-03</code>, <code>doc-07</code>, <code>doc-11</code>, <code>doc-01</code>, <code>doc-09</code></td>
+          <td>0.0000</td>
+          <td>0.0000</td>
+        </tr>
+        <tr>
+          <td><code>vector_chroma</code></td>
+          <td><code>doc-01</code>, <code>doc-03</code>, <code>doc-12</code>, <code>doc-02</code>, <code>doc-07</code></td>
+          <td>0.0000</td>
+          <td>0.0000</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>The primary result provides an important engineering reality check: every single method failed completely, yielding 0.0000 Recall@5 and 0.0000 MRR.</p>
+
+    <p>The failure mechanics are revealing:</p>
+    <ul>
+      <li>Exact keyword search and BM25 latched onto the shared words <code>search</code>, <code>documents</code>, and <code>system</code>, heavily boosting <code>doc-03</code> (Inverted indexes) and <code>doc-07</code> (Chunking), while completely omitting <code>doc-04</code>, <code>doc-05</code>, and <code>doc-06</code>.</li>
+      <li>Vector search similarly stumbled. The dense model was overwhelmed by the conversational syntax of the query (<code>How can a search system find...</code>), causing it to place <code>doc-01</code> (Exact keyword search) and <code>doc-03</code> at the top of the rank list, pushing the true explanatory documents outside the top five cutoff.</li>
+    </ul>
+
+    <hr>
+
+    <h2>Validation Queries: Exposing the Mechanism</h2>
+
+    <p>To confirm whether this failure stemmed from fundamental algorithm mechanics or query phrasing, we ran two validation queries through the identical harness:</p>
+
+    <h3>Validation Query 1: Direct Terminology</h3>
+    <blockquote>
+      Which data structure maps terms to document IDs for fast exact keyword search?<br>
+      <em>(Gold Target: <code>doc-03</code>)</em>
+    </blockquote>
+
+    <h3>Validation Query 2: Focused Paraphrase</h3>
+    <blockquote>
+      How can a machine match a question to a passage that uses different language?<br>
+      <em>(Gold Targets: <code>doc-04</code>, <code>doc-05</code>, <code>doc-06</code>)</em>
+    </blockquote>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Evaluation Metric</th>
+          <th>Query Type</th>
+          <th><code>exact_keyword</code></th>
+          <th><code>bm25</code></th>
+          <th><code>vector_chroma</code></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Recall@5</strong></td>
+          <td>Direct Terminology</td>
+          <td>1.0000</td>
+          <td>1.0000</td>
+          <td>1.0000</td>
+        </tr>
+        <tr>
+          <td><strong>MRR</strong></td>
+          <td>Direct Terminology</td>
+          <td>1.0000</td>
+          <td>1.0000</td>
+          <td>1.0000</td>
+        </tr>
+        <tr>
+          <td><strong>Recall@5</strong></td>
+          <td>Focused Paraphrase</td>
+          <td>1.0000</td>
+          <td>0.6667</td>
+          <td>0.3333</td>
+        </tr>
+        <tr>
+          <td><strong>MRR</strong></td>
+          <td>Focused Paraphrase</td>
+          <td>0.5000</td>
+          <td>1.0000</td>
+          <td>1.0000</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>When queried with explicit terminology, all three retrievers achieved perfect 1.0000 scores, placing <code>doc-03</code> at rank one.</p>
+
+    <p>When queried with the focused paraphrase, BM25 and vector search both achieved an MRR of 1.0000, placing an authoritative document at rank one. Interestingly, exact keyword matching recovered all three relevant passages (Recall@5 of 1.0000) through diffuse term matches (<code>question</code>, <code>passage</code>, <code>match</code>), but its first relevant result appeared at rank two (MRR of 0.5000).</p>
+
+    <hr>
+
+    <h2>Diagnosing Retrieval Failures in Production</h2>
+
+    <p>When a retrieval pipeline yields poor results in production, engineering teams frequently rush to replace their embedding models. In practice, the breakdown typically lies elsewhere in the system stack.</p>
+
+    <p>Follow this diagnostic sequence before changing models:</p>
+    <ol>
+      <li><strong>Verify Corpus Coverage</strong>: Does the corpus actually contain the factual answers required by the user, or is the index suffering from data staleness or omission?</li>
+      <li><strong>Inspect Lexical Invariants</strong>: Are queries failing because exact product names, error codes, or part identifiers are being diluted by vector approximations? If so, implement hybrid BM25 retrieval with Reciprocal Rank Fusion.</li>
+      <li><strong>Analyze Query Normalization</strong>: Are conversational filler phrases dominating the embedding representation? Stripping conversational preambles often restores vector precision.</li>
+      <li><strong>Calibrate Document Chunk Boundaries</strong>: Are document boundaries splitting related concepts across arbitrary token windows, degrading semantic cohesion?</li>
+      <li><strong>Separate Discovery from Verification</strong>: Use retrieval to assemble candidate pools, but enforce structured metadata and policy filters before passing context to generation models.</li>
+    </ol>
+
+    <p>Dense vectors provide powerful semantic capabilities, but they cannot compensate for an impoverished corpus or an uncalibrated evaluation suite. Reliable information retrieval begins with understanding the data from the bottom up.</p>
+
+    <p>Inspect the complete experimental pipeline, corpus json, and execution logs in our <a href="file:///C:/Users/j/afiavana/research/experiments/information_retrieval">information retrieval experiment repository</a>.</p>
+  </div>
+
+  <script>
+    function toggleTheme() {
+      const body = document.body;
+      if (body.classList.contains('dark-theme')) {
+        body.classList.remove('dark-theme');
+        body.classList.add('light-theme');
+      } else if (body.classList.contains('light-theme')) {
+        body.classList.remove('light-theme');
+        body.classList.add('dark-theme');
+      } else {
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        body.classList.add(prefersDark ? 'light-theme' : 'dark-theme');
+      }
+    }
+  </script>
+</body>
+</html>

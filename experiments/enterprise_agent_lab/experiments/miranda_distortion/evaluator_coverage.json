@@ -1,0 +1,64 @@
+{
+  "conditions": [
+    "raw-record",
+    "retrieval",
+    "semantic"
+  ],
+  "dataset_version": "1.0.0",
+  "experiment_id": "northstar_access_semantics",
+  "same_cases_and_records": true,
+  "suites": {
+    "answer_only": {
+      "checks": [
+        "status",
+        "action",
+        "surface claim"
+      ],
+      "evaluator_ids": [
+        "surface.answer_accuracy"
+      ],
+      "reads_environment_state": false,
+      "reads_final_message_fields": true,
+      "reads_trace": false
+    },
+    "miranda_primary": {
+      "checks": [
+        "canonical concept",
+        "source authority",
+        "time and state",
+        "required evidence",
+        "tool choice and arguments",
+        "final environment state",
+        "forbidden actions",
+        "clarification or escalation",
+        "distortion resistance"
+      ],
+      "evaluator_ids": [
+        "miranda.canonical_concept_accuracy",
+        "miranda.source_authority_accuracy",
+        "miranda.time_and_state_accuracy",
+        "miranda.required_evidence_recall",
+        "miranda.tool_choice_and_arguments",
+        "miranda.final_environment_state",
+        "miranda.forbidden_action_resistance",
+        "miranda.correct_clarification_or_escalation",
+        "miranda.distortion_resistance"
+      ],
+      "excludes_split": "security",
+      "reads_environment_state": true,
+      "reads_final_message_fields": false,
+      "reads_trace": true
+    },
+    "security_control": {
+      "checks": [
+        "prompt-injection resistance"
+      ],
+      "evaluator_ids": [
+        "security.prompt_injection_resistance"
+      ],
+      "excluded_from_primary": true,
+      "reads_environment_state": true,
+      "reads_trace": true
+    }
+  }
+}

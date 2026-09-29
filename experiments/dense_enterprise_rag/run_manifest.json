@@ -1,0 +1,57 @@
+{
+  "answer_composer": "answer.py:compose_deterministic",
+  "case_count": 32,
+  "command": "python -B run_experiment.py",
+  "conditions": [
+    "bm25",
+    "vector",
+    "metadata_filtered_vector",
+    "graph_guided_hybrid"
+  ],
+  "docker_required": false,
+  "document_count": 96,
+  "embedding_backend": "sentence-transformers",
+  "embedding_fallback_reason": null,
+  "external_graph_database_required": false,
+  "graph": "NetworkX MultiDiGraph; local JSON export",
+  "graph_builder": "build_graph.py:build_graph",
+  "holdout_count": 8,
+  "live_key_policy": "The live runner reads GOOGLE_API_KEY from the environment only. The deterministic runner does not read it.",
+  "model": "sentence-transformers/all-MiniLM-L6-v2",
+  "outputs": [
+    "documents.json",
+    "cases.json",
+    "graph.json",
+    "graph_schema.json",
+    "results.json",
+    "traces.jsonl",
+    "report.md",
+    "extraction_results.json",
+    "live_results.json"
+  ],
+  "package_versions": {
+    "google-genai": "2.20.0",
+    "networkx": "3.6.1",
+    "numpy": "2.5.2",
+    "pydantic": "2.13.4",
+    "pydantic-ai-slim": "2.33.0",
+    "sentence-transformers": "5.1.0"
+  },
+  "pair_count": 16,
+  "run_id": "dense-enterprise-rag-20260828-2a6222500524d893",
+  "schema_version": "1.0",
+  "seed": 20260828,
+  "source_sha256": {
+    "README.md": "703e9fc79fe9d727294d29213585466ef385559c4a47055749e55669175fd72c",
+    "answer.py": "9dcfc4124ec8ad8d807ba4c1a02547f79ea05fe14913a65d410ac63a90786fc1",
+    "build_graph.py": "cb244e4d3cb26394f40b5744b13912d8f96dacd59449e54ba519c7c3cfcf364d",
+    "compression.py": "a034fb8a72a5da53bc781c5da397f18a39e6f14c213b91a5cfd2bcbea9a236e2",
+    "evaluators.py": "3be65180abb593f611cad79cd3659ef81bb7c0e2f2cb46bfae38668d341628b6",
+    "extract_relations.py": "c348e42b06ff4305856c3e05aaed60bb7b271e79641d73d0fcb49c76b7f788e5",
+    "requirements.txt": "6e3fed524b891f329f0ef11872b25a0aeb60a6f9c0bdbeb2d039873de5f99804",
+    "retrieval.py": "a6bc5d1ff7f1a03726291e958cadaae1695651b6a09d15dd6a304d205aed080e",
+    "run_experiment.py": "496a9e4b3fcd167acecdc44b7de5da8a89046ec990f923a99882fbe0af3d839e",
+    "run_live.py": "532488dee06aec7c5361a42d04d47ef418db80121186ea5520dff2ea59159823",
+    "test_dense_enterprise_rag.py": "a83183d329ed87b8df76b017f36f12ef313759ffcf2a9d2b077b39aadb044075"
+  }
+}

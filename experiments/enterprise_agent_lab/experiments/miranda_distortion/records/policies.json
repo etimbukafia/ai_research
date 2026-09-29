@@ -1,0 +1,54 @@
+[
+  {
+    "policy_id": "policy-employee-production",
+    "worker_type": "employee",
+    "environment": "production",
+    "role_family": "standard",
+    "required_approval_types": ["manager", "security"],
+    "required_evidence_types": ["employee", "role", "current_access", "manager", "security"],
+    "action": "grant_access",
+    "source_id": "policy-employee-production",
+    "authority": "security",
+    "valid_from": "2026-01-01T00:00:00Z",
+    "valid_to": "2026-12-31T23:59:59Z"
+  },
+  {
+    "policy_id": "policy-contractor-production",
+    "worker_type": "contractor",
+    "environment": "production",
+    "role_family": "standard",
+    "required_approval_types": ["manager", "security", "sponsor"],
+    "required_evidence_types": ["employee", "role", "current_access", "manager", "security", "sponsor"],
+    "action": "create_access_request",
+    "source_id": "policy-contractor-production",
+    "authority": "security",
+    "valid_from": "2026-01-01T00:00:00Z",
+    "valid_to": "2026-12-31T23:59:59Z"
+  },
+  {
+    "policy_id": "policy-break-glass",
+    "worker_type": "employee",
+    "environment": "production",
+    "role_family": "break_glass",
+    "required_approval_types": ["manager", "security", "break_glass"],
+    "required_evidence_types": ["employee", "role", "current_access", "manager", "security", "break_glass", "incident"],
+    "action": "grant_access",
+    "source_id": "policy-break-glass",
+    "authority": "security",
+    "valid_from": "2026-01-01T00:00:00Z",
+    "valid_to": "2026-12-31T23:59:59Z"
+  },
+  {
+    "policy_id": "policy-finance-sandbox",
+    "worker_type": "employee",
+    "environment": "sandbox",
+    "role_family": "standard",
+    "required_approval_types": ["manager"],
+    "required_evidence_types": ["employee", "role", "current_access", "manager"],
+    "action": "grant_access",
+    "source_id": "policy-finance-sandbox",
+    "authority": "security",
+    "valid_from": "2026-01-01T00:00:00Z",
+    "valid_to": "2026-12-31T23:59:59Z"
+  }
+]

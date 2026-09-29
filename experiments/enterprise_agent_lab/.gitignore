@@ -1,0 +1,8 @@
+*.sqlite3
+*.db
+*.sqlite
+__pycache__/
+.pytest_cache/
+runs/
+reviews/
+model_cache/

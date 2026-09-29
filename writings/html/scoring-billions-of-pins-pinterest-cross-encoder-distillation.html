@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Scoring Billions of Pins: Deconstructing Pinterest’s Cross-Encoder Distillation Pipeline</title>
+  <style>
+    :root {
+      --bg: #FBFBFB;
+      --fg: #111315;
+      --muted: #5A626A;
+      --border: #E2E4E6;
+      --code-bg: #F4F5F6;
+      --accent: #0052CC;
+      --callout-bg: #F0F4F8;
+      --callout-border: #0052CC;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #111315;
+        --fg: #ECEFF1;
+        --muted: #9BA3AF;
+        --border: #2A2E33;
+        --code-bg: #1A1D20;
+        --accent: #4C9AFF;
+        --callout-bg: #161F2E;
+        --callout-border: #4C9AFF;
+      }
+    }
+    body.light-theme {
+      --bg: #FBFBFB;
+      --fg: #111315;
+      --muted: #5A626A;
+      --border: #E2E4E6;
+      --code-bg: #F4F5F6;
+      --accent: #0052CC;
+      --callout-bg: #F0F4F8;
+      --callout-border: #0052CC;
+    }
+    body.dark-theme {
+      --bg: #111315;
+      --fg: #ECEFF1;
+      --muted: #9BA3AF;
+      --border: #2A2E33;
+      --code-bg: #1A1D20;
+      --accent: #4C9AFF;
+      --callout-bg: #161F2E;
+      --callout-border: #4C9AFF;
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      background-color: var(--bg);
+      color: var(--fg);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      font-size: 17px;
+      line-height: 1.65;
+      padding: 40px 20px;
+      transition: background-color 0.15s ease, color 0.15s ease;
+      display: flex;
+      justify-content: center;
+    }
+    .container {
+      width: 100%;
+      max-width: 690px;
+    }
+    .header-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 36px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border);
+    }
+    .brand {
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+    }
+    .theme-toggle {
+      background: none;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      color: var(--muted);
+      cursor: pointer;
+      font-size: 13px;
+      padding: 4px 10px;
+      transition: all 0.15s ease;
+    }
+    .theme-toggle:hover {
+      color: var(--fg);
+      border-color: var(--fg);
+    }
+    h1 {
+      font-size: 32px;
+      font-weight: 700;
+      line-height: 1.25;
+      letter-spacing: -0.02em;
+      margin-bottom: 24px;
+    }
+    h2 {
+      font-size: 22px;
+      font-weight: 600;
+      line-height: 1.35;
+      letter-spacing: -0.01em;
+      margin-top: 40px;
+      margin-bottom: 16px;
+    }
+    h3 {
+      font-size: 18px;
+      font-weight: 600;
+      line-height: 1.4;
+      margin-top: 28px;
+      margin-bottom: 12px;
+    }
+    p {
+      margin-bottom: 20px;
+    }
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    pre {
+      background-color: var(--code-bg);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 16px;
+      overflow-x: auto;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+      font-size: 14px;
+      line-height: 1.5;
+      margin: 24px 0;
+    }
+    code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+      font-size: 0.9em;
+      background-color: var(--code-bg);
+      padding: 2px 5px;
+      border-radius: 3px;
+      border: 1px solid var(--border);
+    }
+    pre code {
+      background-color: transparent;
+      padding: 0;
+      border: none;
+    }
+    ul, ol {
+      margin-bottom: 20px;
+      padding-left: 24px;
+    }
+    li {
+      margin-bottom: 8px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 28px 0;
+      font-size: 15px;
+    }
+    th, td {
+      border: 1px solid var(--border);
+      padding: 10px 14px;
+      text-align: left;
+    }
+    th {
+      background-color: var(--code-bg);
+      font-weight: 600;
+    }
+    hr {
+      border: 0;
+      border-top: 1px solid var(--border);
+      margin: 40px 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header-bar">
+      <a href="index.html" class="brand">Engineering Research &middot; Search Infrastructure</a>
+      <button class="theme-toggle" id="theme-btn" onclick="toggleTheme()">Theme</button>
+    </div>
+
+    <h1>Scoring Billions of Pins: Deconstructing Pinterest’s Cross-Encoder Distillation Pipeline</h1>
+
+    <p>At Pinterest, search operates under a strict latency budget. When a user types a query into the mobile app, the infrastructure must retrieve, score, and rank candidate Pins from a catalog of over five billion items within fifty milliseconds.</p>
+
+    <p>In 2024, the search engineering team faced a classic information retrieval bottleneck. Dual-encoder two-tower models handled candidate generation with high throughput. However, their relevance accuracy hit a plateau.</p>
+
+    <p>Because two-tower models compress queries and documents into independent vector embeddings before computing a dot product, they miss fine-grained token interactions. A search for "mid-century modern walnut dining chair without arms" frequently returned armchairs because the latent vectors for "armchair" and "dining chair" cluster together in embedding space.</p>
+
+    <p>Cross-encoder models solve this problem by feeding the query and document together into a single transformer, computing full token-to-token cross-attention across the combined sequence.</p>
+
+    <p>Running a multi-billion-parameter cross-encoder directly inside Pinterest's live serving path was impossible. A single forward pass on a 7-billion-parameter model took over 300 milliseconds on an NVIDIA A100 GPU, six times the total search latency budget.</p>
+
+    <p>In October 2024, Pinterest published the architectural blueprint that solved this dilemma (arXiv:2410.17152). Instead of forcing large language models into the real-time serving loop, Pinterest decoupled inference: an offline LLM acts as an expert cross-encoder teacher, synthesizing multimodal features and pseudo-labeling millions of candidate pairs to train a compact student model that executes in sub-50ms at production scale.</p>
+
+    <pre><code>Pinterest Two-Tier Distillation Architecture:
+
+Offline Teacher Pipeline (Hours / Asynchronous):
+[User Queries + Billions of Pins]
+               │
+               ▼  Multimodal Feature Aggregation
+  ├── VLM Synthetic Image Captions
+  ├── Pinboard Titles &amp; User Graph Signals
+  └── External Link Text
+               │
+               ▼
+ [LLM Cross-Encoder Teacher (7B+ Parameters)]
+  Evaluates Full Cross-Attention -&gt; Predicts 5-Grade Relevance Logits
+               │
+               ▼  Semi-Supervised Pseudo-Labeling
+ [Massive Distillation Training Set: Head + Tail Queries]
+               │
+               ▼  Knowledge Distillation (KL Divergence + MSE)
+ [Compact Student Model (Fine-Tuned Small Transformer)]
+
+Online Serving Path (Sub-50ms SLA):
+[User Query] ──&gt; [Two-Tower Retrieval] ──&gt; [Top 500 Candidates] ──&gt; [Student Model on Triton] ──&gt; Final Ranked Pins</code></pre>
+
+    <hr>
+
+    <h2>The Cross-Attention Deficit in Production Search</h2>
+
+    <p>The fundamental tradeoff in modern search infrastructure lies between late-fusion dual encoders and early-fusion cross-encoders.</p>
+
+    <h3>Dual-Encoder (Two-Tower): Fast but Blind to Modifier Interaction</h3>
+    <p>A dual-encoder passes the query through a query tower and the document through an item tower:</p>
+
+    <pre><code>S_bi(q, d) = &lt;E_q(q), E_d(d)&gt;</code></pre>
+
+    <p>The document representations are pre-computed offline and stored in vector indexes. Online inference requires only embedding the incoming query and executing an approximate nearest neighbor lookup.</p>
+
+    <p>The deficit is mathematical: there is zero attention cross-talk between the tokens of the query and the tokens of the document during representation encoding. Modifiers, negations, and prepositional constraints are averaged out into a single pooled centroid.</p>
+
+    <h3>Cross-Encoder: Deep Interaction at Catastrophic Computational Cost</h3>
+    <p>A cross-encoder concatenates query and document tokens into a single input sequence:</p>
+
+    <pre><code>x = [CLS] &comp; q &comp; [SEP] &comp; d &comp; [EOS]</code></pre>
+
+    <p>Every query token attends directly to every document token across every self-attention layer in the network. The model catches delicate lexical dependencies: "without arms" directly suppresses attention weights on the visual descriptions containing "armrests."</p>
+
+    <p>The computational cost scales quadratically with sequence length: <em>O</em>((|<em>q</em>| + |<em>d</em>|)<sup>2</sup>). In a high-throughput search system evaluating 500 candidate items per request across 50,000 queries per second, running cross-attention on live GPUs requires astronomical capital expenditure.</p>
+
+    <hr>
+
+    <h2>Assembling the Teacher: Multimodal Feature Synthesis</h2>
+
+    <p>A Pin represents an image linked to an external website, saved to a user's curated board, and often accompanied by sparse or misleading text descriptions.</p>
+
+    <p>To make an LLM cross-encoder understand Pinterest search, the engineering team synthesized multiple heterogeneous signals into a coherent text representation:</p>
+
+    <pre><code>+-----------------------------------------------------------------+
+| Assembled Multimodal Context for Cross-Encoder Input            |
++-----------------------------------------------------------------+
+| Query: "scandinavian oak media console with cable management"   |
+|                                                                 |
+| Pin Image Summary:                                              |
+| [VLM Generated Caption]: Low-profile light oak TV stand with    |
+| three sliding slatted doors, tapered legs, and rear grommets.   |
+|                                                                 |
+| Graph Curation Signals:                                         |
+| [Pinboard Titles]: "Living Room Storage", "Nordic Woodwork"     |
+|                                                                 |
+| Web Metadata:                                                   |
+| [Anchor Text / Link Title]: "Fjorde Media Unit - Natural Oak"   |
++-----------------------------------------------------------------+</code></pre>
+
+    <p>By using Visual Language Models (VLMs) to convert image pixels into dense synthetic descriptions, Pinterest transformed visual artifacts into tokens that the text-based LLM cross-encoder could analyze alongside the search query.</p>
+
+    <hr>
+
+    <h2>The Teacher-Student Distillation Pipeline</h2>
+
+    <p>Rather than relying on human annotators to score millions of query-Pin pairs, Pinterest fine-tuned an LLM teacher to assign relevance scores across a 5-point ordinal scale:</p>
+    <ul>
+      <li><strong>4: Perfect Match</strong> (Identical item or exact stylistic match)</li>
+      <li><strong>3: Relevant Match</strong> (Satisfies functional and aesthetic constraints)</li>
+      <li><strong>2: Somewhat Relevant</strong> (Matches broad category, misses secondary constraints)</li>
+      <li><strong>1: Off-Topic / Distant</strong> (Related domain, incorrect object)</li>
+      <li><strong>0: Irrelevant / Inappropriate</strong> (Completely unrelated)</li>
+    </ul>
+
+    <h3>Semi-Supervised Pseudo-Labeling</h3>
+    <p>A critical bottleneck in training deep search models is the lack of labels for tail queries. Head queries (such as "outfits" or "tattoos") have abundant click logs. Tail queries (such as "diy outdoor cedar plant stand with trellis") suffer from sparse interaction history.</p>
+
+    <p>Pinterest used the LLM teacher to generate pseudo-labels for millions of unannotated tail queries and multilingual pairs. Because the teacher evaluates the semantic alignment of the synthetic image captions against query modifiers, it generates high-fidelity supervision targets without human intervention.</p>
+
+    <h3>Distillation Objective</h3>
+    <p>The compact student model is trained using a composite loss function combining hard human labels and soft teacher probabilities:</p>
+
+    <pre><code>L = (1 - &alpha;) * L_CE(y_true, y_student) + &alpha; * T^2 * KL_Div(Teacher_soft || Student_soft)</code></pre>
+
+    <p>Where <em>T</em> is the distillation temperature parameter, softening the probability distribution to force the student to learn dark knowledge relationships between adjacent score tiers.</p>
+
+    <pre><code>import torch
+import torch.nn as nn
+import torch.nn.functional as F
+
+class DistillationRelevanceLoss(nn.Module):
+    def __init__(self, alpha: float = 0.6, temperature: float = 2.0):
+        super().__init__()
+        self.alpha = alpha
+        self.temperature = temperature
+        self.ce_loss = nn.CrossEntropyLoss()
+        self.kl_loss = nn.KLDivLoss(reduction="batchmean")
+
+    def forward(
+        self,
+        student_logits: torch.Tensor,
+        teacher_logits: torch.Tensor,
+        ground_truth_labels: torch.Tensor | None = None
+    ) -> torch.Tensor:
+        # Soften teacher and student distributions
+        soft_student = F.log_softmax(student_logits / self.temperature, dim=-1)
+        soft_teacher = F.softmax(teacher_logits / self.temperature, dim=-1)
+
+        # Distillation loss
+        kl_div = self.kl_loss(soft_student, soft_teacher) * (self.temperature ** 2)
+
+        if ground_truth_labels is not None:
+            hard_loss = self.ce_loss(student_logits, ground_truth_labels)
+            return (1.0 - self.alpha) * hard_loss + self.alpha * kl_div
+
+        return kl_div</code></pre>
+
+    <hr>
+
+    <h2>Production Deployment on Triton Inference Server</h2>
+
+    <p>The resulting student model is a compact transformer optimized for inference throughput.</p>
+
+    <p>Deployed onto GPU clusters managed by NVIDIA Triton Inference Server, the model applies runtime optimizations:</p>
+    <ol>
+      <li><strong>Dynamic Tensor Batching:</strong> Grouping concurrent candidate lists into batched matrix operations.</li>
+      <li><strong>FP16 / INT8 Quantization via TensorRT:</strong> Reducing memory bandwidth pressure and accelerating tensor core matrix math.</li>
+      <li><strong>Sequence Length Truncation:</strong> Capping input tokens to focus on the highest-signal metadata fields.</li>
+    </ol>
+
+    <p>The student model scores 500 candidate Pins in 22 milliseconds, fitting inside the 50ms production budget while capturing eighty-two percent of the offline teacher model's ranking quality.</p>
+
+    <hr>
+
+    <h2>Replacing Crowdsourced Evaluation with LLM Judges</h2>
+
+    <p>In December 2025, Pinterest published an expansion of this architecture: <strong>LLM-Powered Relevance Assessment for Pinterest Search</strong>.</p>
+
+    <p>Historically, search teams validated model updates by sending sample search results to crowdsourced human annotator pools. This introduced severe operational drag:</p>
+    <ul>
+      <li>Human annotation cycles took five to ten business days per experiment.</li>
+      <li>Inter-annotator agreement on complex queries was low (&kappa; &lt; 0.55).</li>
+      <li>Human labeling costs scaled linearly with the number of concurrent A/B experiments.</li>
+    </ul>
+
+    <p>Pinterest replaced manual human labeling pools with fine-tuned LLM evaluators. By prompting a calibration-tuned LLM with structured rating guidelines and few-shot examples, Pinterest achieved higher consistency than human crowd workers at a fraction of the turnaround time.</p>
+
+    <p>Evaluation cycle times dropped from seven days to under four hours, allowing engineering teams to run continuous offline evaluations before deploying new candidate rankers to live traffic.</p>
+
+    <hr>
+
+    <h2>Engineering Takeaways from the Pinterest Pipeline</h2>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Architectural Dimension</th>
+          <th>Traditional Baseline</th>
+          <th>Pinterest Production LLM Pipeline</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Relevance Modeling</strong></td>
+          <td>Two-tower vector dot product</td>
+          <td>Cross-encoder teacher distilled into compact student</td>
+        </tr>
+        <tr>
+          <td><strong>Image Representation</strong></td>
+          <td>Sparse user tags</td>
+          <td>Dense synthetic captions generated via VLMs</td>
+        </tr>
+        <tr>
+          <td><strong>Tail Query Coverage</strong></td>
+          <td>Poor (sparse interaction logs)</td>
+          <td>High (semi-supervised pseudo-labeling by LLM)</td>
+        </tr>
+        <tr>
+          <td><strong>Inference Latency</strong></td>
+          <td>10ms (ANN vector lookup)</td>
+          <td>22ms (Student model running TensorRT on Triton)</td>
+        </tr>
+        <tr>
+          <td><strong>A/B Eval Turnaround</strong></td>
+          <td>7 to 10 days (Crowdsourced human raters)</td>
+          <td>Under 4 hours (Automated LLM judges)</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>Deploying generative AI into production search does not require running massive models on every live keystroke.</p>
+
+    <p>By using large language models where their capacity matters most (offline feature enrichment, cross-encoder supervision, and automated evaluation) and distilling their intelligence into specialized student models on the serving path, engineering teams can achieve state-of-the-art relevance within strict production SLAs.</p>
+  </div>
+
+  <script>
+    function toggleTheme() {
+      const body = document.body;
+      const isDark = body.classList.contains('dark-theme') || 
+        (!body.classList.contains('light-theme') && window.matchMedia('(prefers-color-scheme: dark)').matches);
+      
+      if (isDark) {
+        body.classList.remove('dark-theme');
+        body.classList.add('light-theme');
+      } else {
+        body.classList.remove('light-theme');
+        body.classList.add('dark-theme');
+      }
+    }
+  </script>
+</body>
+</html>

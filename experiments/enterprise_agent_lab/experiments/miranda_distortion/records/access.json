@@ -1,0 +1,41 @@
+[
+  {
+    "access_id": "access-nia-sandbox",
+    "employee_id": "emp-nia",
+    "role_id": "role-finance-sandbox-analyst",
+    "application": "finance",
+    "environment": "sandbox",
+    "scope_id": "finance-sandbox",
+    "status": "active",
+    "source_id": "iam-access-nia-sandbox",
+    "authority": "iam",
+    "valid_from": "2026-06-01T00:00:00Z",
+    "valid_to": "2026-12-31T23:59:59Z"
+  },
+  {
+    "access_id": "access-oliver-report",
+    "employee_id": "emp-oliver",
+    "role_id": "role-finance-report-viewer",
+    "application": "finance",
+    "environment": "production",
+    "scope_id": "finance-prod",
+    "status": "active",
+    "source_id": "iam-access-oliver-report",
+    "authority": "iam",
+    "valid_from": "2026-06-01T00:00:00Z",
+    "valid_to": "2026-12-31T23:59:59Z"
+  },
+  {
+    "access_id": "access-ada-pending",
+    "employee_id": "emp-ada",
+    "role_id": "role-finance-report-viewer",
+    "application": "finance",
+    "environment": "production",
+    "scope_id": "finance-prod",
+    "status": "pending",
+    "source_id": "iam-access-ada-pending",
+    "authority": "iam",
+    "valid_from": "2026-08-01T00:00:00Z",
+    "valid_to": "2026-08-31T23:59:59Z"
+  }
+]

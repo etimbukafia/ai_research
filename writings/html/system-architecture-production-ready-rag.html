@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>System Architecture for Production-Ready RAG</title>
+  <style>
+    :root {
+      --bg: #FBFBFB;
+      --fg: #111315;
+      --muted: #5A626A;
+      --border: #E2E4E6;
+      --code-bg: #F4F5F6;
+      --accent: #0052CC;
+      --callout-bg: #F0F4F8;
+      --callout-border: #0052CC;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #111315;
+        --fg: #ECEFF1;
+        --muted: #9BA3AF;
+        --border: #2A2E33;
+        --code-bg: #1A1D20;
+        --accent: #4C9AFF;
+        --callout-bg: #161F2E;
+        --callout-border: #4C9AFF;
+      }
+    }
+    body.light-theme {
+      --bg: #FBFBFB;
+      --fg: #111315;
+      --muted: #5A626A;
+      --border: #E2E4E6;
+      --code-bg: #F4F5F6;
+      --accent: #0052CC;
+      --callout-bg: #F0F4F8;
+      --callout-border: #0052CC;
+    }
+    body.dark-theme {
+      --bg: #111315;
+      --fg: #ECEFF1;
+      --muted: #9BA3AF;
+      --border: #2A2E33;
+      --code-bg: #1A1D20;
+      --accent: #4C9AFF;
+      --callout-bg: #161F2E;
+      --callout-border: #4C9AFF;
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      background-color: var(--bg);
+      color: var(--fg);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      font-size: 17px;
+      line-height: 1.65;
+      padding: 40px 20px;
+      transition: background-color 0.15s ease, color 0.15s ease;
+      display: flex;
+      justify-content: center;
+    }
+    .container {
+      width: 100%;
+      max-width: 690px;
+    }
+    .header-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 36px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border);
+    }
+    .brand {
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+    }
+    .theme-toggle {
+      background: none;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      color: var(--muted);
+      cursor: pointer;
+      font-size: 13px;
+      padding: 4px 10px;
+      transition: all 0.15s ease;
+    }
+    .theme-toggle:hover {
+      color: var(--fg);
+      border-color: var(--fg);
+    }
+    h1 {
+      font-size: 32px;
+      font-weight: 700;
+      line-height: 1.25;
+      letter-spacing: -0.02em;
+      margin-bottom: 24px;
+    }
+    h2 {
+      font-size: 22px;
+      font-weight: 600;
+      line-height: 1.35;
+      letter-spacing: -0.01em;
+      margin-top: 40px;
+      margin-bottom: 16px;
+    }
+    h3 {
+      font-size: 18px;
+      font-weight: 600;
+      line-height: 1.4;
+      margin-top: 28px;
+      margin-bottom: 12px;
+    }
+    p {
+      margin-bottom: 20px;
+    }
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    pre {
+      background-color: var(--code-bg);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 16px;
+      overflow-x: auto;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+      font-size: 14px;
+      line-height: 1.5;
+      margin: 24px 0;
+    }
+    code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+      font-size: 0.9em;
+      background-color: var(--code-bg);
+      padding: 2px 5px;
+      border-radius: 3px;
+      border: 1px solid var(--border);
+    }
+    pre code {
+      background-color: transparent;
+      padding: 0;
+      border: none;
+    }
+    ul, ol {
+      margin-bottom: 20px;
+      padding-left: 24px;
+    }
+    li {
+      margin-bottom: 8px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 28px 0;
+      font-size: 15px;
+    }
+    th, td {
+      border: 1px solid var(--border);
+      padding: 10px 14px;
+      text-align: left;
+    }
+    th {
+      background-color: var(--code-bg);
+      font-weight: 600;
+    }
+    hr {
+      border: 0;
+      border-top: 1px solid var(--border);
+      margin: 40px 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header-bar">
+      <a href="index.html" class="brand">Engineering Research &middot; Retrieval Architecture</a>
+      <button class="theme-toggle" id="theme-btn" onclick="toggleTheme()">Theme</button>
+    </div>
+
+    <h1>System Architecture for Production-Ready RAG</h1>
+
+    <p>An engineering team at a commercial real estate firm built an internal legal assistant in forty-eight hours. The architecture followed the standard prototype tutorial: split commercial lease PDFs into 500-token chunks using a character splitter, generate vector embeddings using a public API, index the vectors in a managed cloud database, and inject the top five nearest neighbors into an LLM prompt.</p>
+
+    <p>In internal testing with fifteen curated questions, the prototype achieved an eighty-five percent success rate.</p>
+
+    <p>When the system rolled out to seventy real estate attorneys reviewing multi-column leases, scanned addenda, and complex rent escalation schedules, accuracy collapsed to sixty-two percent. The system regularly cited base rent figures while omitting penalty riders located in adjacent table cells, hallucinated answers to out-of-domain questions, and timed out on multi-step comparative queries.</p>
+
+    <p>This trajectory is common in generative AI development. Prototypes demonstrate feasibility; production systems survive contact with messy enterprise reality.</p>
+
+    <p>The failure of naive RAG stems from treating retrieval as a single vector lookup. Production-ready RAG is a distributed, multi-stage evaluation pipeline incorporating layout-aware parsing, query transformations, hybrid lexical-dense retrieval, defensive re-ranking, and continuous automated quality assertions.</p>
+
+    <pre><code>Prototype RAG Pipeline (Fragile):
+[Raw PDF] ──&gt; [Naive Text Splitter] ──&gt; [Vector Embedding] ──&gt; [ANN Top-5] ──&gt; [Prompt Stuffing]
+                                                                                  │
+                                                                       Accuracy: ~62% in Prod
+
+Production RAG Architecture (Defensive &amp; Multi-Stage):
+[Document Ingestion]
+        │
+        ▼  Layout-Aware Parsing (ColPali / Vision-Based Structure)
+[Structured Element Store (Tables, Headings, Text)]
+        │
+        ├── Sparse BM25 Index (Exact Terms &amp; Numbers)
+        └── Dense Vector / ColBERT Index (Semantic Concepts)
+
+[Incoming Query]
+        │
+        ▼  Query Transformation (HyDE &amp; Step-Back Decomposition)
+[Multi-Query Execution]
+        │
+        ├── Parallel Sparse Retrieval
+        └── Parallel Dense Retrieval
+        │
+        ▼  Reciprocal Rank Fusion (RRF)
+[Unified Candidate Pool: Top 50]
+        │
+        ▼  Cross-Encoder Re-Ranking (Cohere / BGE)
+[Relevance Scoring &amp; Calibrated Confidence Gating]
+        │
+   ┌────┴──────────────────────────────────────┐
+   ▼                                           ▼
+[Score &gt;= Threshold: High Confidence]       [Score &lt; Threshold: OOD]
+   │                                           │
+   ▼                                           ▼
+[Pass Context to LLM Generator]             [Structured Defensive Rejection]</code></pre>
+
+    <hr>
+
+    <h2>The Three Structural Failure Modes of Naive RAG</h2>
+
+    <p>Naive RAG pipelines rely on three simplifying assumptions that degrade accuracy when confronted with real-world enterprise documents.</p>
+
+    <h3>1. Spatial Layout Shredding</h3>
+    <p>Traditional text extractors strip layout coordinates, reading order, and table boundaries, converting PDF documents into a flat stream of plain text.</p>
+
+    <p>When a standard recursive character splitter chops a financial lease into 500-token chunks, it slices across rows and columns. A table header defining year-by-year square foot pricing is separated from the monetary values three rows below. The resulting vector embeddings encode broken fragments that lack semantic coherence.</p>
+
+    <h3>2. The Lexical-Semantic Asymmetry Gap</h3>
+    <p>User queries rarely mirror the phrasing of source documentation. An attorney searching for "rules regarding ending a lease early due to building damage" must match a contract clause titled "Section 14.2: Casualty and Termination Rights."</p>
+
+    <p>Standard bi-encoders often fail to bridge this vocabulary gap. If the query uses conversational phrasing while the target passage uses legal jargon, vector similarity scores drop, allowing superficially similar but legally irrelevant passages to outrank the true answer.</p>
+
+    <h3>3. Hallucination Through Mandatory Retrieval</h3>
+    <p>In naive RAG, the vector database always returns <em>k</em> chunks, regardless of whether the knowledge base contains relevant information. If an employee asks, "What is our corporate policy on paternity leave in the UK office?", and the index contains only US HR handbooks, the database still returns the top five nearest neighbors.</p>
+
+    <p>The LLM generator, instructed to answer using the provided context, attempts to synthesize an answer from irrelevant US guidelines, producing a confident hallucination.</p>
+
+    <hr>
+
+    <h2>Layout-Aware Document Ingestion</h2>
+
+    <p>Production RAG begins with layout preservation. Rather than stripping PDFs into raw text, production systems treat document pages as structured visual layouts.</p>
+
+    <p>Modern architectures use vision-based document models (such as <strong>ColPali</strong>) or layout-aware parsers that identify document elements:</p>
+    <ul>
+      <li>Headers, subheaders, and section nesting</li>
+      <li>Tables preserved as structured HTML or Markdown matrices</li>
+      <li>Embedded figures paired with their explanatory captions</li>
+    </ul>
+
+    <pre><code>+-----------------------------------------------------------------+
+| Raw PDF Page                                                    |
+|                                                                 |
+| [Section 4.1 Base Rent Schedule]                                |
+| +--------------+----------------+----------------+              |
+| | Lease Year   | Annual Base    | Monthly Rate   |              |
+| +--------------+----------------+----------------+              |
+| | Year 1-2     | $450,000       | $37,500        |              |
+| | Year 3-5     | $495,000       | $41,250        |              |
+| +--------------+----------------+----------------+              |
++-----------------------------------------------------------------+
+                                │
+                 Layout-Aware Parsing Pipeline
+                                │
+                                ▼
++-----------------------------------------------------------------+
+| Parsed Document Element                                         |
+|                                                                 |
+| Type: Table                                                     |
+| Parent Heading: "Section 4.1 Base Rent Schedule"                |
+| Serialized Payload: Markdown Matrix with Column Headers         |
+| Metadata: {"page": 14, "doc_id": "lease_849", "table_id": 2}   |
++-----------------------------------------------------------------+</code></pre>
+
+    <p>By storing tables as self-contained Markdown blocks with their parent headers explicitly attached, the embedding model encodes the complete relational relationship between column labels and data cells.</p>
+
+    <hr>
+
+    <h2>Query Transformation: HyDE and Step-Back Prompting</h2>
+
+    <p>To eliminate the vocabulary gap between conversational queries and technical text, production pipelines insert a query transformation step before hitting the index.</p>
+
+    <h3>Hypothetical Document Embeddings (HyDE)</h3>
+    <p>Instead of embedding the user's raw question directly, the system prompts a fast LLM to generate a hypothetical answer:</p>
+
+    <pre><code>def generate_hypothetical_document(query: str, client) -> str:
+    prompt = (
+        "You are an expert legal assistant. Write a hypothetical contract clause "
+        "or passage that directly answers the following legal question. "
+        "Do not worry about specific facts; mimic the legal tone, structure, "
+        f"and terminology of a commercial lease agreement.\n\nQuestion: {query}"
+    )
+    response = client.chat.completions.create(
+        model="gpt-4o-mini",
+        messages=[{"role": "user", "content": prompt}],
+        temperature=0.0
+    )
+    return response.choices[0].message.content</code></pre>
+
+    <p>The system embeds the hypothetical answer instead of the query. Because the hypothetical passage uses the vocabulary, style, and structure of real lease clauses, its vector resides much closer to the target document in latent space than the raw question ever could.</p>
+
+    <hr>
+
+    <h2>Hybrid Retrieval with Reciprocal Rank Fusion</h2>
+
+    <p>Production retrieval cannot rely exclusively on dense vectors or sparse keywords. It requires both.</p>
+    <ul>
+      <li><strong>Sparse BM25 Search:</strong> Handles exact identifiers, clause numbers (e.g., "Section 14.2(b)"), monetary amounts, and specific proper nouns.</li>
+      <li><strong>Dense Vector Search:</strong> Handles conceptual semantics and thematic matching.</li>
+    </ul>
+
+    <p>To merge relevance scores across these fundamentally different distributions without arbitrary weighting parameters, production systems use <strong>Reciprocal Rank Fusion (RRF)</strong>:</p>
+
+    <pre><code>RRF(d) = &Sigma; 1 / (k + r_m(d))</code></pre>
+
+    <p>Where <em>M</em> is the set of retrieval systems (dense and sparse), <em>r<sub>m</sub>(d)</em> is the rank of document <em>d</em> in system <em>m</em>, and <em>k</em> is a smoothing constant (typically set to 60).</p>
+
+    <hr>
+
+    <h2>Defensive Re-Ranking and Confidence Gating</h2>
+
+    <p>Retrieving fifty candidates via hybrid search casts a wide net. Passing all fifty to the generator exhausts context windows and introduces noise.</p>
+
+    <p>Production pipelines apply a cross-encoder re-ranking model (such as Cohere Rerank v3 or BGE-Reranker-Large) to score the top candidates. Unlike dual-encoders, cross-encoders compute full token-level cross-attention across the query and passage.</p>
+
+    <p>Crucially, production systems introduce <strong>Confidence Gating</strong>:</p>
+
+    <pre><code>from dataclasses import dataclass
+from typing import Any
+
+@dataclass
+class RetrievalResult:
+    status: str  # "SUCCESS" or "DEFENSIVE_REJECTION"
+    passages: list[dict[str, Any]]
+    confidence_score: float
+
+class ProductionReranker:
+    def __init__(self, reranker_client, relevance_threshold: float = 0.65):
+        self.client = reranker_client
+        self.threshold = relevance_threshold
+
+    def rerank_and_gate(self, query: str, candidates: list[dict]) -> RetrievalResult:
+        texts = [c["text"] for c in candidates]
+        results = self.client.rerank(query=query, documents=texts, top_n=5)
+
+        filtered_passages = []
+        highest_score = 0.0
+
+        for r in results.results:
+            score = r.relevance_score
+            if score > highest_score:
+                highest_score = score
+
+            if score >= self.threshold:
+                filtered_passages.append(candidates[r.index])
+
+        # Defensive Gating: Reject out-of-domain queries
+        if highest_score < self.threshold:
+            return RetrievalResult(
+                status="DEFENSIVE_REJECTION",
+                passages=[],
+                confidence_score=highest_score
+            )
+
+        return RetrievalResult(
+            status="SUCCESS",
+            passages=filtered_passages,
+            confidence_score=highest_score
+        )</code></pre>
+
+    <p>If the highest-scoring passage falls below the calibrated threshold (e.g., 0.65), the pipeline does not call the LLM generator. It returns a structured rejection: <em>"The provided documentation does not contain verified information answering this query."</em></p>
+
+    <p>This defensive gate eliminates the vast majority of out-of-domain hallucinations.</p>
+
+    <hr>
+
+    <h2>Automated CI/CD Evaluation with Ragas</h2>
+
+    <p>A production software system has unit tests. A production RAG system requires automated evaluation loops measuring generation quality against golden test datasets in continuous integration.</p>
+
+    <p>Production systems evaluate three orthogonal metrics using frameworks like <strong>Ragas</strong> or <strong>ARES</strong>:</p>
+    <ol>
+      <li><strong>Context Precision:</strong> Measures the signal-to-noise ratio of the retrieved context. Did all retrieved chunks contain relevant information?</li>
+      <li><strong>Faithfulness:</strong> Measures grounding. Can every factual claim in the generated answer be directly inferred from the retrieved passages?</li>
+      <li><strong>Answer Relevance:</strong> Measures completeness. Did the generated response directly address the user's prompt without introducing tangents?</li>
+    </ol>
+
+    <pre><code>CI/CD Deployment Gate:
+[New Embedder / Parser Update]
+               │
+               ▼  Run Automated Evaluation over Golden Test Suite (200 Queries)
+[Compute Ragas Metric Vector]
+├── Context Precision &gt;= 0.82
+├── Faithfulness &gt;= 0.95
+└── Answer Relevance &gt;= 0.88
+               │
+       ┌───────┴───────┐
+       ▼               ▼
+     [PASS]          [FAIL]
+       │               │
+ Deploy to Prod   Block PR &amp; Alert Team</code></pre>
+
+    <hr>
+
+    <h2>Architectural Comparison: Prototype vs. Production-Ready RAG</h2>
+
+    <table>
+      <thead>
+        <tr>
+          <th>System Component</th>
+          <th>Naive Prototype RAG</th>
+          <th>Production-Ready RAG</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Document Ingestion</strong></td>
+          <td>Plain text character splitter</td>
+          <td>Layout-aware parsing (ColPali / structured tables)</td>
+        </tr>
+        <tr>
+          <td><strong>Query Processing</strong></td>
+          <td>Raw prompt embedded directly</td>
+          <td>Query transformations (HyDE / step-back expansion)</td>
+        </tr>
+        <tr>
+          <td><strong>Retrieval Engine</strong></td>
+          <td>Single vector store via cosine distance</td>
+          <td>Hybrid BM25 + Dense vector search via RRF</td>
+        </tr>
+        <tr>
+          <td><strong>Re-Ranking</strong></td>
+          <td>None (injects raw top-<em>k</em>)</td>
+          <td>Cross-encoder with calibrated confidence thresholds</td>
+        </tr>
+        <tr>
+          <td><strong>Out-of-Domain Queries</strong></td>
+          <td>Hallucinates answers from unrelated chunks</td>
+          <td>Defensive rejection via confidence gating</td>
+        </tr>
+        <tr>
+          <td><strong>Quality Control</strong></td>
+          <td>Ad-hoc manual spot checking</td>
+          <td>Automated CI/CD evaluation (Faithfulness, Precision)</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>Building a RAG demo takes an afternoon. Building a production RAG system requires engineering a disciplined data pipeline.</p>
+
+    <p>By treating document layout as a first-class citizen, bridging vocabulary gaps with query transformations, enforcing defensive confidence gates, and verifying every deployment with automated quality metrics, engineering teams can build retrieval systems that deliver consistent, verifiable accuracy in enterprise production.</p>
+  </div>
+
+  <script>
+    function toggleTheme() {
+      const body = document.body;
+      const isDark = body.classList.contains('dark-theme') || 
+        (!body.classList.contains('light-theme') && window.matchMedia('(prefers-color-scheme: dark)').matches);
+      
+      if (isDark) {
+        body.classList.remove('dark-theme');
+        body.classList.add('light-theme');
+      } else {
+        body.classList.remove('light-theme');
+        body.classList.add('dark-theme');
+      }
+    }
+  </script>
+</body>
+</html>

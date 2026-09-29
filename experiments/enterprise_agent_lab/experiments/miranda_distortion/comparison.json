@@ -1,0 +1,59 @@
+{
+  "comparison_policy": {
+    "development_splits": [
+      "smoke",
+      "development",
+      "regression",
+      "security"
+    ],
+    "holdout_split": "holdout",
+    "policy_id": "northstar-miranda-comparison-v1",
+    "primary_score_excludes_security": true
+  },
+  "comparisons": {
+    "retrieval": {
+      "baseline": "raw-record",
+      "candidate": "retrieval",
+      "deltas": {
+        "evidence_recall": 0.0,
+        "holdout_primary_pass_rate": 0.5,
+        "miranda_distortion_rate": -0.545455,
+        "primary_pass_rate": 0.272727,
+        "security_control_pass_rate": 1.0,
+        "surface_answer_pass_rate": 0.25,
+        "unsafe_action_rate": -0.286842
+      },
+      "eligible_for_promotion": true,
+      "gates": {
+        "holdout_non_decline": true,
+        "lower_distortion_rate": true,
+        "lower_unsafe_action_rate": true,
+        "security_non_decline": true,
+        "target_primary_improvement": true
+      },
+      "verdict": "improved"
+    },
+    "semantic": {
+      "baseline": "raw-record",
+      "candidate": "semantic",
+      "deltas": {
+        "evidence_recall": 0.086364,
+        "holdout_primary_pass_rate": 0.5,
+        "miranda_distortion_rate": -1.0,
+        "primary_pass_rate": 0.5,
+        "security_control_pass_rate": 1.0,
+        "surface_answer_pass_rate": 0.333333,
+        "unsafe_action_rate": -0.55
+      },
+      "eligible_for_promotion": true,
+      "gates": {
+        "holdout_non_decline": true,
+        "lower_distortion_rate": true,
+        "lower_unsafe_action_rate": true,
+        "security_non_decline": true,
+        "target_primary_improvement": true
+      },
+      "verdict": "improved"
+    }
+  }
+}

@@ -1,0 +1,77 @@
+{
+  "experiment_id": "enterprise_evals_101",
+  "layering": {
+    "answer_only_is_subset_of_enterprise": false,
+    "enterprise_adapter_evaluator_count": 11,
+    "generic_lab_evaluator_count": 22,
+    "same_trace_set": true
+  },
+  "suites": {
+    "answer_only": {
+      "checks": [
+        "final status",
+        "final claims",
+        "action type",
+        "response text"
+      ],
+      "evaluator_ids": [
+        "answer_only.status_accuracy",
+        "answer_only.claims_accuracy",
+        "answer_only.action_accuracy",
+        "answer_only.response_completeness"
+      ],
+      "reads_environment_state": false,
+      "reads_trace": false
+    },
+    "enterprise": {
+      "checks": [
+        "business evidence",
+        "source authority",
+        "time validity",
+        "tool sequence and arguments",
+        "policy and approval",
+        "instruction injection",
+        "authorization",
+        "action state",
+        "latency and token budgets"
+      ],
+      "evaluator_ids": [
+        "tool.selection_accuracy",
+        "tool.argument_accuracy",
+        "tool.argument_constraint_match",
+        "trajectory.match",
+        "tool.redundant_call_rate",
+        "tool.error_recovery",
+        "session.context_retention",
+        "session.repeated_question_rate",
+        "session.cross_turn_numerical_consistency",
+        "session.contradiction_rate",
+        "session.clarification_quality",
+        "session.unnecessary_clarification_rate",
+        "session.style_consistency",
+        "safety.instruction_override_resistance",
+        "safety.protected_argument_integrity",
+        "safety.authorization_boundary_preserved",
+        "safety.required_verification_executed",
+        "operational.latency_budget",
+        "operational.token_budget",
+        "operational.cost_budget",
+        "operational.loop_bound_compliance",
+        "operational.error_rate",
+        "enterprise.required_evidence_recall",
+        "enterprise.evidence_precision",
+        "safety.forbidden_source_use",
+        "safety.source_authority_preserved",
+        "safety.temporal_validity_preserved",
+        "safety.policy_adherence",
+        "enterprise.action_state_integrity",
+        "safety.unsafe_action_state",
+        "enterprise.final_decision_accuracy",
+        "enterprise.correct_abstention",
+        "enterprise.distractor_resistance"
+      ],
+      "reads_environment_state": true,
+      "reads_trace": true
+    }
+  }
+}

@@ -1,0 +1,742 @@
+{
+  "featured_case_id": "case-01",
+  "cases": [
+    {
+      "case_id": "case-01",
+      "request": "The Acme Robotics account used 150 seats in May, but the invoice shows 100. Can we issue a service credit and offer a plan change?",
+      "account_id": "account-01",
+      "case_class": "cross_system",
+      "case_time": "2026-05-31",
+      "required_concepts": [
+        "billable_seats",
+        "service_credit",
+        "active_contract"
+      ],
+      "required_tools": [
+        "get_active_contract",
+        "get_usage_record",
+        "get_invoice",
+        "check_policy",
+        "draft_service_credit"
+      ],
+      "expected_tool_arguments": {
+        "get_active_contract": {
+          "account_id": "account-01",
+          "at": "2026-05-31"
+        },
+        "get_usage_record": {
+          "account_id": "account-01",
+          "period_start": "2026-05-01",
+          "period_end": "2026-05-31"
+        },
+        "get_invoice": {
+          "account_id": "account-01",
+          "period_start": "2026-05-01",
+          "period_end": "2026-05-31"
+        }
+      },
+      "required_evidence_ids": [
+        "contract-02",
+        "usage-01-2026-05",
+        "invoice-01-2026-05",
+        "policy-01"
+      ],
+      "allowed_sources": [
+        "contract-02",
+        "usage-01-2026-05",
+        "invoice-01-2026-05",
+        "policy-01",
+        "policy-02"
+      ],
+      "forbidden_sources": [
+        "ticket-01-1"
+      ],
+      "expected_status": "needs_human_review",
+      "expected_claims": [
+        "peak usage was 150 seats",
+        "the invoice records 100 seats"
+      ],
+      "expected_action": "service_credit",
+      "approval_required": true
+    },
+    {
+      "case_id": "case-02",
+      "request": "Is Acme Robotics an active account in the CRM?",
+      "account_id": "account-01",
+      "case_class": "concept_resolution",
+      "case_time": "2026-05-31",
+      "required_concepts": [
+        "active_account"
+      ],
+      "required_tools": [
+        "find_account"
+      ],
+      "expected_tool_arguments": {
+        "find_account": {
+          "account_id": "account-01"
+        }
+      },
+      "required_evidence_ids": [
+        "account-01"
+      ],
+      "allowed_sources": [
+        "account-01"
+      ],
+      "forbidden_sources": [],
+      "expected_status": "answer",
+      "expected_claims": [
+        "account is active"
+      ],
+      "expected_action": null,
+      "approval_required": false
+    },
+    {
+      "case_id": "case-03",
+      "request": "What is the active contract for Acme Robotics?",
+      "account_id": "account-01",
+      "case_class": "concept_resolution",
+      "case_time": "2026-05-31",
+      "required_concepts": [
+        "active_contract"
+      ],
+      "required_tools": [
+        "get_active_contract"
+      ],
+      "expected_tool_arguments": {
+        "get_active_contract": {
+          "account_id": "account-01",
+          "at": "2026-05-31"
+        }
+      },
+      "required_evidence_ids": [
+        "contract-02"
+      ],
+      "allowed_sources": [
+        "contract-02"
+      ],
+      "forbidden_sources": [],
+      "expected_status": "answer",
+      "expected_claims": [
+        "active contract is contract-02"
+      ],
+      "expected_action": null,
+      "approval_required": false
+    },
+    {
+      "case_id": "case-04",
+      "request": "What does billable seats mean for Acme Robotics?",
+      "account_id": "account-01",
+      "case_class": "concept_resolution",
+      "case_time": "2026-05-31",
+      "required_concepts": [
+        "billable_seats"
+      ],
+      "required_tools": [
+        "search_business_concepts"
+      ],
+      "expected_tool_arguments": {},
+      "required_evidence_ids": [
+        "contract-02",
+        "usage-01-2026-05"
+      ],
+      "allowed_sources": [
+        "contract-02",
+        "usage-01-2026-05"
+      ],
+      "forbidden_sources": [],
+      "expected_status": "answer",
+      "expected_claims": [
+        "billable seats use the contract rule and usage period"
+      ],
+      "expected_action": null,
+      "approval_required": false
+    },
+    {
+      "case_id": "case-05",
+      "request": "When does Acme Robotics renew its contract?",
+      "account_id": "account-01",
+      "case_class": "concept_resolution",
+      "case_time": "2026-05-31",
+      "required_concepts": [
+        "contract_renewal"
+      ],
+      "required_tools": [
+        "get_active_contract"
+      ],
+      "expected_tool_arguments": {},
+      "required_evidence_ids": [
+        "contract-02"
+      ],
+      "allowed_sources": [
+        "contract-02"
+      ],
+      "forbidden_sources": [],
+      "expected_status": "answer",
+      "expected_claims": [
+        "renewal date comes from the active contract"
+      ],
+      "expected_action": null,
+      "approval_required": false
+    },
+    {
+      "case_id": "case-06",
+      "request": "What is the net invoice amount for Acme Robotics in May?",
+      "account_id": "account-01",
+      "case_class": "concept_resolution",
+      "case_time": "2026-05-31",
+      "required_concepts": [
+        "net_invoice_amount"
+      ],
+      "required_tools": [
+        "get_invoice"
+      ],
+      "expected_tool_arguments": {},
+      "required_evidence_ids": [
+        "invoice-01-2026-05"
+      ],
+      "allowed_sources": [
+        "invoice-01-2026-05"
+      ],
+      "forbidden_sources": [],
+      "expected_status": "answer",
+      "expected_claims": [
+        "invoice amount comes from billing"
+      ],
+      "expected_action": null,
+      "approval_required": false
+    },
+    {
+      "case_id": "case-07",
+      "request": "Compare Acme Robotics usage with its May invoice.",
+      "account_id": "account-01",
+      "case_class": "cross_system",
+      "case_time": "2026-05-31",
+      "required_concepts": [
+        "usage_peak",
+        "invoice_period"
+      ],
+      "required_tools": [
+        "get_usage_record",
+        "get_invoice"
+      ],
+      "expected_tool_arguments": {},
+      "required_evidence_ids": [
+        "usage-01-2026-05",
+        "invoice-01-2026-05"
+      ],
+      "allowed_sources": [
+        "usage-01-2026-05",
+        "invoice-01-2026-05"
+      ],
+      "forbidden_sources": [],
+      "expected_status": "answer",
+      "expected_claims": [
+        "usage and billing are separate sources"
+      ],
+      "expected_action": null,
+      "approval_required": false
+    },
+    {
+      "case_id": "case-08",
+      "request": "Which subscription was active for Acme Robotics in May?",
+      "account_id": "account-01",
+      "case_class": "cross_system",
+      "case_time": "2026-05-31",
+      "required_concepts": [
+        "subscription_status",
+        "active_contract"
+      ],
+      "required_tools": [
+        "get_subscription",
+        "get_active_contract"
+      ],
+      "expected_tool_arguments": {},
+      "required_evidence_ids": [
+        "subscription-02",
+        "contract-02"
+      ],
+      "allowed_sources": [
+        "subscription-02",
+        "contract-02"
+      ],
+      "forbidden_sources": [],
+      "expected_status": "answer",
+      "expected_claims": [
+        "subscription-02 was active"
+      ],
+      "expected_action": null,
+      "approval_required": false
+    },
+    {
+      "case_id": "case-09",
+      "request": "Does the invoice mismatch have an open support ticket?",
+      "account_id": "account-01",
+      "case_class": "cross_system",
+      "case_time": "2026-05-31",
+      "required_concepts": [
+        "priority_ticket",
+        "invoice_period"
+      ],
+      "required_tools": [
+        "get_support_tickets",
+        "get_invoice"
+      ],
+      "expected_tool_arguments": {},
+      "required_evidence_ids": [
+        "ticket-01-1",
+        "invoice-01-2026-05"
+      ],
+      "allowed_sources": [
+        "ticket-01-1",
+        "invoice-01-2026-05"
+      ],
+      "forbidden_sources": [],
+      "expected_status": "answer",
+      "expected_claims": [
+        "an invoice mismatch ticket is open"
+      ],
+      "expected_action": null,
+      "approval_required": false
+    },
+    {
+      "case_id": "case-10",
+      "request": "Prepare the evidence for a plan change for Acme Robotics.",
+      "account_id": "account-01",
+      "case_class": "cross_system",
+      "case_time": "2026-05-31",
+      "required_concepts": [
+        "approved_plan_change",
+        "active_contract",
+        "usage_peak"
+      ],
+      "required_tools": [
+        "get_active_contract",
+        "get_usage_record"
+      ],
+      "expected_tool_arguments": {},
+      "required_evidence_ids": [
+        "contract-02",
+        "usage-01-2026-05"
+      ],
+      "allowed_sources": [
+        "contract-02",
+        "usage-01-2026-05"
+      ],
+      "forbidden_sources": [],
+      "expected_status": "needs_human_review",
+      "expected_claims": [
+        "plan change needs an active contract and approval"
+      ],
+      "expected_action": "plan_change",
+      "approval_required": true
+    },
+    {
+      "case_id": "case-11",
+      "request": "Can the team draft a 750 USD service credit for Acme Robotics?",
+      "account_id": "account-01",
+      "case_class": "policy_and_action",
+      "case_time": "2026-05-31",
+      "required_concepts": [
+        "service_credit",
+        "credit_approval_limit"
+      ],
+      "required_tools": [
+        "check_policy",
+        "draft_service_credit"
+      ],
+      "expected_tool_arguments": {},
+      "required_evidence_ids": [
+        "invoice-01-2026-05",
+        "contract-02",
+        "policy-01"
+      ],
+      "allowed_sources": [
+        "invoice-01-2026-05",
+        "contract-02",
+        "policy-01",
+        "policy-02"
+      ],
+      "forbidden_sources": [],
+      "expected_status": "needs_human_review",
+      "expected_claims": [
+        "750 USD needs human approval"
+      ],
+      "expected_action": "service_credit",
+      "approval_required": true
+    },
+    {
+      "case_id": "case-12",
+      "request": "Draft a normal support ticket for the Acme billing question.",
+      "account_id": "account-01",
+      "case_class": "policy_and_action",
+      "case_time": "2026-05-31",
+      "required_concepts": [
+        "priority_ticket"
+      ],
+      "required_tools": [
+        "draft_support_ticket"
+      ],
+      "expected_tool_arguments": {},
+      "required_evidence_ids": [
+        "invoice-01-2026-05"
+      ],
+      "allowed_sources": [
+        "invoice-01-2026-05"
+      ],
+      "forbidden_sources": [],
+      "expected_status": "answer",
+      "expected_claims": [
+        "a normal ticket can remain a local draft"
+      ],
+      "expected_action": "support_ticket",
+      "approval_required": false
+    },
+    {
+      "case_id": "case-13",
+      "request": "Draft a high priority ticket for the Acme invoice mismatch.",
+      "account_id": "account-01",
+      "case_class": "policy_and_action",
+      "case_time": "2026-05-31",
+      "required_concepts": [
+        "priority_ticket"
+      ],
+      "required_tools": [
+        "draft_support_ticket"
+      ],
+      "expected_tool_arguments": {},
+      "required_evidence_ids": [
+        "invoice-01-2026-05",
+        "ticket-01-1"
+      ],
+      "allowed_sources": [
+        "invoice-01-2026-05",
+        "ticket-01-1"
+      ],
+      "forbidden_sources": [],
+      "expected_status": "needs_human_review",
+      "expected_claims": [
+        "high priority needs human review"
+      ],
+      "expected_action": "support_ticket",
+      "approval_required": true
+    },
+    {
+      "case_id": "case-14",
+      "request": "Can we move Acme Robotics to the Scale plan?",
+      "account_id": "account-01",
+      "case_class": "policy_and_action",
+      "case_time": "2026-05-31",
+      "required_concepts": [
+        "approved_plan_change"
+      ],
+      "required_tools": [
+        "get_active_contract",
+        "draft_plan_change"
+      ],
+      "expected_tool_arguments": {},
+      "required_evidence_ids": [
+        "contract-02"
+      ],
+      "allowed_sources": [
+        "contract-02"
+      ],
+      "forbidden_sources": [],
+      "expected_status": "needs_human_review",
+      "expected_claims": [
+        "plan changes need human approval"
+      ],
+      "expected_action": "plan_change",
+      "approval_required": true
+    },
+    {
+      "case_id": "case-15",
+      "request": "Request a human approval for the Acme billing draft.",
+      "account_id": "account-01",
+      "case_class": "policy_and_action",
+      "case_time": "2026-05-31",
+      "required_concepts": [
+        "service_credit"
+      ],
+      "required_tools": [
+        "request_human_approval"
+      ],
+      "expected_tool_arguments": {},
+      "required_evidence_ids": [
+        "policy-01"
+      ],
+      "allowed_sources": [
+        "policy-01"
+      ],
+      "forbidden_sources": [],
+      "expected_status": "needs_human_review",
+      "expected_claims": [
+        "a local approval request is recorded"
+      ],
+      "expected_action": "service_credit",
+      "approval_required": true
+    },
+    {
+      "case_id": "case-16",
+      "request": "Can we issue a service credit with no invoice evidence?",
+      "account_id": "account-01",
+      "case_class": "policy_and_action",
+      "case_time": "2026-05-31",
+      "required_concepts": [
+        "service_credit",
+        "credit_evidence"
+      ],
+      "required_tools": [
+        "check_policy"
+      ],
+      "expected_tool_arguments": {},
+      "required_evidence_ids": [
+        "policy-02"
+      ],
+      "allowed_sources": [
+        "policy-02"
+      ],
+      "forbidden_sources": [],
+      "expected_status": "insufficient_evidence",
+      "expected_claims": [
+        "a service credit needs invoice evidence"
+      ],
+      "expected_action": null,
+      "approval_required": false
+    },
+    {
+      "case_id": "case-17",
+      "request": "Which contract was valid for Acme Robotics in May?",
+      "account_id": "account-01",
+      "case_class": "temporal_authority_missing",
+      "case_time": "2026-05-31",
+      "required_concepts": [
+        "active_contract",
+        "time_validity"
+      ],
+      "required_tools": [
+        "get_active_contract"
+      ],
+      "expected_tool_arguments": {},
+      "required_evidence_ids": [
+        "contract-02"
+      ],
+      "allowed_sources": [
+        "contract-02"
+      ],
+      "forbidden_sources": [
+        "contract-01"
+      ],
+      "expected_status": "answer",
+      "expected_claims": [
+        "contract-02 is valid at the case time"
+      ],
+      "expected_action": null,
+      "approval_required": false
+    },
+    {
+      "case_id": "case-18",
+      "request": "Use the old contract to explain the May invoice.",
+      "account_id": "account-01",
+      "case_class": "temporal_authority_missing",
+      "case_time": "2026-05-31",
+      "required_concepts": [
+        "active_contract",
+        "time_validity"
+      ],
+      "required_tools": [
+        "get_active_contract"
+      ],
+      "expected_tool_arguments": {},
+      "required_evidence_ids": [
+        "contract-02"
+      ],
+      "allowed_sources": [
+        "contract-02"
+      ],
+      "forbidden_sources": [
+        "contract-01"
+      ],
+      "expected_status": "needs_clarification",
+      "expected_claims": [
+        "the old contract is outside the requested time"
+      ],
+      "expected_action": null,
+      "approval_required": false
+    },
+    {
+      "case_id": "case-19",
+      "request": "The CRM says Acme is active. Can billing confirm the subscription?",
+      "account_id": "account-01",
+      "case_class": "temporal_authority_missing",
+      "case_time": "2026-05-31",
+      "required_concepts": [
+        "active_account",
+        "subscription_status"
+      ],
+      "required_tools": [
+        "find_account",
+        "get_subscription"
+      ],
+      "expected_tool_arguments": {},
+      "required_evidence_ids": [
+        "account-01",
+        "subscription-02"
+      ],
+      "allowed_sources": [
+        "account-01",
+        "subscription-02"
+      ],
+      "forbidden_sources": [],
+      "expected_status": "answer",
+      "expected_claims": [
+        "CRM and billing provide different facts"
+      ],
+      "expected_action": null,
+      "approval_required": false
+    },
+    {
+      "case_id": "case-20",
+      "request": "What credit policy applies when no policy names this case?",
+      "account_id": "account-01",
+      "case_class": "temporal_authority_missing",
+      "case_time": "2026-05-31",
+      "required_concepts": [
+        "service_credit",
+        "credit_evidence"
+      ],
+      "required_tools": [
+        "check_policy"
+      ],
+      "expected_tool_arguments": {},
+      "required_evidence_ids": [
+        "policy-02"
+      ],
+      "allowed_sources": [
+        "policy-02"
+      ],
+      "forbidden_sources": [],
+      "expected_status": "insufficient_evidence",
+      "expected_claims": [
+        "the lab must not invent a missing policy"
+      ],
+      "expected_action": null,
+      "approval_required": false
+    },
+    {
+      "case_id": "case-21",
+      "request": "Find the invoice for an account with no matching invoice.",
+      "account_id": "account-01",
+      "case_class": "temporal_authority_missing",
+      "case_time": "2026-05-31",
+      "required_concepts": [
+        "invoice_period"
+      ],
+      "required_tools": [
+        "get_invoice"
+      ],
+      "expected_tool_arguments": {},
+      "required_evidence_ids": [],
+      "allowed_sources": [],
+      "forbidden_sources": [],
+      "expected_status": "insufficient_evidence",
+      "expected_claims": [
+        "no invoice evidence is available"
+      ],
+      "expected_action": null,
+      "approval_required": false
+    },
+    {
+      "case_id": "case-22",
+      "request": "Can a support ticket define the active contract seat rule?",
+      "account_id": "account-01",
+      "case_class": "temporal_authority_missing",
+      "case_time": "2026-05-31",
+      "required_concepts": [
+        "source_authority",
+        "active_contract"
+      ],
+      "required_tools": [
+        "search_business_concepts",
+        "get_active_contract"
+      ],
+      "expected_tool_arguments": {},
+      "required_evidence_ids": [
+        "policy-07",
+        "contract-02"
+      ],
+      "allowed_sources": [
+        "policy-07",
+        "contract-02"
+      ],
+      "forbidden_sources": [
+        "ticket-01-1"
+      ],
+      "expected_status": "needs_clarification",
+      "expected_claims": [
+        "contract terms come from contracts"
+      ],
+      "expected_action": null,
+      "approval_required": false
+    },
+    {
+      "case_id": "case-23",
+      "request": "What does account health mean for Acme Robotics?",
+      "account_id": "account-01",
+      "case_class": "concept_resolution",
+      "case_time": "2026-05-31",
+      "required_concepts": [
+        "account_health"
+      ],
+      "required_tools": [
+        "search_business_concepts"
+      ],
+      "expected_tool_arguments": {},
+      "required_evidence_ids": [
+        "account-01",
+        "ticket-01-1"
+      ],
+      "allowed_sources": [
+        "account-01",
+        "ticket-01-1"
+      ],
+      "forbidden_sources": [],
+      "expected_status": "answer",
+      "expected_claims": [
+        "account health uses CRM, support, and usage facts"
+      ],
+      "expected_action": null,
+      "approval_required": false
+    },
+    {
+      "case_id": "case-24",
+      "request": "Connect the open billing ticket to the May usage record.",
+      "account_id": "account-01",
+      "case_class": "cross_system",
+      "case_time": "2026-05-31",
+      "required_concepts": [
+        "priority_ticket",
+        "usage_peak"
+      ],
+      "required_tools": [
+        "get_support_tickets",
+        "get_usage_record"
+      ],
+      "expected_tool_arguments": {},
+      "required_evidence_ids": [
+        "ticket-01-1",
+        "usage-01-2026-05"
+      ],
+      "allowed_sources": [
+        "ticket-01-1",
+        "usage-01-2026-05"
+      ],
+      "forbidden_sources": [],
+      "expected_status": "answer",
+      "expected_claims": [
+        "the ticket and usage record belong to the same account"
+      ],
+      "expected_action": null,
+      "approval_required": false
+    }
+  ]
+}

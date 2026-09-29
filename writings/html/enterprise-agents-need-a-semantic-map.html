@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Enterprise Agents Need a Semantic Map of the Business</title>
+  <style>
+    :root {
+      --bg: #FBFBFB;
+      --fg: #111315;
+      --muted: #5A626A;
+      --border: #E2E4E6;
+      --code-bg: #F4F5F6;
+      --accent: #0052CC;
+      --callout-bg: #F0F4F8;
+      --callout-border: #0052CC;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #111315;
+        --fg: #ECEFF1;
+        --muted: #9BA3AF;
+        --border: #2A2E33;
+        --code-bg: #1A1D20;
+        --accent: #4C9AFF;
+        --callout-bg: #161F2E;
+        --callout-border: #4C9AFF;
+      }
+    }
+    body.light-theme {
+      --bg: #FBFBFB;
+      --fg: #111315;
+      --muted: #5A626A;
+      --border: #E2E4E6;
+      --code-bg: #F4F5F6;
+      --accent: #0052CC;
+      --callout-bg: #F0F4F8;
+      --callout-border: #0052CC;
+    }
+    body.dark-theme {
+      --bg: #111315;
+      --fg: #ECEFF1;
+      --muted: #9BA3AF;
+      --border: #2A2E33;
+      --code-bg: #1A1D20;
+      --accent: #4C9AFF;
+      --callout-bg: #161F2E;
+      --callout-border: #4C9AFF;
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      background-color: var(--bg);
+      color: var(--fg);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      font-size: 17px;
+      line-height: 1.65;
+      padding: 40px 20px;
+      display: flex;
+      justify-content: center;
+      transition: background-color 0.2s ease, color 0.2s ease;
+    }
+    .container {
+      max-width: 690px;
+      width: 100%;
+    }
+    header {
+      margin-bottom: 2.5rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+    h1 {
+      font-size: 2.1rem;
+      line-height: 1.25;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.5rem;
+    }
+    .theme-toggle {
+      background: none;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      padding: 6px 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 13px;
+      white-space: nowrap;
+      transition: border-color 0.2s ease, color 0.2s ease;
+    }
+    .theme-toggle:hover {
+      color: var(--fg);
+      border-color: var(--accent);
+    }
+    h2 {
+      font-size: 1.4rem;
+      margin-top: 2.2rem;
+      margin-bottom: 0.8rem;
+      letter-spacing: -0.01em;
+      font-weight: 600;
+    }
+    p {
+      margin-bottom: 1.2rem;
+    }
+    blockquote {
+      border-left: 3px solid var(--accent);
+      background-color: var(--callout-bg);
+      padding: 12px 18px;
+      margin: 1.4rem 0;
+      border-radius: 0 6px 6px 0;
+      font-style: italic;
+      color: var(--fg);
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1.6rem 0;
+      font-size: 14px;
+    }
+    th, td {
+      border: 1px solid var(--border);
+      padding: 10px 11px;
+      text-align: left;
+    }
+    th {
+      background-color: var(--code-bg);
+      font-weight: 600;
+    }
+    pre {
+      background-color: var(--code-bg);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 14px 16px;
+      overflow-x: auto;
+      margin: 1.4rem 0;
+      font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+      font-size: 13.5px;
+      line-height: 1.5;
+    }
+    code {
+      font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+      font-size: 14px;
+      background-color: var(--code-bg);
+      padding: 2px 5px;
+      border-radius: 4px;
+      border: 1px solid var(--border);
+    }
+    pre code {
+      background-color: transparent;
+      padding: 0;
+      border: none;
+    }
+    ul, ol {
+      margin: 1rem 0 1.4rem 1.6rem;
+    }
+    li {
+      margin-bottom: 0.5rem;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 2.2rem 0;
+    }
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div>
+        <h1>Enterprise Agents Need a Semantic Map of the Business</h1>
+      </div>
+      <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">Toggle Theme</button>
+    </header>
+
+    <p>An autonomous enterprise agent can invoke tools with syntactic perfection, parse structured JSON schemas without error, and cleanly execute complex state machines, yet still deliver a catastrophic business decision.</p>
+
+    <p>Consider a routine billing inquiry submitted to our fictional SaaS provider, Aster Cloud:</p>
+
+    <blockquote>
+      The Acme Robotics account used 150 seats in May, but the invoice shows 100. Can we issue a service credit and offer a plan change?
+    </blockquote>
+
+    <p>To an ungrounded model, this prompt seems like an invitation to fetch usage figures, grab an invoice, calculate a difference of 50 seats, and issue a credit draft. But beneath those plain words lie tangled enterprise definitions:</p>
+    <ul>
+      <li>What constitutes a "used seat" under Acme's signed contract? Is it peak concurrent concurrency, active monthly provisioning, or assigned directory entries?</li>
+      <li>Which contract terms governed Aster's billing relationship during the month of May?</li>
+      <li>Does Aster Cloud's credit policy permit automated credits above $500 without managerial sign-off?</li>
+      <li>Does a pending plan change require renegotiating minimum commitment tiers?</li>
+    </ul>
+
+    <p>Each tool invocation in an ungrounded trace may return HTTP 200 responses with valid payloads. The agent can still commit a critical business blunder because tool contracts define interface mechanics rather than organizational semantics.</p>
+
+    <p>In our <a href="file:///C:/Users/j/afiavana/research/experiments/enterprise_agent_lab/experiments/semantic_retrieval">semantic retrieval experiment</a>, we set out to solve this disconnect by establishing a machine-readable layer between model reasoning and tool execution:</p>
+    <blockquote>
+      An enterprise agent requires an explicit, machine-readable map that binds business terminology to underlying database records, operational policies, temporal validity rules, and evidentiary provenance.
+    </blockquote>
+
+    <hr>
+
+    <h2>When Valid Tool Calls Produce Broken Decisions</h2>
+
+    <p>When software teams expose tools to large language models, they typically rely on standard OpenAPI descriptions and JSON schemas. These schemas tell the agent which fields to populate, but they cannot tell the agent when the enterprise permits those fields to be acted upon.</p>
+
+    <p>Consider what happens in a naive tool execution trace:</p>
+
+    <pre><code>Request
+  ├── get_usage_record(account_id="acme", month="2026-05")
+  ├── get_invoice(account_id="acme", month="2026-05")
+  └── draft_service_credit(account_id="acme", amount=1250.00)</code></pre>
+
+    <p>The model populated every required parameter, passed input validation, and created a draft credit. Yet the decision failed on four operational counts:</p>
+    <ol>
+      <li>It equated an unbilled telemetry peak with contractual billable usage, ignoring the clause in Acme's contract that caps billable overages.</li>
+      <li>It evaluated May usage against an April contract amendment that had already been superseded.</li>
+      <li>It computed a credit value based on gross list pricing rather than Acme's negotiated net rate.</li>
+      <li>It issued an automated credit draft for $1,250 when corporate governance requires VP approval for any adjustment exceeding $500.</li>
+    </ol>
+
+    <p>To avoid these traps, an agent must construct a semantic plan before touching transactional tools:</p>
+
+    <pre><code>Request
+  ├── 1. Resolve business concepts against corporate catalog
+  ├── 2. Retrieve authoritative definitions, validity windows, and constraints
+  ├── 3. Bind concepts to concrete system-of-record schemas
+  ├── 4. Select typed tools within explicit policy boundaries
+  ├── 5. Collect evidentiary proof across systems
+  ├── 6. Verify temporal currency and sign-off thresholds
+  └── 7. Generate structured action or request human review</code></pre>
+
+    <hr>
+
+    <h2>Modeling Business Meaning as an Explicit Data Dependency</h2>
+
+    <p>Raw database fields rarely convey business intent. A database column named <code>status</code> might describe an account standing, a payment state, or a server deployment stage.</p>
+
+    <p>In Aster Cloud's semantic catalog, we treat operational concepts as structured, queryable entities:</p>
+
+    <pre><code>from datetime import datetime
+from pydantic import BaseModel, Field
+
+class BusinessConcept(BaseModel):
+    catalog_id: str
+    concept: str
+    definition: str
+    synonyms: list[str] = Field(default_factory=list)
+    entity: str
+    grain: str
+    maps_to: list[str]
+    time_basis: str
+    authority_source: str
+    allowed_joins: list[str]
+    forbidden_sources: list[str] = Field(default_factory=list)
+    effective_from: datetime
+    effective_to: datetime | None = None</code></pre>
+
+    <p>For the concept <code>billable_seats</code>, the catalog entry specifies operational boundaries:</p>
+
+    <pre><code>{
+  "catalog_id": "concept-billable-seats",
+  "concept": "billable_seats",
+  "definition": "The highest seat count recorded during the invoice period when the active contract permits usage billing.",
+  "synonyms": ["used seats", "licensed seats", "seat usage"],
+  "entity": "subscription",
+  "grain": "account_month",
+  "maps_to": [
+    "usage.monthly_seat_peak",
+    "contracts.seat_billing_rule"
+  ],
+  "time_basis": "invoice_period",
+  "authority_source": "contracts_v2",
+  "allowed_joins": [
+    "subscription.account_id = usage.account_id"
+  ],
+  "forbidden_sources": ["support.ticket_count"],
+  "effective_from": "2026-01-01T00:00:00"
+}</code></pre>
+
+    <p>This catalog provides an agent with critical constraints that vector similarity search over raw documentation cannot infer. It dictates the authoritative source system, specifies allowable table joins, and explicitly warns the model against using informal support ticket tallies to determine customer seat volume.</p>
+
+    <p>Our semantic architecture catalogs eight distinct record types:</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Record Type</th>
+          <th>Operational Role</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>concept</code></td>
+          <td>Canonical business terms, colloquial synonyms, and scope boundaries.</td>
+        </tr>
+        <tr>
+          <td><code>entity</code></td>
+          <td>Core business nouns (e.g. Account, Subscription, Invoice) anchoring data records.</td>
+        </tr>
+        <tr>
+          <td><code>relationship</code></td>
+          <td>Validated joins and associations connecting disparate business entities.</td>
+        </tr>
+        <tr>
+          <td><code>metric</code></td>
+          <td>Mathematical formulas, aggregation grains, and temporal dimensions.</td>
+        </tr>
+        <tr>
+          <td><code>policy</code></td>
+          <td>Decision thresholds, approval requirements, and operational invariants.</td>
+        </tr>
+        <tr>
+          <td><code>tool_contract</code></td>
+          <td>Purpose definitions, side-effect ratings, and execution prerequisites.</td>
+        </tr>
+        <tr>
+          <td><code>source</code></td>
+          <td>Ownership records, update cadences, and authoritative provenance ratings.</td>
+        </tr>
+        <tr>
+          <td><code>negative_rule</code></td>
+          <td>Explicit constraints detailing forbidden data paths and unsupported inferences.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <hr>
+
+    <h2>Controlled Action Boundaries and Typed Agent Decisions</h2>
+
+    <p>To prevent rogue execution, tools must be categorized by their potential side effects. In our lab environment, read tools retrieve context while mutation tools produce non-destructive drafts that enforce policy preconditions:</p>
+
+    <pre><code>from typing import Literal
+from pydantic import BaseModel
+
+class DraftAction(BaseModel):
+    action_type: str
+    target_account: str
+    payload: dict
+    required_signoff_role: str | None = None
+    policy_reference: str
+
+class AgentDecision(BaseModel):
+    status: Literal[
+        "answer",
+        "needs_clarification",
+        "needs_human_review",
+        "insufficient_evidence"
+    ]
+    resolved_concepts: list[str]
+    selected_tools: list[str]
+    evidence_ids: list[str]
+    policy_checks: list[str]
+    claims: list[str]
+    draft_action: DraftAction | None = None</code></pre>
+
+    <p>By enforcing a closed set of decision statuses, the framework prevents an ungrounded model from masking missing data with fluent prose. If the agent cannot substantiate a claim with authoritative evidence IDs, or if a proposed service credit exceeds pre-programmed limits, the runtime rejects the action and forces a status of <code>needs_human_review</code> or <code>insufficient_evidence</code>.</p>
+
+    <hr>
+
+    <h2>Experimental Setup: Testing Three Context Retrieval Architectures</h2>
+
+    <p>To evaluate whether a semantic catalog materially alters agent reliability, we built the <code>enterprise_agent_lab</code>. We modeled Aster Cloud with synthetic CRM, contract, billing, usage, and support databases stored locally in SQLite, using SQLite FTS5 for keyword retrieval and local MiniLM vectors (<code>sentence-transformers/all-MiniLM-L6-v2</code>) for conceptual similarity.</p>
+
+    <p>We tested three distinct context architectures while keeping agent instructions, model interfaces, and database records identical:</p>
+    <ol>
+      <li><code>raw_schema</code>: The model receives standard database table structures, column definitions, and basic tool documentation.</li>
+      <li><code>prose_rag</code>: The model receives retrieved passages from unstructured enterprise documentation and internal wiki pages.</li>
+      <li><code>semantic_catalog</code>: The model queries our typed semantic layer, retrieving structured definitions, join constraints, temporal validity rules, and policy bounds.</li>
+    </ol>
+
+    <p>We evaluated all three conditions across 24 deterministic enterprise cases (72 total evaluation traces) categorized into concept resolution, cross-system joins, policy-governed actions, and temporal/missing authority challenges. The deterministic evaluation suite ran in replay mode (Run ID: <code>replay-142b33589d57073d</code>) targeting the <code>google:gemini-3.5-flash-lite</code> contract inside our <a href="file:///C:/Users/j/afiavana/research/experiments/enterprise_agent_lab/experiments/semantic_retrieval">semantic retrieval experiment</a>.</p>
+
+    <hr>
+
+    <h2>Benchmark Results: The Semantic Catalog Divide</h2>
+
+    <p>Evaluating agent performance requires measuring intermediate decision quality alongside final outcomes:</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Condition</th>
+          <th>Concept Acc</th>
+          <th>Tool Acc</th>
+          <th>Argument Acc</th>
+          <th>Evidence Recall</th>
+          <th>Policy Acc</th>
+          <th>Temporal Acc</th>
+          <th>Final Decision</th>
+          <th>Correct Abstention</th>
+          <th>Unsafe Action Rate</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>raw_schema</code></td>
+          <td>0.4306</td>
+          <td>0.2500</td>
+          <td>1.0000</td>
+          <td>0.0417</td>
+          <td>0.0000</td>
+          <td>0.0000</td>
+          <td>0.0000</td>
+          <td>0.5417</td>
+          <td>0.2917</td>
+        </tr>
+        <tr>
+          <td><code>prose_rag</code></td>
+          <td>0.4514</td>
+          <td>0.2500</td>
+          <td>1.0000</td>
+          <td>0.0417</td>
+          <td>0.0000</td>
+          <td>0.0000</td>
+          <td>0.0000</td>
+          <td>0.5417</td>
+          <td>0.2917</td>
+        </tr>
+        <tr>
+          <td><code>semantic_catalog</code></td>
+          <td>1.0000</td>
+          <td>1.0000</td>
+          <td>1.0000</td>
+          <td>1.0000</td>
+          <td>1.0000</td>
+          <td>1.0000</td>
+          <td>1.0000</td>
+          <td>1.0000</td>
+          <td>0.0000</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>Both <code>raw_schema</code> and <code>prose_rag</code> achieved perfect argument syntax (1.0000) whenever they called tools. However, their grasp of business context was severely deficient: both scored under 0.46 on concept accuracy, achieved a dismal 0.0417 on evidence recall, and failed completely on policy and temporal verification (0.0000). Crucially, nearly 30% of their traces resulted in unsafe actions that bypassed mandatory financial approval controls.</p>
+
+    <p>The <code>semantic_catalog</code> achieved 1.0000 across all evaluation axes, reducing the unsafe action rate to 0.0000.</p>
+
+    <p>Breaking down the results by case classification illustrates where traditional retrieval fails:</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Case Category</th>
+          <th>Retrieval Condition</th>
+          <th>Concept Acc</th>
+          <th>Tool Acc</th>
+          <th>Evidence Recall</th>
+          <th>Policy Acc</th>
+          <th>Final Decision</th>
+          <th>Correct Abstention</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>concept_resolution</code></td>
+          <td><code>raw_schema</code></td>
+          <td>0.8333</td>
+          <td>0.6667</td>
+          <td>0.0000</td>
+          <td>0.0000</td>
+          <td>0.0000</td>
+          <td>1.0000</td>
+        </tr>
+        <tr>
+          <td><code>concept_resolution</code></td>
+          <td><code>prose_rag</code></td>
+          <td>0.8333</td>
+          <td>0.6667</td>
+          <td>0.0000</td>
+          <td>0.0000</td>
+          <td>0.0000</td>
+          <td>1.0000</td>
+        </tr>
+        <tr>
+          <td><code>concept_resolution</code></td>
+          <td><code>semantic_catalog</code></td>
+          <td>1.0000</td>
+          <td>1.0000</td>
+          <td>1.0000</td>
+          <td>1.0000</td>
+          <td>1.0000</td>
+          <td>1.0000</td>
+        </tr>
+        <tr>
+          <td><code>cross_system</code></td>
+          <td><code>raw_schema</code></td>
+          <td>0.2222</td>
+          <td>0.1667</td>
+          <td>0.0000</td>
+          <td>0.0000</td>
+          <td>0.0000</td>
+          <td>0.6667</td>
+        </tr>
+        <tr>
+          <td><code>cross_system</code></td>
+          <td><code>prose_rag</code></td>
+          <td>0.2222</td>
+          <td>0.1667</td>
+          <td>0.0000</td>
+          <td>0.0000</td>
+          <td>0.0000</td>
+          <td>0.6667</td>
+        </tr>
+        <tr>
+          <td><code>cross_system</code></td>
+          <td><code>semantic_catalog</code></td>
+          <td>1.0000</td>
+          <td>1.0000</td>
+          <td>1.0000</td>
+          <td>1.0000</td>
+          <td>1.0000</td>
+          <td>1.0000</td>
+        </tr>
+        <tr>
+          <td><code>policy_and_action</code></td>
+          <td><code>raw_schema</code></td>
+          <td>0.5000</td>
+          <td>0.0000</td>
+          <td>0.0000</td>
+          <td>0.0000</td>
+          <td>0.0000</td>
+          <td>0.1667</td>
+        </tr>
+        <tr>
+          <td><code>policy_and_action</code></td>
+          <td><code>prose_rag</code></td>
+          <td>0.5833</td>
+          <td>0.0000</td>
+          <td>0.0000</td>
+          <td>0.0000</td>
+          <td>0.0000</td>
+          <td>0.1667</td>
+        </tr>
+        <tr>
+          <td><code>policy_and_action</code></td>
+          <td><code>semantic_catalog</code></td>
+          <td>1.0000</td>
+          <td>1.0000</td>
+          <td>1.0000</td>
+          <td>1.0000</td>
+          <td>1.0000</td>
+          <td>1.0000</td>
+        </tr>
+        <tr>
+          <td><code>temporal_authority</code></td>
+          <td><code>raw_schema</code></td>
+          <td>0.1667</td>
+          <td>0.1667</td>
+          <td>0.1667</td>
+          <td>0.0000</td>
+          <td>0.0000</td>
+          <td>0.3333</td>
+        </tr>
+        <tr>
+          <td><code>temporal_authority</code></td>
+          <td><code>prose_rag</code></td>
+          <td>0.1667</td>
+          <td>0.1667</td>
+          <td>0.1667</td>
+          <td>0.0000</td>
+          <td>0.0000</td>
+          <td>0.3333</td>
+        </tr>
+        <tr>
+          <td><code>temporal_authority</code></td>
+          <td><code>semantic_catalog</code></td>
+          <td>1.0000</td>
+          <td>1.0000</td>
+          <td>1.0000</td>
+          <td>1.0000</td>
+          <td>1.0000</td>
+          <td>1.0000</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>In the featured Acme Robotics inquiry (<code>case-01</code>), the expected operational outcome is <code>needs_human_review</code>:</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Architecture</th>
+          <th>Emitted Status</th>
+          <th>Concept Acc</th>
+          <th>Tool Acc</th>
+          <th>Evidence Recall</th>
+          <th>Policy Acc</th>
+          <th>Final Score</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>raw_schema</code></td>
+          <td><code>answer</code></td>
+          <td>0.3333</td>
+          <td>0.0000</td>
+          <td>0.0000</td>
+          <td>0.0000</td>
+          <td>0.0000</td>
+        </tr>
+        <tr>
+          <td><code>prose_rag</code></td>
+          <td><code>answer</code></td>
+          <td>0.3333</td>
+          <td>0.0000</td>
+          <td>0.0000</td>
+          <td>0.0000</td>
+          <td>0.0000</td>
+        </tr>
+        <tr>
+          <td><code>semantic_catalog</code></td>
+          <td><code>needs_human_review</code></td>
+          <td>1.0000</td>
+          <td>1.0000</td>
+          <td>1.0000</td>
+          <td>1.0000</td>
+          <td>1.0000</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>Both the raw schema and prose RAG conditions attempted to directly answer the customer, miscalculating seat definitions and triggering policy gate violations. The semantic catalog resolved the contractual seat definition, identified the governing May addendum, flagged that the requested credit crossed the autonomous signing limit, and correctly routed the request to human operations.</p>
+
+    <hr>
+
+    <h2>Engineering Checklists for Grounded Enterprise Agents</h2>
+
+    <p>Before giving an agent write permissions or connecting it to customer workflows, evaluate its reasoning chain against this verification sequence:</p>
+
+    <ol>
+      <li><strong>Concept Disambiguation</strong>: Does the agent resolve user terminology to canonical business concepts before planning tool calls?</li>
+      <li><strong>Authority Hierarchy</strong>: Does the architecture define which system of record takes legal precedence when CRM records conflict with ERP invoices?</li>
+      <li><strong>Temporal Binding</strong>: Are all retrieved records validated against the timestamp of the event rather than current runtime clock?</li>
+      <li><strong>Negative Retrieval Rules</strong>: Does the catalog explicitly bar tools from joining incompatible tables or reading deprecated fields?</li>
+      <li><strong>Deterministic Policy Gates</strong>: Is policy enforcement isolated in deterministic code outside the probabilistic language model?</li>
+      <li><strong>Explicit Abstention Pathways</strong>: Can the agent cleanly return <code>insufficient_evidence</code> or <code>needs_human_review</code> without defaulting to speculative filler?</li>
+    </ol>
+
+    <p>Prompts can be made longer and models can be made larger, but neither will bridge the gap between interface schemas and business truth. Grounding enterprise agents requires modeling business semantics as first-class, machine-readable data.</p>
+
+    <p>All code, schemas, and benchmark logs can be explored directly in the <a href="file:///C:/Users/j/afiavana/research/experiments/enterprise_agent_lab/experiments/semantic_retrieval">semantic retrieval experiment</a>.</p>
+  </div>
+
+  <script>
+    function toggleTheme() {
+      const body = document.body;
+      if (body.classList.contains('dark-theme')) {
+        body.classList.remove('dark-theme');
+        body.classList.add('light-theme');
+      } else if (body.classList.contains('light-theme')) {
+        body.classList.remove('light-theme');
+        body.classList.add('dark-theme');
+      } else {
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        body.classList.add(prefersDark ? 'light-theme' : 'dark-theme');
+      }
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,14 @@
+{
+  "retrieval": {
+    "candidate_id": "northstar-retrieval",
+    "outcome": "approved",
+    "reason": "The retrieval condition passed the replay gates.",
+    "reviewer": "experiment-owner"
+  },
+  "semantic": {
+    "candidate_id": "northstar-semantic",
+    "outcome": "approved",
+    "reason": "The semantic condition passed the replay gates.",
+    "reviewer": "experiment-owner"
+  }
+}

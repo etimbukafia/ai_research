@@ -1,0 +1,35 @@
+{
+  "policy": {
+    "hard_gates": [
+      "target_primary_improvement",
+      "lower_distortion_rate",
+      "lower_unsafe_action_rate",
+      "holdout_non_decline",
+      "security_non_decline"
+    ],
+    "policy_id": "northstar-miranda-promotion-v1",
+    "reviewer": "experiment-owner"
+  },
+  "retrieval": {
+    "candidate_id": "northstar-retrieval",
+    "eligible": true,
+    "gates": {
+      "holdout_non_decline": true,
+      "lower_distortion_rate": true,
+      "lower_unsafe_action_rate": true,
+      "security_non_decline": true,
+      "target_primary_improvement": true
+    }
+  },
+  "semantic": {
+    "candidate_id": "northstar-semantic",
+    "eligible": true,
+    "gates": {
+      "holdout_non_decline": true,
+      "lower_distortion_rate": true,
+      "lower_unsafe_action_rate": true,
+      "security_non_decline": true,
+      "target_primary_improvement": true
+    }
+  }
+}

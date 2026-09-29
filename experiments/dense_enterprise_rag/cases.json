@@ -1,0 +1,1275 @@
+{
+  "cases": [
+    {
+      "abstention_reason": null,
+      "applicable_document_id": "spec-17",
+      "case_class": "version_and_supersession",
+      "case_id": "case-01-clean",
+      "expected_answer": {
+        "unit": "kPa",
+        "value": 220
+      },
+      "expected_answer_status": "answer",
+      "forbidden_document_ids": [],
+      "is_dense_overlap": false,
+      "is_holdout": false,
+      "pair_id": "pair-01",
+      "product_candidates": [],
+      "question": "What is the approved current pressure limit in the Product Safety specification for Atlas X200 in Europe with firmware 4.2?",
+      "question_time": "2026-08-28",
+      "region_candidates": [],
+      "required_evidence_path": [
+        "product-atlas-x200",
+        "firmware-4-2",
+        "region-europe",
+        "document-spec-17",
+        "fact-spec-17-pressure-limit",
+        "authority-product-safety"
+      ],
+      "required_fact": {
+        "name": "pressure_limit",
+        "unit": "kPa",
+        "value": 220
+      },
+      "required_scope": {
+        "authority": "product_safety",
+        "document_type": "specification",
+        "firmware_version": "4.2",
+        "product_id": "atlas_x200",
+        "region": "europe",
+        "status": "Approved"
+      }
+    },
+    {
+      "abstention_reason": null,
+      "applicable_document_id": "spec-17",
+      "case_class": "version_and_supersession",
+      "case_id": "case-01-dense",
+      "expected_answer": {
+        "unit": "kPa",
+        "value": 220
+      },
+      "expected_answer_status": "answer",
+      "forbidden_document_ids": [
+        "spec-12",
+        "spec-19",
+        "bulletin-08",
+        "spec-27"
+      ],
+      "is_dense_overlap": true,
+      "is_holdout": false,
+      "pair_id": "pair-01",
+      "product_candidates": [],
+      "question": "What pressure limit applies to the Atlas X200 in Europe with firmware 4.2?",
+      "question_time": "2026-08-28",
+      "region_candidates": [],
+      "required_evidence_path": [
+        "product-atlas-x200",
+        "firmware-4-2",
+        "region-europe",
+        "document-spec-17",
+        "fact-spec-17-pressure-limit",
+        "authority-product-safety"
+      ],
+      "required_fact": {
+        "name": "pressure_limit",
+        "unit": "kPa",
+        "value": 220
+      },
+      "required_scope": {
+        "authority": "product_safety",
+        "document_type": "specification",
+        "firmware_version": "4.2",
+        "product_id": "atlas_x200",
+        "region": "europe",
+        "status": "Approved"
+      }
+    },
+    {
+      "abstention_reason": null,
+      "applicable_document_id": "spec-07",
+      "case_class": "version_and_supersession",
+      "case_id": "case-02-clean",
+      "expected_answer": {
+        "unit": "kPa",
+        "value": 180
+      },
+      "expected_answer_status": "answer",
+      "forbidden_document_ids": [],
+      "is_dense_overlap": false,
+      "is_holdout": false,
+      "pair_id": "pair-02",
+      "product_candidates": [],
+      "question": "What is the approved current pressure limit in the Product Safety specification for Atlas X100 in Global with firmware 4.2?",
+      "question_time": "2026-08-28",
+      "region_candidates": [],
+      "required_evidence_path": [
+        "product-atlas-x100",
+        "firmware-4-2",
+        "region-global",
+        "document-spec-07",
+        "fact-spec-07-pressure-limit",
+        "authority-product-safety"
+      ],
+      "required_fact": {
+        "name": "pressure_limit",
+        "unit": "kPa",
+        "value": 180
+      },
+      "required_scope": {
+        "authority": "product_safety",
+        "document_type": "specification",
+        "firmware_version": "4.2",
+        "product_id": "atlas_x100",
+        "region": "global",
+        "status": "Approved"
+      }
+    },
+    {
+      "abstention_reason": null,
+      "applicable_document_id": "spec-07",
+      "case_class": "version_and_supersession",
+      "case_id": "case-02-dense",
+      "expected_answer": {
+        "unit": "kPa",
+        "value": 180
+      },
+      "expected_answer_status": "answer",
+      "forbidden_document_ids": [
+        "spec-01",
+        "spec-10",
+        "bulletin-07"
+      ],
+      "is_dense_overlap": true,
+      "is_holdout": false,
+      "pair_id": "pair-02",
+      "product_candidates": [],
+      "question": "What pressure limit applies to the Atlas X100 in Global with firmware 4.2?",
+      "question_time": "2026-08-28",
+      "region_candidates": [],
+      "required_evidence_path": [
+        "product-atlas-x100",
+        "firmware-4-2",
+        "region-global",
+        "document-spec-07",
+        "fact-spec-07-pressure-limit",
+        "authority-product-safety"
+      ],
+      "required_fact": {
+        "name": "pressure_limit",
+        "unit": "kPa",
+        "value": 180
+      },
+      "required_scope": {
+        "authority": "product_safety",
+        "document_type": "specification",
+        "firmware_version": "4.2",
+        "product_id": "atlas_x100",
+        "region": "global",
+        "status": "Approved"
+      }
+    },
+    {
+      "abstention_reason": null,
+      "applicable_document_id": "spec-27",
+      "case_class": "version_and_supersession",
+      "case_id": "case-03-clean",
+      "expected_answer": {
+        "unit": "kPa",
+        "value": 240
+      },
+      "expected_answer_status": "answer",
+      "forbidden_document_ids": [],
+      "is_dense_overlap": false,
+      "is_holdout": false,
+      "pair_id": "pair-03",
+      "product_candidates": [],
+      "question": "What is the approved current pressure limit in the Engineering specification for Atlas X210 in Europe with firmware 4.2?",
+      "question_time": "2026-08-28",
+      "region_candidates": [],
+      "required_evidence_path": [
+        "product-atlas-x210",
+        "firmware-4-2",
+        "region-europe",
+        "document-spec-27",
+        "fact-spec-27-pressure-limit",
+        "authority-engineering"
+      ],
+      "required_fact": {
+        "name": "pressure_limit",
+        "unit": "kPa",
+        "value": 240
+      },
+      "required_scope": {
+        "authority": "engineering",
+        "document_type": "specification",
+        "firmware_version": "4.2",
+        "product_id": "atlas_x210",
+        "region": "europe",
+        "status": "Approved"
+      }
+    },
+    {
+      "abstention_reason": null,
+      "applicable_document_id": "spec-27",
+      "case_class": "version_and_supersession",
+      "case_id": "case-03-dense",
+      "expected_answer": {
+        "unit": "kPa",
+        "value": 240
+      },
+      "expected_answer_status": "answer",
+      "forbidden_document_ids": [
+        "spec-30",
+        "spec-35",
+        "bulletin-32"
+      ],
+      "is_dense_overlap": true,
+      "is_holdout": false,
+      "pair_id": "pair-03",
+      "product_candidates": [],
+      "question": "What pressure limit applies to the Atlas X210 in Europe with firmware 4.2?",
+      "question_time": "2026-08-28",
+      "region_candidates": [],
+      "required_evidence_path": [
+        "product-atlas-x210",
+        "firmware-4-2",
+        "region-europe",
+        "document-spec-27",
+        "fact-spec-27-pressure-limit",
+        "authority-engineering"
+      ],
+      "required_fact": {
+        "name": "pressure_limit",
+        "unit": "kPa",
+        "value": 240
+      },
+      "required_scope": {
+        "authority": "engineering",
+        "document_type": "specification",
+        "firmware_version": "4.2",
+        "product_id": "atlas_x210",
+        "region": "europe",
+        "status": "Approved"
+      }
+    },
+    {
+      "abstention_reason": null,
+      "applicable_document_id": "spec-45",
+      "case_class": "version_and_supersession",
+      "case_id": "case-04-clean",
+      "expected_answer": {
+        "unit": "kPa",
+        "value": 210
+      },
+      "expected_answer_status": "answer",
+      "forbidden_document_ids": [],
+      "is_dense_overlap": false,
+      "is_holdout": false,
+      "pair_id": "pair-04",
+      "product_candidates": [],
+      "question": "What is the approved current pressure limit in the Engineering specification for Atlas Y200 in North America with firmware 4.2?",
+      "question_time": "2026-08-28",
+      "region_candidates": [],
+      "required_evidence_path": [
+        "product-atlas-y200",
+        "firmware-4-2",
+        "region-north-america",
+        "document-spec-45",
+        "fact-spec-45-pressure-limit",
+        "authority-engineering"
+      ],
+      "required_fact": {
+        "name": "pressure_limit",
+        "unit": "kPa",
+        "value": 210
+      },
+      "required_scope": {
+        "authority": "engineering",
+        "document_type": "specification",
+        "firmware_version": "4.2",
+        "product_id": "atlas_y200",
+        "region": "north_america",
+        "status": "Approved"
+      }
+    },
+    {
+      "abstention_reason": null,
+      "applicable_document_id": "spec-45",
+      "case_class": "version_and_supersession",
+      "case_id": "case-04-dense",
+      "expected_answer": {
+        "unit": "kPa",
+        "value": 210
+      },
+      "expected_answer_status": "answer",
+      "forbidden_document_ids": [
+        "spec-39",
+        "spec-48",
+        "bulletin-45"
+      ],
+      "is_dense_overlap": true,
+      "is_holdout": false,
+      "pair_id": "pair-04",
+      "product_candidates": [],
+      "question": "What pressure limit applies to the Atlas Y200 in North America with firmware 4.2?",
+      "question_time": "2026-08-28",
+      "region_candidates": [],
+      "required_evidence_path": [
+        "product-atlas-y200",
+        "firmware-4-2",
+        "region-north-america",
+        "document-spec-45",
+        "fact-spec-45-pressure-limit",
+        "authority-engineering"
+      ],
+      "required_fact": {
+        "name": "pressure_limit",
+        "unit": "kPa",
+        "value": 210
+      },
+      "required_scope": {
+        "authority": "engineering",
+        "document_type": "specification",
+        "firmware_version": "4.2",
+        "product_id": "atlas_y200",
+        "region": "north_america",
+        "status": "Approved"
+      }
+    },
+    {
+      "abstention_reason": null,
+      "applicable_document_id": "spec-17",
+      "case_class": "region_and_entity_scope",
+      "case_id": "case-05-clean",
+      "expected_answer": {
+        "unit": "kPa",
+        "value": 220
+      },
+      "expected_answer_status": "answer",
+      "forbidden_document_ids": [],
+      "is_dense_overlap": false,
+      "is_holdout": false,
+      "pair_id": "pair-05",
+      "product_candidates": [],
+      "question": "What is the approved current pressure limit in the Product Safety specification for Atlas X200 in Europe with firmware 4.2?",
+      "question_time": "2026-08-28",
+      "region_candidates": [],
+      "required_evidence_path": [
+        "product-atlas-x200",
+        "firmware-4-2",
+        "region-europe",
+        "document-spec-17",
+        "fact-spec-17-pressure-limit",
+        "authority-product-safety"
+      ],
+      "required_fact": {
+        "name": "pressure_limit",
+        "unit": "kPa",
+        "value": 220
+      },
+      "required_scope": {
+        "authority": "product_safety",
+        "document_type": "specification",
+        "firmware_version": "4.2",
+        "product_id": "atlas_x200",
+        "region": "europe",
+        "status": "Approved"
+      }
+    },
+    {
+      "abstention_reason": null,
+      "applicable_document_id": "spec-17",
+      "case_class": "region_and_entity_scope",
+      "case_id": "case-05-dense",
+      "expected_answer": {
+        "unit": "kPa",
+        "value": 220
+      },
+      "expected_answer_status": "answer",
+      "forbidden_document_ids": [
+        "spec-21",
+        "bulletin-08"
+      ],
+      "is_dense_overlap": true,
+      "is_holdout": false,
+      "pair_id": "pair-05",
+      "product_candidates": [],
+      "question": "What pressure limit applies to the Atlas X200 in Europe with firmware 4.2?",
+      "question_time": "2026-08-28",
+      "region_candidates": [],
+      "required_evidence_path": [
+        "product-atlas-x200",
+        "firmware-4-2",
+        "region-europe",
+        "document-spec-17",
+        "fact-spec-17-pressure-limit",
+        "authority-product-safety"
+      ],
+      "required_fact": {
+        "name": "pressure_limit",
+        "unit": "kPa",
+        "value": 220
+      },
+      "required_scope": {
+        "authority": "product_safety",
+        "document_type": "specification",
+        "firmware_version": "4.2",
+        "product_id": "atlas_x200",
+        "region": "europe",
+        "status": "Approved"
+      }
+    },
+    {
+      "abstention_reason": null,
+      "applicable_document_id": "spec-09",
+      "case_class": "region_and_entity_scope",
+      "case_id": "case-06-clean",
+      "expected_answer": {
+        "unit": "kPa",
+        "value": 185
+      },
+      "expected_answer_status": "answer",
+      "forbidden_document_ids": [],
+      "is_dense_overlap": false,
+      "is_holdout": false,
+      "pair_id": "pair-06",
+      "product_candidates": [],
+      "question": "What is the approved current pressure limit in the Product Safety specification for Atlas X100 in North America with firmware 4.2?",
+      "question_time": "2026-08-28",
+      "region_candidates": [],
+      "required_evidence_path": [
+        "product-atlas-x100",
+        "firmware-4-2",
+        "region-north-america",
+        "document-spec-09",
+        "fact-spec-09-pressure-limit",
+        "authority-product-safety"
+      ],
+      "required_fact": {
+        "name": "pressure_limit",
+        "unit": "kPa",
+        "value": 185
+      },
+      "required_scope": {
+        "authority": "product_safety",
+        "document_type": "specification",
+        "firmware_version": "4.2",
+        "product_id": "atlas_x100",
+        "region": "north_america",
+        "status": "Approved"
+      }
+    },
+    {
+      "abstention_reason": null,
+      "applicable_document_id": "spec-09",
+      "case_class": "region_and_entity_scope",
+      "case_id": "case-06-dense",
+      "expected_answer": {
+        "unit": "kPa",
+        "value": 185
+      },
+      "expected_answer_status": "answer",
+      "forbidden_document_ids": [
+        "spec-08",
+        "bulletin-10"
+      ],
+      "is_dense_overlap": true,
+      "is_holdout": false,
+      "pair_id": "pair-06",
+      "product_candidates": [],
+      "question": "What pressure limit applies to the Atlas X100 in North America with firmware 4.2?",
+      "question_time": "2026-08-28",
+      "region_candidates": [],
+      "required_evidence_path": [
+        "product-atlas-x100",
+        "firmware-4-2",
+        "region-north-america",
+        "document-spec-09",
+        "fact-spec-09-pressure-limit",
+        "authority-product-safety"
+      ],
+      "required_fact": {
+        "name": "pressure_limit",
+        "unit": "kPa",
+        "value": 185
+      },
+      "required_scope": {
+        "authority": "product_safety",
+        "document_type": "specification",
+        "firmware_version": "4.2",
+        "product_id": "atlas_x100",
+        "region": "north_america",
+        "status": "Approved"
+      }
+    },
+    {
+      "abstention_reason": null,
+      "applicable_document_id": "spec-27",
+      "case_class": "region_and_entity_scope",
+      "case_id": "case-07-clean",
+      "expected_answer": {
+        "unit": "kPa",
+        "value": 240
+      },
+      "expected_answer_status": "answer",
+      "forbidden_document_ids": [],
+      "is_dense_overlap": false,
+      "is_holdout": false,
+      "pair_id": "pair-07",
+      "product_candidates": [],
+      "question": "What is the approved current pressure limit in the Engineering specification for Atlas X210 in Europe with firmware 4.2?",
+      "question_time": "2026-08-28",
+      "region_candidates": [],
+      "required_evidence_path": [
+        "product-atlas-x210",
+        "firmware-4-2",
+        "region-europe",
+        "document-spec-27",
+        "fact-spec-27-pressure-limit",
+        "authority-engineering"
+      ],
+      "required_fact": {
+        "name": "pressure_limit",
+        "unit": "kPa",
+        "value": 240
+      },
+      "required_scope": {
+        "authority": "engineering",
+        "document_type": "specification",
+        "firmware_version": "4.2",
+        "product_id": "atlas_x210",
+        "region": "europe",
+        "status": "Approved"
+      }
+    },
+    {
+      "abstention_reason": null,
+      "applicable_document_id": "spec-27",
+      "case_class": "region_and_entity_scope",
+      "case_id": "case-07-dense",
+      "expected_answer": {
+        "unit": "kPa",
+        "value": 240
+      },
+      "expected_answer_status": "answer",
+      "forbidden_document_ids": [
+        "spec-33",
+        "bulletin-32"
+      ],
+      "is_dense_overlap": true,
+      "is_holdout": false,
+      "pair_id": "pair-07",
+      "product_candidates": [],
+      "question": "What pressure limit applies to the Atlas X210 in Europe with firmware 4.2?",
+      "question_time": "2026-08-28",
+      "region_candidates": [],
+      "required_evidence_path": [
+        "product-atlas-x210",
+        "firmware-4-2",
+        "region-europe",
+        "document-spec-27",
+        "fact-spec-27-pressure-limit",
+        "authority-engineering"
+      ],
+      "required_fact": {
+        "name": "pressure_limit",
+        "unit": "kPa",
+        "value": 240
+      },
+      "required_scope": {
+        "authority": "engineering",
+        "document_type": "specification",
+        "firmware_version": "4.2",
+        "product_id": "atlas_x210",
+        "region": "europe",
+        "status": "Approved"
+      }
+    },
+    {
+      "abstention_reason": null,
+      "applicable_document_id": "spec-43",
+      "case_class": "region_and_entity_scope",
+      "case_id": "case-08-clean",
+      "expected_answer": {
+        "unit": "kPa",
+        "value": 205
+      },
+      "expected_answer_status": "answer",
+      "forbidden_document_ids": [],
+      "is_dense_overlap": false,
+      "is_holdout": false,
+      "pair_id": "pair-08",
+      "product_candidates": [],
+      "question": "What is the approved current pressure limit in the Engineering specification for Atlas Y200 in Global with firmware 4.2?",
+      "question_time": "2026-08-28",
+      "region_candidates": [],
+      "required_evidence_path": [
+        "product-atlas-y200",
+        "firmware-4-2",
+        "region-global",
+        "document-spec-43",
+        "fact-spec-43-pressure-limit",
+        "authority-engineering"
+      ],
+      "required_fact": {
+        "name": "pressure_limit",
+        "unit": "kPa",
+        "value": 205
+      },
+      "required_scope": {
+        "authority": "engineering",
+        "document_type": "specification",
+        "firmware_version": "4.2",
+        "product_id": "atlas_y200",
+        "region": "global",
+        "status": "Approved"
+      }
+    },
+    {
+      "abstention_reason": null,
+      "applicable_document_id": "spec-43",
+      "case_class": "region_and_entity_scope",
+      "case_id": "case-08-dense",
+      "expected_answer": {
+        "unit": "kPa",
+        "value": 205
+      },
+      "expected_answer_status": "answer",
+      "forbidden_document_ids": [
+        "spec-21",
+        "bulletin-43"
+      ],
+      "is_dense_overlap": true,
+      "is_holdout": false,
+      "pair_id": "pair-08",
+      "product_candidates": [],
+      "question": "What pressure limit applies to the Atlas Y200 in Global with firmware 4.2?",
+      "question_time": "2026-08-28",
+      "region_candidates": [],
+      "required_evidence_path": [
+        "product-atlas-y200",
+        "firmware-4-2",
+        "region-global",
+        "document-spec-43",
+        "fact-spec-43-pressure-limit",
+        "authority-engineering"
+      ],
+      "required_fact": {
+        "name": "pressure_limit",
+        "unit": "kPa",
+        "value": 205
+      },
+      "required_scope": {
+        "authority": "engineering",
+        "document_type": "specification",
+        "firmware_version": "4.2",
+        "product_id": "atlas_y200",
+        "region": "global",
+        "status": "Approved"
+      }
+    },
+    {
+      "abstention_reason": null,
+      "applicable_document_id": "spec-17",
+      "case_class": "authority_and_status",
+      "case_id": "case-09-clean",
+      "expected_answer": {
+        "unit": "kPa",
+        "value": 220
+      },
+      "expected_answer_status": "answer",
+      "forbidden_document_ids": [],
+      "is_dense_overlap": false,
+      "is_holdout": false,
+      "pair_id": "pair-09",
+      "product_candidates": [],
+      "question": "What is the approved current pressure limit in the Product Safety specification for Atlas X200 in Europe with firmware 4.2?",
+      "question_time": "2026-08-28",
+      "region_candidates": [],
+      "required_evidence_path": [
+        "product-atlas-x200",
+        "firmware-4-2",
+        "region-europe",
+        "document-spec-17",
+        "fact-spec-17-pressure-limit",
+        "authority-product-safety"
+      ],
+      "required_fact": {
+        "name": "pressure_limit",
+        "unit": "kPa",
+        "value": 220
+      },
+      "required_scope": {
+        "authority": "product_safety",
+        "document_type": "specification",
+        "firmware_version": "4.2",
+        "product_id": "atlas_x200",
+        "region": "europe",
+        "status": "Approved"
+      }
+    },
+    {
+      "abstention_reason": null,
+      "applicable_document_id": "spec-17",
+      "case_class": "authority_and_status",
+      "case_id": "case-09-dense",
+      "expected_answer": {
+        "unit": "kPa",
+        "value": 220
+      },
+      "expected_answer_status": "answer",
+      "forbidden_document_ids": [
+        "bulletin-08",
+        "spec-19"
+      ],
+      "is_dense_overlap": true,
+      "is_holdout": false,
+      "pair_id": "pair-09",
+      "product_candidates": [],
+      "question": "What pressure limit applies to the Atlas X200 in Europe with firmware 4.2?",
+      "question_time": "2026-08-28",
+      "region_candidates": [],
+      "required_evidence_path": [
+        "product-atlas-x200",
+        "firmware-4-2",
+        "region-europe",
+        "document-spec-17",
+        "fact-spec-17-pressure-limit",
+        "authority-product-safety"
+      ],
+      "required_fact": {
+        "name": "pressure_limit",
+        "unit": "kPa",
+        "value": 220
+      },
+      "required_scope": {
+        "authority": "product_safety",
+        "document_type": "specification",
+        "firmware_version": "4.2",
+        "product_id": "atlas_x200",
+        "region": "europe",
+        "status": "Approved"
+      }
+    },
+    {
+      "abstention_reason": null,
+      "applicable_document_id": "spec-07",
+      "case_class": "authority_and_status",
+      "case_id": "case-10-clean",
+      "expected_answer": {
+        "unit": "kPa",
+        "value": 180
+      },
+      "expected_answer_status": "answer",
+      "forbidden_document_ids": [],
+      "is_dense_overlap": false,
+      "is_holdout": false,
+      "pair_id": "pair-10",
+      "product_candidates": [],
+      "question": "What is the approved current pressure limit in the Product Safety specification for Atlas X100 in Global with firmware 4.2?",
+      "question_time": "2026-08-28",
+      "region_candidates": [],
+      "required_evidence_path": [
+        "product-atlas-x100",
+        "firmware-4-2",
+        "region-global",
+        "document-spec-07",
+        "fact-spec-07-pressure-limit",
+        "authority-product-safety"
+      ],
+      "required_fact": {
+        "name": "pressure_limit",
+        "unit": "kPa",
+        "value": 180
+      },
+      "required_scope": {
+        "authority": "product_safety",
+        "document_type": "specification",
+        "firmware_version": "4.2",
+        "product_id": "atlas_x100",
+        "region": "global",
+        "status": "Approved"
+      }
+    },
+    {
+      "abstention_reason": null,
+      "applicable_document_id": "spec-07",
+      "case_class": "authority_and_status",
+      "case_id": "case-10-dense",
+      "expected_answer": {
+        "unit": "kPa",
+        "value": 180
+      },
+      "expected_answer_status": "answer",
+      "forbidden_document_ids": [
+        "bulletin-07",
+        "spec-10"
+      ],
+      "is_dense_overlap": true,
+      "is_holdout": false,
+      "pair_id": "pair-10",
+      "product_candidates": [],
+      "question": "What pressure limit applies to the Atlas X100 in Global with firmware 4.2?",
+      "question_time": "2026-08-28",
+      "region_candidates": [],
+      "required_evidence_path": [
+        "product-atlas-x100",
+        "firmware-4-2",
+        "region-global",
+        "document-spec-07",
+        "fact-spec-07-pressure-limit",
+        "authority-product-safety"
+      ],
+      "required_fact": {
+        "name": "pressure_limit",
+        "unit": "kPa",
+        "value": 180
+      },
+      "required_scope": {
+        "authority": "product_safety",
+        "document_type": "specification",
+        "firmware_version": "4.2",
+        "product_id": "atlas_x100",
+        "region": "global",
+        "status": "Approved"
+      }
+    },
+    {
+      "abstention_reason": null,
+      "applicable_document_id": "spec-27",
+      "case_class": "authority_and_status",
+      "case_id": "case-11-clean",
+      "expected_answer": {
+        "unit": "kPa",
+        "value": 240
+      },
+      "expected_answer_status": "answer",
+      "forbidden_document_ids": [],
+      "is_dense_overlap": false,
+      "is_holdout": false,
+      "pair_id": "pair-11",
+      "product_candidates": [],
+      "question": "What is the approved current pressure limit in the Engineering specification for Atlas X210 in Europe with firmware 4.2?",
+      "question_time": "2026-08-28",
+      "region_candidates": [],
+      "required_evidence_path": [
+        "product-atlas-x210",
+        "firmware-4-2",
+        "region-europe",
+        "document-spec-27",
+        "fact-spec-27-pressure-limit",
+        "authority-engineering"
+      ],
+      "required_fact": {
+        "name": "pressure_limit",
+        "unit": "kPa",
+        "value": 240
+      },
+      "required_scope": {
+        "authority": "engineering",
+        "document_type": "specification",
+        "firmware_version": "4.2",
+        "product_id": "atlas_x210",
+        "region": "europe",
+        "status": "Approved"
+      }
+    },
+    {
+      "abstention_reason": null,
+      "applicable_document_id": "spec-27",
+      "case_class": "authority_and_status",
+      "case_id": "case-11-dense",
+      "expected_answer": {
+        "unit": "kPa",
+        "value": 240
+      },
+      "expected_answer_status": "answer",
+      "forbidden_document_ids": [
+        "bulletin-32",
+        "spec-35"
+      ],
+      "is_dense_overlap": true,
+      "is_holdout": false,
+      "pair_id": "pair-11",
+      "product_candidates": [],
+      "question": "What pressure limit applies to the Atlas X210 in Europe with firmware 4.2?",
+      "question_time": "2026-08-28",
+      "region_candidates": [],
+      "required_evidence_path": [
+        "product-atlas-x210",
+        "firmware-4-2",
+        "region-europe",
+        "document-spec-27",
+        "fact-spec-27-pressure-limit",
+        "authority-engineering"
+      ],
+      "required_fact": {
+        "name": "pressure_limit",
+        "unit": "kPa",
+        "value": 240
+      },
+      "required_scope": {
+        "authority": "engineering",
+        "document_type": "specification",
+        "firmware_version": "4.2",
+        "product_id": "atlas_x210",
+        "region": "europe",
+        "status": "Approved"
+      }
+    },
+    {
+      "abstention_reason": null,
+      "applicable_document_id": "spec-45",
+      "case_class": "authority_and_status",
+      "case_id": "case-12-clean",
+      "expected_answer": {
+        "unit": "kPa",
+        "value": 210
+      },
+      "expected_answer_status": "answer",
+      "forbidden_document_ids": [],
+      "is_dense_overlap": false,
+      "is_holdout": false,
+      "pair_id": "pair-12",
+      "product_candidates": [],
+      "question": "What is the approved current pressure limit in the Engineering specification for Atlas Y200 in North America with firmware 4.2?",
+      "question_time": "2026-08-28",
+      "region_candidates": [],
+      "required_evidence_path": [
+        "product-atlas-y200",
+        "firmware-4-2",
+        "region-north-america",
+        "document-spec-45",
+        "fact-spec-45-pressure-limit",
+        "authority-engineering"
+      ],
+      "required_fact": {
+        "name": "pressure_limit",
+        "unit": "kPa",
+        "value": 210
+      },
+      "required_scope": {
+        "authority": "engineering",
+        "document_type": "specification",
+        "firmware_version": "4.2",
+        "product_id": "atlas_y200",
+        "region": "north_america",
+        "status": "Approved"
+      }
+    },
+    {
+      "abstention_reason": null,
+      "applicable_document_id": "spec-45",
+      "case_class": "authority_and_status",
+      "case_id": "case-12-dense",
+      "expected_answer": {
+        "unit": "kPa",
+        "value": 210
+      },
+      "expected_answer_status": "answer",
+      "forbidden_document_ids": [
+        "bulletin-45",
+        "spec-48"
+      ],
+      "is_dense_overlap": true,
+      "is_holdout": false,
+      "pair_id": "pair-12",
+      "product_candidates": [],
+      "question": "What pressure limit applies to the Atlas Y200 in North America with firmware 4.2?",
+      "question_time": "2026-08-28",
+      "region_candidates": [],
+      "required_evidence_path": [
+        "product-atlas-y200",
+        "firmware-4-2",
+        "region-north-america",
+        "document-spec-45",
+        "fact-spec-45-pressure-limit",
+        "authority-engineering"
+      ],
+      "required_fact": {
+        "name": "pressure_limit",
+        "unit": "kPa",
+        "value": 210
+      },
+      "required_scope": {
+        "authority": "engineering",
+        "document_type": "specification",
+        "firmware_version": "4.2",
+        "product_id": "atlas_y200",
+        "region": "north_america",
+        "status": "Approved"
+      }
+    },
+    {
+      "abstention_reason": "No approved specification exists for firmware 5.0.",
+      "applicable_document_id": null,
+      "case_class": "missing_or_ambiguous_evidence",
+      "case_id": "case-13-clean",
+      "expected_answer": null,
+      "expected_answer_status": "insufficient_evidence",
+      "forbidden_document_ids": [],
+      "is_dense_overlap": false,
+      "is_holdout": true,
+      "pair_id": "pair-13",
+      "product_candidates": [],
+      "question": "What is the approved current pressure limit for Atlas X100 in Europe with firmware 5.0?",
+      "question_time": "2026-08-28",
+      "region_candidates": [],
+      "required_evidence_path": [],
+      "required_fact": {
+        "name": "pressure_limit",
+        "unit": "kPa",
+        "value": null
+      },
+      "required_scope": {
+        "authority": "product_safety",
+        "document_type": "specification",
+        "firmware_version": "5.0",
+        "product_id": "atlas_x100",
+        "region": "europe",
+        "status": "Approved"
+      }
+    },
+    {
+      "abstention_reason": "No approved specification exists for firmware 5.0.",
+      "applicable_document_id": null,
+      "case_class": "missing_or_ambiguous_evidence",
+      "case_id": "case-13-dense",
+      "expected_answer": null,
+      "expected_answer_status": "insufficient_evidence",
+      "forbidden_document_ids": [
+        "spec-08",
+        "spec-11",
+        "bulletin-09"
+      ],
+      "is_dense_overlap": true,
+      "is_holdout": true,
+      "pair_id": "pair-13",
+      "product_candidates": [],
+      "question": "What pressure limit applies to Atlas X100 in Europe with firmware 5.0?",
+      "question_time": "2026-08-28",
+      "region_candidates": [],
+      "required_evidence_path": [],
+      "required_fact": {
+        "name": "pressure_limit",
+        "unit": "kPa",
+        "value": null
+      },
+      "required_scope": {
+        "authority": "product_safety",
+        "document_type": "specification",
+        "firmware_version": "5.0",
+        "product_id": "atlas_x100",
+        "region": "europe",
+        "status": "Approved"
+      }
+    },
+    {
+      "abstention_reason": "Atlas X200 and Atlas Y200 both match the product name.",
+      "applicable_document_id": null,
+      "case_class": "missing_or_ambiguous_evidence",
+      "case_id": "case-14-clean",
+      "expected_answer": null,
+      "expected_answer_status": "clarification",
+      "forbidden_document_ids": [],
+      "is_dense_overlap": false,
+      "is_holdout": true,
+      "pair_id": "pair-14",
+      "product_candidates": [
+        "atlas_x200",
+        "atlas_y200"
+      ],
+      "question": "Which Atlas 200 product has the approved current pressure limit in Europe with firmware 4.2?",
+      "question_time": "2026-08-28",
+      "region_candidates": [],
+      "required_evidence_path": [],
+      "required_fact": {
+        "name": "pressure_limit",
+        "unit": "kPa",
+        "value": null
+      },
+      "required_scope": {
+        "authority": "product_safety",
+        "document_type": "specification",
+        "firmware_version": "4.2",
+        "product_id": null,
+        "region": "europe",
+        "status": "Approved"
+      }
+    },
+    {
+      "abstention_reason": "Atlas X200 and Atlas Y200 both match the product name.",
+      "applicable_document_id": null,
+      "case_class": "missing_or_ambiguous_evidence",
+      "case_id": "case-14-dense",
+      "expected_answer": null,
+      "expected_answer_status": "clarification",
+      "forbidden_document_ids": [
+        "spec-17",
+        "spec-44"
+      ],
+      "is_dense_overlap": true,
+      "is_holdout": true,
+      "pair_id": "pair-14",
+      "product_candidates": [
+        "atlas_x200",
+        "atlas_y200"
+      ],
+      "question": "What pressure limit applies to Atlas 200 in Europe with firmware 4.2?",
+      "question_time": "2026-08-28",
+      "region_candidates": [],
+      "required_evidence_path": [],
+      "required_fact": {
+        "name": "pressure_limit",
+        "unit": "kPa",
+        "value": null
+      },
+      "required_scope": {
+        "authority": "product_safety",
+        "document_type": "specification",
+        "firmware_version": "4.2",
+        "product_id": null,
+        "region": "europe",
+        "status": "Approved"
+      }
+    },
+    {
+      "abstention_reason": "The question does not name a region.",
+      "applicable_document_id": null,
+      "case_class": "missing_or_ambiguous_evidence",
+      "case_id": "case-15-clean",
+      "expected_answer": null,
+      "expected_answer_status": "clarification",
+      "forbidden_document_ids": [],
+      "is_dense_overlap": false,
+      "is_holdout": true,
+      "pair_id": "pair-15",
+      "product_candidates": [],
+      "question": "Which region has the approved current pressure limit for Atlas X200 with firmware 4.2?",
+      "question_time": "2026-08-28",
+      "region_candidates": [
+        "global",
+        "europe",
+        "north_america"
+      ],
+      "required_evidence_path": [],
+      "required_fact": {
+        "name": "pressure_limit",
+        "unit": "kPa",
+        "value": null
+      },
+      "required_scope": {
+        "authority": "product_safety",
+        "document_type": "specification",
+        "firmware_version": "4.2",
+        "product_id": "atlas_x200",
+        "region": null,
+        "status": "Approved"
+      }
+    },
+    {
+      "abstention_reason": "The question does not name a region.",
+      "applicable_document_id": null,
+      "case_class": "missing_or_ambiguous_evidence",
+      "case_id": "case-15-dense",
+      "expected_answer": null,
+      "expected_answer_status": "clarification",
+      "forbidden_document_ids": [
+        "spec-21",
+        "spec-17",
+        "spec-22"
+      ],
+      "is_dense_overlap": true,
+      "is_holdout": true,
+      "pair_id": "pair-15",
+      "product_candidates": [],
+      "question": "What pressure limit applies to Atlas X200 with firmware 4.2?",
+      "question_time": "2026-08-28",
+      "region_candidates": [
+        "global",
+        "europe",
+        "north_america"
+      ],
+      "required_evidence_path": [],
+      "required_fact": {
+        "name": "pressure_limit",
+        "unit": "kPa",
+        "value": null
+      },
+      "required_scope": {
+        "authority": "product_safety",
+        "document_type": "specification",
+        "firmware_version": "4.2",
+        "product_id": "atlas_x200",
+        "region": null,
+        "status": "Approved"
+      }
+    },
+    {
+      "abstention_reason": "The approved firmware 4.2 specification was not effective on 2024-01-01.",
+      "applicable_document_id": null,
+      "case_class": "missing_or_ambiguous_evidence",
+      "case_id": "case-16-clean",
+      "expected_answer": null,
+      "expected_answer_status": "insufficient_evidence",
+      "forbidden_document_ids": [],
+      "is_dense_overlap": false,
+      "is_holdout": true,
+      "pair_id": "pair-16",
+      "product_candidates": [],
+      "question": "What pressure limit applied to Atlas X200 in Europe with firmware 4.2 on 2024-01-01?",
+      "question_time": "2024-01-01",
+      "region_candidates": [],
+      "required_evidence_path": [],
+      "required_fact": {
+        "name": "pressure_limit",
+        "unit": "kPa",
+        "value": null
+      },
+      "required_scope": {
+        "authority": "product_safety",
+        "document_type": "specification",
+        "firmware_version": "4.2",
+        "product_id": "atlas_x200",
+        "region": "europe",
+        "status": "Approved"
+      }
+    },
+    {
+      "abstention_reason": "The approved firmware 4.2 specification was not effective on 2024-01-01.",
+      "applicable_document_id": null,
+      "case_class": "missing_or_ambiguous_evidence",
+      "case_id": "case-16-dense",
+      "expected_answer": null,
+      "expected_answer_status": "insufficient_evidence",
+      "forbidden_document_ids": [
+        "spec-12",
+        "spec-17",
+        "spec-19"
+      ],
+      "is_dense_overlap": true,
+      "is_holdout": true,
+      "pair_id": "pair-16",
+      "product_candidates": [],
+      "question": "What pressure limit applies to Atlas X200 in Europe with firmware 4.2 on 2024-01-01?",
+      "question_time": "2024-01-01",
+      "region_candidates": [],
+      "required_evidence_path": [],
+      "required_fact": {
+        "name": "pressure_limit",
+        "unit": "kPa",
+        "value": null
+      },
+      "required_scope": {
+        "authority": "product_safety",
+        "document_type": "specification",
+        "firmware_version": "4.2",
+        "product_id": "atlas_x200",
+        "region": "europe",
+        "status": "Approved"
+      }
+    }
+  ],
+  "seed": 20260828
+}
